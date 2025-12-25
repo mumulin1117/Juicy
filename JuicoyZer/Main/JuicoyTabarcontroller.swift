@@ -100,7 +100,7 @@ class JuicoyBaseNavigationController: UINavigationController {
 
                 viewController.navigationItem.leftBarButtonItem =
                     UIBarButtonItem(
-                        image: UIImage(named: "Juicoynav_back"),
+                        image: UIImage(named: "Juicoynav_back")?.withRenderingMode(.alwaysOriginal),
                         style: .plain,
                         target: self,
                         action: #selector(JuicoyhandleBack)
@@ -168,7 +168,7 @@ class JuicoySeconedViewController: UIViewController {
     ) {
         navigationItem.rightBarButtonItem =
             UIBarButtonItem(
-                image: image,
+                image: image?.withRenderingMode(.alwaysOriginal),
                 style: .plain,
                 target: self,
                 action: action

@@ -144,7 +144,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
    
     
     @objc private func juicoyPoleAI() {
-        
+        self.navigationController?.pushViewController(JuicoyDanceAibuyController(), animated: true)
     }
     
     @objc private func juicoyMayfavirateAI() {
