@@ -15,37 +15,49 @@ class JuicoyTabarcontroller: UITabBarController {
         let Juicoyrance = UITabBarAppearance()
         Juicoyrance.configureWithOpaqueBackground()
         Juicoyrance.backgroundColor =  .black
-    
+        let JuicoyItemAppearance = UITabBarItemAppearance()
+
+        JuicoyItemAppearance.normal.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(red: 0.87, green: 0.87, blue: 0.9, alpha: 1)
+        ]
+
+        JuicoyItemAppearance.selected.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(red: 1, green: 1, blue: 0.33, alpha: 1)
+        ]
+
+        Juicoyrance.stackedLayoutAppearance = JuicoyItemAppearance
+        Juicoyrance.inlineLayoutAppearance = JuicoyItemAppearance
+        Juicoyrance.compactInlineLayoutAppearance = JuicoyItemAppearance
         self.tabBar.standardAppearance = Juicoyrance
         if #available(iOS 15.0, *) {
             self.tabBar.scrollEdgeAppearance = Juicoyrance
         }
         
-        
+       
         let Juicoyone =  JuicoyBaseNavigationController.init(rootViewController: JuicoyOneneController())
         Juicoyone.tabBarItem = UITabBarItem(
-            title: nil,
+            title: "Home",
             image:UIImage(named: "juicoyGripTechnique1")?.withRenderingMode(.alwaysOriginal) ,
             selectedImage:UIImage(named: "juicoyGripTechnique1_")?.withRenderingMode(.alwaysOriginal)
         )
         
         let Juicoytwo = JuicoyBaseNavigationController.init(rootViewController:JuicoyExploreOneController())
         Juicoytwo.tabBarItem = UITabBarItem(
-            title: nil,
+            title: "Explore",
             image:UIImage(named: "juicoyGripTechnique2")?.withRenderingMode(.alwaysOriginal) ,
             selectedImage:UIImage(named: "juicoyGripTechnique2_")?.withRenderingMode(.alwaysOriginal)
         )
         
         let Juicoythree = JuicoyBaseNavigationController.init(rootViewController: JuicoyMotionExplocontroller())
         Juicoythree.tabBarItem = UITabBarItem(
-            title: nil,
+            title: "Chat",
             image:UIImage(named: "juicoyGripTechnique3")?.withRenderingMode(.alwaysOriginal) ,
             selectedImage:UIImage(named: "juicoyGripTechnique3_")?.withRenderingMode(.alwaysOriginal)
         )
        
         let Juicoyfour = JuicoyBaseNavigationController.init(rootViewController:  JuicoyMotionArenantroller())
         Juicoyfour.tabBarItem = UITabBarItem(
-            title: nil,
+            title: "Plore",
             image:UIImage(named: "juicoyGripTechnique4")?.withRenderingMode(.alwaysOriginal),
             selectedImage: UIImage(named: "juicoyGripTechnique4_")?.withRenderingMode(.alwaysOriginal)
         )

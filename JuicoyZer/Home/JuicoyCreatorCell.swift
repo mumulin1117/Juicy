@@ -38,13 +38,7 @@ final class JuicoyCreatorCell: UICollectionViewCell {
         return JUICYlabel
     }()
     
-//    lazy var JuiaddButton: UIButton = {
-//        let Juicoyimg = UIButton.init()
-//        Juicoyimg.setImage(UIImage.init(named: "juicoyADD"), for: .normal)
-//        Juicoyimg.translatesAutoresizingMaskIntoConstraints = false
-//        return Juicoyimg
-//    }()
-    
+
     private lazy var JuicoyfollowView: UIImageView = {
         let Juicoyimg = UIImageView.init(image: UIImage.init(named: "juicoyFollow"))
         Juicoyimg.contentMode = .scaleAspectFill
