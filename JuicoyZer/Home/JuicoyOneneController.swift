@@ -1,0 +1,292 @@
+//
+//  JuicoyOneneController.swift
+//  JuicoyZer
+//
+//  Created by mumu on 2025/12/24.
+//
+
+import UIKit
+
+class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(JUICYMotionStageContainer)
+        view.addSubview(JUICYAddSpinButton)
+        view.addSubview(JUICYPoleSpinButton)
+        view.addSubview(JUICYPoleLoveButton)
+        
+        view.addSubview(JuicoyCardContainerView)
+        view.addSubview(JUICYrecommendsr)
+        view.addSubview(JuicoyBottomCollectionView)
+        JUICOYconstrainet()
+      
+        
+      
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // 确保只初始化一次，否则每次 layout 都会重新生成卡片
+        if JuicoyCardViews.isEmpty {
+            JuicoyConfigureCards()
+        }
+    }
+    func JUICOYconstrainet()  {
+        NSLayoutConstraint.activate([
+            JUICYMotionStageContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            JUICYMotionStageContainer.widthAnchor.constraint(equalToConstant: 69),
+            JUICYMotionStageContainer.heightAnchor.constraint(equalToConstant: 30),
+            JUICYMotionStageContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: JUICOYtopSafeAreaHeight + 14),
+            
+            JUICYAddSpinButton.widthAnchor.constraint(equalToConstant: 35),
+            JUICYAddSpinButton.heightAnchor.constraint(equalToConstant: 35),
+            JUICYAddSpinButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -19),
+            JUICYAddSpinButton.centerYAnchor.constraint(equalTo: JUICYMotionStageContainer.centerYAnchor),
+            
+            JUICYPoleSpinButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15),
+            JUICYPoleSpinButton.heightAnchor.constraint(equalToConstant: 83),
+            JUICYPoleSpinButton.topAnchor.constraint(equalTo: self.JUICYAddSpinButton.bottomAnchor, constant: 25),
+            JUICYPoleSpinButton.widthAnchor.constraint(equalTo: JUICYPoleLoveButton.widthAnchor),
+            
+            JUICYPoleLoveButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15),
+            JUICYPoleLoveButton.heightAnchor.constraint(equalToConstant: 83),
+            JUICYPoleLoveButton.topAnchor.constraint(equalTo: self.JUICYAddSpinButton.bottomAnchor, constant: 25),
+            
+            JuicoyBottomCollectionView.heightAnchor.constraint(equalToConstant: 98),
+            JuicoyBottomCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            JuicoyBottomCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            JuicoyBottomCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor,constant:-self.view.safeAreaInsets.bottom - (self.tabBarController?.tabBar.frame.height ?? 0) - 20),
+           
+            JUICYrecommendsr.widthAnchor.constraint(equalToConstant: 130),
+            JUICYrecommendsr.heightAnchor.constraint(equalToConstant: 21),
+            JUICYrecommendsr.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 15),
+            JUICYrecommendsr.bottomAnchor.constraint(equalTo: JuicoyBottomCollectionView.topAnchor, constant: -15),
+            
+            JuicoyCardContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            JuicoyCardContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            JuicoyCardContainerView.bottomAnchor.constraint(equalTo: JUICYrecommendsr.topAnchor, constant: -15),
+            JuicoyCardContainerView.topAnchor.constraint(equalTo: JUICYPoleSpinButton.bottomAnchor, constant: 55)
+        ])
+    }
+    private lazy var  JUICYMotionStageContainer: UIImageView = {
+        let JUICOY = UIImageView.init(image: UIImage.init(named: "JuicyTitle"))
+        JUICOY.translatesAutoresizingMaskIntoConstraints = false
+        return JUICOY
+    }()
+    
+    
+    private lazy var  JUICYAddSpinButton: UIButton = {
+        let JUICYbutton = UIButton()
+        JUICYbutton.setImage(UIImage(named: "juicoyCreate"), for: .normal)
+        JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
+        
+        JUICYbutton.addTarget(self, action: #selector(juicoyADDSoul), for: .touchUpInside)
+        return JUICYbutton
+    }()
+    
+    
+    
+    private lazy var JUICYPoleSpinButton: UIButton = {
+        let JUICYbutton = UIButton()
+        JUICYbutton.setBackgroundImage(UIImage(named: "juicoyAI"), for: .normal)
+        JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
+        
+        JUICYbutton.addTarget(self, action: #selector(juicoyPoleAI), for: .touchUpInside)
+        return JUICYbutton
+    }()
+    
+    private lazy var JUICYPoleLoveButton: UIButton = {
+        let JUICYbutton = UIButton()
+        JUICYbutton.setBackgroundImage(UIImage(named: "juicoyFaverite"), for: .normal)
+        JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
+        
+        JUICYbutton.addTarget(self, action: #selector(juicoyPoleAI), for: .touchUpInside)
+        return JUICYbutton
+    }()
+    
+    
+    private lazy var JuicoyCardContainerView :UIView = {
+        let JUICOY = UIView.init()
+        JUICOY.translatesAutoresizingMaskIntoConstraints = false
+        return JUICOY
+    }()
+    
+    private lazy var  JUICYrecommendsr: UIImageView = {
+        let JUICOY = UIImageView.init(image: UIImage.init(named: "juicoyGuHand"))
+        JUICOY.translatesAutoresizingMaskIntoConstraints = false
+        return JUICOY
+    }()
+    private  lazy var JuicoyBottomCollectionView: UICollectionView = {
+        let JuicoyLayout = UICollectionViewFlowLayout()
+        
+        JuicoyLayout.scrollDirection = .horizontal
+        JuicoyLayout.minimumLineSpacing = 24
+        JuicoyLayout.itemSize = CGSize(width:20 + 204, height: 98)
+        JuicoyLayout.minimumInteritemSpacing = 24
+        
+        let   JuicoyBottomCollectionView = UICollectionView(frame: .zero, collectionViewLayout: JuicoyLayout)
+        JuicoyBottomCollectionView.backgroundColor = .clear
+        JuicoyBottomCollectionView.showsHorizontalScrollIndicator = false
+        JuicoyBottomCollectionView.register(JuicoyCreatorCell.self, forCellWithReuseIdentifier: "JuicoyCreatorCell")
+        JuicoyBottomCollectionView.dataSource = self
+        JuicoyBottomCollectionView.delegate = self
+        JuicoyBottomCollectionView.translatesAutoresizingMaskIntoConstraints = false
+       
+        return JuicoyBottomCollectionView
+    }()
+    
+    
+    private var JuicoyCardViews: [JuicoyMovementCardView] = []
+    
+   
+    
+    @objc private func juicoyPoleAI() {
+        
+    }
+    
+    @objc private func juicoyMayfavirateAI() {
+        
+    }
+    
+    @objc private func juicoyADDSoul() {
+        
+    }
+    private var JuicoyCardOriginalCenter: CGPoint = .zero
+    private let JuicoyCardSpacing: CGFloat = -12
+   
+
+    private func JuicoyConfigureCards() {
+        // 1. 清空旧数据（防止重复配置）
+        JuicoyCardViews.forEach { $0.removeFromSuperview() }
+        JuicoyCardViews.removeAll()
+        
+        // 2. 倒序生成卡片，确保索引 0 的卡片在视觉最上方
+        for JuicoyIndex in (0..<5).reversed() {
+            let JuicoyCard = JuicoyMovementCardView(frame: JuicoyCardContainerView.bounds)
+           
+            JuicoyCard.layer.cornerRadius = 10
+            
+            // 初始偏移位置
+            JuicoyCard.transform = CGAffineTransform(translationX: 0, y: CGFloat(JuicoyIndex) * JuicoyCardSpacing)
+            JuicoyCard.alpha = JuicoyIndex == 0 ? 1 : 0.9
+            
+            JuicoyCard.JuicoyTapAction = { [weak self] in
+                self?.JuicoyOpenDetail()
+            }
+            
+            // 使用 addSubview，后添加的在上方；或者 insertSubview(..., at: 0) 后续需配合逻辑
+            // 这里推荐：按顺序添加，但保持数组 [0] 是最上面那张
+            JuicoyCardContainerView.addSubview(JuicoyCard)
+            JuicoyCardViews.insert(JuicoyCard, at: 0)
+        }
+        
+        // 此时 JuicoyCardViews.first 是最后添加进 addSubview 的，即视觉最上层
+        JuicoyAttachPanToTopCard()
+    }
+
+    private func JuicoyAttachPanToTopCard() {
+        guard let JuicoyTopCard = JuicoyCardViews.first else { return }
+        
+        // 移除旧手势防止堆叠
+        JuicoyTopCard.gestureRecognizers?.forEach { JuicoyTopCard.removeGestureRecognizer($0) }
+        
+        let JuicoyPan = UIPanGestureRecognizer(target: self, action: #selector(JuicoyHandlePan))
+        JuicoyTopCard.addGestureRecognizer(JuicoyPan)
+        JuicoyTopCard.isUserInteractionEnabled = true
+    }
+
+    @objc private func JuicoyHandlePan(_ JuicoyGesture: UIPanGestureRecognizer) {
+        guard let JuicoyTopCard = JuicoyGesture.view else { return }
+        let JuicoyTranslation = JuicoyGesture.translation(in: JuicoyCardContainerView)
+
+        switch JuicoyGesture.state {
+        case .began:
+            JuicoyCardOriginalCenter = JuicoyTopCard.center
+
+        case .changed:
+            // 优化：使用 translation 配合 CGAffineTransform，或者直接修改 center
+            let JuicoyNewX = JuicoyCardOriginalCenter.x + JuicoyTranslation.x
+            let JuicoyNewY = JuicoyCardOriginalCenter.y + JuicoyTranslation.y * 0.2 // 降低纵向跟随感
+            JuicoyTopCard.center = CGPoint(x: JuicoyNewX, y: JuicoyNewY)
+            
+            // 旋转弧度限制
+            let JuicoyRotationAngle = (JuicoyTranslation.x / JuicoyCardContainerView.bounds.width) * 0.4
+            JuicoyTopCard.transform = CGAffineTransform(rotationAngle: JuicoyRotationAngle)
+
+        case .ended, .cancelled:
+            
+        
+            let JuicoyVelocity = JuicoyGesture.velocity(in: JuicoyCardContainerView)
+            let JuicoyOffsetX = JuicoyTopCard.center.x - JuicoyCardOriginalCenter.x
+            
+            // 判定条件：位移超过120 或 划动速度极快
+            if abs(JuicoyOffsetX) > 120 || abs(JuicoyVelocity.x) > 500 {
+                JuicoyAnimateCardDismiss(JuicoyTopCard, direction: JuicoyOffsetX > 0)
+            } else {
+                JuicoyResetTopCard(JuicoyTopCard)
+            }
+
+        default:
+            break
+        }
+    }
+
+    private func JuicoyResetTopCard(_ JuicoyCard: UIView) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+            JuicoyCard.center = self.JuicoyCardOriginalCenter
+            JuicoyCard.transform = .identity
+        })
+    }
+
+    private func JuicoyAnimateCardDismiss(_ JuicoyCard: UIView, direction: Bool) {
+        JuicoyCard.isUserInteractionEnabled = false // 动画期间禁用交互
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            // 飞出屏幕
+            let JuicoyExitX = direction ? self.view.bounds.width * 1.5 : -self.view.bounds.width * 0.5
+            JuicoyCard.center = CGPoint(x: JuicoyExitX, y: JuicoyCard.center.y)
+            JuicoyCard.alpha = 0
+        }) { _ in
+            JuicoyCard.removeFromSuperview()
+            if !self.JuicoyCardViews.isEmpty {
+                self.JuicoyCardViews.removeFirst()
+            }
+            self.JuicoyPromoteNextCard()
+        }
+    }
+
+    private func JuicoyPromoteNextCard() {
+        // 重新排列剩余卡片
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
+            for (JuicoyIndex, JuicoyCard) in self.JuicoyCardViews.enumerated() {
+                // 每一张往上挪一个位置
+                JuicoyCard.transform = CGAffineTransform(translationX: 0, y: CGFloat(JuicoyIndex) * self.JuicoyCardSpacing)
+                JuicoyCard.alpha = JuicoyIndex == 0 ? 1 : 0.9
+            }
+        }) { _ in
+            // 给当前最上面的卡片绑定手势
+            self.JuicoyAttachPanToTopCard()
+        }
+    }
+    private func JuicoyOpenDetail() {
+       
+    }
+    
+
+}
+
+   
+
+extension JuicoyOneneController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        10
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let JuicoyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "JuicoyCreatorCell", for: indexPath) as! JuicoyCreatorCell
+        return JuicoyCell
+    }
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>JUICOYUID</key>
+		<string></string>
+		<key>JUICOYUName</key>
+		<string></string>
+		<key>JUICOYUphoto</key>
+		<string></string>
+		<key>JUICOYUsignture</key>
+		<string></string>
+		<key>JUICOYUpicsWall</key>
+		<string></string>
+		<key>JUICOYUquestionTitle</key>
+		<string></string>
+		<key>JUICOYUquestionDetail</key>
+		<string></string>
+		<key>JUICOYUquestionAnswercount</key>
+		<string>0</string>
+		<key>JUICOYUquestionPic</key>
+		<string>0</string>
+		<key>JUICOYUCreativeSigLink</key>
+		<string>0</string>
+		<key>JUICOYUCreativeSigPIC</key>
+		<string>0</string>
+		<key>JUICOYUCreativeSigFire</key>
+		<string>0</string>
+		<key>JUICOYUCreativeSigTitle</key>
+		<string>0</string>
+		<key>JUICOYUCreativeSigTime</key>
+		<string>0</string>
+	</dict>
+</array>
+</plist>
