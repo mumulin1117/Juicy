@@ -26,7 +26,7 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
     
     @objc func juicoyPoleDanceAcademy() {
         
-        
+        self.navigationController?.pushViewController(JuicoyAcademyVaultController(), animated: true)
     }
     
     private lazy var JUICYpololaurButton: UIButton = {

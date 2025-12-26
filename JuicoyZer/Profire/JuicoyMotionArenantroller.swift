@@ -30,12 +30,17 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         return JuicoyImg
     }()
 
-    private let JuicoyGlassSettingTrigger: UIButton = {
+    private lazy var JuicoyGlassSettingTrigger: UIButton = {
         let JuicoyBtn = UIButton()
         JuicoyBtn.setImage(UIImage(named: "joicoysoite"), for: .normal)
+        JuicoyBtn.addTarget(self, action: #selector(juicoyShapeConsistency), for: .touchUpInside)
         return JuicoyBtn
     }()
     
+    @objc func juicoyShapeConsistency()  {
+        self.navigationController?.pushViewController(JuicoyEssenceVaultController(), animated: true)
+    }
+    //金币
     private let JuicoyGDIOmentCount: UIButton = {
         let JuicoyView = UIButton()
         JuicoyView.layer.cornerRadius = 14
@@ -50,10 +55,15 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyLabel.textColor = .white
         JuicoyLabel.font = UIFont.systemFont(ofSize: 15)
         JuicoyView.addSubview(JuicoyLabel)
-        
+        JuicoyView.addTarget(self, action: #selector(JJuicoyUMPDimoned0ontroller), for: .touchUpInside)
         return JuicoyView
     }()
    
+    @objc func JJuicoyUMPDimoned0ontroller() {
+        self.navigationController?.pushViewController(JuicoyWalletFluxController(), animated: true)
+     }
+    
+    //edit
     private let Juicoyedit: UIButton = {
         let JuicoyView = UIButton()
         JuicoyView.setImage(UIImage(named: "joicoyedit"), for: .normal)
@@ -62,8 +72,13 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         JuicoyView.setTitle(" Edit", for: .normal)
         JuicoyView.setTitleColor(.white, for: .normal)
+        JuicoyView.addTarget(self, action: #selector(JJuicoyUMPEditontroller), for: .touchUpInside)
         return JuicoyView
     }()
+   
+    @objc func JJuicoyUMPEditontroller() {
+        self.navigationController?.pushViewController(JuicoyProfileArchitectController(), animated: true)
+     }
 
     private let JuicoyIconicAvatarFrame: UIImageView = {
         let JuicoyImg = UIImageView()
@@ -97,6 +112,8 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     private let JuicoyEliteVipTag: UIImageView = {
         let JuicoyImg = UIImageView()
         JuicoyImg.image = UIImage(named: "juicoyVIP")
+        
+        
         return JuicoyImg
     }()
 
@@ -108,7 +125,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         return JuicoyLabel
     }()
 
-    
+    //my gift
     private let JuicoyGIFTHeader: UIButton = {
         let JuicoyView = UIButton()
         JuicoyView.setBackgroundImage(UIImage.init(named: "joicoyhaikjuo"), for: .normal)
@@ -121,9 +138,13 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyLabel.textColor = .white
         JuicoyLabel.font = UIFont.systemFont(ofSize: 15)
         JuicoyView.addSubview(JuicoyLabel)
-        
+        JuicoyView.addTarget(self, action: #selector(JJuicoyUMPGiftontroller), for: .touchUpInside)
         return JuicoyView
     }()
+   
+    @objc func JJuicoyUMPGiftontroller() {
+        self.navigationController?.pushViewController(JuicoyCollectionMasterController.init(JuicoyMode: .JuicoyGiftAura), animated: true)
+     }
     
     
     private let JuicoyMomentumStatsGrid: UIStackView = {
@@ -133,16 +154,21 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyStack.alignment = .center
         return JuicoyStack
     }()
-
-    private let JuicoyImperialVIPAd: UIButton = {
+//vip
+    private lazy var JuicoyImperialVIPAd: UIButton = {
         let JuicoyBtn = UIButton()
         JuicoyBtn.setBackgroundImage(UIImage(named: "joicoysizevip"), for: .normal)
+        JuicoyBtn.addTarget(self, action: #selector(JJuicoyUMPJuicoymembershipController), for: .touchUpInside)
         
         return JuicoyBtn
     }()
-
-    private let JuicoyGlimpseVideoHeader: UIView = {
-        let JuicoyView = UIView()
+    
+   @objc func JJuicoyUMPJuicoymembershipController() {
+       self.navigationController?.pushViewController(JuicoymembershipController(), animated: true)
+    }
+//my video
+    private let JuicoyGlimpseVideoHeader: UIButton = {
+        let JuicoyView = UIButton()
         
         let img = UIImageView(image: UIImage.init(named: "joicoyshaiur"))
         img.frame = CGRect(x: 0, y: (35 - 16)/2, width: 16, height: 16)
@@ -157,10 +183,17 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyLabel.textColor = .white
         JuicoyLabel.font = UIFont.systemFont(ofSize: 15)
         JuicoyView.addSubview(JuicoyLabel)
+        JuicoyView.addTarget(self, action: #selector(JJuicoyUMPJuicomyvide0ontroller), for: .touchUpInside)
         
         return JuicoyView
     }()
 
+    
+    @objc func JJuicoyUMPJuicomyvide0ontroller() {
+        self.navigationController?.pushViewController(JuicoyCollectionMasterController.init(JuicoyMode: .JuicoyVideoOrbit), animated: true)
+     }
+    
+    
     private let JuicoyDesolateStateIcon: UIImageView = {
         let JuicoyImg = UIImageView()
         JuicoyImg.image = UIImage(named: "joicoynodatare")
@@ -284,14 +317,24 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     }
 
     private func JuicoyPopulateThreadStats() {
-        let JuicoyFollowThread = JuicoyForgeStatUnit(JuicoyVal: "45", JuicoyTitle: "Following")
-        let JuicoyFanThread = JuicoyForgeStatUnit(JuicoyVal: "134", JuicoyTitle: "Followers")
+        let JuicoyFollowThread = JuicoyForgeStatUnit(JuicoyVal: "0", JuicoyTitle: "Following")
+        JuicoyFollowThread.addTarget(self, action: #selector(JJuicoyUMJuicoyFollowThread), for: .touchUpInside)
+        let JuicoyFanThread = JuicoyForgeStatUnit(JuicoyVal: "0", JuicoyTitle: "Followers")
+        JuicoyFanThread.addTarget(self, action: #selector(JJuicoyUMJuicoyFanThread), for: .touchUpInside)
         JuicoyMomentumStatsGrid.addArrangedSubview(JuicoyFollowThread)
         JuicoyMomentumStatsGrid.addArrangedSubview(JuicoyFanThread)
     }
 
-    private func JuicoyForgeStatUnit(JuicoyVal: String, JuicoyTitle: String) -> UIView {
-        let JuicoyBox = UIView()
+    @objc func JJuicoyUMJuicoyFollowThread() {
+        self.navigationController?.pushViewController(JuicoyMotionNexusController.init(JuicoyTargetMode: .JuicoyFollowing), animated: true)
+     }
+    
+    
+    @objc func JJuicoyUMJuicoyFanThread() {
+        self.navigationController?.pushViewController(JuicoyMotionNexusController.init(JuicoyTargetMode: .JuicoyFollower), animated: true)
+     }
+    private func JuicoyForgeStatUnit(JuicoyVal: String, JuicoyTitle: String) -> UIButton {
+        let JuicoyBox = UIButton()
         let JuicoyNum = UILabel()
         JuicoyNum.text = JuicoyVal
         JuicoyNum.textColor = .white
@@ -318,5 +361,6 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         return JuicoyBox
     }
 }
+
 
 

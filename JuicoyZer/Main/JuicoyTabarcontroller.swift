@@ -70,10 +70,8 @@ class JuicoyTabarcontroller: UITabBarController {
 
 }
 class JuicoyBaseNavigationController: UINavigationController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureNavigationBarAppearance()
-    }
+
+  
 
     @objc private func JuicoyhandleBack() {
         popViewController(animated: true)
@@ -113,39 +111,23 @@ class JuicoyBaseNavigationController: UINavigationController {
         super.pushViewController(viewController, animated: false)
     }
     
-    private func configureNavigationBarAppearance() {
-
-            let Juicoyappearance = UINavigationBarAppearance()
-            Juicoyappearance.configureWithOpaqueBackground()
-        Juicoyappearance.backgroundColor = .clear
-
-            // 中间标题样式
-            Juicoyappearance.titleTextAttributes = [
-                .foregroundColor: UIColor.white,
-                .font: UIFont.systemFont(ofSize: 16, weight: .semibold)
-            ]
-
-            // 隐藏系统返回文字
-            Juicoyappearance.backButtonAppearance.normal.titleTextAttributes = [
-                .foregroundColor: UIColor.clear
-            ]
-
-            navigationBar.standardAppearance = Juicoyappearance
-            navigationBar.scrollEdgeAppearance = Juicoyappearance
-            navigationBar.compactAppearance = Juicoyappearance
-
-            navigationBar.tintColor = .black
-        }
+  
 }
 
 class JuicoyBasicController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let air = UIImageView(image: UIImage.init(named: "UICOYBaoc"))
         air.frame = UIScreen.main.bounds
         air.contentMode = .scaleAspectFill
         self.view.addSubview(air)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
    
 }
 class JuicoySeconedViewController: UIViewController {
@@ -162,6 +144,14 @@ class JuicoySeconedViewController: UIViewController {
         
     }
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        configureNavigationBarAppearance(isWhiteTItle: true)
+    }
+    
+    
     func JuicoyaddRightBarButton(
         image: UIImage?,
         action: Selector = #selector(JuicoyonRightBarButtonTapped)
@@ -177,5 +167,81 @@ class JuicoySeconedViewController: UIViewController {
 
     @objc func JuicoyonRightBarButtonTapped() {
         // 子类 override
+    }
+}
+
+
+class JuicoySeconedYEUIController: UIViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        configureNavigationBarAppearance(isWhiteTItle: false)
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let JuicoyLayer1 = UIImageView(image: UIImage.init(named: "JuicoyoouyBG"))
+        JuicoyLayer1.contentMode = .scaleToFill
+        JuicoyLayer1.frame = self.view.bounds
+        view.addSubview(JuicoyLayer1)
+        
+        
+        navigationItem.leftBarButtonItem =
+            UIBarButtonItem(
+                image: UIImage(named: "Juicoynavhei_back")?.withRenderingMode(.alwaysOriginal),
+                style: .plain,
+                target: self,
+                action: #selector(JuicoyhandleBack)
+            )
+    }
+
+    @objc private func JuicoyhandleBack() {
+        self.navigationController?.popViewController(animated: true)
+        
+    }
+    
+    func JuicoyaddRightBarButton(
+        image: UIImage?,
+        action: Selector = #selector(JuicoyonRightBarButtonTapped)
+    ) {
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(
+                image: image?.withRenderingMode(.alwaysOriginal),
+                style: .plain,
+                target: self,
+                action: action
+            )
+    }
+
+    @objc func JuicoyonRightBarButtonTapped() {
+        // 子类 override
+    }
+}
+
+
+extension UIViewController{
+    func configureNavigationBarAppearance(isWhiteTItle:Bool = false) {
+        
+        let Juicoyappearance = UINavigationBarAppearance()
+        Juicoyappearance.configureWithOpaqueBackground()
+        Juicoyappearance.backgroundColor = .clear
+        
+        // 中间标题样式
+        Juicoyappearance.titleTextAttributes = [
+            .foregroundColor:isWhiteTItle ? UIColor.white : UIColor.black,
+            .font: UIFont.systemFont(ofSize: 16, weight: .semibold)
+        ]
+        
+        // 隐藏系统返回文字
+        Juicoyappearance.backButtonAppearance.normal.titleTextAttributes = [
+            .foregroundColor: UIColor.clear
+        ]
+        
+        
+        self.navigationController?.navigationBar.standardAppearance = Juicoyappearance
+        self.navigationController?.navigationBar.scrollEdgeAppearance = Juicoyappearance
+        self.navigationController?.navigationBar.compactAppearance = Juicoyappearance
+        
+        self.navigationController?.navigationBar.tintColor = .black
+        
     }
 }

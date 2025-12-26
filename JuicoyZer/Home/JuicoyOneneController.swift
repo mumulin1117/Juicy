@@ -21,9 +21,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
         view.addSubview(JUICYrecommendsr)
         view.addSubview(JuicoyBottomCollectionView)
         JUICOYconstrainet()
-      
-        
-      
+   
     }
     
     override func viewDidLayoutSubviews() {
@@ -103,7 +101,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
         JUICYbutton.setBackgroundImage(UIImage(named: "juicoyFaverite"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
-        JUICYbutton.addTarget(self, action: #selector(juicoyPoleAI), for: .touchUpInside)
+        JUICYbutton.addTarget(self, action: #selector(juicoyMayfavirateAI), for: .touchUpInside)
         return JUICYbutton
     }()
     
@@ -141,18 +139,18 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
     
     private var JuicoyCardViews: [JuicoyMovementCardView] = []
     
-   
     
     @objc private func juicoyPoleAI() {
         self.navigationController?.pushViewController(JuicoyDanceAibuyController(), animated: true)
     }
     
     @objc private func juicoyMayfavirateAI() {
+        self.navigationController?.pushViewController(JuicoyAestheticFavController(), animated: true)
         
     }
     
     @objc private func juicoyADDSoul() {
-        
+        self.navigationController?.pushViewController(JuicoyVideoPostController(), animated: true)
     }
     private var JuicoyCardOriginalCenter: CGPoint = .zero
     private let JuicoyCardSpacing: CGFloat = -12
@@ -271,6 +269,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
             self.JuicoyAttachPanToTopCard()
         }
     }
+    
     private func JuicoyOpenDetail() {
        
     }

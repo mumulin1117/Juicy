@@ -8,52 +8,63 @@
 import UIKit
 
 class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSource, UITableViewDelegate {
+    private var JuicoyFabricCollection: [JuicoyFabricMessage] = [
+            JuicoyFabricMessage(JuicoyContent: "Hi there! I'm your Pole Dance AI. Ask me anything you'd like to know.", JuicoyIsLead: true, JuicoyTimestamp: ""),
+            JuicoyFabricMessage(JuicoyContent: "I'm a beginner. What should I practice first?", JuicoyIsLead: false, JuicoyTimestamp: ""),
+            JuicoyFabricMessage(JuicoyContent: "Start with basic grips and spins. Focus on control and consistency, not speed.", JuicoyIsLead: true, JuicoyTimestamp: "Today 8:43 AM"),
+            JuicoyFabricMessage(JuicoyContent: "Can you suggest something simple for today?", JuicoyIsLead: false, JuicoyTimestamp: "")
+        ]
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
+            return JuicoyFabricCollection.count
+        }
+
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let JuicoyCell = tableView.dequeueReusableCell(withIdentifier: "JuicoyEchoThreadCell", for: indexPath) as! JuicoyEchoThreadCell
+            JuicoyCell.JuicoyInfusePulse(JuicoyFabricCollection[indexPath.row])
+            return JuicoyCell
+        }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let JuicoyCell = tableView.dequeueReusableCell(withIdentifier: "JuicoyChatCell", for: indexPath) as! JuicoyChatCell
-        
-        return JuicoyCell
-    }
     
-    
-      private let JUICYEmailTextField: UITextField = {
+    private lazy var  JUICYEmailTextField: UITextField = {
           let JUICOYfield = UITextField()
           JUICOYfield.textColor = .white
           JUICOYfield.placeholder = "Say something…"
           JUICOYfield.font = UIFont.systemFont(ofSize: 15)
           JUICOYfield.translatesAutoresizingMaskIntoConstraints = false
-          JUICOYfield.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1)
-        
+          JUICOYfield.backgroundColor = UIColor.white.withAlphaComponent(0.15)
+          JUICOYfield.delegate = self
           JUICOYfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         
           JUICOYfield.leftViewMode = .always
           return JUICOYfield
       }()
       
-    private let JUICYsendButton: UIButton = {
+    private lazy var  JUICYsendButton: UIButton = {
         let JUICYbutton = UIButton()
         JUICYbutton.setBackgroundImage(UIImage(named: "juicoydanceAiSend"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
-        JUICYbutton.addTarget(self, action: #selector(juicoysendSmesgl), for: .touchUpInside)
+        JUICYbutton.addTarget(self, action: #selector(JuicoyExecuteSignalTransmission), for: .touchUpInside)
         return JUICYbutton
     }()
-    private let JuicoyChatTableView = UITableView(frame: .zero, style: .plain)
-    private func JuicoyConfigureTable() {
-        JuicoyChatTableView.frame = CGRect.zero
-           JuicoyChatTableView.backgroundColor = .clear
-           JuicoyChatTableView.separatorStyle = .none
-           JuicoyChatTableView.rowHeight = 78
-           JuicoyChatTableView.dataSource = self
-           JuicoyChatTableView.delegate = self
-           JuicoyChatTableView.register(JuicoyChatCell.self, forCellReuseIdentifier: "JuicoyChatCell")
-           view.addSubview(JuicoyChatTableView)
-      
-    }
-    
+   
+    private lazy var JuicoyChatTableView: UITableView = {
+        
+        let JuicoyTable = UITableView()
+        JuicoyTable.backgroundColor = .clear
+        JuicoyTable.separatorStyle = .none
+        JuicoyTable.allowsSelection = false
+        JuicoyTable.dataSource = self
+        JuicoyTable.delegate = self
+        
+        JuicoyTable.translatesAutoresizingMaskIntoConstraints = false
+        JuicoyTable.register(JuicoyEchoThreadCell.self, forCellReuseIdentifier: "JuicoyEchoThreadCell")
+        
+        return JuicoyTable
+        
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +74,7 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
         
         view.addSubview(JUICYEmailTextField)
         view.addSubview(JUICYsendButton)
-        JuicoyConfigureTable()
+        view.addSubview(JuicoyChatTableView)
         
         NSLayoutConstraint.activate([
             JUICYsendButton.widthAnchor.constraint(equalToConstant: 40),
@@ -78,8 +89,8 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
             
             JuicoyChatTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             JuicoyChatTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            JuicoyChatTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            JuicoyChatTableView.topAnchor.constraint(equalTo: self.view.topAnchor,constant: JUICOYalltotalTop + 40),
+            JuicoyChatTableView.bottomAnchor.constraint(equalTo: self.JUICYsendButton.topAnchor,constant: -10),
+            JuicoyChatTableView.topAnchor.constraint(equalTo: self.view.topAnchor,constant:JUICOYalltotalTop + 10),
             ])
     }
     
@@ -89,7 +100,50 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
     }
 
     
-   @objc func juicoysendSmesgl() {
+  
+    @objc private func JuicoyExecuteSignalTransmission() {
+            
+        guard let JuicoyRawText = JUICYEmailTextField.text, !JuicoyRawText.trimmingCharacters(in: .whitespaces).isEmpty else {
+            self.JUICOYshowMessage("Please enter your question at first!")
+            return
+        }
         
+        let JuicoyNewPulse = JuicoyFabricMessage(JuicoyContent: JuicoyRawText, JuicoyIsLead: false, JuicoyTimestamp: "")
+        JuicoyFabricCollection.append(JuicoyNewPulse)
+        
+    JUICYEmailTextField.text = ""
+        JuicoySynchronizeVibration()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.JuicoySimulateAIEcho()
+        }
     }
+
+    private func JuicoySynchronizeVibration() {
+        JuicoyChatTableView.reloadData()
+        JuicoyScrollToStreamEnd()
+    }
+
+    private func JuicoyScrollToStreamEnd() {
+        if JuicoyFabricCollection.count > 0 {
+            let JuicoyFinalIndex = IndexPath(row: JuicoyFabricCollection.count - 1, section: 0)
+            JuicoyChatTableView.scrollToRow(at: JuicoyFinalIndex, at: .bottom, animated: true)
+        }
+    }
+
+    private func JuicoySimulateAIEcho() {
+        let JuicoyAIPulse = JuicoyFabricMessage(JuicoyContent: "That's a great observation! Keep practicing your grip strength.", JuicoyIsLead: true, JuicoyTimestamp: "Just now")
+        JuicoyFabricCollection.append(JuicoyAIPulse)
+        JuicoySynchronizeVibration()
+    }
+   
+}
+
+    
+extension JuicoyAiEnterController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        JuicoyExecuteSignalTransmission()
+        return true
+    }
+    
 }
