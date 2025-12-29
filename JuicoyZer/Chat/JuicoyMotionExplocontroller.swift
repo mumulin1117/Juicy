@@ -154,4 +154,8 @@ extension JuicoyMotionExplocontroller: UITableViewDataSource, UITableViewDelegat
         JuicoyDelete.backgroundColor = UIColor(red: 1, green: 0.35, blue: 0.3, alpha: 1)
         return UISwipeActionsConfiguration(actions: [JuicoyDelete])
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(JuicoyMeadggFotuseController(), animated: true)
+    }
 }

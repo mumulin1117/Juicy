@@ -95,9 +95,9 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
     }
     
 //举报
-    override func JuicoyonRightBarButtonTapped(){
-        
-    }
+//    override func JuicoyonRightBarButtonTapped(){
+//        
+//    }
 
     
   

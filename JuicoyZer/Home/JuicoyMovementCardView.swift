@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class JuicoyMovementCardView: UIView {
+final class JuicoyMovementCardView: UIButton {
 
-    var JuicoyTapAction: (() -> Void)?
+//    var JuicoyTapAction: (() -> Void)?
 
     private let JuicoyBackImageView = UIImageView()
     private let JuicoyPlayIcon = UIImageView(image: UIImage.init(named: "juicoyPause"))
@@ -91,13 +91,13 @@ final class JuicoyMovementCardView: UIView {
         clipsToBounds = true
         backgroundColor = .black
         JuicoyConfigureImage()
-        JuicoyConfigureTap()
+//        JuicoyConfigureTap()
     }
 
     required init?(coder: NSCoder) { nil }
 
     private func JuicoyConfigureImage() {
-        
+        JuicoyBackImageView.isUserInteractionEnabled = true
         JuicoyBackImageView.contentMode = .scaleAspectFill
         addSubview(JuicoyBackImageView)
        
@@ -179,12 +179,12 @@ final class JuicoyMovementCardView: UIView {
     
   
 
-    private func JuicoyConfigureTap() {
-        let JuicoyTap = UITapGestureRecognizer(target: self, action: #selector(JuicoyHandleTap))
-        addGestureRecognizer(JuicoyTap)
-    }
+//    private func JuicoyConfigureTap() {
+//        let JuicoyTap = UITapGestureRecognizer(target: self, action: #selector(JuicoyHandleTap))
+//        addGestureRecognizer(JuicoyTap)
+//    }
 
-    @objc private func JuicoyHandleTap() {
-        JuicoyTapAction?()
-    }
+//    @objc private func JuicoyHandleTap() {
+////        JuicoyTapAction?()
+//    }
 }

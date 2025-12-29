@@ -166,7 +166,7 @@ class JuicoySeconedViewController: UIViewController {
     }
 
     @objc func JuicoyonRightBarButtonTapped() {
-        // 子类 override
+        self.navigationController?.pushViewController(JuicoyAlertReportController(), animated: true)
     }
 }
 
@@ -214,6 +214,7 @@ class JuicoySeconedYEUIController: UIViewController {
 
     @objc func JuicoyonRightBarButtonTapped() {
         // 子类 override
+        self.navigationController?.pushViewController(JuicoyAlertReportController(), animated: true)
     }
 }
 

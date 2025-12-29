@@ -164,16 +164,16 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
         // 2. 倒序生成卡片，确保索引 0 的卡片在视觉最上方
         for JuicoyIndex in (0..<5).reversed() {
             let JuicoyCard = JuicoyMovementCardView(frame: JuicoyCardContainerView.bounds)
-           
+            JuicoyCard.isUserInteractionEnabled = true
             JuicoyCard.layer.cornerRadius = 10
             
             // 初始偏移位置
             JuicoyCard.transform = CGAffineTransform(translationX: 0, y: CGFloat(JuicoyIndex) * JuicoyCardSpacing)
             JuicoyCard.alpha = JuicoyIndex == 0 ? 1 : 0.9
-            
-            JuicoyCard.JuicoyTapAction = { [weak self] in
-                self?.JuicoyOpenDetail()
-            }
+            JuicoyCard.addTarget(self, action: #selector(JuicoyOpenDetail), for: .touchUpInside)//.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(JuicoyOpenDetail)))
+//            JuicoyCard.JuicoyTapAction = { [weak self] in
+//                self?.JuicoyOpenDetail()
+//            }
             
             // 使用 addSubview，后添加的在上方；或者 insertSubview(..., at: 0) 后续需配合逻辑
             // 这里推荐：按顺序添加，但保持数组 [0] 是最上面那张
@@ -270,8 +270,8 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
         }
     }
     
-    private func JuicoyOpenDetail() {
-       
+    @objc private func JuicoyOpenDetail() {
+        self.navigationController?.pushViewController(JuicoyMotionDeepController(), animated: true)
     }
     
 
@@ -287,5 +287,12 @@ extension JuicoyOneneController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let JuicoyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "JuicoyCreatorCell", for: indexPath) as! JuicoyCreatorCell
         return JuicoyCell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let userdetail = JuicoyExternalNexusController.init()
+        self.navigationController?.pushViewController(userdetail, animated: true)
+        
     }
 }
