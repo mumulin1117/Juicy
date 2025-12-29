@@ -152,17 +152,25 @@ class JuicoyAcademyVaultController: JuicoySeconedViewController {
     
     private func JuicoySynchronizeData() {
         if JuicoyKnowledgeCursor == 0 {
-            JuicoyAtmosphericStage.image = UIImage(named: "JuicoyAtmosphericStage1")
-            JuicoyModuleSubject.text = "Pole Dance Basics — Foundation Training"
-            JuicoyDetailedScript.text = "This lesson introduces the essential fundamentals of pole dancing, including basic grips, body alignment, and safe movement practices. You will learn how to correctly hold the pole, engage your core, and perform simple steps and transitions. This foundation helps you build strength and confidence before moving to more advanced techniques. Suitable for complete beginners who want to start safely and effectively."
+            JuicoyAtmosphericStage.image = UIImage(named: "JuicoyAtmosphericStage0")
+            JuicoyModuleSubject.text = "Pole Dance — Grip, Not Panic"
+            JuicoyDetailedScript.text = "Grip in pole dance isn’t about squeezing as hard as possible. It’s about knowing when to engage and when to relax. A calm, responsive grip gives you better control, smoother spins, and way less wasted energy."
             JuicoyPreviousStep.alpha = 0.5
             JuicoyPreviousStep.isEnabled = false
             JuicoyNextStep.alpha = 1.0
             JuicoyNextStep.isEnabled = true
-        } else {
+        }else if JuicoyKnowledgeCursor == 1   {
+            JuicoyAtmosphericStage.image = UIImage(named: "JuicoyAtmosphericStage1")
+            JuicoyModuleSubject.text = "Pole Dance Inverts: Built, Not Rushed"
+            JuicoyDetailedScript.text = "In pole dance, inverts don’t come from throwing yourself upside down. They come from strong shoulders, an active core, and patience. Slow progress builds cleaner lines and a lot more confidence in the air."
+            JuicoyPreviousStep.alpha = 1.0
+            JuicoyPreviousStep.isEnabled = true
+            JuicoyNextStep.alpha = 1
+            JuicoyNextStep.isEnabled = true
+        }else if JuicoyKnowledgeCursor == 2   {
             JuicoyAtmosphericStage.image = UIImage(named: "JuicoyAtmosphericStage2")
-            JuicoyModuleSubject.text = "Spin Techniques — Learn to Move with Flow"
-            JuicoyDetailedScript.text = "This session focuses on essential beginner spins such as the Fireman Spin, Chair Spin, and Back Hook Spin. You will practice hand placement, momentum control, and posture to achieve smooth, graceful rotations. The course also teaches how to combine spins into simple sequences, helping you develop flow, rhythm, and body control while minimizing strain."
+            JuicoyModuleSubject.text = "Flow Mode: Pole Dance in Control"
+            JuicoyDetailedScript.text = "Pole dance flow happens when strength meets awareness. Slowing your transitions, feeling each weight shift, and breathing through movement turns separate tricks into something that feels connected and effortless."
             JuicoyPreviousStep.alpha = 1.0
             JuicoyPreviousStep.isEnabled = true
             JuicoyNextStep.alpha = 0.5
@@ -173,7 +181,7 @@ class JuicoyAcademyVaultController: JuicoySeconedViewController {
     @objc private func JuicoyTriggerAdvancement() {
         let JuicoyImpact = UIImpactFeedbackGenerator(style: .medium)
         JuicoyImpact.impactOccurred()
-        JuicoyKnowledgeCursor = 1
+        JuicoyKnowledgeCursor += 1
         UIView.transition(with: view, duration: 0.4, options: .transitionCrossDissolve) {
             self.JuicoySynchronizeData()
         }
@@ -182,7 +190,7 @@ class JuicoyAcademyVaultController: JuicoySeconedViewController {
     @objc private func JuicoyTriggerRegression() {
         let JuicoyImpact = UIImpactFeedbackGenerator(style: .light)
         JuicoyImpact.impactOccurred()
-        JuicoyKnowledgeCursor = 0
+        JuicoyKnowledgeCursor -= 1
         UIView.transition(with: view, duration: 0.4, options: .transitionCrossDissolve) {
             self.JuicoySynchronizeData()
         }
