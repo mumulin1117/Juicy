@@ -2,17 +2,26 @@
 //  JuicoyMeadggFotuseController.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/29.
+//  Created by Juicoy on 2025/12/29.
 //
 
 import UIKit
 
 class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewDataSource, UITableViewDelegate {
-    private var JuicoyFabricCollection: [JuicoyFabricMessage] = [
-            JuicoyFabricMessage(JuicoyContent: "Hi there! I'm your Pole Dance AI. Ask me anything you'd like to know.", JuicoyIsLead: true, JuicoyTimestamp: ""),
-            JuicoyFabricMessage(JuicoyContent: "I'm a beginner. What should I practice first?", JuicoyIsLead: false, JuicoyTimestamp: ""),
-            JuicoyFabricMessage(JuicoyContent: "Start with basic grips and spins. Focus on control and consistency, not speed.", JuicoyIsLead: true, JuicoyTimestamp: "Today 8:43 AM"),
-            JuicoyFabricMessage(JuicoyContent: "Can you suggest something simple for today?", JuicoyIsLead: false, JuicoyTimestamp: "")
+    
+    
+    var juicoyModel:JuicoyStorageModel
+    init(juicoyModel: JuicoyStorageModel) {
+        self.juicoyModel = juicoyModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+     required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+     var JuicoyFabricCollection: [JuicoyFabricMessage] = [
+            
         ]
     
     
@@ -66,11 +75,17 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
         
     }()
     
+    //拉黑刷新数据
+    @objc func observeJuicoyUserBlacklisted() {
+        self.navigationController?.popViewController(animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
 
-        self.title = "User"
-        
+        self.title = juicoyModel.JuicoyHandle
+//        JuicoyStaticBackdrop.image = UIImage(named: juicoyModel.JuicoyAvatarKey)
+      
         navigationItem.rightBarButtonItems =
             [
                
@@ -119,12 +134,10 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
         self.navigationController?.pushViewController(JuicoyAlertReportController(), animated: true)
     }
     
-    
-    //video call
 
     
     @objc func JuicoyonvicolldnTapped() {
-        self.navigationController?.pushViewController(JuicoyTeleLinkController(), animated: true)
+        self.navigationController?.pushViewController(JuicoyTeleLinkController(juicoyModel: self.juicoyModel), animated: true)
     }
 
     

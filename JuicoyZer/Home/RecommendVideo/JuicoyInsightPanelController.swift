@@ -2,12 +2,12 @@
 //  JuicoyInsightPanelController.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/29.
+//  Created by Juicoy on 2025/12/29.
 //
 
 import UIKit
 protocol JuicoyInsightInteractionDelegate: AnyObject {
-    func JuicoyDidSelectNewArchive(JuicoyData: [String: String])
+    func JuicoyDidSelectNewArchive(JuicoyData: JuicoyStorageModel)
 }
 class JuicoyInsightPanelController: UIViewController {
     weak var JuicoyInteractionDelegate: JuicoyInsightInteractionDelegate?
@@ -31,7 +31,7 @@ class JuicoyInsightPanelController: UIViewController {
     
     private let JuicoyViewMetric: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "12,000 views"
+        JuicoyLab.text = "views"
         JuicoyLab.textColor = .gray
         JuicoyLab.font = .systemFont(ofSize: 12)
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -54,15 +54,32 @@ class JuicoyInsightPanelController: UIViewController {
         return JuicoyTab
     }()
     
-    private let JuicoyDraftData: [[String: String]] = [
-        ["JuicoyTitle": "Built through repetition, control, and trust in every movement.", "JuicoyTime": "01:10", "JuicoyLikes": "122 likes", "JuicoyIsLast": "1"],
-        ["JuicoyTitle": "Suspended between strength and softness, one breath at a time.", "JuicoyTime": "01:10", "JuicoyLikes": "23 likes", "JuicoyIsLast": "0"],
-        ["JuicoyTitle": "Built Through Practice, Shown in Motion", "JuicoyTime": "01:10", "JuicoyLikes": "0 likes", "JuicoyIsLast": "0"],
-        ["JuicoyTitle": "Trusting the Hold, Following the Motion", "JuicoyTime": "01:10", "JuicoyLikes": "0 likes", "JuicoyIsLast": "0"]
-    ]
+    private var JuicoyDraftData: [JuicoyStorageModel]  = Array<JuicoyStorageModel>()
+    
+    private func geting() -> Array<JuicoyStorageModel> {
+        // 1. 获取完整的缓存数据
+               
+        let JuicoyAllData = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedPayload()
+        
+        // 2. 安全获取前 8 条数据（防止数组越界）
+        let JuicoyTopLimit = min(JuicoyAllData.count, 9)
+        var JuicoySubset = Array(JuicoyAllData.prefix(JuicoyTopLimit))
+        
+        // 3. 对这 8 条数据进行随机打乱 (Shuffling)
+        JuicoySubset.shuffle()
+        
+        // 4. 随机决定抽取的数量 (1 到 3 条)
+        let JuicoyRandomCount = Int.random(in: 2...3)
+        
+        // 5. 再次安全提取并返回最终结果
+        let JuicoyFinalSelection = Array(JuicoySubset.prefix(min(JuicoySubset.count, JuicoyRandomCount)))
+        
+        return JuicoyFinalSelection
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        JuicoyDraftData =  geting()
         JuicoyAssembleInterface()
     }
     
@@ -114,17 +131,17 @@ class JuicoyInsightPanelController: UIViewController {
 
 extension JuicoyInsightPanelController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return JuicoyDraftData.count
+        return self.JuicoyDraftData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let JuicoyCell = tableView.dequeueReusableCell(withIdentifier: "JuicoyEntry", for: indexPath) as! JuicoyMotionEntryCell
         let JuicoyItem = JuicoyDraftData[indexPath.row]
-        JuicoyCell.JuicoyHydrate(JuicoyTitle: JuicoyItem["JuicoyTitle"] ?? "",
-                                JuicoyTime: JuicoyItem["JuicoyTime"] ?? "",
-                                JuicoyLikes: JuicoyItem["JuicoyLikes"] ?? "",
-                                JuicoyLast: JuicoyItem["JuicoyIsLast"] == "1",
-                                JuicoyIndex: indexPath.row)
+        JuicoyCell.JuicoyHydrate(JuicoyTitle: JuicoyItem.JuicoyMediaNarration ,
+                                 JuicoyTime: JuicoyItem.JUICOYUViadioTime ,
+                                JuicoyLikes: "0",
+                                 JuicoyLast: false,
+                                 JuicoyIndex: indexPath.row, covrr: JuicoyItem.JuicoyMediaCover)
         return JuicoyCell
     }
     
@@ -248,12 +265,12 @@ class JuicoyMotionEntryCell: UITableViewCell {
         ])
     }
     
-    func JuicoyHydrate(JuicoyTitle: String, JuicoyTime: String, JuicoyLikes: String, JuicoyLast: Bool, JuicoyIndex: Int) {
+    func JuicoyHydrate(JuicoyTitle: String, JuicoyTime: String, JuicoyLikes: String, JuicoyLast: Bool, JuicoyIndex: Int,covrr:String) {
         JuicoyTitleScript.text = JuicoyTitle
         JuicoyChronosLabel.text = JuicoyTime
         JuicoyHeartScore.text = JuicoyLikes
         JuicoyLastSeenTag.isHidden = !JuicoyLast
-        
+        JuicoyPreviewFrame.image = UIImage(named: covrr)
         if JuicoyIndex == 0 {
             JuicoyTitleScript.textColor = .systemYellow
         } else {

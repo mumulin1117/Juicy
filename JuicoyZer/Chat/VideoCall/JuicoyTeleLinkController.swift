@@ -2,16 +2,28 @@
 //  JuicoyTeleLinkController.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/29.
+//  Created by Juicoy on 2025/12/29.
 //
 
 import UIKit
 
 class JuicoyTeleLinkController: UIViewController {
     
+    var juicoyModel:JuicoyStorageModel
+    init(juicoyModel: JuicoyStorageModel) {
+        self.juicoyModel = juicoyModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+     required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
     private let JuicoyStaticBackdrop: UIImageView = {
         let JuicoyImg = UIImageView()
-        JuicoyImg.image = UIImage(named: "Juicoy_Remote_Peer")
+       
         JuicoyImg.contentMode = .scaleAspectFill
         JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyImg
@@ -29,7 +41,7 @@ class JuicoyTeleLinkController: UIViewController {
     
     private let JuicoyPeerIdentity: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "Sarah Stone"
+        
         JuicoyLab.font = .systemFont(ofSize: 28, weight: .semibold)
         JuicoyLab.textColor = .white
         JuicoyLab.textAlignment = .center
@@ -58,10 +70,17 @@ class JuicoyTeleLinkController: UIViewController {
         return JuicoyBtn
     }()
     
+    //拉黑刷新数据
+    @objc func observeJuicoyUserBlacklisted() {
+        self.dismiss(animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
         JuicoyConstructPortal()
         JuicoyInvokePulseEffect()
+        JuicoyStaticBackdrop.image = UIImage(named: juicoyModel.JuicoyAvatarKey)
+        JuicoyPeerIdentity.text = juicoyModel.JuicoyHandle
     }
     
     private func JuicoyConstructPortal() {

@@ -2,14 +2,12 @@
 //  JuicoyMovementCardView.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/25.
+//  Created by Juicoy on 2025/12/25.
 //
 
 import UIKit
 
 final class JuicoyMovementCardView: UIButton {
-
-//    var JuicoyTapAction: (() -> Void)?
 
     private let JuicoyBackImageView = UIImageView()
     private let JuicoyPlayIcon = UIImageView(image: UIImage.init(named: "juicoyPause"))
@@ -79,6 +77,7 @@ final class JuicoyMovementCardView: UIButton {
     }()
     lazy var JuicoyWatchButton: UIButton = {
         let Juicoyimg = UIButton.init()
+        Juicoyimg.isUserInteractionEnabled = true
         Juicoyimg.setImage(UIImage.init(named: "juicoyWatchnow"), for: .normal)
         Juicoyimg.translatesAutoresizingMaskIntoConstraints = false
         return Juicoyimg
@@ -97,7 +96,8 @@ final class JuicoyMovementCardView: UIButton {
     required init?(coder: NSCoder) { nil }
 
     private func JuicoyConfigureImage() {
-        JuicoyBackImageView.isUserInteractionEnabled = true
+        JuicoyBackImageView.translatesAutoresizingMaskIntoConstraints = false
+       
         JuicoyBackImageView.contentMode = .scaleAspectFill
         addSubview(JuicoyBackImageView)
        
@@ -161,11 +161,11 @@ final class JuicoyMovementCardView: UIButton {
             JuicoyWatchButton.centerYAnchor.constraint(equalTo: self.Juicoyview.centerYAnchor),
             
             JUICYnameTitle.widthAnchor.constraint(equalToConstant:63),
-            JUICYnameTitle.leadingAnchor.constraint(equalTo: JuicoyImgView.leadingAnchor, constant: 10),
+            JUICYnameTitle.leadingAnchor.constraint(equalTo: JuicoyImgView.trailingAnchor, constant: 10),
             JUICYnameTitle.topAnchor.constraint(equalTo: JuicoyImgView.topAnchor),
             
-            JUICYsigniitle.leadingAnchor.constraint(equalTo: JuicoyImgView.leadingAnchor, constant: 10),
-            JUICYsigniitle.trailingAnchor.constraint(equalTo: self.JuicoyWatchButton.trailingAnchor,constant: -15),
+            JUICYsigniitle.leadingAnchor.constraint(equalTo: JUICYnameTitle.leadingAnchor),
+            JUICYsigniitle.trailingAnchor.constraint(equalTo: self.JuicoyWatchButton.leadingAnchor,constant: -8),
             JUICYsigniitle.topAnchor.constraint(equalTo: self.JUICYnameTitle.bottomAnchor,constant: 6),
            
             JuicoyVIPView.widthAnchor.constraint(equalToConstant: 27),
@@ -178,13 +178,11 @@ final class JuicoyMovementCardView: UIButton {
     }
     
   
-
-//    private func JuicoyConfigureTap() {
-//        let JuicoyTap = UITapGestureRecognizer(target: self, action: #selector(JuicoyHandleTap))
-//        addGestureRecognizer(JuicoyTap)
-//    }
-
-//    @objc private func JuicoyHandleTap() {
-////        JuicoyTapAction?()
-//    }
+    func JUICYmainfreverr(loie:JuicoyStorageModel)  {
+        JuicoyImgView.image = UIImage(named: loie.JuicoyAvatarKey)
+        JUICYnameTitle.text = loie.JuicoyHandle
+        JuicoyBackImageView.image = UIImage(named: loie.JuicoyMediaCover)
+        JuicoyVIPView.isHidden = !(loie.JuicoyPremiumStatus == "1")
+        JUICYsigniitle.text = loie.JuicoyMotto
+    }
 }

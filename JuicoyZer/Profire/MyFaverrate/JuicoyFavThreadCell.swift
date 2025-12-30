@@ -2,7 +2,7 @@
 //  JuicoyFavThreadCell.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/26.
+//  Created by Juicoy on 2025/12/26.
 //
 
 import UIKit
@@ -110,13 +110,13 @@ class JuicoyFavThreadCell: UICollectionViewCell {
         ])
     }
 
-    func JuicoySyncVibe(_ JuicoyVibe: JuicoyMotionVibe) {
-        JuicoySpinCanvas.image = UIImage(named: JuicoyVibe.JuicoyStageCover)
-        JuicoyPerformerOrb.image = UIImage(named: JuicoyVibe.JuicoyPerformerOrb)
-        JuicoyStageName.text = JuicoyVibe.JuicoyPerformerName
-        JuicoyAuraLabel.text = JuicoyVibe.JuicoyAuraTitle
+    func JuicoySyncVibe(_ JuicoyVibe: JuicoyStorageModel) {
+        JuicoySpinCanvas.image = UIImage(named: JuicoyVibe.JuicoyMediaCover)
+        JuicoyPerformerOrb.image = UIImage(named: JuicoyVibe.JuicoyAvatarKey)
+        JuicoyStageName.text = JuicoyVibe.JuicoyHandle
+        JuicoyAuraLabel.text = JuicoyVibe.JuicoyMediaNarration
         
-        let JuicoySymbol = JuicoyVibe.JuicoyIsActive ? "pause.fill" : "play.fill"
+        let JuicoySymbol =  "play.fill"
         JuicoyMotionIcon.image = UIImage(systemName: JuicoySymbol)
     }
 }

@@ -2,16 +2,48 @@
 //  JuicoyOneneController.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/24.
+//  Created by Juicoy on 2025/12/24.
 //
 
 import UIKit
 
 class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
+    private var cardsModels:Array<JuicoyStorageModel>  = Array<JuicoyStorageModel>()
+    
+    private var randomuserModels:Array<JuicoyStorageModel>  = Array<JuicoyStorageModel>()
     
     
+    @objc func JuicoyonRightBarButtonTapped() {
+        self.navigationController?.pushViewController(JuicoyAlertReportController(), animated: true)
+    }
+   
+    private func JuicoyRefreshDynamicStream() {
+        // 1. 从工厂获取所有有效数据（带封面的视频）
+        let JuicoyPool = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedPayload().filter {
+            !$0.JuicoyMediaCover.isEmpty
+        }
+        
+        // 2. 打乱顺序
+        let JuicoyShuffledPool = JuicoyPool.shuffled()
+        
+        // 3. 随机决定展示的数量（例如 1 到 5 条）
+        let JuicoyRandomCount = Int.random(in: 5...min(7, JuicoyShuffledPool.count))
+        
+        // 4. 更新当前控制器的 cardsModels
+        self.cardsModels = Array(JuicoyShuffledPool.prefix(JuicoyRandomCount))
+        randomuserModels = Array(JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedPayload().shuffled().suffix(8))
+    }
+    
+    //拉黑刷新数据
+    @objc func observeJuicoyUserBlacklisted() {
+        JuicoyRefreshDynamicStream()
+        self.JuicoyConfigureCards()
+        JuicoyBottomCollectionView.reloadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
+        JuicoyRefreshDynamicStream()
         view.addSubview(JUICYMotionStageContainer)
         view.addSubview(JUICYAddSpinButton)
         view.addSubview(JUICYPoleSpinButton)
@@ -166,17 +198,16 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
             let JuicoyCard = JuicoyMovementCardView(frame: JuicoyCardContainerView.bounds)
             JuicoyCard.isUserInteractionEnabled = true
             JuicoyCard.layer.cornerRadius = 10
-            
+            JuicoyCard.JUICYmainfreverr(loie: cardsModels[JuicoyIndex])
             // 初始偏移位置
             JuicoyCard.transform = CGAffineTransform(translationX: 0, y: CGFloat(JuicoyIndex) * JuicoyCardSpacing)
             JuicoyCard.alpha = JuicoyIndex == 0 ? 1 : 0.9
-            JuicoyCard.addTarget(self, action: #selector(JuicoyOpenDetail), for: .touchUpInside)//.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(JuicoyOpenDetail)))
-//            JuicoyCard.JuicoyTapAction = { [weak self] in
-//                self?.JuicoyOpenDetail()
-//            }
-            
-            // 使用 addSubview，后添加的在上方；或者 insertSubview(..., at: 0) 后续需配合逻辑
-            // 这里推荐：按顺序添加，但保持数组 [0] 是最上面那张
+            JuicoyCard.tag = JuicoyIndex
+            JuicoyCard.JuicoyWatchButton.tag = JuicoyIndex
+            JuicoyCard.addTarget(self, action: #selector(JuicoyOpenDetail(juiocyTa:)), for: .touchUpInside)
+            JuicoyCard.JuiaddButton.addTarget(self, action: #selector(toJOUICY(juicoy:)), for: .touchUpInside)
+            JuicoyCard.JuicoyWatchButton.addTarget(self, action: #selector(JuicoyOpenDetail(juiocyTa:)), for: .touchUpInside)
+            JuicoyCard.JuicoyMoreButton.addTarget(self, action: #selector(JuicoyonRightBarButtonTapped), for: .touchUpInside)
             JuicoyCardContainerView.addSubview(JuicoyCard)
             JuicoyCardViews.insert(JuicoyCard, at: 0)
         }
@@ -270,8 +301,9 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
         }
     }
     
-    @objc private func JuicoyOpenDetail() {
-        self.navigationController?.pushViewController(JuicoyMotionDeepController(), animated: true)
+    @objc private func JuicoyOpenDetail(juiocyTa:UIButton) {
+        let data = self.cardsModels[juiocyTa.tag]
+        self.navigationController?.pushViewController(JuicoyMotionDeepController(juicoyModel: data), animated: true)
     }
     
 
@@ -281,17 +313,22 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
 
 extension JuicoyOneneController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        randomuserModels.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let JuicoyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "JuicoyCreatorCell", for: indexPath) as! JuicoyCreatorCell
+        JuicoyCell.JUICYmainfreverr(loie: randomuserModels[indexPath.row])
         return JuicoyCell
     }
     
-    
+   @objc func toJOUICY(juicoy:UIButton) {
+      let indexData = cardsModels[juicoy.tag]
+       let userdetail = JuicoyExternalNexusController.init(juicoyModel: indexData)
+       self.navigationController?.pushViewController(userdetail, animated: true)
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let userdetail = JuicoyExternalNexusController.init()
+        let userdetail = JuicoyExternalNexusController.init(juicoyModel: randomuserModels[indexPath.row])
         self.navigationController?.pushViewController(userdetail, animated: true)
         
     }

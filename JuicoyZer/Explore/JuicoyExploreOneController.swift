@@ -2,12 +2,14 @@
 //  JuicoyExploreOneView.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/24.
+//  Created by Juicoy on 2025/12/24.
 //
 
 import UIKit
 
 class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegate {
+    private var cardsModels:Array<JuicoyStorageModel>  = Array<JuicoyStorageModel>()
+    
     private lazy var  JUICYMotionStageContainer: UIImageView = {
         let JUICOY = UIImageView.init(image: UIImage.init(named: "JUICYExplore"))
         JUICOY.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +82,8 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
         JUICYforyouButton.isSelected = false
         noeua.isSelected = true
         JUICYIndicaterContainer.center.x = noeua.center.x
+        
+        observeJuicoyUserBlacklisted()
     }
     
     
@@ -107,8 +111,42 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
         return JuicoyBottomCollectionView
     }()
     
+    //拉黑刷新数据
+    @objc func observeJuicoyUserBlacklisted() {
+       
+        JuicoyRefreshDynamicStream()
+        JuicoyBottomCollectionView.reloadData()
+    }
+    // 在 JuicoyExploreOneController 中
+
+    private func JuicoyRefreshDynamicStream() {
+        // 1. 从工厂获取所有有效数据（带封面的视频）
+        let JuicoyPool = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedPayload().filter {
+            !$0.JuicoyMediaCover.isEmpty
+        }
+        
+        // 2. 打乱顺序
+        let JuicoyShuffledPool = JuicoyPool.shuffled()
+        
+        // 3. 随机决定展示的数量（例如 1 到 5 条）
+        let JuicoyRandomCount = Int.random(in: 1...min(5, JuicoyShuffledPool.count))
+        
+        // 4. 更新当前控制器的 cardsModels
+        self.cardsModels = Array(JuicoyShuffledPool.prefix(JuicoyRandomCount))
+        
+        // 5. 刷新界面
+        // 假设你的列表变量名为 JuicoyMainGrid
+//        self.JuicoyMainGrid.reloadData()
+        
+        // 6. 可选：添加轻微的震动反馈增加真实感
+        let JuicoyImpact = UIImpactFeedbackGenerator(style: .light)
+        JuicoyImpact.impactOccurred()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
+        JuicoyRefreshDynamicStream()
+        
         JUICOYconstrainet()
         JUICYpololaurButton.isSelected = true
     }
@@ -164,11 +202,37 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
 }
 extension JuicoyExploreOneController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        cardsModels.count
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let data = self.cardsModels[indexPath.row]
+        self.navigationController?.pushViewController(JuicoyMotionDeepController(juicoyModel: data), animated: true)
+    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let JuicoyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "JuicoyExploreCell", for: indexPath) as! JuicoyExploreCell
+        JuicoyCell.JUICYmainfreverr(loie: cardsModels[indexPath.row])
+        JuicoyCell.JuiaddButton.addTarget(self, action: #selector(toJOUICY(juicoy:)), for: .touchUpInside)
+        
+        JuicoyCell.JuicoyviovakkButton.addTarget(self, action: #selector(toJuicoyVideoCallEmit(juicoy:)), for: .touchUpInside)
+        JuicoyCell.JuicoysendmesageButton.addTarget(self, action: #selector(toJuicoyMessageEmit(juicoy:)), for: .touchUpInside)
         return JuicoyCell
+    }
+    
+    @objc func toJOUICY(juicoy:UIButton) {
+       let indexData = cardsModels[juicoy.tag]
+        let userdetail = JuicoyExternalNexusController.init(juicoyModel: indexData)
+        self.navigationController?.pushViewController(userdetail, animated: true)
+     }
+    
+    @objc func toJuicoyMessageEmit(juicoy:UIButton)  {
+        let indexData = cardsModels[juicoy.tag]
+        self.navigationController?.pushViewController(JuicoyMeadggFotuseController(juicoyModel: indexData), animated: true)
+    }
+    
+    
+    @objc func toJuicoyVideoCallEmit(juicoy:UIButton)  {
+        let indexData = cardsModels[juicoy.tag]
+        self.navigationController?.pushViewController(JuicoyTeleLinkController(juicoyModel: indexData), animated: true)
     }
 }

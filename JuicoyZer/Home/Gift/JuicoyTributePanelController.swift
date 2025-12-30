@@ -86,10 +86,16 @@ class JuicoyTributePanelController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let JuicoyDimmer = UITapGestureRecognizer(target: self, action: #selector(JuicoyDismissPanel))
+        let JuicoyBg = UIView(frame: view.bounds)
+        JuicoyBg.addGestureRecognizer(JuicoyDimmer)
+        view.addSubview(JuicoyBg)
         JuicoySetupCanvas()
         JuicoySyncFinancials()
     }
-
+    @objc private func JuicoyDismissPanel() {
+        self.dismiss(animated: true)
+    }
     private func JuicoySetupCanvas() {
         view.backgroundColor = .clear
         view.addSubview(JuicoyBaseAnchor)

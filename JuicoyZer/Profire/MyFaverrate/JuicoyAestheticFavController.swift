@@ -2,27 +2,20 @@
 //  JuicoyAestheticFavController.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/26.
+//  Created by Juicoy on 2025/12/26.
 //
 
 import UIKit
 
-struct JuicoyMotionVibe {
-    let JuicoyStageCover: String
-    let JuicoyPerformerName: String
-    let JuicoyPerformerOrb: String
-    let JuicoyAuraTitle: String
-    let JuicoyIsActive: Bool
-}
+
 
 class JuicoyAestheticFavController: JuicoySeconedViewController {
 
-    private var JuicoyVibeCollection: [JuicoyMotionVibe] = [
-        JuicoyMotionVibe(JuicoyStageCover: "JuicoyFav1", JuicoyPerformerName: "Korean", JuicoyPerformerOrb: "JuicoyUser1", JuicoyAuraTitle: "Finding Balance in Every Spin", JuicoyIsActive: true),
-        JuicoyMotionVibe(JuicoyStageCover: "JuicoyFav2", JuicoyPerformerName: "Frank Tucker", JuicoyPerformerOrb: "JuicoyUser2", JuicoyAuraTitle: "Where Control Meets Expression", JuicoyIsActive: false),
-        JuicoyMotionVibe(JuicoyStageCover: "JuicoyFav3", JuicoyPerformerName: "Cecilia Day", JuicoyPerformerOrb: "JuicoyUser3", JuicoyAuraTitle: "A Quiet Moment of Power and Grace", JuicoyIsActive: false),
-        JuicoyMotionVibe(JuicoyStageCover: "JuicoyFav4", JuicoyPerformerName: "Georgie Bell", JuicoyPerformerOrb: "JuicoyUser4", JuicoyAuraTitle: "One Move Closer to Flow", JuicoyIsActive: false)
-    ]
+    private var JuicoyVibeCollection: [JuicoyStorageModel] = {
+        JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedFaverateVideo()
+    }()
+        
+    
 
     private lazy var JuicoyStyleGrid: UICollectionView = {
         let JuicoyKineticLayout = UICollectionViewFlowLayout()
@@ -77,7 +70,10 @@ extension JuicoyAestheticFavController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return JuicoyVibeCollection.count
     }
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let data = self.JuicoyVibeCollection[indexPath.row]
+        self.navigationController?.pushViewController(JuicoyMotionDeepController(juicoyModel: data), animated: true)
+    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let JuicoyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "JuicoyFavThreadCell", for: indexPath) as! JuicoyFavThreadCell
         JuicoyCell.JuicoySyncVibe(JuicoyVibeCollection[indexPath.row])

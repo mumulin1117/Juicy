@@ -2,7 +2,7 @@
 //  JuicoyDialoguePanelController.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/29.
+//  Created by Juicoy on 2025/12/29.
 //
 
 import UIKit
@@ -11,16 +11,22 @@ protocol JuicoyDialogueInteractionDelegate: AnyObject {
 }
 class JuicoyDialoguePanelController: UIViewController {
 
+    var juicoyModel:JuicoyStorageModel
+    init(juicoyModel: JuicoyStorageModel) {
+        self.juicoyModel = juicoyModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+     required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
+    
     weak var JuicoyDelegate: JuicoyDialogueInteractionDelegate?
     
-    private var JuicoyTalkRegistry: [[String: Any]] = [
-        ["JuicoyAuthor": "Sally Schultz", "JuicoyContent": "I can be everything you like", "JuicoyStamp": "12 minutes ago", "JuicoyReplies": [
-            ["JuicoyAuthor": "Lydia Floyd", "JuicoyContent": "Love you"],
-            ["JuicoyAuthor": "Kate Lowe", "JuicoyContent": "Nice"]
-        ]],
-        ["JuicoyAuthor": "Ada Dennis", "JuicoyContent": "Lead by example for yourself; act with empathy for your team", "JuicoyStamp": "12 minutes ago", "JuicoyReplies": []],
-        ["JuicoyAuthor": "Jean Burgess", "JuicoyContent": "Lead by example for yourself; act with empathy for your team", "JuicoyStamp": "13 minutes ago", "JuicoyReplies": []]
-    ]
+    private var JuicoyTalkRegistry: [[String: String?]] = [[:]]
 
     private let JuicoyBasePlate: UIView = {
         let JuicoyView = UIView()
@@ -69,6 +75,27 @@ class JuicoyDialoguePanelController: UIViewController {
 
     private func JuicoyConstructLayout() {
         view.backgroundColor = .clear
+        
+        // 假设这是从 JuicoyStorageModel 中获取的原始数据
+        let JuicoyOriginalComments = juicoyModel.JuicoyPublicFeedback
+        var JuicoyFinalCommentManifest: [[String: String?]] = []
+
+        // 1. 先将原始 plist 中的评论转化为字典格式并加入最终数组
+        for JuicoyText in JuicoyOriginalComments where !JuicoyText.isEmpty {
+            let JuicoyItem = [
+                "JuicoyCommentBody": JuicoyText,
+                "JuicoyAuthorName": ["Sally Schultz", "Lydia Floyd", "Kate Lowe", "Ada Dennis", "Jean Burgess", "Blaze"].randomElement(), // 默认占位名
+                "JuicoyAuthorAvatar": ["89890832AUA", "89890831AUA", "89890840AUA", "89890842AUA", "89890844AUA", "89890845AUA"].randomElement(),
+                "JuicoyPostTime": ["14 days ago", "13 days ago", "13 days ago", "12 days ago", "12 days ago", "10 days ago"].randomElement()
+            ]
+            JuicoyFinalCommentManifest.append(JuicoyItem)
+        }
+
+        self.JuicoyTalkRegistry = JuicoyFinalCommentManifest
+        // 打印或使用最终的字典数组
+        // print(JuicoyFinalCommentManifest)
+        
+        
         let JuicoyDimmer = UITapGestureRecognizer(target: self, action: #selector(JuicoyDismissPanel))
         let JuicoyBg = UIView(frame: view.bounds)
         JuicoyBg.addGestureRecognizer(JuicoyDimmer)
@@ -224,10 +251,12 @@ extension JuicoyDialoguePanelController: UITableViewDelegate, UITableViewDataSou
 }
 
 class JuicoyTalkCell: UITableViewCell {
-    private let JuicoyAvatar: UIView = {
-        let JuicoyView = UIView()
+    private let JuicoyAvatar: UIImageView = {
+        let JuicoyView = UIImageView()
+        JuicoyView.contentMode = .scaleAspectFill
         JuicoyView.backgroundColor = .systemGray5
         JuicoyView.layer.cornerRadius = 18
+        JuicoyView.layer.masksToBounds = true
         JuicoyView.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyView
     }()
@@ -285,10 +314,12 @@ class JuicoyTalkCell: UITableViewCell {
 
     required init?(coder: NSCoder) { fatalError() }
 
+    
     func JuicoyPopulate(_ JuicoyData: [String: Any]) {
-        JuicoyName.text = JuicoyData["JuicoyAuthor"] as? String
-        JuicoyMessage.text = JuicoyData["JuicoyContent"] as? String
-        JuicoyTiming.text = JuicoyData["JuicoyStamp"] as? String
+        JuicoyName.text = JuicoyData["JuicoyAuthorName"] as? String
+        JuicoyMessage.text = JuicoyData["JuicoyCommentBody"] as? String
+        JuicoyTiming.text = JuicoyData["JuicoyPostTime"] as? String
+        JuicoyAvatar.image = UIImage(named: JuicoyData["JuicoyAuthorAvatar"] as? String ?? "")
     }
 }
 extension JuicoyDialoguePanelController: UITextFieldDelegate {

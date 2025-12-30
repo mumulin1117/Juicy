@@ -2,13 +2,22 @@
 //  JuicoyExternalNexusController.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/29.
+//  Created by Juicoy on 2025/12/29.
 //
 
 import UIKit
 
 class JuicoyExternalNexusController: JuicoySeconedViewController {
-
+    var juicoyModel:JuicoyStorageModel
+    init(juicoyModel: JuicoyStorageModel) {
+        self.juicoyModel = juicoyModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+     required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private let JuicoyPrimaryScroller: UIScrollView = {
         let JuicoyScroller = UIScrollView()
         JuicoyScroller.backgroundColor = UIColor(red: 0.1, green: 0.02, blue: 0.15, alpha: 1.0)
@@ -19,15 +28,16 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
 
     private let JuicoyProfileHeader: UIImageView = {
         let JuicoyImg = UIImageView()
-        JuicoyImg.image = UIImage(named: "Juicoy_User_Hero")
+       
         JuicoyImg.contentMode = .scaleAspectFill
         JuicoyImg.clipsToBounds = true
         JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyImg
     }()
 
-    private let JuicoyAvatarOrbit: UIView = {
-        let JuicoyView = UIView()
+    private let JuicoyAvatarOrbit: UIImageView = {
+        let JuicoyView = UIImageView()
+        JuicoyView.contentMode = .scaleAspectFill
         JuicoyView.layer.cornerRadius = 45
         JuicoyView.layer.borderWidth = 3
         JuicoyView.layer.borderColor = UIColor.systemYellow.cgColor
@@ -39,7 +49,7 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
 
     private let JuicoyIdentityLabel: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "Cameron Curtis"
+        
         JuicoyLab.font = .systemFont(ofSize: 22, weight: .bold)
         JuicoyLab.textColor = .white
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -101,20 +111,29 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
     }()
 
     @objc func toJuicoyMessageEmit()  {
-        self.navigationController?.pushViewController(JuicoyMeadggFotuseController(), animated: true)
+        self.navigationController?.pushViewController(JuicoyMeadggFotuseController(juicoyModel: juicoyModel), animated: true)
     }
     
     
     @objc func toJuicoyVideoCallEmit()  {
-        self.navigationController?.pushViewController(JuicoyTeleLinkController(), animated: true)
+        self.navigationController?.pushViewController(JuicoyTeleLinkController(juicoyModel: juicoyModel), animated: true)
     }
     
-    
+    @objc func observeJuicoyUserBlacklisted() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.JuicoyaddRightBarButton(image: UIImage(named: "jocoymoieh"))
+        NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
+        self.JuicoyaddRightBarButton(image: UIImage(named: "jocoymoieh"),action: #selector(JuicoyInvokeMenuSheet))
+        
+        
         JuicoyAssembleInterface()
+        JuicoyProfileHeader.image = UIImage(named: juicoyModel.JuicoyAvatarKey)
+        JuicoyAvatarOrbit.image = UIImage(named: juicoyModel.JuicoyAvatarKey)
+        JuicoyIdentityLabel.text = juicoyModel.JuicoyHandle
+        JuicoyVipBadge.isHidden = !(self.juicoyModel.JuicoyPremiumStatus == "1")
     }
 
     private func JuicoyAssembleInterface() {
@@ -194,8 +213,6 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
 
     @objc private func JuicoyToggleFollow() {
         JuicoyFollowTrigger.isSelected.toggle()
-      
-        
     }
 
     @objc private func JuicoyInitiateTransmission() {
@@ -214,6 +231,36 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
             JuicoyFlash.removeFromSuperview()
         }
     }
+    
+    
+    
+    @objc private func JuicoyInvokeMenuSheet() {
+        let JuicoyActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // 举报动作
+        let JuicoyReportAction = UIAlertAction(title: "Report Content", style: .default) { _ in
+            self.navigationController?.pushViewController(JuicoyAlertReportController(), animated: true)
+        }
+        
+        // 拉黑动作
+        let JuicoyBlockAction = UIAlertAction(title: "Block User", style: .destructive) { _ in
+            
+            let bloack = JuicoyBlockServiceController(juicoyModel: self.juicoyModel)
+            bloack.modalPresentationStyle = .overCurrentContext
+            self.present(bloack, animated: true)
+        }
+        
+        // 取消动作
+        let JuicoyCancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        JuicoyActionSheet.addAction(JuicoyReportAction)
+        JuicoyActionSheet.addAction(JuicoyBlockAction)
+        JuicoyActionSheet.addAction(JuicoyCancelAction)
+        
+     
+        
+        self.present(JuicoyActionSheet, animated: true, completion: nil)
+    }
 }
 
 
@@ -226,7 +273,7 @@ extension JuicoyExternalNexusController {
         let JuicoyBioContainer = UIView()
         
         let JuicoySignature = UILabel()
-        JuicoySignature.text = "Every session makes you stronger"
+        JuicoySignature.text = juicoyModel.JuicoyMotto
         JuicoySignature.font = .systemFont(ofSize: 14)
         JuicoySignature.textColor = .lightGray
         JuicoySignature.translatesAutoresizingMaskIntoConstraints = false
@@ -236,8 +283,8 @@ extension JuicoyExternalNexusController {
         JuicoyMetricsStack.spacing = 25
         JuicoyMetricsStack.translatesAutoresizingMaskIntoConstraints = false
         
-        let JuicoyFollowData = JuicoyCreateMetricUnit(JuicoyVal: "45", JuicoyKey: "Following")
-        let JuicoyFansData = JuicoyCreateMetricUnit(JuicoyVal: "134", JuicoyKey: "Followers")
+        let JuicoyFollowData = JuicoyCreateMetricUnit(JuicoyVal: juicoyModel.JuicoyConnectionInCount, JuicoyKey: "Following")
+        let JuicoyFansData = JuicoyCreateMetricUnit(JuicoyVal: juicoyModel.JuicoyConnectionOutCount, JuicoyKey: "Followers")
         
         JuicoyMetricsStack.addArrangedSubview(JuicoyFollowData)
         JuicoyMetricsStack.addArrangedSubview(JuicoyFansData)
@@ -304,14 +351,16 @@ extension JuicoyExternalNexusController {
         JuicoyAvatarStack.spacing = 12
         JuicoyAvatarStack.translatesAutoresizingMaskIntoConstraints = false
         
-        for _ in 0...5 {
-            let JuicoyCircle = UIView()
+        for i in 0...(self.juicoyModel.JuicoyPeerAvatars.count - 1) {
+            let JuicoyCircle = UIImageView()
+            JuicoyCircle.contentMode = .scaleAspectFill
             JuicoyCircle.backgroundColor = .systemGray
             JuicoyCircle.layer.cornerRadius = 30
             JuicoyCircle.clipsToBounds = true
             JuicoyCircle.translatesAutoresizingMaskIntoConstraints = false
             JuicoyCircle.widthAnchor.constraint(equalToConstant: 60).isActive = true
             JuicoyCircle.heightAnchor.constraint(equalToConstant: 60).isActive = true
+            JuicoyCircle.image = UIImage(named: juicoyModel.JuicoyPeerAvatars[i])
             JuicoyAvatarStack.addArrangedSubview(JuicoyCircle)
         }
         
@@ -416,13 +465,13 @@ extension JuicoyExternalNexusController {
 
 extension JuicoyExternalNexusController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6 // Number of hobbies
+        return juicoyModel.JuicoyPassionTags.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let JuicoyHobbies = ["Guitar", "Piano", "Dance", "Contemporary", "Drawing", "Singing"]
+        let JuicoyHobbies = juicoyModel.JuicoyPassionTags
         let JuicoyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "JuicoyHobbyTag", for: indexPath) as! JuicoyHobbyTagCell
-        JuicoyCell.JuicoyPopulate(JuicoyText: JuicoyHobbies[indexPath.item])
+        JuicoyCell.JuicoyPopulate(JuicoyText: JuicoyHobbies[indexPath.row])
         return JuicoyCell
     }
 }
@@ -442,10 +491,10 @@ extension JuicoyExternalNexusController {
         JuicoyVerticalStack.translatesAutoresizingMaskIntoConstraints = false
         
         let JuicoyDataPoints = [
-            ("Birthday", "2000-01-01"),
-            ("Height", "170cm"),
-            ("Weight", "55kg")
-        ]
+                ("Birthday", juicoyModel.JuicoyBirthEpoch),
+                ("Height", juicoyModel.JuicoyVerticalStature),
+                ("Weight", juicoyModel.JuicoyBodyMass)
+            ]
         
         for (index, point) in JuicoyDataPoints.enumerated() {
             let JuicoyRow = JuicoyAssembleVitalRow(JuicoyLabel: point.0, JuicoyValue: point.1, JuicoyShowDivider: index != JuicoyDataPoints.count - 1)

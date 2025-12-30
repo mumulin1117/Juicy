@@ -2,7 +2,7 @@
 //  JuicoyNotEnoughController.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/25.
+//  Created by Juicoy on 2025/12/25.
 //
 
 import UIKit

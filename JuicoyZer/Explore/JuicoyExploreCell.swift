@@ -2,7 +2,7 @@
 //  JuicoyExploreCell.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/25.
+//  Created by Juicoy on 2025/12/25.
 //
 
 import UIKit
@@ -17,7 +17,8 @@ class JuicoyExploreCell: UICollectionViewCell {
         JUICYbutton.setImage(UIImage(named: "JUICYchat"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         JUICYbutton.setTitle(" 0", for: .normal)
-      
+        JUICYbutton.titleLabel?.font = UIFont.systemFont(ofSize: 11)
+        JUICYbutton.isUserInteractionEnabled = false
         return JUICYbutton
     }()
     
@@ -94,7 +95,7 @@ class JuicoyExploreCell: UICollectionViewCell {
     required init?(coder: NSCoder) { nil }
 
     private func JuicoyConfigureImage() {
-        
+        JuicoyBackImageView.translatesAutoresizingMaskIntoConstraints = false
         JuicoyBackImageView.contentMode = .scaleAspectFill
         contentView.addSubview(JuicoyBackImageView)
        
@@ -151,8 +152,8 @@ class JuicoyExploreCell: UICollectionViewCell {
      
             
             JUICYnameTitle.widthAnchor.constraint(equalToConstant:63),
-            JUICYnameTitle.leadingAnchor.constraint(equalTo: JuicoyImgView.leadingAnchor, constant: 7),
-            JUICYnameTitle.topAnchor.constraint(equalTo: JuicoyImgView.topAnchor),
+            JUICYnameTitle.leadingAnchor.constraint(equalTo: JuicoyImgView.trailingAnchor, constant: 7),
+            JUICYnameTitle.centerYAnchor.constraint(equalTo: JuicoyImgView.centerYAnchor),
            
             JuicoyVIPView.widthAnchor.constraint(equalToConstant: 27),
             JuicoyVIPView.heightAnchor.constraint(equalToConstant: 14),
@@ -173,6 +174,12 @@ class JuicoyExploreCell: UICollectionViewCell {
     }
     
   
-
+    func JUICYmainfreverr(loie:JuicoyStorageModel)  {
+        JuicoyImgView.image = UIImage(named: loie.JuicoyAvatarKey)
+        JUICYnameTitle.text = loie.JuicoyHandle
+        JuicoyBackImageView.image = UIImage(named: loie.JuicoyMediaCover)
+        JuicoyVIPView.isHidden = !(loie.JuicoyPremiumStatus == "1")
+        JuicoyCommentCountButton.setTitle(" \(loie.JuicoyPublicFeedback.count)", for: .normal)
+    }
  
 }

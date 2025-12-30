@@ -2,7 +2,7 @@
 //  JuicoyBlockServiceController.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/29.
+//  Created by Juicoy on 2025/12/29.
 //
 
 import UIKit
@@ -81,7 +81,7 @@ class JuicoyRestrictUserView: UIView {
         backgroundColor = UIColor.black.withAlphaComponent(0.4)
         
         addSubview(JuicoyContainerPlane)
-        JuicoyContainerPlane.addSubview(JuicoyEmojiHeader)
+        addSubview(JuicoyEmojiHeader)
         JuicoyContainerPlane.addSubview(JuicoyWarnMessage)
         JuicoyContainerPlane.addSubview(JuicoyControlStack)
         
@@ -121,7 +121,15 @@ class JuicoyRestrictUserView: UIView {
 }
 
 class JuicoyBlockServiceController: UIViewController {
+    var juicoyModel:JuicoyStorageModel
+    init(juicoyModel: JuicoyStorageModel) {
+        self.juicoyModel = juicoyModel
+        super.init(nibName: nil, bundle: nil)
+    }
     
+     required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     private let JuicoyOverlayView = JuicoyRestrictUserView()
     
     override func loadView() {
@@ -153,7 +161,8 @@ class JuicoyBlockServiceController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             JuicoyIndicator.stopAnimating()
             self.JuicoyAnimateExit()
-            NotificationCenter.default.post(name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
+            JuicoyDataFactory.JuicoySharedInstance.JuicoyExecuteBlockAction(for: self.juicoyModel.JuicoyIdentifier)
+           
         }
     }
     
@@ -165,10 +174,10 @@ class JuicoyBlockServiceController: UIViewController {
         }
     }
     
-    static func JuicoyShow(from JuicoyParent: UIViewController) {
-        let JuicoyVC = JuicoyBlockServiceController()
-        JuicoyVC.modalPresentationStyle = .overFullScreen
-        JuicoyVC.modalTransitionStyle = .crossDissolve
-        JuicoyParent.present(JuicoyVC, animated: true)
-    }
+//    static func JuicoyShow(from JuicoyParent: UIViewController) {
+//        let JuicoyVC = JuicoyBlockServiceController(juicoyModel: <#JuicoyStorageModel#>)
+//        JuicoyVC.modalPresentationStyle = .overFullScreen
+//        JuicoyVC.modalTransitionStyle = .crossDissolve
+//        JuicoyParent.present(JuicoyVC, animated: true)
+//    }
 }

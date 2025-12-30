@@ -2,22 +2,79 @@
 //  JuicoyMotionDeepController.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/29.
+//  Created by Juicoy on 2025/12/29.
 //
 
 import UIKit
 import AVFoundation
 
 class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInteractionDelegate, JuicoyDialogueInteractionDelegate {
+    private lazy var JuicoyLikeUnit: JOICOYVioaButton = {
+        let JuicoyLikeUnit = JOICOYVioaButton()
+        JuicoyLikeUnit.JuicoyImg.image = UIImage(named: "budianzanJUICOY")
+        
+        JuicoyLikeUnit.JuicoyLab.text = "0"
+        JuicoyLikeUnit.addTarget(self, action: #selector(JuicoyonGiveLikeningButtonTapped), for: .touchUpInside)
+        
+        return JuicoyLikeUnit
+    }()
+    
+    private lazy var JuicoyCommentUnit: JOICOYVioaButton = {
+        let JuicoyLikeUnit = JOICOYVioaButton()
+        JuicoyLikeUnit.JuicoyImg.image = UIImage(named: "JUICOYbianmore")
+     
+        JuicoyLikeUnit.addTarget(self, action: #selector(toJuicoyCommentUnit), for: .touchUpInside)
+        return JuicoyLikeUnit
+    }()
+    
+    private lazy var JuicoyGiftUnit: JOICOYVioaButton = {
+        let JuicoyGiftUnit = JOICOYVioaButton()
+        JuicoyGiftUnit.JuicoyImg.image = UIImage(named: "JUICOYgift")
+        JuicoyGiftUnit.JuicoyLab.text = "Gift"
+        
+     
+        JuicoyGiftUnit.addTarget(self, action: #selector(toJuicoyGiftUnit), for: .touchUpInside)
+   
+        return JuicoyGiftUnit
+    }()
+    
+    var juicoyModel:JuicoyStorageModel
+    init(juicoyModel: JuicoyStorageModel) {
+        self.juicoyModel = juicoyModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+     required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
   ////评论
     func JuicoyDidUpdateTalkCount(JuicoyNewTotal: Int) {
         
     }
     
-    func JuicoyDidSelectNewArchive(JuicoyData: [String : String]) {
-        print("change video")
+    func JuicoyDidSelectNewArchive(JuicoyData: JuicoyStorageModel) {
+   
+        
+        self.juicoyModel = JuicoyData
+        JuicoyreloadData()
     }
     
+    
+    private func JuicoyreloadData()  {
+        
+        JuicoyLikeUnit.JuicoyImg.image = UIImage(named:(self.juicoyModel.JuicoyFaverateStatus == "1") ?  "yidianzanJUICOY" : "budianzanJUICOY")
+        JuicoyLikeUnit.JuicoyLab.text = (self.juicoyModel.JuicoyFaverateStatus == "1") ?  "1" : "0"
+        
+        JuicoyBioScript.text = juicoyModel.JuicoyMediaNarration
+        JuicoyCreatorName.text = juicoyModel.JuicoyHandle
+        JuicoyCreatorAvatar.image = UIImage(named: juicoyModel.JuicoyAvatarKey)
+        
+        JuicoyCommentUnit.JuicoyLab.text = "\(juicoyModel.JuicoyPublicFeedback.count)"
+        
+        JuicoyInitiatePlayback()
+    }
 
     private var JuicoyMediaStage: AVPlayerLayer?
     private var JuicoyLoopEngine: AVPlayerLooper?
@@ -35,7 +92,8 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
     }()
 
     private let JuicoyCreatorAvatar: UIImageView = {
-        let JuicoyImg = UIImageView(image: UIImage(named: "JuicoyUserDefault"))
+        let JuicoyImg = UIImageView( )
+        
         JuicoyImg.contentMode = .scaleAspectFill
         JuicoyImg.layer.cornerRadius = 25
         JuicoyImg.clipsToBounds = true
@@ -64,6 +122,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         JuicoyBtn.tintColor = .systemYellow
         JuicoyBtn.backgroundColor = .white
         JuicoyBtn.layer.cornerRadius = 10
+        JuicoyBtn.addTarget(self, action: #selector(JuicoyOpenDetail), for: .touchUpInside)
         JuicoyBtn.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyBtn
     }()
@@ -76,7 +135,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
 
     private let JuicoyCreatorName: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "David James"
+        
         JuicoyLab.textColor = .white
         JuicoyLab.font = .systemFont(ofSize: 18, weight: .bold)
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -93,12 +152,12 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
     }()
     
     @objc func JuicoyGoCallPulseTo()  {
-        
+        self.navigationController?.pushViewController(JuicoyTeleLinkController.init(juicoyModel: self.juicoyModel), animated: true)
     }
 
     private let JuicoyBioScript: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "A quiet moment where strength, balance, and flow come together."
+        
         JuicoyLab.textColor = .white
         JuicoyLab.numberOfLines = 2
         JuicoyLab.font = .systemFont(ofSize: 14, weight: .regular)
@@ -132,11 +191,18 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
        moaler.JuicoyInteractionDelegate = self
        self.present(moaler, animated: true)
     }
+    //拉黑刷新数据
+    @objc func observeJuicoyUserBlacklisted() {
+        self.navigationController?.popViewController(animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        JuicoyInitiatePlayback()
-        JuicoyAssembleScene()
+        NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
+        super.viewDidLoad()
         
+        JuicoyAssembleScene()
+       
+        JuicoyreloadData()
     }
     private var JuicoyTimeObserverToken: Any?
     deinit {
@@ -177,13 +243,20 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
             JuicoyQueueOperator?.pause()
             self.navigationController?.popViewController(animated: true)
         }
-    //more
-//    override func JuicoyonRightBarButtonTapped(){
-//        
-//    }
+    //like
+    @objc func JuicoyonGiveLikeningButtonTapped(){
+        JuicoyDataFactory.JuicoySharedInstance.JuicoyToggleHearFamos(for: self.juicoyModel.JuicoyIdentifier)
+        
+        
+        JuicoyLikeUnit.isSelected = !JuicoyLikeUnit.isSelected
+        JuicoyLikeUnit.JuicoyImg.image = UIImage(named:JuicoyLikeUnit.isSelected ?  "yidianzanJUICOY" : "budianzanJUICOY")
+        JuicoyLikeUnit.JuicoyLab.text = JuicoyLikeUnit.isSelected ?  "1" : "0"
+        self.juicoyModel.JuicoyFaverateStatus = JuicoyLikeUnit.isSelected ?  "1" : "0"
+        
+    }
     //comment
    @objc func toJuicoyCommentUnit()  {
-       let moaler = JuicoyDialoguePanelController.init()
+       let moaler = JuicoyDialoguePanelController.init(juicoyModel: self.juicoyModel)
        moaler.modalPresentationStyle = .overCurrentContext
        moaler.JuicoyDelegate = self
        self.present(moaler, animated: true)
@@ -196,10 +269,13 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         self.present(moaler, animated: true)
      }
     
-    
+    @objc private func JuicoyOpenDetail() {
+       
+        self.navigationController?.pushViewController(JuicoyExternalNexusController(juicoyModel: self.juicoyModel), animated: true)
+    }
     private func JuicoyAssembleScene() {
         let moreimh = UIImage(named: "jocoymoieh")
-      
+       
         self.JuicoyaddRightBarButton(image:moreimh )
          
         view.addSubview(JuicoySidebarStack)
@@ -212,12 +288,8 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         JuicoyNarrativeBase.addSubview(JuicoyGoCallPulse)
         JuicoyNarrativeBase.addSubview(JuicoyBioScript)
         
-        let JuicoyLikeUnit = JuicoyBuildMetric(JuicoyIcon: "budianzanJUICOY", JuicoyCount: "235", JuicoyColor: .systemRed)
-        let JuicoyCommentUnit = JuicoyBuildMetric(JuicoyIcon: "JUICOYbianmore", JuicoyCount: "112", JuicoyColor: .white)
-        JuicoyCommentUnit.addTarget(self, action: #selector(toJuicoyCommentUnit), for: .touchUpInside)
-        let JuicoyGiftUnit = JuicoyBuildMetric(JuicoyIcon: "JUICOYgift", JuicoyCount: "Gift", JuicoyColor: .systemPink)
-        JuicoyGiftUnit.addTarget(self, action: #selector(toJuicoyGiftUnit), for: .touchUpInside)
         
+          
         JuicoySidebarStack.addArrangedSubview(JuicoyCreatorAvatar)
         JuicoySidebarStack.addArrangedSubview(JuicoyLikeUnit)
         JuicoySidebarStack.addArrangedSubview(JuicoyCommentUnit)
@@ -275,40 +347,6 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         
     }
 
-    private func JuicoyBuildMetric(JuicoyIcon: String, JuicoyCount: String, JuicoyColor: UIColor) -> UIButton {
-        let JuicoyContainer = UIButton()
-        let JuicoyImg = UIImageView(image: UIImage(named: JuicoyIcon))
-        JuicoyImg.tintColor = JuicoyColor
-        JuicoyImg.contentMode = .scaleAspectFit
-        
-        let JuicoyLab = UILabel()
-        JuicoyLab.text = JuicoyCount
-        JuicoyLab.textColor = .white
-        JuicoyLab.font = .systemFont(ofSize: 12, weight: .medium)
-        
-        JuicoyContainer.addSubview(JuicoyImg)
-        JuicoyContainer.addSubview(JuicoyLab)
-        
-        JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
-        JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            JuicoyImg.topAnchor.constraint(equalTo: JuicoyContainer.topAnchor),
-            JuicoyImg.centerXAnchor.constraint(equalTo: JuicoyContainer.centerXAnchor),
-            JuicoyImg.widthAnchor.constraint(equalToConstant: 30),
-            JuicoyImg.heightAnchor.constraint(equalToConstant: 30),
-            
-            JuicoyLab.topAnchor.constraint(equalTo: JuicoyImg.bottomAnchor, constant: 4),
-            JuicoyLab.centerXAnchor.constraint(equalTo: JuicoyContainer.centerXAnchor),
-            JuicoyLab.bottomAnchor.constraint(equalTo: JuicoyContainer.bottomAnchor)
-        ])
-        
-//        let JuicoyTap = UITapGestureRecognizer(target: self, action: #selector(JuicoyMetricInteract(_:)))
-//        JuicoyContainer.addGestureRecognizer(JuicoyTap)
-        
-        return JuicoyContainer
-    }
-
     private func JuicoySetupDrawerLabel() {
         let JuicoyStack = UIStackView()
         JuicoyStack.axis = .horizontal
@@ -342,7 +380,11 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
     }
 
     private func JuicoyInitiatePlayback() {
-        guard let JuicoyPath = Bundle.main.path(forResource: "@gbserikaa-2025-12-11_0915-poledance-7582650161252371734", ofType: "mp4") else { return }
+        JuicoyMediaStage?.player?.pause()
+        JuicoyMediaStage?.removeFromSuperlayer()
+        JuicoyMediaStage?.player = nil
+        
+        guard let JuicoyPath = Bundle.main.path(forResource: juicoyModel.JuicoyMediaUrl, ofType: "mp4") else { return }
         let JuicoyURL = URL(fileURLWithPath: JuicoyPath)
         let JuicoyItem = AVPlayerItem(url: JuicoyURL)
         
@@ -352,7 +394,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         JuicoyMediaStage = AVPlayerLayer(player: JuicoyQueueOperator)
         JuicoyMediaStage?.videoGravity = .resizeAspectFill
         JuicoyMediaStage?.frame = view.bounds
-        self.view.layer.addSublayer(JuicoyMediaStage!)
+        self.view.layer.insertSublayer(JuicoyMediaStage!, below: JuicoySidebarStack.layer)
         JuicoySyncProgress()
                 
                 
@@ -374,10 +416,54 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
 //        }
 //    }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        JuicoyQueueOperator?.pause()
+    
+    
+    
+}
+
+
+class JOICOYVioaButton: UIButton {
+    
+    lazy var JuicoyImg: UIImageView = {
+        let JuicoyImg = UIImageView()
+       
+        JuicoyImg.contentMode = .scaleAspectFit
+        return JuicoyImg
+    }()
+    
+    
+    lazy var JuicoyLab: UILabel = {
+        let JuicoyLab = UILabel()
+       
+        JuicoyLab.textColor = .white
+        JuicoyLab.font = .systemFont(ofSize: 12, weight: .medium)
+        return JuicoyLab
+    }()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        
+       
+        self.addSubview(JuicoyImg)
+        self.addSubview(JuicoyLab)
+        
+        JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
+        JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            JuicoyImg.topAnchor.constraint(equalTo: self.topAnchor),
+            JuicoyImg.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            JuicoyImg.widthAnchor.constraint(equalToConstant: 30),
+            JuicoyImg.heightAnchor.constraint(equalToConstant: 30),
+            
+            JuicoyLab.topAnchor.constraint(equalTo: JuicoyImg.bottomAnchor, constant: 4),
+            JuicoyLab.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            JuicoyLab.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+        
     }
     
-    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

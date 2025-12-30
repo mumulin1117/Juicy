@@ -2,7 +2,7 @@
 //  JuicoyCreatorCell.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/25.
+//  Created by Juicoy on 2025/12/25.
 //
 
 import UIKit
@@ -48,7 +48,7 @@ final class JuicoyCreatorCell: UICollectionViewCell {
     }()
     private let JUICYfanscountTitle: UILabel = {
         let JUICYlabel = UILabel()
-        JUICYlabel.text = "\(Int.random(in: 0...3)) followers"
+      
         JUICYlabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         JUICYlabel.textColor = UIColor.init(white: 1, alpha: 0.45)
         JUICYlabel.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +57,7 @@ final class JuicoyCreatorCell: UICollectionViewCell {
     
     private let JUICYpostTitle: UILabel = {
         let JUICYlabel = UILabel()
-        JUICYlabel.text = "\(Int.random(in: 0...1)) post"
+        JUICYlabel.text = "1 post"
         JUICYlabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         JUICYlabel.textColor = UIColor.init(white: 1, alpha: 0.45)
         JUICYlabel.translatesAutoresizingMaskIntoConstraints = false
@@ -111,6 +111,13 @@ final class JuicoyCreatorCell: UICollectionViewCell {
             JUICYpostTitle.topAnchor.constraint(equalTo: JUICYnameTitle.bottomAnchor,constant: 26),
            
         ])
+       
+    }
+    
+    func JUICYmainfreverr(loie:JuicoyStorageModel)  {
+        JuicoyImgView.image = UIImage(named: loie.JuicoyAvatarKey)
+        JUICYnameTitle.text = loie.JuicoyHandle
+        JUICYfanscountTitle.text = loie.JuicoyConnectionInCount  + " followers"
        
     }
 }

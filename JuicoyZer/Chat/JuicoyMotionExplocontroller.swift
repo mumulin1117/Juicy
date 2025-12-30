@@ -2,7 +2,7 @@
 //  JuicoyMotionExplocontroller.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2025/12/24.
+//  Created by Juicoy on 2025/12/24.
 //
 
 import UIKit
@@ -156,6 +156,6 @@ extension JuicoyMotionExplocontroller: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(JuicoyMeadggFotuseController(), animated: true)
+        //self.navigationController?.pushViewController(JuicoyMeadggFotuseController(juicoyModel: <#JuicoyStorageModel#>), animated: true)
     }
 }
