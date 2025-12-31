@@ -8,7 +8,7 @@
 import UIKit
 struct JuicoyFabricMessage {
     let JuicoyContent: String
-    let JuicoyIsLead: Bool
+    let JuicoyIsLead: Bool// true 为自己发送，false 为对方发送
     let JuicoyTimestamp: String
 }
 class JuicoyEchoThreadCell: UITableViewCell {
@@ -95,7 +95,7 @@ class JuicoyEchoThreadCell: UITableViewCell {
         ]
     }
 
-    func JuicoyInfusePulse(_ JuicoyPulse: JuicoyFabricMessage) {
+    func JuicoyInfusePulse(_ JuicoyPulse: JuicoyFabricMessage,JuicoyisAI:Bool = true,uimage:String? = nil) {
         JuicoyContentEcho.text = JuicoyPulse.JuicoyContent
         JuicoyChronosLabel.text = JuicoyPulse.JuicoyTimestamp
         JuicoyChronosLabel.isHidden = JuicoyPulse.JuicoyTimestamp.isEmpty
@@ -105,13 +105,23 @@ class JuicoyEchoThreadCell: UITableViewCell {
             NSLayoutConstraint.activate(JuicoyLeadConstraints)
             JuicoyPulseBubble.backgroundColor = .white
             JuicoyContentEcho.textColor = .black
-            JuicoyAvatarOrb.image = UIImage(named: "juicoydanceAiAvator")
+            if JuicoyisAI {
+                JuicoyAvatarOrb.image = UIImage(named: "juicoydanceAiAvator")
+            }else{
+                
+                JuicoyAvatarOrb.image = UIImage(named: uimage ?? "")
+                
+            }
+            
+            
+            
+            
         } else {
             NSLayoutConstraint.deactivate(JuicoyLeadConstraints)
             NSLayoutConstraint.activate(JuicoyFollowConstraints)
             JuicoyPulseBubble.backgroundColor = UIColor(red: 168/255, green: 70/255, blue: 255/255, alpha: 1.0)
             JuicoyContentEcho.textColor = .white
-            JuicoyAvatarOrb.image = UIImage(named: "JuicoyUser")
+            JuicoyAvatarOrb.image = UIImage(named: "juicoyDynamicLog")
         }
     }
 }

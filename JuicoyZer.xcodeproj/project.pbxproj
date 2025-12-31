@@ -147,6 +147,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JuicoyZer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Juicy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
@@ -183,6 +184,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JuicoyZer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Juicy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";

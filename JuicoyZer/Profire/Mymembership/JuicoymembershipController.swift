@@ -15,6 +15,8 @@ class JuicoymembershipController: JuicoySeconedViewController {
         self.title = "My Membership"
         JuicoyBuildArchitecture()
         JuicoyRefineTierSelection()
+        JuicoyEmpireVipBadge.tintColor =  (JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus == "1") ? UIColor.yellow : UIColor.lightGray
+        JuicoyExpirationAura.text = JuicoyDataFactory.currentUserModel?.JUICOYUVIPExpireTime
     }
     
 
@@ -55,7 +57,7 @@ class JuicoymembershipController: JuicoySeconedViewController {
 
     private let JuicoySoulAvatar: UIImageView = {
         let JuicoyImg = UIImageView()
-        JuicoyImg.image = UIImage(named: "juicoyDynamicLog")
+        JuicoyImg.image = UIImage(named:JuicoyDataFactory.currentUserModel?.JuicoyAvatarKey ?? "juicoyDynamicLog")
         JuicoyImg.contentMode = .scaleAspectFill
         JuicoyImg.layer.cornerRadius = 25
         JuicoyImg.clipsToBounds = true
@@ -65,7 +67,7 @@ class JuicoymembershipController: JuicoySeconedViewController {
 
     private let JuicoySoulHandle: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "Edith Mitchell"
+        JuicoyLab.text = JuicoyDataFactory.currentUserModel?.JuicoyHandle
         JuicoyLab.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyLab
@@ -74,14 +76,14 @@ class JuicoymembershipController: JuicoySeconedViewController {
     private let JuicoyEmpireVipBadge: UIImageView = {
         let JuicoyImg = UIImageView()
         JuicoyImg.image = UIImage(systemName: "v.circle.fill")
-        JuicoyImg.tintColor = .orange
+        JuicoyImg.tintColor = .lightGray
         JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyImg
     }()
 
     private let JuicoyExpirationAura: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "Expires on 2025-11-24"
+        JuicoyLab.text = "VIP not yet activated"
         JuicoyLab.textColor = .lightGray
         JuicoyLab.font = UIFont.systemFont(ofSize: 12)
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -101,9 +103,39 @@ class JuicoymembershipController: JuicoySeconedViewController {
         let JuicoyBtn = UIButton()
         JuicoyBtn.setBackgroundImage(UIImage(named: "Juicoygetit"), for: .normal)
         JuicoyBtn.translatesAutoresizingMaskIntoConstraints = false
+        JuicoyBtn.addTarget(self, action: #selector(juicoyPayForVIP), for: .touchUpInside)
         return JuicoyBtn
     }()
-
+    
+    @objc func juicoyPayForVIP() {
+        JUICOYbeginLoad()
+        if JuicoyDataFactory.JuicoySharedInstance.JuicoyPurchaseRemebershio(JuicoySelectedTierIndex: JuicoySelectedTierIndex) {
+            self.JUICOYshowMessage("Purchase Successful! For VIP")
+            self.JUICOYDismissLoad()
+            JuicoyEmpireVipBadge.tintColor = .orange
+            if JuicoySelectedTierIndex == 0 {
+                JuicoyExpirationAura.text = "Expires on 2026-02-07"
+            }
+            
+            if JuicoySelectedTierIndex == 1 {
+                JuicoyExpirationAura.text = "Expires on 2027-01-30"
+            }
+            
+            if JuicoySelectedTierIndex == 2 {
+                JuicoyExpirationAura.text = "Lifetime"
+            }
+            JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus = "1"
+            JuicoyDataFactory.currentUserModel?.JUICOYUVIPExpireTime = JuicoyExpirationAura.text ?? ""
+        } else {
+            self.JUICOYDismissLoad()
+            let juicoymodal = JuicoyWalletFluxController()
+            self.navigationController?.pushViewController(juicoymodal, animated: true)
+        }
+        
+       
+    }
+    
+    
     private let JuicoyPrivilegeGraphicBoard: UIImageView = {
         let JuicoyImg = UIImageView()
         JuicoyImg.image = UIImage(named: "JuicoyPrivilegesFooter")
@@ -188,8 +220,8 @@ class JuicoymembershipController: JuicoySeconedViewController {
             
             JuicoyInitiateEmpireTrigger.bottomAnchor.constraint(equalTo: JuicoyIdentityCardContainer.bottomAnchor, constant: -20),
             JuicoyInitiateEmpireTrigger.centerXAnchor.constraint(equalTo: JuicoyIdentityCardContainer.centerXAnchor),
-            JuicoyInitiateEmpireTrigger.widthAnchor.constraint(equalToConstant: 188),
-            JuicoyInitiateEmpireTrigger.heightAnchor.constraint(equalToConstant: 52),
+            JuicoyInitiateEmpireTrigger.widthAnchor.constraint(equalToConstant:200),
+            JuicoyInitiateEmpireTrigger.heightAnchor.constraint(equalToConstant: 62),
             
             JuicoyPrivilegeGraphicBoard.topAnchor.constraint(equalTo: JuicoyIdentityCardContainer.bottomAnchor, constant: 20),
             JuicoyPrivilegeGraphicBoard.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),

@@ -6,8 +6,11 @@
 //
 
 import UIKit
-
+protocol JuicoyNotEnoughControllerDelegate {
+    func toshowbuy()
+}
 class JuicoyNotEnoughController:  JuicoySeconedViewController {
+    var delegate:JuicoyNotEnoughControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,9 @@ class JuicoyNotEnoughController:  JuicoySeconedViewController {
     
     @objc func juicoyPoleAI()  {
         
+        self.dismiss(animated: true)
+        
+        self.delegate?.toshowbuy()
     }
     
     

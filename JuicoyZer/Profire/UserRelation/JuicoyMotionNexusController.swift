@@ -15,16 +15,12 @@ enum JuicoyKineticMode {
     case JuicoyBlocked
 }
 
-struct JuicoySoulProfile {
-    let JuicoyHandle: String
-    let JuicoyPortrait: String
-    var JuicoyIsLinked: Bool
-}
+
 
 class JuicoyMotionNexusController: JuicoySeconedYEUIController {
 
     private var JuicoyCurrentMode: JuicoyKineticMode = .JuicoyFollower
-    private var JuicoySoulRegistry: [JuicoySoulProfile] = []
+    private var JuicoySoulRegistry: [JuicoyStorageModel] = []
 
    
 
@@ -68,21 +64,14 @@ class JuicoyMotionNexusController: JuicoySeconedYEUIController {
         case .JuicoyFollower:
             self.title  = "Follower"
             JuicoySoulRegistry = [
-                JuicoySoulProfile(JuicoyHandle: "Earl Patterson", JuicoyPortrait: "JuicoyUser1", JuicoyIsLinked: true),
-                JuicoySoulProfile(JuicoyHandle: "Lettie Henderson", JuicoyPortrait: "JuicoyUser2", JuicoyIsLinked: true)
+               
             ]
         case .JuicoyFollowing:
             self.title  = "Following"
-            JuicoySoulRegistry = [
-                JuicoySoulProfile(JuicoyHandle: "Nathan Ford", JuicoyPortrait: "JuicoyUser3", JuicoyIsLinked: true),
-                JuicoySoulProfile(JuicoyHandle: "Hattie Mitchell", JuicoyPortrait: "JuicoyUser4", JuicoyIsLinked: true)
-            ]
+            JuicoySoulRegistry = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedFollowingsUser()
         case .JuicoyBlocked:
             self.title  = "Blocked List"
-            JuicoySoulRegistry = [
-                JuicoySoulProfile(JuicoyHandle: "Olive Marshall", JuicoyPortrait: "JuicoyUser5", JuicoyIsLinked: false),
-                JuicoySoulProfile(JuicoyHandle: "Lula James", JuicoyPortrait: "JuicoyUser6", JuicoyIsLinked: false)
-            ]
+            JuicoySoulRegistry = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedBlocksUser()
         }
     }
 
@@ -206,9 +195,9 @@ class JuicoySoulStreamCell: UITableViewCell {
         JuicoyActionCallback?()
     }
 
-    func JuicoyInfuseProfile(_ JuicoyData: JuicoySoulProfile, JuicoyMode: JuicoyKineticMode) {
+    func JuicoyInfuseProfile(_ JuicoyData: JuicoyStorageModel, JuicoyMode: JuicoyKineticMode) {
         JuicoyHandleLabel.text = JuicoyData.JuicoyHandle
-        JuicoyAvatarOrb.image = UIImage(named: JuicoyData.JuicoyPortrait)
+        JuicoyAvatarOrb.image = UIImage(named: JuicoyData.JuicoyAvatarKey)
         
         switch JuicoyMode {
         case .JuicoyFollower:

@@ -53,7 +53,7 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
 
     private let JuicoyBalanceMetric: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "2456"
+        JuicoyLab.text = "0"
         JuicoyLab.textColor = .white
         JuicoyLab.font = UIFont.systemFont(ofSize: 22, weight: .black)
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -81,8 +81,15 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Coin"
+        self.title = "Sparkle Depot"
+        
+        if  let emailID =  UserDefaults.standard.object(forKey: "JUICOYloginEmsilID") as? String, let diomendCount = UserDefaults.standard.object(forKey: emailID) as? String  {
+            //emailID对应的金币数量
+            self.JuicoyBalanceMetric.text = diomendCount
+        }
+           
         JuicoyConstructEmpire()
+        
         
         JUICOYaddLoadingViewONSurface()
     }
@@ -162,6 +169,16 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
                 
             case .success(let succeff):
                 self.JUICOYshowMessage("Pay successful!")
+                
+                if  let emailID =  UserDefaults.standard.object(forKey: "JUICOYloginEmsilID") as? String,
+                    let diomendCount = UserDefaults.standard.object(forKey: emailID) as? String ,
+                    let count = Int(diomendCount),let add = Int(self.JuicoySparkleCatalog[JuicoyPath.item].JuicoyQuantity) {
+                    //emailID对应的金币数量
+                    let newest = count + add
+                    UserDefaults.standard.set("\(newest)", forKey: emailID)
+                    
+                    self.JuicoyBalanceMetric.text = "\(newest)"
+                }
             case .failure(let meddd):
                 self.JUICOYshowMessage(meddd.localizedDescription)
             }

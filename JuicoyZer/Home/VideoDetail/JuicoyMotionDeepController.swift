@@ -7,8 +7,17 @@
 
 import UIKit
 import AVFoundation
-
-class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInteractionDelegate, JuicoyDialogueInteractionDelegate {
+protocol JuicoyMotionDeepControllerdelegate{
+    func JuicoyupdateJuicoyStorageModel(model: JuicoyStorageModel)
+}
+class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInteractionDelegate, JuicoyDialogueInteractionDelegate, JuicoyExternalNexusControllerDelegate {
+    
+    var delegate:JuicoyMotionDeepControllerdelegate?
+    
+    func JuicoyupdateJuicoyStorageModel(model: JuicoyStorageModel) {
+        self.juicoyModel = model
+    }
+    
     private lazy var JuicoyLikeUnit: JOICOYVioaButton = {
         let JuicoyLikeUnit = JOICOYVioaButton()
         JuicoyLikeUnit.JuicoyImg.image = UIImage(named: "budianzanJUICOY")
@@ -252,6 +261,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         JuicoyLikeUnit.JuicoyImg.image = UIImage(named:JuicoyLikeUnit.isSelected ?  "yidianzanJUICOY" : "budianzanJUICOY")
         JuicoyLikeUnit.JuicoyLab.text = JuicoyLikeUnit.isSelected ?  "1" : "0"
         self.juicoyModel.JuicoyFaverateStatus = JuicoyLikeUnit.isSelected ?  "1" : "0"
+        self.delegate?.JuicoyupdateJuicoyStorageModel(model: juicoyModel)
         
     }
     //comment
@@ -270,8 +280,9 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
      }
     
     @objc private func JuicoyOpenDetail() {
-       
-        self.navigationController?.pushViewController(JuicoyExternalNexusController(juicoyModel: self.juicoyModel), animated: true)
+       let cebte = JuicoyExternalNexusController(juicoyModel: self.juicoyModel)
+        cebte.delegate = self
+        self.navigationController?.pushViewController(cebte, animated: true)
     }
     private func JuicoyAssembleScene() {
         let moreimh = UIImage(named: "jocoymoieh")

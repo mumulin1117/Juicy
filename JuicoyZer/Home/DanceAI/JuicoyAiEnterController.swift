@@ -9,10 +9,7 @@ import UIKit
 
 class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSource, UITableViewDelegate {
     private var JuicoyFabricCollection: [JuicoyFabricMessage] = [
-            JuicoyFabricMessage(JuicoyContent: "Hi there! I'm your Pole Dance AI. Ask me anything you'd like to know.", JuicoyIsLead: true, JuicoyTimestamp: ""),
-            JuicoyFabricMessage(JuicoyContent: "I'm a beginner. What should I practice first?", JuicoyIsLead: false, JuicoyTimestamp: ""),
-            JuicoyFabricMessage(JuicoyContent: "Start with basic grips and spins. Focus on control and consistency, not speed.", JuicoyIsLead: true, JuicoyTimestamp: "Today 8:43 AM"),
-            JuicoyFabricMessage(JuicoyContent: "Can you suggest something simple for today?", JuicoyIsLead: false, JuicoyTimestamp: "")
+            JuicoyFabricMessage(JuicoyContent: "Hi there! I'm your Pole Dance AI. Ask me anything you'd like to know.", JuicoyIsLead: true, JuicoyTimestamp: "")
         ]
     
     
@@ -92,14 +89,11 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
             JuicoyChatTableView.bottomAnchor.constraint(equalTo: self.JUICYsendButton.topAnchor,constant: -10),
             JuicoyChatTableView.topAnchor.constraint(equalTo: self.view.topAnchor,constant:JUICOYalltotalTop + 10),
             ])
+        
+        view.addSubview(JuicoyIndicator)
     }
     
-//举报
-//    override func JuicoyonRightBarButtonTapped(){
-//        
-//    }
 
-    
   
     @objc private func JuicoyExecuteSignalTransmission() {
             
@@ -108,15 +102,19 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
             return
         }
         
-        let JuicoyNewPulse = JuicoyFabricMessage(JuicoyContent: JuicoyRawText, JuicoyIsLead: false, JuicoyTimestamp: "")
-        JuicoyFabricCollection.append(JuicoyNewPulse)
+        let JuicoyExchangeUnit =  JuicoyFabricMessage(JuicoyContent: JuicoyRawText, JuicoyIsLead: false, JuicoyTimestamp: "Just now")
+        self.JuicoyFabricCollection.append(JuicoyExchangeUnit)
+       
+      
+        JuicoyDispatchAIExpertConsultation(with: JuicoyRawText)
+       
         
-    JUICYEmailTextField.text = ""
+    
+        JUICYEmailTextField.text = ""
+        
         JuicoySynchronizeVibration()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.JuicoySimulateAIEcho()
-        }
+      
     }
 
     private func JuicoySynchronizeVibration() {
@@ -132,10 +130,17 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
     }
 
     private func JuicoySimulateAIEcho() {
-        let JuicoyAIPulse = JuicoyFabricMessage(JuicoyContent: "That's a great observation! Keep practicing your grip strength.", JuicoyIsLead: true, JuicoyTimestamp: "Just now")
+        let JuicoyAIPulse = JuicoyFabricMessage(JuicoyContent: "Ai request error", JuicoyIsLead: true, JuicoyTimestamp: "Just now")
         JuicoyFabricCollection.append(JuicoyAIPulse)
         JuicoySynchronizeVibration()
     }
+    
+    private lazy var JuicoyIndicator: UIActivityIndicatorView = {
+        let JuicoyIndicator = UIActivityIndicatorView(style: .medium)
+        JuicoyIndicator.center = view.center
+        JuicoyIndicator.hidesWhenStopped = true
+        return JuicoyIndicator
+    }()
    
 }
 
@@ -146,4 +151,84 @@ extension JuicoyAiEnterController: UITextFieldDelegate {
         return true
     }
     
+   
+
+    private func JuicoyDispatchAIExpertConsultation(with JuicoyQuery: String) {
+        // 使用 Juicoy 特色的加载提示
+        JuicoyIndicator.startAnimating()
+        
+        guard let JuicoyEndpoint = URL(string: "http://www.discoveryroute901.xyz/talktwo/askQuestionv2") else {
+            return
+        }
+
+        var JuicoyRequest = URLRequest(url: JuicoyEndpoint)
+        JuicoyRequest.httpMethod = "POST"
+        JuicoyRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        // 参数命名根据 App 描述调整，增强关联性
+        let JuicoyPayload: [String: Any] = [
+            "question": JuicoyQuery,       // 用户关于钢管舞技巧或动作的咨询
+            "questionType": 1,             // 预留类型标识
+            "eqNo": "5555"                 // 内部识别码
+        ]
+        
+        do {
+            JuicoyRequest.httpBody = try JSONSerialization.data(withJSONObject: JuicoyPayload, options: [])
+        } catch {
+            DispatchQueue.main.async {
+                self.JuicoySimulateAIEcho()
+            }
+            return
+        }
+
+        // 执行异步数据任务
+        let JuicoySessionTask = URLSession.shared.dataTask(with: JuicoyRequest) { JuicoyRawData, JuicoyResponse, JuicoyError in
+            DispatchQueue.main.async {
+                self.JuicoyIndicator.stopAnimating()
+            }
+            
+            if JuicoyError != nil {
+                DispatchQueue.main.async {
+                    self.JuicoySimulateAIEcho()
+                }
+                return
+            }
+       
+            guard let JuicoyData = JuicoyRawData else {
+                DispatchQueue.main.async {
+                    self.JuicoySimulateAIEcho()
+                }
+                return
+            }
+     
+            do {
+                if let JuicoyJsonResponse = try JSONSerialization.jsonObject(with: JuicoyData, options: []) as? [String: Any] {
+                    guard let JuicoyAdviceContent = JuicoyJsonResponse["data"] as? String else {
+                        DispatchQueue.main.async {
+                            self.JuicoySimulateAIEcho()
+                        }
+                        return
+                    }
+                    
+                    
+                  
+                    DispatchQueue.main.async {
+                        let JuicoyExchangeUnit =  JuicoyFabricMessage(JuicoyContent: JuicoyAdviceContent, JuicoyIsLead: true, JuicoyTimestamp: "")
+                        self.JuicoyFabricCollection.append(JuicoyExchangeUnit)
+                       
+                        self.JuicoySynchronizeVibration()
+                        
+                        
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.JuicoySimulateAIEcho()
+                }
+            }
+        }
+
+        JuicoySessionTask.resume()
+    }
+
 }

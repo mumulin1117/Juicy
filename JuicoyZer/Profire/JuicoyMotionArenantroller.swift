@@ -51,9 +51,9 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyView.addSubview(img)
         
         let JuicoyLabel = UILabel(frame: CGRect.init(x: 40, y: 0, width:50, height: 30))
-        JuicoyLabel.text = "0"
+        JuicoyLabel.text = " ->"
         JuicoyLabel.textColor = .white
-        JuicoyLabel.font = UIFont.systemFont(ofSize: 15)
+        JuicoyLabel.font = UIFont.systemFont(ofSize: 16)
         JuicoyView.addSubview(JuicoyLabel)
         JuicoyView.addTarget(self, action: #selector(JJuicoyUMPDimoned0ontroller), for: .touchUpInside)
         return JuicoyView
@@ -82,7 +82,9 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
 
     private let JuicoyIconicAvatarFrame: UIImageView = {
         let JuicoyImg = UIImageView()
-     
+        JuicoyImg.contentMode = .scaleAspectFill
+        JuicoyImg.layer.cornerRadius = 45
+        JuicoyImg.layer.masksToBounds = true
         JuicoyImg.image = UIImage(named: "joicoybackimag")
         return JuicoyImg
     }()
@@ -317,7 +319,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     }
 
     private func JuicoyPopulateThreadStats() {
-        let JuicoyFollowThread = JuicoyForgeStatUnit(JuicoyVal: "0", JuicoyTitle: "Following")
+        let JuicoyFollowThread = JuicoyForgeStatUnit(JuicoyVal: "\(JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedFollowingsUser().count)", JuicoyTitle: "Following")
         JuicoyFollowThread.addTarget(self, action: #selector(JJuicoyUMJuicoyFollowThread), for: .touchUpInside)
         let JuicoyFanThread = JuicoyForgeStatUnit(JuicoyVal: "0", JuicoyTitle: "Followers")
         JuicoyFanThread.addTarget(self, action: #selector(JJuicoyUMJuicoyFanThread), for: .touchUpInside)
@@ -359,6 +361,38 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
             JuicoyTag.bottomAnchor.constraint(equalTo: JuicoyBox.bottomAnchor)
         ])
         return JuicoyBox
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let useiINfo = JuicoyDataFactory.currentUserModel else {
+            return
+        }
+        JuicoyStageCoverImage.image = UIImage(named: useiINfo.JuicoyAvatarKey)
+        JuicoyIconicAvatarFrame.image = UIImage(named: useiINfo.JuicoyAvatarKey)
+        JuicoyStylePersonaName.text = useiINfo.JuicoyHandle
+        
+        
+        JuicoyGlassVIPTrigger.isHidden = !(useiINfo.JuicoyPremiumStatus == "1")
+        JuicoyEliteVipTag.isHidden = !(useiINfo.JuicoyPremiumStatus == "1")
+        JuicoyAuraBioLabel.text = useiINfo.JuicoyMotto
+        
+        
+        if JuicoyDataFactory.JuicoyuserBackground?.first != nil{
+            JuicoyStageCoverImage.image = JuicoyDataFactory.JuicoyuserBackground?.first!
+           
+        }else{
+            JuicoyStageCoverImage.image = UIImage(named: "juicoyDynamicLog")
+        }
+        
+        if JuicoyDataFactory.Juicoyuserphtho != nil{
+            JuicoyIconicAvatarFrame.image = JuicoyDataFactory.Juicoyuserphtho!
+           
+        }else{
+            JuicoyIconicAvatarFrame.image = UIImage(named:useiINfo.JuicoyAvatarKey)
+        }
+        
     }
 }
 

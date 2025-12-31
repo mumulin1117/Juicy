@@ -9,7 +9,7 @@ import UIKit
 
 class JuicoyMotionExplocontroller: JuicoyBasicController {
     
-    private var JuicoyChatItems: [JuicoyChatItemModel] = []
+    private var JuicoyChatItems: [JuicoyConversationPreview] = []
     
     private lazy var  JUICYMotionStageContainer: UIImageView = {
         let JUICOY = UIImageView.init(image: UIImage.init(named: "JuicychauiTitle"))
@@ -27,6 +27,15 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
     }()
     private let JuicoySearchContainer = UIView()
         
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.JuicoyChatItems = JuicoyDataFactory.JuicoySharedInstance.JuicoyFetchActiveRecipients()
+        
+        self.JuicoyChatTableView.reloadData()
+        
+    }
     private let JuicoySearchIcon = UIImageView(image: UIImage.init(named: "Juicoyserchicon"))
     private let JuicoySearchField = UITextField()
     private let JuicoyChatTableView = UITableView(frame: .zero, style: .plain)
@@ -35,7 +44,7 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
     override func viewDidLoad() {
         super.viewDidLoad()
         JuicoyConfigureTable()
-        JuicoyLoadMockData()
+      
         JuicoySearchField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         JuicoySearchContainer.translatesAutoresizingMaskIntoConstraints = false
         JuicoySearchIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -105,7 +114,7 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
         JuicoySearchField.textColor = .white
         JuicoySearchField.tintColor = .white
         JuicoySearchField.borderStyle = .none
-        
+        JuicoyConfigureSearchInteractions()
         
     }
     private func JuicoyConfigureTable() {
@@ -120,18 +129,71 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
       
     }
 
-      
-    private func JuicoyLoadMockData() {
-        JuicoyChatItems = [
-            JuicoyChatItemModel(JuicoyTitle: "System messages", JuicoySubtitle: "Your feed has fresh pole routines", JuicoyUnread: 3, JuicoyIsSystem: true),
-            JuicoyChatItemModel(JuicoyTitle: "Cameron Curtis", JuicoySubtitle: "Shape motion into art", JuicoyUnread: 2, JuicoyIsSystem: false),
-            JuicoyChatItemModel(JuicoyTitle: "Caleb Harmon", JuicoySubtitle: "Found through movement", JuicoyUnread: 5, JuicoyIsSystem: false),
-            JuicoyChatItemModel(JuicoyTitle: "Bobby Patterson", JuicoySubtitle: "Dance in your own gravity", JuicoyUnread: 0, JuicoyIsSystem: false)
-        ]
+    // 在 viewDidLoad 或相关 UI 初始化方法中
+    private func JuicoyConfigureSearchInteractions() {
+        // 假设 JuicoySearchField 是一个 UITextField
+        JuicoySearchField.delegate = self
+        JuicoySearchField.addTarget(self, action: #selector(JuicoyExecutionSearchFlow(_:)), for: .editingChanged)
+        JuicoySearchField.keyboardType = .webSearch
+       
+    }
+
+    @objc private func JuicoyExecutionSearchFlow(_ sender: UITextField) {
+        guard let JuicoyKeyword = sender.text?.lowercased(), !JuicoyKeyword.isEmpty else {
+            // 如果搜索框为空，恢复显示全部随机数据
+            JuicoyRestoreDiscoveryStream()
+            return
+        }
+
+        // 1. 获取所有缓存数据
+        let JuicoyAllPool = JuicoyDataFactory.JuicoySharedInstance.JuicoyFetchActiveRecipients()
+        
+        // 2. 执行多维度检索 (昵称 或 标签)
+        let JuicoyFilteredResults = JuicoyAllPool.filter { JuicoyModel in
+            let JuicoyMatchName = JuicoyModel.JuicoyUser.JuicoyHandle.lowercased().contains(JuicoyKeyword)
+            let JuicoyMatchTags = JuicoyModel.JuicoyLastMsg.JuicoyContent.contains { $0.lowercased().contains(JuicoyKeyword) }
+            
+            return JuicoyMatchName || JuicoyMatchTags
+        }
+        
+        // 3. 更新数据源并刷新 UI
+        self.JuicoyChatItems = JuicoyFilteredResults
+        self.JuicoyChatTableView.reloadData()
+        
+        // 4. 处理搜索为空的情况
+//        JuicoyToggleEmptyPlaceholder(isVisible: JuicoyFilteredResults.isEmpty)
     }
     
+    @objc private func JuicoyConfirmSearchAction() {
+        JuicoySearchField.resignFirstResponder()
+        
+        // 执行一次最终搜索（防止 editingChanged 没捕捉到最后字符）
+        if let JuicoyText = JuicoySearchField.text {
+            JuicoyExecutionSearchFlow(JuicoySearchField)
+        }
+    }
+
+    // 恢复初始流的方法
+    private func JuicoyRestoreDiscoveryStream() {
+        self.JuicoyChatItems = JuicoyDataFactory.JuicoySharedInstance.JuicoyFetchActiveRecipients()
+        self.JuicoyChatTableView.reloadData()
+        
+    }
+}
+
+extension JuicoyMotionExplocontroller: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        JuicoyConfirmSearchAction()
+        return true
+    }
     
-    
+    // 当点击清除按钮时
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.JuicoyRestoreDiscoveryStream()
+        }
+        return true
+    }
 }
 extension JuicoyMotionExplocontroller: UITableViewDataSource, UITableViewDelegate {
 
@@ -156,6 +218,6 @@ extension JuicoyMotionExplocontroller: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //self.navigationController?.pushViewController(JuicoyMeadggFotuseController(juicoyModel: <#JuicoyStorageModel#>), animated: true)
+        self.navigationController?.pushViewController(JuicoyMeadggFotuseController(juicoyModel: JuicoyChatItems[indexPath.row].JuicoyUser), animated: true)
     }
 }

@@ -7,7 +7,19 @@
 
 import UIKit
 
-class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
+class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , JuicoyExternalNexusControllerDelegate, JuicoyMotionDeepControllerdelegate {
+    func JuicoyupdateJuicoyStorageModel(model: JuicoyStorageModel) {
+        if let JuicoyTargetIndex = self.cardsModels.firstIndex(where: { $0.JuicoyIdentifier == model.JuicoyIdentifier }) {
+                
+                // 2. 将数组中该位置的数据更新为最新的 model
+                self.cardsModels[JuicoyTargetIndex] = model
+                
+                // 3. 这里的 model 可能是被关注了或者被拉黑了
+                // 如果你的 UI 正在显示这个列表，记得刷新
+                // self.JuicoyMainGrid.reloadItems(at: [IndexPath(item: JuicoyTargetIndex, section: 0)])
+            }
+      
+    }
     private var cardsModels:Array<JuicoyStorageModel>  = Array<JuicoyStorageModel>()
     
     private var randomuserModels:Array<JuicoyStorageModel>  = Array<JuicoyStorageModel>()
@@ -303,7 +315,16 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate {
     
     @objc private func JuicoyOpenDetail(juiocyTa:UIButton) {
         let data = self.cardsModels[juiocyTa.tag]
-        self.navigationController?.pushViewController(JuicoyMotionDeepController(juicoyModel: data), animated: true)
+        if data.JUICOYUneedVIP == "1" && JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus == "0" {
+            JuicoyShowVipVideoAlert()
+            return
+        }
+        let detailTo = JuicoyMotionDeepController(juicoyModel: data)
+       
+        
+        detailTo.delegate = self
+        self.navigationController?.pushViewController(detailTo, animated: true)
+       
     }
     
 
@@ -325,10 +346,12 @@ extension JuicoyOneneController: UICollectionViewDataSource {
    @objc func toJOUICY(juicoy:UIButton) {
       let indexData = cardsModels[juicoy.tag]
        let userdetail = JuicoyExternalNexusController.init(juicoyModel: indexData)
+       userdetail.delegate = self
        self.navigationController?.pushViewController(userdetail, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let userdetail = JuicoyExternalNexusController.init(juicoyModel: randomuserModels[indexPath.row])
+        userdetail.delegate = self
         self.navigationController?.pushViewController(userdetail, animated: true)
         
     }

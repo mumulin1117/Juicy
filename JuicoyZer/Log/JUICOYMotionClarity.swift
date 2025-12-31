@@ -58,14 +58,21 @@ class JUICOYMotionClarity: UIViewController {
         return JUICOYview
     }()
     
-   
+    private let JUICYNoaccountTitle: UILabel = {
+        let JUICYlabel = UILabel()
+        JUICYlabel.text = "If no account, we will create one for you automicly!"
+        JUICYlabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        JUICYlabel.textColor = .white
+        JUICYlabel.translatesAutoresizingMaskIntoConstraints = false
+        return JUICYlabel
+    }()
     
   
     private let JUICYEmailTextField: UITextField = {
         let JUICOYfield = UITextField()
-        JUICOYfield.textColor = .white
+        JUICOYfield.textColor = .black
         JUICOYfield.placeholder = "Enter Email"
-        JUICOYfield.font = UIFont.systemFont(ofSize: 17)
+        JUICOYfield.font = UIFont.systemFont(ofSize: 15)
         JUICOYfield.translatesAutoresizingMaskIntoConstraints = false
         let JUICYIconView = UIImageView(image: UIImage(named: "juicoyMovementDialect"))
         JUICOYfield.borderStyle = .roundedRect
@@ -81,9 +88,9 @@ class JUICOYMotionClarity: UIViewController {
     private let JUICYPasswordTextField: UITextField = {
         let field = UITextField()
         field.isSecureTextEntry = true
-        field.textColor = .white
-        field.placeholder = "Enter Password"
-        field.font = UIFont.systemFont(ofSize: 17)
+        field.textColor = .black
+        field.placeholder = "Password must be at least 6 characters."
+        field.font = UIFont.systemFont(ofSize: 15)
         field.translatesAutoresizingMaskIntoConstraints = false
         
         let JUICYLeftIcon = UIImageView(image: UIImage(named: "juicoyFlowContinuity"))
@@ -173,6 +180,7 @@ class JUICOYMotionClarity: UIViewController {
         
       
         view.addSubview(JUICYPasswordTextField)
+        view.addSubview(JUICYNoaccountTitle)
         view.addSubview(JUICYContinueSpinButton)
         
       
@@ -207,10 +215,12 @@ class JUICOYMotionClarity: UIViewController {
             JUICYPasswordTextField.topAnchor.constraint(equalTo: JUICYEmailTextField.bottomAnchor,constant: 33),
             JUICYPasswordTextField.heightAnchor.constraint(equalToConstant: 56),
             
+            JUICYNoaccountTitle.topAnchor.constraint(equalTo: JUICYPasswordTextField.bottomAnchor, constant: 10),
+            JUICYNoaccountTitle.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             
             JUICYContinueSpinButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor,constant: 0),
             JUICYContinueSpinButton.widthAnchor.constraint(equalToConstant: 300),
-            JUICYContinueSpinButton.topAnchor.constraint(equalTo: JUICYPasswordTextField.bottomAnchor,constant: 38),
+            JUICYContinueSpinButton.topAnchor.constraint(equalTo: JUICYNoaccountTitle.bottomAnchor,constant: 38),
             JUICYContinueSpinButton.heightAnchor.constraint(equalToConstant: 55),
             
             
@@ -250,13 +260,27 @@ extension JUICOYMotionClarity{
             return
         }
         
-        JUICOYbeginLoad()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: DispatchWorkItem(block: {
-            UserDefaults.standard.set(true, forKey: "JUICOYlogin")
-            self.JUICOYshowMessage("Log in successful!")
-            self.JUICOYDismissLoad()
-            (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = JuicoyTabarcontroller()
-        }))
+        
+        guard let email = JUICYEmailTextField.text,let password = JUICYPasswordTextField.text else {
+            self.JUICOYshowMessage("Email or password can not be empty!")
+            return
+        }
+        if JuicoyDataFactory.JuicoySharedInstance.JuicoyExecuteLogin(email: email, pass: password) {
+            JUICOYbeginLoad()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: DispatchWorkItem(block: {
+             
+                self.JUICOYshowMessage("Log in successful!")
+                self.JUICOYDismissLoad()
+                (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = JuicoyTabarcontroller()
+            }))
+            
+            return
+        }
+        
+        self.JUICOYshowMessage("Email or password format is error!")
+        
+        
+      
     }
     
  
@@ -280,40 +304,13 @@ extension JUICOYMotionClarity{
     }
 }
 
-
-//Juicy文案素材
-//
-//视频动态
-//Strength feels different when you’re upside down.
-//Some days it’s flow, some days it’s just holding on.
-//This took way more effort than the video shows.
-//Pole taught me patience before it taught me tricks.
-//Not trying to be perfect — just trying again.
-//Every bruise has a story, and most of them start with “almost.”
-//I stopped doubting my body when I learned how much it could carry.
-//Grace isn’t lightness. It’s control.
-//Falling, climbing, repeating — that’s the practice.
-//Still learning how to trust my grip and my mind at the same time.
-//
-//
-//知识库（配三张图
-//Pole Dance — Grip, Not Panic Content:
-//Grip in pole dance isn’t about squeezing as hard as possible. It’s about knowing when to engage and when to relax. A calm, responsive grip gives you better control, smoother spins, and way less wasted energy.
-//
-//Pole Dance Inverts: Built, Not Rushed Content:
-//In pole dance, inverts don’t come from throwing yourself upside down. They come from strong shoulders, an active core, and patience. Slow progress builds cleaner lines and a lot more confidence in the air.
-//
-//Flow Mode: Pole Dance in Control Content:
-//Pole dance flow happens when strength meets awareness. Slowing your transitions, feeling each weight shift, and breathing through movement turns separate tricks into something that feels connected and effortless.
-
-
 extension UIViewController{
     
     func JUICOYaddLoadingViewONSurface()  {
         let Surfaceloading = UIActivityIndicatorView(style: .large)
         Surfaceloading.hidesWhenStopped = true
         Surfaceloading.tag = 99999
-        Surfaceloading.color = .darkGray
+        Surfaceloading.color = .purple
         Surfaceloading.center = self.view.center
         self.view.addSubview(Surfaceloading)
     }

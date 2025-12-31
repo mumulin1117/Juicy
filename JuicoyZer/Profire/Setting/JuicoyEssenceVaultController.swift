@@ -115,6 +115,8 @@ class JuicoyEssenceVaultController: JuicoySeconedYEUIController {
         JuicoyAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         JuicoyAlert.addAction(UIAlertAction(title: "Sure", style: .destructive, handler: { _ in
             (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = JUICOYMotionClarity()
+            JuicoyDataFactory.JuicoySharedInstance.JuicoyPerformSignOut()
+           
         }))
         present(JuicoyAlert, animated: true)
     }
@@ -123,7 +125,8 @@ class JuicoyEssenceVaultController: JuicoySeconedYEUIController {
         let JuicoyAlert = UIAlertController(title: "Log out", message: "Are you sure you want to exit?", preferredStyle: .alert)
         JuicoyAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         JuicoyAlert.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { _ in
-            self.dismiss(animated: true)
+            (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = JUICOYMotionClarity()
+            JuicoyDataFactory.JuicoySharedInstance.JuicoyPerformSignOut()
         }))
         present(JuicoyAlert, animated: true)
     }

@@ -7,7 +7,20 @@
 
 import UIKit
 
-class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegate {
+class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegate, JuicoyExternalNexusControllerDelegate, JuicoyMotionDeepControllerdelegate {
+    func JuicoyupdateJuicoyStorageModel(model: JuicoyStorageModel) {
+        if let JuicoyTargetIndex = self.cardsModels.firstIndex(where: { $0.JuicoyIdentifier == model.JuicoyIdentifier }) {
+                
+                // 2. 将数组中该位置的数据更新为最新的 model
+                self.cardsModels[JuicoyTargetIndex] = model
+                
+                // 3. 这里的 model 可能是被关注了或者被拉黑了
+                // 如果你的 UI 正在显示这个列表，记得刷新
+                // self.JuicoyMainGrid.reloadItems(at: [IndexPath(item: JuicoyTargetIndex, section: 0)])
+            }
+      
+    }
+    
     private var cardsModels:Array<JuicoyStorageModel>  = Array<JuicoyStorageModel>()
     
     private lazy var  JUICYMotionStageContainer: UIImageView = {
@@ -206,13 +219,24 @@ extension JuicoyExploreOneController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
         let data = self.cardsModels[indexPath.row]
-        self.navigationController?.pushViewController(JuicoyMotionDeepController(juicoyModel: data), animated: true)
+        
+        if data.JUICOYUneedVIP == "1" && JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus == "0" {
+            JuicoyShowVipVideoAlert()
+            return
+        }
+        let detailTo = JuicoyMotionDeepController(juicoyModel: data)
+        detailTo.delegate = self
+        self.navigationController?.pushViewController(detailTo, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let JuicoyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "JuicoyExploreCell", for: indexPath) as! JuicoyExploreCell
         JuicoyCell.JUICYmainfreverr(loie: cardsModels[indexPath.row])
         JuicoyCell.JuiaddButton.addTarget(self, action: #selector(toJOUICY(juicoy:)), for: .touchUpInside)
+        JuicoyCell.JuicoysendmesageButton.tag = indexPath.row
+        JuicoyCell.JuicoyviovakkButton.tag = indexPath.row
         
         JuicoyCell.JuicoyviovakkButton.addTarget(self, action: #selector(toJuicoyVideoCallEmit(juicoy:)), for: .touchUpInside)
         JuicoyCell.JuicoysendmesageButton.addTarget(self, action: #selector(toJuicoyMessageEmit(juicoy:)), for: .touchUpInside)
@@ -222,6 +246,7 @@ extension JuicoyExploreOneController: UICollectionViewDataSource {
     @objc func toJOUICY(juicoy:UIButton) {
        let indexData = cardsModels[juicoy.tag]
         let userdetail = JuicoyExternalNexusController.init(juicoyModel: indexData)
+        userdetail.delegate = self
         self.navigationController?.pushViewController(userdetail, animated: true)
      }
     

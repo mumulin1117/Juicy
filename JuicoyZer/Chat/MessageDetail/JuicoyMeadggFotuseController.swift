@@ -20,9 +20,7 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
         fatalError("init(coder:) has not been implemented")
     }
     
-     var JuicoyFabricCollection: [JuicoyFabricMessage] = [
-            
-        ]
+    private var JuicoyFabricCollection: [JuicoyFabricMessage] = []
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,7 +29,7 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let JuicoyCell = tableView.dequeueReusableCell(withIdentifier: "JuicoyEchoThreadCell", for: indexPath) as! JuicoyEchoThreadCell
-            JuicoyCell.JuicoyInfusePulse(JuicoyFabricCollection[indexPath.row])
+            JuicoyCell.JuicoyInfusePulse(JuicoyFabricCollection[indexPath.row],JuicoyisAI: false,uimage:juicoyModel.JuicoyAvatarKey)
             return JuicoyCell
         }
     
@@ -81,6 +79,8 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.JuicoyFabricCollection =  JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainConversation(with: self.juicoyModel.JuicoyIdentifier)
         NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
 
         self.title = juicoyModel.JuicoyHandle
@@ -149,14 +149,19 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
         }
         
         let JuicoyNewPulse = JuicoyFabricMessage(JuicoyContent: JuicoyRawText, JuicoyIsLead: false, JuicoyTimestamp: "")
+        
+      
+
+        // 保存到工厂缓存
+        JuicoyDataFactory.JuicoySharedInstance.JuicoyPersistNewMessage(to: juicoyModel.JuicoyIdentifier, JuicoyMsg: JuicoyNewPulse)
+        
         JuicoyFabricCollection.append(JuicoyNewPulse)
         
-    JUICYEmailTextField.text = ""
+    
+        JUICYEmailTextField.text = ""
         JuicoySynchronizeVibration()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.JuicoySimulateAIEcho()
-        }
+        
     }
 
     private func JuicoySynchronizeVibration() {
@@ -171,11 +176,7 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
         }
     }
 
-    private func JuicoySimulateAIEcho() {
-        let JuicoyAIPulse = JuicoyFabricMessage(JuicoyContent: "That's a great observation! Keep practicing your grip strength.", JuicoyIsLead: true, JuicoyTimestamp: "Just now")
-        JuicoyFabricCollection.append(JuicoyAIPulse)
-        JuicoySynchronizeVibration()
-    }
+   
    
 }
 

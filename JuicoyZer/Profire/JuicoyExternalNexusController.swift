@@ -6,8 +6,12 @@
 //
 
 import UIKit
-
+protocol JuicoyExternalNexusControllerDelegate {
+    func JuicoyupdateJuicoyStorageModel(model:JuicoyStorageModel)
+}
 class JuicoyExternalNexusController: JuicoySeconedViewController {
+    var delegate:JuicoyExternalNexusControllerDelegate?
+    
     var juicoyModel:JuicoyStorageModel
     init(juicoyModel: JuicoyStorageModel) {
         self.juicoyModel = juicoyModel
@@ -139,7 +143,7 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
     private func JuicoyAssembleInterface() {
         view.addSubview(JuicoyPrimaryScroller)
         view.addSubview(JuicoyActionDock)
-        
+        JuicoyFollowTrigger.isSelected = (self.juicoyModel.JuicoyFollowStatus == "1")
         let JuicoyContentHolder = UIView()
         JuicoyContentHolder.translatesAutoresizingMaskIntoConstraints = false
         JuicoyPrimaryScroller.addSubview(JuicoyContentHolder)
@@ -212,7 +216,15 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
     }
 
     @objc private func JuicoyToggleFollow() {
-        JuicoyFollowTrigger.isSelected.toggle()
+      let stataus =  JuicoyDataFactory.JuicoySharedInstance.JuicoyToggleFollowStatus(for: self.juicoyModel.JuicoyIdentifier)
+        
+        self.juicoyModel.JuicoyFollowStatus = stataus
+        JuicoyFollowTrigger.isSelected = (stataus == "1")
+     //更新上一页面的数据
+        if delegate != nil {
+            self.delegate?.JuicoyupdateJuicoyStorageModel(model: self.juicoyModel)
+        }
+        
     }
 
     @objc private func JuicoyInitiateTransmission() {
@@ -224,10 +236,7 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
         UIView.animate(withDuration: 0.3, animations: {
             JuicoyFlash.alpha = 0.8
         }) { _ in
-            let JuicoyAlert = UIAlertController(title: "Connection Failed", message: "Insufficient Juicoy Diamonds to initiate video orbit.", preferredStyle: .alert)
-            JuicoyAlert.addAction(UIAlertAction(title: "Recharge", style: .default))
-            JuicoyAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            self.present(JuicoyAlert, animated: true)
+           
             JuicoyFlash.removeFromSuperview()
         }
     }
