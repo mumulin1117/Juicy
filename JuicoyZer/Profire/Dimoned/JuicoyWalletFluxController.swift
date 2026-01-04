@@ -29,7 +29,7 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
         JuicoySparklePackage(JuicoyIdentifier: "ljpebwvnxyqpwhbl", JuicoyQuantity: "6y3d7y0t0".JoicoydeMercrypt(), JuicoyPrice: "$s9e9t.p9b9".JoicoydeMercrypt(), JuicoyTag: nil)
     ]
 
-    private var JuicoySelectedIndexPath: IndexPath?
+    private var JuicoySelectedIndexPath: IndexPath = IndexPath.init(row: 0, section: 0)
 
     private let JuicoyCosmicBackdrop: UIImageView = {
         let JuicoyView = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "coinBagchevron"))
@@ -159,7 +159,7 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
   
 
     @objc private func JuicoyInitiateCheckout() {
-        guard let JuicoyPath = JuicoySelectedIndexPath else { return }
+         let JuicoyPath = JuicoySelectedIndexPath// else { return }
         let JuicoyProductID = JuicoySparkleCatalog[JuicoyPath.item].JuicoyIdentifier
         JUICOYbeginLoad()
         JuicoyPayTool.shared.JuicoyIgniteFlux(JuicoyTargetItem: JuicoyProductID) { result in

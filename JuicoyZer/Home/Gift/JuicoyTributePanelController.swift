@@ -1,8 +1,14 @@
 import UIKit
 protocol JuicoyLegacyTributeDelegate: AnyObject {
     func JuicoyDidTriggerTribute(JuicoyAmount: Int, JuicoyAsset: String)
+    
+    func persentDimaonedController()
 }
-class JuicoyTributePanelController: UIViewController {
+class JuicoyTributePanelController: UIViewController, JuicoyNotEnoughControllerDelegate {
+    func toshowbuy() {
+        self.present(JuicoyWalletFluxController(), animated: true)
+    }
+    
     
     weak var JuicoyDelegate: JuicoyLegacyTributeDelegate?
     
@@ -192,10 +198,36 @@ class JuicoyTributePanelController: UIViewController {
     @objc private func JuicoyCommitTribute() {
         guard let JuicoyIdx = JuicoySelectedIdx else { return }
         let JuicoyEmoji = JuicoyGiftRegistry[JuicoyIdx]["JuicoyIcon"] as? String ?? "🚀"
-        self.dismiss(animated: true) { [weak self] in
-            guard let JuicoySelf = self else { return }
-            JuicoySelf.JuicoyDelegate?.JuicoyDidTriggerTribute(JuicoyAmount: JuicoySelf.JuicoyQuantityOrbit, JuicoyAsset: JuicoyEmoji)
+        if  let emailID =  UserDefaults.standard.object(forKey: "JUICOYloginEmsilID") as? String,
+            let diomendCount = UserDefaults.standard.object(forKey: emailID) as? String ,
+            var count = Int(diomendCount) {
+            
+            guard let JuicoyIdx = JuicoySelectedIdx else { return }
+            let JuicoyPrice = JuicoyGiftRegistry[JuicoyIdx]["JuicoyCost"] as? Int ?? 0
+          
+            
+            if count >= JuicoyPrice * JuicoyQuantityOrbit {
+                count -= JuicoyPrice * JuicoyQuantityOrbit
+                UserDefaults.standard.set("\(count)", forKey: emailID)
+               //支付成功
+                self.dismiss(animated: true) { [weak self] in
+                    guard let JuicoySelf = self else { return }
+                    JuicoySelf.JuicoyDelegate?.JuicoyDidTriggerTribute(JuicoyAmount: JuicoySelf.JuicoyQuantityOrbit, JuicoyAsset: JuicoyEmoji)
+                }
+                return
+            }
+            
+            let juicoymodal = JuicoyNotEnoughController()
+            juicoymodal.delegate = self
+            juicoymodal.modalPresentationStyle = .overCurrentContext
+            self.present(juicoymodal, animated: true)
+            
+//            self.JuicoyDelegate?.persentDimaonedController()
+//            self.navigationController?.pushViewController(JuicoyWalletFluxController(), animated: true)
         }
+        
+        
+        
     }
 }
 
@@ -316,6 +348,10 @@ class JuicoyTributeCell: UICollectionViewCell {
 
 
 extension JuicoyMotionDeepController: JuicoyLegacyTributeDelegate {
+    func persentDimaonedController() {
+        self.navigationController?.pushViewController(JuicoyWalletFluxController(), animated: true)
+    }
+    
     
     func JuicoyDidTriggerTribute(JuicoyAmount: Int, JuicoyAsset: String) {
         let JuicoyEffectNode = UIView(frame: CGRect(x: -300, y: view.frame.height * 0.6, width: 280, height: 80))
