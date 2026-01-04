@@ -395,8 +395,13 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         JuicoyMediaStage?.removeFromSuperlayer()
         JuicoyMediaStage?.player = nil
         
-        guard let JuicoyPath = Bundle.main.path(forResource: juicoyModel.JuicoyMediaUrl, ofType: "mp4") else { return }
-        let JuicoyURL = URL(fileURLWithPath: JuicoyPath)
+  
+      
+        
+        guard let JuicoyURL = JuicoyResPulseArchitect.JuicoyExtractMediaStream(fullIdentifier: juicoyModel.JuicoyMediaUrl + ".mp4") else {
+            print("解密失败，请检查密钥或资源文件是否存在")
+            return }
+//        let JuicoyURL = URL(fileURLWithPath: JuicoyPath)
         let JuicoyItem = AVPlayerItem(url: JuicoyURL)
         
         JuicoyQueueOperator = AVQueuePlayer(playerItem: JuicoyItem)
@@ -414,20 +419,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         JuicoyQueueOperator?.play()
     }
 
-//    @objc private func JuicoyMetricInteract(_ sender: UITapGestureRecognizer) {
-//        let JuicoyPulse = UIImpactFeedbackGenerator(style: .light)
-//        JuicoyPulse.impactOccurred()
-//        
-//        UIView.animate(withDuration: 0.1, animations: {
-//            sender.view?.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-//        }) { _ in
-//            UIView.animate(withDuration: 0.1) {
-//                sender.view?.transform = .identity
-//            }
-//        }
-//    }
 
-    
     
     
 }
