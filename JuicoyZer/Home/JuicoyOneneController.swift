@@ -50,10 +50,15 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
     @objc func observeJuicoyUserBlacklisted() {
         JuicoyRefreshDynamicStream()
         self.JuicoyConfigureCards()
-        JuicoyBottomCollectionView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: DispatchWorkItem(block: {
+            self.JUICOYDismissLoad()
+            self.JuicoyBottomCollectionView.reloadData()
+        }))
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        JUICOYbeginLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
         JuicoyRefreshDynamicStream()
         view.addSubview(JUICYMotionStageContainer)
@@ -65,7 +70,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
         view.addSubview(JUICYrecommendsr)
         view.addSubview(JuicoyBottomCollectionView)
         JUICOYconstrainet()
-   
+        JUICOYaddLoadingViewONSurface()
     }
     
     override func viewDidLayoutSubviews() {

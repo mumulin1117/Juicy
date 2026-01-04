@@ -72,7 +72,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
     
     
     private func JuicoyreloadData()  {
-        
+        self.JUICOYbeginLoad()
         JuicoyLikeUnit.JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:(self.juicoyModel.JuicoyFaverateStatus == "1") ?  "yidianzanJUICOY" : "budianzanJUICOY")
         JuicoyLikeUnit.JuicoyLab.text = (self.juicoyModel.JuicoyFaverateStatus == "1") ?  "1" : "0"
         
@@ -353,7 +353,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
             JuicoyDrawerTrigger.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5),
             JuicoyDrawerTrigger.heightAnchor.constraint(equalToConstant: 45)
         ])
-        
+        JUICOYaddLoadingViewONSurface()
         JuicoySetupDrawerLabel()
         
     }
@@ -404,6 +404,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
 //        let JuicoyURL = URL(fileURLWithPath: JuicoyPath)
         let JuicoyItem = AVPlayerItem(url: JuicoyURL)
         
+        
         JuicoyQueueOperator = AVQueuePlayer(playerItem: JuicoyItem)
         JuicoyLoopEngine = AVPlayerLooper(player: JuicoyQueueOperator!, templateItem: JuicoyItem)
         
@@ -416,7 +417,11 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
                 
         NotificationCenter.default.addObserver(self, selector: #selector(JuicoyReplaySequence), name: .AVPlayerItemDidPlayToEndTime, object: JuicoyItem)
                
-        JuicoyQueueOperator?.play()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: DispatchWorkItem(block: {
+            self.JUICOYDismissLoad()
+            self.JuicoyQueueOperator?.play()
+        }))
+       
     }
 
 

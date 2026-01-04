@@ -126,9 +126,13 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
     
     //拉黑刷新数据
     @objc func observeJuicoyUserBlacklisted() {
-       
+        self.JUICOYbeginLoad()
         JuicoyRefreshDynamicStream()
-        JuicoyBottomCollectionView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: DispatchWorkItem(block: {
+            self.JUICOYDismissLoad()
+            self.JuicoyBottomCollectionView.reloadData()
+        }))
+        
     }
     // 在 JuicoyExploreOneController 中
 
@@ -157,11 +161,13 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.JUICOYbeginLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
         JuicoyRefreshDynamicStream()
         
         JUICOYconstrainet()
         JUICYpololaurButton.isSelected = true
+        JUICOYaddLoadingViewONSurface()
     }
     
     private func JUICOYconstrainet()  {

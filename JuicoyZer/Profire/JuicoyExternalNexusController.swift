@@ -11,7 +11,7 @@ protocol JuicoyExternalNexusControllerDelegate {
 }
 class JuicoyExternalNexusController: JuicoySeconedViewController {
     var delegate:JuicoyExternalNexusControllerDelegate?
-    
+   
     var juicoyModel:JuicoyStorageModel
     init(juicoyModel: JuicoyStorageModel) {
         self.juicoyModel = juicoyModel
@@ -134,10 +134,16 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
         
         
         JuicoyAssembleInterface()
-        JuicoyProfileHeader.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: juicoyModel.JuicoyAvatarKey)
-        JuicoyAvatarOrbit.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: juicoyModel.JuicoyAvatarKey)
-        JuicoyIdentityLabel.text = juicoyModel.JuicoyHandle
-        JuicoyVipBadge.isHidden = !(self.juicoyModel.JuicoyPremiumStatus == "1")
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: DispatchWorkItem(block: {
+            self.JUICOYDismissLoad()
+            self.JuicoyProfileHeader.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: self.juicoyModel.JuicoyAvatarKey)
+            self.JuicoyAvatarOrbit.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: self.juicoyModel.JuicoyAvatarKey)
+            self.JuicoyIdentityLabel.text = self.juicoyModel.JuicoyHandle
+            self.JuicoyVipBadge.isHidden = !(self.juicoyModel.JuicoyPremiumStatus == "1")
+        }))
+        
+       
     }
 
     private func JuicoyAssembleInterface() {
@@ -213,6 +219,9 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
 
         JuicoyFollowTrigger.addTarget(self, action: #selector(JuicoyToggleFollow), for: .touchUpInside)
         JuicoyVideoCallEmit.addTarget(self, action: #selector(JuicoyInitiateTransmission), for: .touchUpInside)
+        
+        JUICOYaddLoadingViewONSurface()
+        self.JUICOYbeginLoad()
     }
 
     @objc private func JuicoyToggleFollow() {
