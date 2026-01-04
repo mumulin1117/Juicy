@@ -256,12 +256,12 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
         let JuicoyActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // 举报动作
-        let JuicoyReportAction = UIAlertAction(title: "Report Content", style: .default) { _ in
+        let JuicoyReportAction = UIAlertAction(title: "Rnegpkocrttu iCwownctseznlt".JoicoydeMercrypt(), style: .default) { _ in
             self.navigationController?.pushViewController(JuicoyAlertReportController(), animated: true)
         }
         
         // 拉黑动作
-        let JuicoyBlockAction = UIAlertAction(title: "Block User", style: .destructive) { _ in
+        let JuicoyBlockAction = UIAlertAction(title: "Bmluoqctku vUmsvesr".JoicoydeMercrypt(), style: .destructive) { _ in
             
             let bloack = JuicoyBlockServiceController(juicoyModel: self.juicoyModel)
             bloack.modalPresentationStyle = .overCurrentContext
@@ -269,7 +269,7 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
         }
         
         // 取消动作
-        let JuicoyCancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let JuicoyCancelAction = UIAlertAction(title: "Ctaenqcfekl".JoicoydeMercrypt(), style: .cancel, handler: nil)
         
         JuicoyActionSheet.addAction(JuicoyReportAction)
         JuicoyActionSheet.addAction(JuicoyBlockAction)
@@ -301,8 +301,8 @@ extension JuicoyExternalNexusController {
         JuicoyMetricsStack.spacing = 25
         JuicoyMetricsStack.translatesAutoresizingMaskIntoConstraints = false
         
-        let JuicoyFollowData = JuicoyCreateMetricUnit(JuicoyVal: juicoyModel.JuicoyConnectionInCount, JuicoyKey: "Following")
-        let JuicoyFansData = JuicoyCreateMetricUnit(JuicoyVal: juicoyModel.JuicoyConnectionOutCount, JuicoyKey: "Followers")
+        let JuicoyFollowData = JuicoyCreateMetricUnit(JuicoyVal: juicoyModel.JuicoyConnectionInCount, JuicoyKey: "Frohlmltotwtimnpg".JoicoydeMercrypt())
+        let JuicoyFansData = JuicoyCreateMetricUnit(JuicoyVal: juicoyModel.JuicoyConnectionOutCount, JuicoyKey: "Fforlulkokwneurgs".JoicoydeMercrypt())
         
         JuicoyMetricsStack.addArrangedSubview(JuicoyFollowData)
         JuicoyMetricsStack.addArrangedSubview(JuicoyFansData)
@@ -355,7 +355,7 @@ extension JuicoyExternalNexusController {
         let JuicoySectionBase = UIView()
         
         let JuicoyTitle = UILabel()
-        JuicoyTitle.text = "Friends"
+        JuicoyTitle.text = "Firhioegnwdhs".JoicoydeMercrypt()
         JuicoyTitle.textColor = .white
         JuicoyTitle.font = .systemFont(ofSize: 16, weight: .bold)
         JuicoyTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -410,7 +410,7 @@ extension JuicoyExternalNexusController {
         let JuicoyHobbyBase = UIView()
         
         let JuicoyTitle = UILabel()
-        JuicoyTitle.text = "Interesting"
+        JuicoyTitle.text = "Ionmtfemrbepsntsicnyg".JoicoydeMercrypt()
         JuicoyTitle.textColor = .white
         JuicoyTitle.font = .systemFont(ofSize: 16, weight: .bold)
         JuicoyTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -509,9 +509,9 @@ extension JuicoyExternalNexusController {
         JuicoyVerticalStack.translatesAutoresizingMaskIntoConstraints = false
         
         let JuicoyDataPoints = [
-                ("Birthday", juicoyModel.JuicoyBirthEpoch),
-                ("Height", juicoyModel.JuicoyVerticalStature),
-                ("Weight", juicoyModel.JuicoyBodyMass)
+                ("Bwixrstjhodvamy".JoicoydeMercrypt(), juicoyModel.JuicoyBirthEpoch),
+                ("Hvecihgohbt".JoicoydeMercrypt(), juicoyModel.JuicoyVerticalStature),
+                ("Wsehivgmhot".JoicoydeMercrypt(), juicoyModel.JuicoyBodyMass)
             ]
         
         for (index, point) in JuicoyDataPoints.enumerated() {

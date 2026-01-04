@@ -51,7 +51,7 @@ class JuicoyTeleLinkController: UIViewController {
     
     private let JuicoyStatusSignal: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "Connecting..."
+        JuicoyLab.text = "Csoknnnpejcattixnrgc.g.e.".JoicoydeMercrypt()
         JuicoyLab.font = .systemFont(ofSize: 16, weight: .regular)
         JuicoyLab.textColor = UIColor(white: 0.9, alpha: 1.0)
         JuicoyLab.textAlignment = .center

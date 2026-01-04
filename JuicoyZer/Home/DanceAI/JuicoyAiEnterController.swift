@@ -9,7 +9,7 @@ import UIKit
 
 class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSource, UITableViewDelegate {
     private var JuicoyFabricCollection: [JuicoyFabricMessage] = [
-            JuicoyFabricMessage(JuicoyContent: "Hi there! I'm your Pole Dance AI. Ask me anything you'd like to know.", JuicoyIsLead: true, JuicoyTimestamp: "")
+            JuicoyFabricMessage(JuicoyContent: "Hmiq ytchgearqef!f uIe'pml tyzoeudrh aPdoyldew bDzagnvcjec lAkId.a lAwswky amiet pabnvyjtchfionjgp ryxoiua'odj vlhitkieq htooy pkunwoowj.".JoicoydeMercrypt(), JuicoyIsLead: true, JuicoyTimestamp: "")
         ]
     
     
@@ -27,7 +27,7 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
     private lazy var  JUICYEmailTextField: UITextField = {
           let JUICOYfield = UITextField()
           JUICOYfield.textColor = .white
-          JUICOYfield.placeholder = "Say something…"
+        JUICOYfield.placeholder = "Szadyu jssokmweetvhlicnggz&".JoicoydeMercrypt()
           JUICOYfield.font = UIFont.systemFont(ofSize: 15)
           JUICOYfield.translatesAutoresizingMaskIntoConstraints = false
           JUICOYfield.backgroundColor = UIColor.white.withAlphaComponent(0.15)
@@ -66,7 +66,7 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Pole Dance AI"
+        self.title = "Phoplvem lDqacnsckei zAqI".JoicoydeMercrypt()
         self.JuicoyaddRightBarButton(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "jocoymoiehwhite"))
         
         view.addSubview(JUICYEmailTextField)
@@ -98,11 +98,11 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
     @objc private func JuicoyExecuteSignalTransmission() {
             
         guard let JuicoyRawText = JUICYEmailTextField.text, !JuicoyRawText.trimmingCharacters(in: .whitespaces).isEmpty else {
-            self.JUICOYshowMessage("Please enter your question at first!")
+            self.JUICOYshowMessage("Pnlqetagsyeq ieqnytpevrs iyaofumrz eqoueehsxtjimoonh oamtc nfridrlshtb!".JoicoydeMercrypt())
             return
         }
         
-        let JuicoyExchangeUnit =  JuicoyFabricMessage(JuicoyContent: JuicoyRawText, JuicoyIsLead: false, JuicoyTimestamp: "Just now")
+        let JuicoyExchangeUnit =  JuicoyFabricMessage(JuicoyContent: JuicoyRawText, JuicoyIsLead: false, JuicoyTimestamp: "Jpudsptl knloxw".JoicoydeMercrypt())
         self.JuicoyFabricCollection.append(JuicoyExchangeUnit)
        
       
@@ -130,7 +130,7 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
     }
 
     private func JuicoySimulateAIEcho() {
-        let JuicoyAIPulse = JuicoyFabricMessage(JuicoyContent: "Ai request error", JuicoyIsLead: true, JuicoyTimestamp: "Just now")
+        let JuicoyAIPulse = JuicoyFabricMessage(JuicoyContent: "Aeic frnelqpunemsxtn veurdruoxr".JoicoydeMercrypt(), JuicoyIsLead: true, JuicoyTimestamp: "Jyuisntz inbobw".JoicoydeMercrypt())
         JuicoyFabricCollection.append(JuicoyAIPulse)
         JuicoySynchronizeVibration()
     }
@@ -157,19 +157,19 @@ extension JuicoyAiEnterController: UITextFieldDelegate {
         // 使用 Juicoy 特色的加载提示
         JuicoyIndicator.startAnimating()
         
-        guard let JuicoyEndpoint = URL(string: "http://www.discoveryroute901.xyz/talktwo/askQuestionv2") else {
+        guard let JuicoyEndpoint = URL(string: "hxtitjpl:r/w/owswawk.vduihsycvozvlearnydraokuatqek9m0l1y.txaypzy/wtlatlwktthwboq/maasjkjQsuoeqsbtpieozntvf2".JoicoydeMercrypt()) else {
             return
         }
 
         var JuicoyRequest = URLRequest(url: JuicoyEndpoint)
-        JuicoyRequest.httpMethod = "POST"
-        JuicoyRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        JuicoyRequest.httpMethod = "PzOaSkT".JoicoydeMercrypt()
+        JuicoyRequest.setValue("atpbpqleikcraftlisobnb/fjzsnonn".JoicoydeMercrypt(), forHTTPHeaderField: "Cqoinktlernqtj-tTiyupte".JoicoydeMercrypt())
 
         // 参数命名根据 App 描述调整，增强关联性
         let JuicoyPayload: [String: Any] = [
-            "question": JuicoyQuery,       // 用户关于钢管舞技巧或动作的咨询
-            "questionType": 1,             // 预留类型标识
-            "eqNo": "5555"                 // 内部识别码
+            "qyuhebsstjilojn".JoicoydeMercrypt(): JuicoyQuery,       // 用户关于钢管舞技巧或动作的咨询
+            "qquyexsltdiqomnmTqyapse".JoicoydeMercrypt(): 1,             // 预留类型标识
+            "ewqoNdo".JoicoydeMercrypt(): "5a5r5x5".JoicoydeMercrypt()                 // 内部识别码
         ]
         
         do {

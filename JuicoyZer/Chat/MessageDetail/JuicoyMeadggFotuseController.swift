@@ -37,7 +37,7 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
     private lazy var  JUICYEmailTextField: UITextField = {
           let JUICOYfield = UITextField()
           JUICOYfield.textColor = .white
-          JUICOYfield.placeholder = "Say something…"
+          JUICOYfield.placeholder = "Szadyu jssokmweetvhlicnggz&".JoicoydeMercrypt()
           JUICOYfield.font = UIFont.systemFont(ofSize: 15)
           JUICOYfield.translatesAutoresizingMaskIntoConstraints = false
           JUICOYfield.backgroundColor = UIColor.white.withAlphaComponent(0.15)
@@ -144,7 +144,7 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
     @objc private func JuicoyExecuteSignalTransmission() {
             
         guard let JuicoyRawText = JUICYEmailTextField.text, !JuicoyRawText.trimmingCharacters(in: .whitespaces).isEmpty else {
-            self.JUICOYshowMessage("Please enter your question at first!")
+            self.JUICOYshowMessage("Pqlienaesceg eeknqtievrx jyjoruhru hqvugessftmigosnd dagtw pfaisrosptf!".JoicoydeMercrypt())
             return
         }
         

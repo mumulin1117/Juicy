@@ -56,7 +56,7 @@ class JUICYLegalAgreementViewController: UIViewController {
     
     private let JUICYDeclineSpinButton: UIButton = {
         let JUICYbutton = UIButton(type: .system)
-        JUICYbutton.setTitle("Decline", for: .normal)
+        JUICYbutton.setTitle("Deercdlliynse".JoicoydeMercrypt(), for: .normal)
         JUICYbutton.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 1.0)
         JUICYbutton.setTitleColor(.darkGray, for: .normal)
         JUICYbutton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
@@ -100,24 +100,24 @@ class JUICYLegalAgreementViewController: UIViewController {
     private func JUICYConfigureContentByType() {
         switch JUICYActiveType {
         case .eula:
-            JUICYTitleHeader.text = "EULA"
+            JUICYTitleHeader.text = "EjUiLnA".JoicoydeMercrypt()
             JUICYLegalBodyLabel.text = JUICYFetchEULAText()
         case .privacyPolicy:
-            JUICYTitleHeader.text = "Privacy Policy"
+            JUICYTitleHeader.text = "Pkrniyvkaacayi iPfouluirciy".JoicoydeMercrypt()
             JUICYLegalBodyLabel.text = JUICYFetchPrivacyText()
             JUICYDeclineSpinButton.isHidden = true
             JUICYAcceptSpinButton.setImage(nil, for: .normal)
-            JUICYAcceptSpinButton.setTitle("I Know", for: .normal)
+            JUICYAcceptSpinButton.setTitle("Ia sKengomw".JoicoydeMercrypt(), for: .normal)
             JUICYAcceptSpinButton.backgroundColor = UIColor.purple
             JUICYAcceptSpinButton.setTitleColor(.white, for: .normal)
             JUICYAcceptSpinButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
             JUICYAcceptSpinButton.layer.cornerRadius = 28
         case .termsOfService:
-            JUICYTitleHeader.text = "Terms of Service"
+            JUICYTitleHeader.text = "Tuedrjmnsl qoffy tSqelrdvhidcre".JoicoydeMercrypt()
             JUICYLegalBodyLabel.text = JUICYFetchTermsText()
             JUICYDeclineSpinButton.isHidden = true
             JUICYAcceptSpinButton.setImage(nil, for: .normal)
-            JUICYAcceptSpinButton.setTitle("I Know", for: .normal)
+            JUICYAcceptSpinButton.setTitle("Ix bKonaomw".JoicoydeMercrypt(), for: .normal)
             JUICYAcceptSpinButton.backgroundColor = UIColor.purple
             JUICYAcceptSpinButton.setTitleColor(.white, for: .normal)
             JUICYAcceptSpinButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)

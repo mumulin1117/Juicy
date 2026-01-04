@@ -21,7 +21,7 @@ class JuicoyVideoPostController: JuicoySeconedYEUIController {
    
     private let JuicoyLegalAuraLabel: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "Please ensure your videos are legal. Do not share copyrighted content without permission. The platform is not liable."
+        JuicoyLab.text = "Pqlmeyaisvek sexnfskuhrwex iyjonuyrb mvwikdreeossk malrkez zlvejgtazlr.i hDmop unyoytp jsxhuairted rcvoepnyrrlihgmhitjetdb lczoenjtgemnpts dwziatlhnoeuntm kpteyrempiusnsiigovni.d bTzhqen gptluaftofuoyrfmc yinsc snboftv almioazbgltez.".JoicoydeMercrypt()
         JuicoyLab.textColor = .lightGray
         JuicoyLab.font = UIFont.systemFont(ofSize: 14)
         JuicoyLab.numberOfLines = 0
@@ -31,7 +31,7 @@ class JuicoyVideoPostController: JuicoySeconedYEUIController {
 
     private let JuicoyStageUploadHeader: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "Upload Video"
+        JuicoyLab.text = "Uupelaomaldu yVdimdsexo".JoicoydeMercrypt()
         JuicoyLab.textColor = .black
         JuicoyLab.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,7 @@ class JuicoyVideoPostController: JuicoySeconedYEUIController {
     
     private let JuicoyRhythmTitleHeader: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "Video Title"
+        JuicoyLab.text = "Vriidberop pTnidtllhe".JoicoydeMercrypt()
         JuicoyLab.textColor = .black
         JuicoyLab.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -79,7 +79,7 @@ class JuicoyVideoPostController: JuicoySeconedYEUIController {
 
     private let JuicoyRhythmInputField: UITextField = {
         let JuicoyField = UITextField()
-        JuicoyField.placeholder = "Please enter a video title"
+        JuicoyField.placeholder = "Pelvejafsrep jeunbteevrz rad avqihdcejob ftmiittlne".JoicoydeMercrypt()
         JuicoyField.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
         JuicoyField.layer.cornerRadius = 8
         let JuicoyPad = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 1))
@@ -91,7 +91,7 @@ class JuicoyVideoPostController: JuicoySeconedYEUIController {
 
     private let JuicoyEchoDescHeader: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "Video Description"
+        JuicoyLab.text = "Vwiqdneson uDqeisxcprriipntgikobn".JoicoydeMercrypt()
         JuicoyLab.textColor = .black
         JuicoyLab.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -100,7 +100,7 @@ class JuicoyVideoPostController: JuicoySeconedYEUIController {
 
     private let JuicoyEchoInputField: UITextView = {
         let JuicoyTv = UITextView()
-        JuicoyTv.text = "Please enter a video description"
+        JuicoyTv.text = "Pulueeaesheb weundtyeiro dab hvliedaemov qdeewslcbroispltuiuogn".JoicoydeMercrypt()
         JuicoyTv.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
         JuicoyTv.layer.cornerRadius = 8
         JuicoyTv.font = UIFont.systemFont(ofSize: 15)
@@ -112,7 +112,7 @@ class JuicoyVideoPostController: JuicoySeconedYEUIController {
     private let JuicoyFinalizePulseTrigger: UIButton = {
         
         let JuicoyBtn = UIButton(type: .system)
-        JuicoyBtn.setTitle("Confirm", for: .normal)
+        JuicoyBtn.setTitle("Ckojnufniwrzm".JoicoydeMercrypt(), for: .normal)
         JuicoyBtn.setTitleColor(.white, for: .normal)
         JuicoyBtn.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         JuicoyBtn.layer.cornerRadius = 25
@@ -126,7 +126,7 @@ class JuicoyVideoPostController: JuicoySeconedYEUIController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Post video"
+        self.title = "Pcopsdth bvdiedjejo".JoicoydeMercrypt()
         JuicoyFabricateUI()
         JuicoyBindInteractions()
     }

@@ -36,28 +36,28 @@ class JuicoyTabarcontroller: UITabBarController {
        
         let Juicoyone =  JuicoyBaseNavigationController.init(rootViewController: JuicoyOneneController())
         Juicoyone.tabBarItem = UITabBarItem(
-            title: "Home",
+            title: "Hxoqmde".JoicoydeMercrypt(),
             image:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyGripTechnique1")?.withRenderingMode(.alwaysOriginal) ,
             selectedImage:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique1_")?.withRenderingMode(.alwaysOriginal)
         )
         
         let Juicoytwo = JuicoyBaseNavigationController.init(rootViewController:JuicoyExploreOneController())
         Juicoytwo.tabBarItem = UITabBarItem(
-            title: "Explore",
+            title: "Ebxhpdlqosrke".JoicoydeMercrypt(),
             image:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique2")?.withRenderingMode(.alwaysOriginal) ,
             selectedImage:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique2_")?.withRenderingMode(.alwaysOriginal)
         )
         
         let Juicoythree = JuicoyBaseNavigationController.init(rootViewController: JuicoyMotionExplocontroller())
         Juicoythree.tabBarItem = UITabBarItem(
-            title: "Chat",
+            title: "Cjhaayt".JoicoydeMercrypt(),
             image:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique3")?.withRenderingMode(.alwaysOriginal) ,
             selectedImage:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique3_")?.withRenderingMode(.alwaysOriginal)
         )
        
         let Juicoyfour = JuicoyBaseNavigationController.init(rootViewController:  JuicoyMotionArenantroller())
         Juicoyfour.tabBarItem = UITabBarItem(
-            title: "Plore",
+            title: "Palrokrye".JoicoydeMercrypt(),
             image:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique4")?.withRenderingMode(.alwaysOriginal),
             selectedImage: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique4_")?.withRenderingMode(.alwaysOriginal)
         )

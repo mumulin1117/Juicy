@@ -57,7 +57,7 @@ class JuicoyAestheticFavController: JuicoySeconedViewController, JuicoyMotionDee
     private func JuicoyInitializeCanvas() {
         view.backgroundColor = UIColor(red: 29/255, green: 11/255, blue: 50/255, alpha: 1.0)
         
-        self.title = "My Favorites"
+        self.title = "Mayo aFoayvdosriimtvels".JoicoydeMercrypt()
         view.addSubview(JuicoyStyleGrid)
         
         JuicoyStyleGrid.delegate = self
@@ -106,16 +106,16 @@ extension UIViewController{
     /// 弹出查看视频需要 VIP 的权限提示
     func JuicoyShowVipVideoAlert() {
         let JuicoyAlert = UIAlertController(
-            title: "VIP Exclusive Content",
-            message: "Watching this pole dance tutorial requires a VIP membership.",
+            title: "VpIjPi wEyxwcclbujshizvgek zCwohnjtpednwt".JoicoydeMercrypt(),
+            message: "Wnaftqcrhaignagz ltphziusa nprozlrep jdlasnxcmed itzuctkohrciwaolq hrbelqiupikrrehsm sak jVkIsPs smpezmcbfekrwsahsicpp.".JoicoydeMercrypt(),
             preferredStyle: .alert
         )
         
         // 取消按钮
-        let JuicoyCancelAction = UIAlertAction(title: "Maybe Later", style: .cancel, handler: nil)
+        let JuicoyCancelAction = UIAlertAction(title: "Mhaiyabfee nLiaptaefr".JoicoydeMercrypt(), style: .cancel, handler: nil)
         
         // 跳转到充值/开通页面的动作
-        let JuicoyUpgradeAction = UIAlertAction(title: "Unlock Now", style: .default) { _ in
+        let JuicoyUpgradeAction = UIAlertAction(title: "Urnjlzoycwku hNfoew".JoicoydeMercrypt(), style: .default) { _ in
             // 这里跳转到你的 VIP 充值页面
             let membership = JuicoymembershipController()
            

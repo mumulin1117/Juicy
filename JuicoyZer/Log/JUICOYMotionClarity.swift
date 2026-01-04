@@ -256,20 +256,20 @@ extension JUICOYMotionClarity{
      //log
     @objc private func juicoyMovementSoul() {
         guard  JUICYLegalAgreementViewController.JUICYAIFAgree == false else{
-            self.JUICOYshowMessage("Please read and agree our terms and service!")
+            self.JUICOYshowMessage("Pzlaerajsaep nrmehaedo magnodx racglrretes focuzrw ytieartmvsn baanndx pseehrdvqiacbek!".JoicoydeMercrypt())
             return
         }
         
         
         guard let email = JUICYEmailTextField.text,let password = JUICYPasswordTextField.text else {
-            self.JUICOYshowMessage("Email or password can not be empty!")
+            self.JUICOYshowMessage("Ehmiakilla vowrb ipwalslsiwkowrvdm mczarnz bnkohtc rbvei deymcpntayk!".JoicoydeMercrypt())
             return
         }
         if JuicoyDataFactory.JuicoySharedInstance.JuicoyExecuteLogin(email: email, pass: password) {
             JUICOYbeginLoad()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: DispatchWorkItem(block: {
              
-                self.JUICOYshowMessage("Log in successful!")
+                self.JUICOYshowMessage("Lnorgm jifne qsiuqcycfecsusbfruqlw!".JoicoydeMercrypt())
                 self.JUICOYDismissLoad()
                 (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = JuicoyTabarcontroller()
             }))
@@ -277,7 +277,7 @@ extension JUICOYMotionClarity{
             return
         }
         
-        self.JUICOYshowMessage("Email or password format is error!")
+        self.JUICOYshowMessage("Edmealiolm forrg npraosssuwsoirgds lfworrimbaptq liass bewryrvotru!".JoicoydeMercrypt())
         
         
       

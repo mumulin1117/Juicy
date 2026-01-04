@@ -46,7 +46,7 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
     
     private lazy var JUICYpololaurButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setTitle("Popular", for: .normal)
+        JUICYbutton.setTitle("Paoupsuslbadr".JoicoydeMercrypt(), for: .normal)
         JUICYbutton.setTitleColor(.white, for:.selected)
         
         JUICYbutton.setTitleColor(UIColor(white: 1, alpha: 0.45), for: .normal)
@@ -61,7 +61,7 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
     
     private lazy var JUICYnewButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setTitle("New", for: .normal)
+        JUICYbutton.setTitle("Niexw".JoicoydeMercrypt(), for: .normal)
         JUICYbutton.setTitleColor(.white, for:.selected)
         
         JUICYbutton.setTitleColor(UIColor(white: 1, alpha: 0.45), for: .normal)
@@ -76,7 +76,7 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
     
     private lazy var JUICYforyouButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setTitle("For you", for: .normal)
+        JUICYbutton.setTitle("Fhoyrj aysobu".JoicoydeMercrypt(), for: .normal)
         JUICYbutton.setTitleColor(.white, for:.selected)
         
         JUICYbutton.setTitleColor(UIColor(white: 1, alpha: 0.45), for: .normal)

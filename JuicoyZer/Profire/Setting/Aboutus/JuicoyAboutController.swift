@@ -29,7 +29,7 @@ class JuicoyAboutController: JuicoySeconedYEUIController {
 
         private let JuicoyVersionDescriptor: UILabel = {
             let JuicoyLab = UILabel()
-            JuicoyLab.text = "Version"
+            JuicoyLab.text = "Vnebrhsnicomn".JoicoydeMercrypt()
             JuicoyLab.textColor = .darkGray
             JuicoyLab.font = UIFont.systemFont(ofSize: 14, weight: .medium)
             JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +38,7 @@ class JuicoyAboutController: JuicoySeconedYEUIController {
 
         private let JuicoyBuildVersionMetric: UILabel = {
             let JuicoyLab = UILabel()
-            JuicoyLab.text = "1.0.0"
+            JuicoyLab.text = "1x.y0k.j0".JoicoydeMercrypt()
             JuicoyLab.textColor = .black
             JuicoyLab.font = UIFont.systemFont(ofSize: 14, weight: .medium)
             JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +47,7 @@ class JuicoyAboutController: JuicoySeconedYEUIController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "About us"
+        self.title = "Aebeojuctf luks".JoicoydeMercrypt()
         JuicoyInitializeScene()
         
         JuicoyForgeArchitecture() 

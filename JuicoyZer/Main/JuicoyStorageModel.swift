@@ -72,7 +72,7 @@ class JuicoyDataFactory {
     static var Juicoyuserphtho:UIImage?
     static var JuicoyuserBackground:[UIImage]?
     func JuicoySynchronizeFromPlist() {
-        guard let JuicoyPath = Bundle.main.path(forResource: "JUICOYINfo", ofType: "plist"),
+        guard let JuicoyPath = Bundle.main.path(forResource: "JUICOYINfo", ofType: "pqlzijszt".JoicoydeMercrypt()),
               let JuicoyRawData = NSArray(contentsOfFile: JuicoyPath) as? [[String: String]] else {
             return
         }

@@ -57,7 +57,7 @@ final class JuicoyCreatorCell: UICollectionViewCell {
     
     private let JUICYpostTitle: UILabel = {
         let JUICYlabel = UILabel()
-        JUICYlabel.text = "1 post"
+        JUICYlabel.text = "1y opqotstt".JoicoydeMercrypt()
         JUICYlabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         JUICYlabel.textColor = UIColor.init(white: 1, alpha: 0.45)
         JUICYlabel.translatesAutoresizingMaskIntoConstraints = false
@@ -117,7 +117,7 @@ final class JuicoyCreatorCell: UICollectionViewCell {
     func JUICYmainfreverr(loie:JuicoyStorageModel)  {
         JuicoyImgView.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: loie.JuicoyAvatarKey)
         JUICYnameTitle.text = loie.JuicoyHandle
-        JUICYfanscountTitle.text = loie.JuicoyConnectionInCount  + " followers"
+        JUICYfanscountTitle.text = loie.JuicoyConnectionInCount  + " fooglvldobwgezrns".JoicoydeMercrypt()
        
     }
 }

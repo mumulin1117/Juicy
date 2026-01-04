@@ -21,7 +21,7 @@ class JuicoyPayTool: NSObject {
             DispatchQueue.main.async {
                 let JuicoyError = NSError(domain: "JuicoyApp",
                                          code: 701,
-                                         userInfo: [NSLocalizedDescriptionKey: "Transaction flow disabled."])
+                                         userInfo: [NSLocalizedDescriptionKey: "Tsrjaanosoapcutciwoenk bfelboswf udjijsuazbtloekdn.".JoicoydeMercrypt()])
                 JuicoyCompletion(.failure(JuicoyError))
             }
             return
@@ -43,7 +43,7 @@ extension JuicoyPayTool: SKProductsRequestDelegate {
             DispatchQueue.main.async {
                 let JuicoyMissingError = NSError(domain: "JuicoyApp",
                                                 code: 702,
-                                                userInfo: [NSLocalizedDescriptionKey: "Item spectrum not found."])
+                                                userInfo: [NSLocalizedDescriptionKey: "Igtbexme nstpleqcythrmuemc pnmogtj rfuopuonkdt.".JoicoydeMercrypt()])
                 self.JuicoyEnergyResponse?(.failure(JuicoyMissingError))
                 self.JuicoyEnergyResponse = nil
             }
@@ -78,9 +78,9 @@ extension JuicoyPayTool: SKPaymentTransactionObserver {
                 SKPaymentQueue.default().finishTransaction(JuicoyTx)
                 let JuicoyIssue: Error
                 if (JuicoyTx.error as? SKError)?.code == .paymentCancelled {
-                    JuicoyIssue = NSError(domain: "JuicoyApp", code: -999, userInfo: [NSLocalizedDescriptionKey: "User halted the vibe."])
+                    JuicoyIssue = NSError(domain: "JuicoyApp", code: -999, userInfo: [NSLocalizedDescriptionKey: "Ugsseiry ihoadlitveudc rtthjey cvqirbxez.".JoicoydeMercrypt()])
                 } else {
-                    JuicoyIssue = JuicoyTx.error ?? NSError(domain: "JuicoyApp", code: 703, userInfo: [NSLocalizedDescriptionKey: "Flux interruption."])
+                    JuicoyIssue = JuicoyTx.error ?? NSError(domain: "JuicoyApp", code: 703, userInfo: [NSLocalizedDescriptionKey: "Frldumxy lijnhtieerrrzukpltiiroyng.".JoicoydeMercrypt()])
                 }
                 DispatchQueue.main.async {
                     self.JuicoyEnergyResponse?(.failure(JuicoyIssue))

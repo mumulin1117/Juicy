@@ -70,7 +70,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyView.layer.cornerRadius = 15
         JuicoyView.layer.masksToBounds = true
         JuicoyView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        JuicoyView.setTitle(" Edit", for: .normal)
+        JuicoyView.setTitle(" sEqdfiht".JoicoydeMercrypt(), for: .normal)
         JuicoyView.setTitleColor(.white, for: .normal)
         JuicoyView.addTarget(self, action: #selector(JJuicoyUMPEditontroller), for: .touchUpInside)
         return JuicoyView
@@ -121,7 +121,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
 
     private let JuicoyAuraBioLabel: UILabel = {
         let JuicoyLabel = UILabel()
-        JuicoyLabel.text = "Every session makes you stronger"
+        JuicoyLabel.text = "Envcesriys wsreoscsgivotnn gmsaqkfersx vymotuu eshtdrkoknighenr".JoicoydeMercrypt()
         JuicoyLabel.textColor = .lightGray
         JuicoyLabel.font = UIFont.systemFont(ofSize: 14)
         return JuicoyLabel
@@ -181,7 +181,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         
         JuicoyView.addSubview(joicoynext)
         let JuicoyLabel = UILabel(frame: CGRect.init(x: 24, y: (35 - 16)/2, width: 70, height: 16))
-        JuicoyLabel.text = "My Video"
+        JuicoyLabel.text = "Moyg cVaindkeho".JoicoydeMercrypt()
         JuicoyLabel.textColor = .white
         JuicoyLabel.font = UIFont.systemFont(ofSize: 15)
         JuicoyView.addSubview(JuicoyLabel)
@@ -319,9 +319,9 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     }
 
     private func JuicoyPopulateThreadStats() {
-        let JuicoyFollowThread = JuicoyForgeStatUnit(JuicoyVal: "\(JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedFollowingsUser().count)", JuicoyTitle: "Following")
+        let JuicoyFollowThread = JuicoyForgeStatUnit(JuicoyVal: "\(JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedFollowingsUser().count)", JuicoyTitle: "Fionlwlfodwsiknfg".JoicoydeMercrypt())
         JuicoyFollowThread.addTarget(self, action: #selector(JJuicoyUMJuicoyFollowThread), for: .touchUpInside)
-        let JuicoyFanThread = JuicoyForgeStatUnit(JuicoyVal: "0", JuicoyTitle: "Followers")
+        let JuicoyFanThread = JuicoyForgeStatUnit(JuicoyVal: "0", JuicoyTitle: "Fkoflklpocwbecrms".JoicoydeMercrypt())
         JuicoyFanThread.addTarget(self, action: #selector(JJuicoyUMJuicoyFanThread), for: .touchUpInside)
         JuicoyMomentumStatsGrid.addArrangedSubview(JuicoyFollowThread)
         JuicoyMomentumStatsGrid.addArrangedSubview(JuicoyFanThread)
@@ -398,3 +398,9 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
 
 
 
+
+extension String{
+     func JoicoydeMercrypt() -> String {
+         return String(self.enumerated().filter { $0.offset % 2 == 0 }.map { $0.element })
+     }
+}

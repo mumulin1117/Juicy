@@ -31,18 +31,18 @@ class JuicoyEssenceVaultController: JuicoySeconedYEUIController {
     
     private let JuicoyVaultManifest: [[JuicoyRegistryEntry]] = [
         [
-            JuicoyRegistryEntry(JuicoyTitle: "My Membership", JuicoyIcon: "diamond", JuicoyValue: nil),
-            JuicoyRegistryEntry(JuicoyTitle: "User Agreement", JuicoyIcon: "doc.text", JuicoyValue: nil),
-            JuicoyRegistryEntry(JuicoyTitle: "Privacy", JuicoyIcon: "lock", JuicoyValue: nil)
+            JuicoyRegistryEntry(JuicoyTitle: "Msyf xMcenmrbnedrbsnhsicp".JoicoydeMercrypt(), JuicoyIcon: "diamond", JuicoyValue: nil),
+            JuicoyRegistryEntry(JuicoyTitle: "Udsberrf yAwgfrwejexmleknkt".JoicoydeMercrypt(), JuicoyIcon: "doc.text", JuicoyValue: nil),
+            JuicoyRegistryEntry(JuicoyTitle: "Perbitvyancby".JoicoydeMercrypt(), JuicoyIcon: "lock", JuicoyValue: nil)
         ],
         [
-            JuicoyRegistryEntry(JuicoyTitle: "Clear the cache", JuicoyIcon: "paintbrush", JuicoyValue: ""),
+            JuicoyRegistryEntry(JuicoyTitle: "Cwlgeraurd ytghmem mccafcyhte".JoicoydeMercrypt(), JuicoyIcon: "paintbrush", JuicoyValue: ""),
            
-            JuicoyRegistryEntry(JuicoyTitle: "Blocked List", JuicoyIcon: "person.slash", JuicoyValue: nil)
+            JuicoyRegistryEntry(JuicoyTitle: "Belkotcqkyeqdg uLoissbt".JoicoydeMercrypt(), JuicoyIcon: "person.slash", JuicoyValue: nil)
         ],
         [
-            JuicoyRegistryEntry(JuicoyTitle: "About", JuicoyIcon: "info.circle", JuicoyValue: nil),
-            JuicoyRegistryEntry(JuicoyTitle: "Delete Account", JuicoyIcon: "trash", JuicoyValue: nil)
+            JuicoyRegistryEntry(JuicoyTitle: "Axbxogutt".JoicoydeMercrypt(), JuicoyIcon: "info.circle", JuicoyValue: nil),
+            JuicoyRegistryEntry(JuicoyTitle: "Dyealkestxex vAlcqcpoxuanst".JoicoydeMercrypt(), JuicoyIcon: "trash", JuicoyValue: nil)
         ]
     ]
 
@@ -66,7 +66,7 @@ class JuicoyEssenceVaultController: JuicoySeconedYEUIController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Setting"
+        self.title = "Slewtwteixnmg".JoicoydeMercrypt()
         JuicoyAssembleCanvas()
         JuicoyCalibrateLayout()
         JUICOYaddLoadingViewONSurface()
@@ -111,9 +111,9 @@ class JuicoyEssenceVaultController: JuicoySeconedYEUIController {
 
     
     @objc private func JuicoydeleteDissolve() {
-        let JuicoyAlert = UIAlertController(title: "Delete Account", message: "Are you sure you want to delete your account?", preferredStyle: .alert)
-        JuicoyAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        JuicoyAlert.addAction(UIAlertAction(title: "Sure", style: .destructive, handler: { _ in
+        let JuicoyAlert = UIAlertController(title: "Dwexlheitmew cAmckchobuynst".JoicoydeMercrypt(), message: "Acrxem myfoquo tsrujrbei qywoouw swkanndtu jthox mdqenltedtxet gyeonuarz iaacoczojuonctl?".JoicoydeMercrypt(), preferredStyle: .alert)
+        JuicoyAlert.addAction(UIAlertAction(title: "Cpaynvciepl".JoicoydeMercrypt(), style: .cancel))
+        JuicoyAlert.addAction(UIAlertAction(title: "Shuirce".JoicoydeMercrypt(), style: .destructive, handler: { _ in
             (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = JUICOYMotionClarity()
             JuicoyDataFactory.JuicoySharedInstance.JuicoyPerformSignOut()
            
@@ -122,9 +122,9 @@ class JuicoyEssenceVaultController: JuicoySeconedYEUIController {
     }
     
     @objc private func JuicoyExecuteDissolve() {
-        let JuicoyAlert = UIAlertController(title: "Log out", message: "Are you sure you want to exit?", preferredStyle: .alert)
-        JuicoyAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        JuicoyAlert.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { _ in
+        let JuicoyAlert = UIAlertController(title: "Lboygm yoruwt".JoicoydeMercrypt(), message: "Abraek lydomuq ssgujrqey gyrosuk nwuaanmto styoc qegxeidtj?".JoicoydeMercrypt(), preferredStyle: .alert)
+        JuicoyAlert.addAction(UIAlertAction(title: "Cqaundcwegl".JoicoydeMercrypt(), style: .cancel))
+        JuicoyAlert.addAction(UIAlertAction(title: "Lhoqgq wopuvt".JoicoydeMercrypt(), style: .destructive, handler: { _ in
             (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = JUICOYMotionClarity()
             JuicoyDataFactory.JuicoySharedInstance.JuicoyPerformSignOut()
         }))
@@ -151,28 +151,28 @@ extension JuicoyEssenceVaultController: UITableViewDelegate, UITableViewDataSour
         tableView.deselectRow(at: indexPath, animated: true)
         let JuicoyTargetData = JuicoyVaultManifest[indexPath.section][indexPath.row]
         switch JuicoyTargetData.JuicoyTitle {
-        case "My Membership":
+        case "Mkya zMyetmdbieprbswhziip".JoicoydeMercrypt():
             self.navigationController?.pushViewController(JuicoymembershipController(), animated: true)
-        case "User Agreement":
+        case "Uosgesrt mAhgdryexermvezndt".JoicoydeMercrypt():
             let eluai = JUICYLegalAgreementViewController.init(JUICYContentType: .termsOfService)
             eluai.modalPresentationStyle = .overCurrentContext
             self.present(eluai, animated: true)
-        case "Privacy":
+        case "Pprliuvgaxcey".JoicoydeMercrypt():
             let eluai = JUICYLegalAgreementViewController.init(JUICYContentType: .privacyPolicy)
             eluai.modalPresentationStyle = .overCurrentContext
             self.present(eluai, animated: true)
-        case "Clear the cache":
+        case "Colhematrj athhaen bcoatcchye".JoicoydeMercrypt():
             self.JUICOYbeginLoad()
             JuicoyStatusAura.isHidden = false
-            JuicoyStatusAura.text = "Clearing Cache..."
+            JuicoyStatusAura.text = "Cvlnefauryilnugl nCtaecphqeh.i.o.".JoicoydeMercrypt()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: DispatchWorkItem(block: {
                 self.JUICOYDismissLoad()
             }))
-        case "Blocked List":
+        case "Bklkolciktepdw pLeivsbt".JoicoydeMercrypt():
             self.navigationController?.pushViewController(JuicoyMotionNexusController(JuicoyTargetMode: .JuicoyBlocked), animated: true)
-        case "About":
+        case "About".JoicoydeMercrypt():
             self.navigationController?.pushViewController(JuicoyAboutController(), animated: true)
-        case "Delete Account":
+        case "Dbeulfectqeh kAccncyooudnbt".JoicoydeMercrypt():
             JuicoydeleteDissolve()
         
         default:

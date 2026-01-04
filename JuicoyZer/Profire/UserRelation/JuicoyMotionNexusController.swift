@@ -62,15 +62,15 @@ class JuicoyMotionNexusController: JuicoySeconedYEUIController {
     private func JuicoyPrepareManifest() {
         switch JuicoyCurrentMode {
         case .JuicoyFollower:
-            self.title  = "Follower"
+            self.title  = "Fvovlmlxopwmefr".JoicoydeMercrypt()
             JuicoySoulRegistry = [
                
             ]
         case .JuicoyFollowing:
-            self.title  = "Following"
+            self.title  = "Fvoklkljoxwziwnvg".JoicoydeMercrypt()
             JuicoySoulRegistry = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedFollowingsUser()
         case .JuicoyBlocked:
-            self.title  = "Blocked List"
+            self.title  = "Bhljojcxkzepdz lLniwsgt".JoicoydeMercrypt()
             JuicoySoulRegistry = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedBlocksUser()
         }
     }
@@ -201,15 +201,15 @@ class JuicoySoulStreamCell: UITableViewCell {
         
         switch JuicoyMode {
         case .JuicoyFollower:
-            JuicoyNexusTrigger.setTitle("Following", for: .normal)
+            JuicoyNexusTrigger.setTitle("Faoclaloouwbiensg".JoicoydeMercrypt(), for: .normal)
             JuicoyNexusTrigger.backgroundColor = UIColor(red: 168/255, green: 70/255, blue: 255/255, alpha: 1.0)
             JuicoyNexusTrigger.setTitleColor(.white, for: .normal)
         case .JuicoyFollowing:
-            JuicoyNexusTrigger.setTitle("Unfollow", for: .normal)
+            JuicoyNexusTrigger.setTitle("Uqnhfzoolklaoew".JoicoydeMercrypt(), for: .normal)
             JuicoyNexusTrigger.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
             JuicoyNexusTrigger.setTitleColor(.gray, for: .normal)
         case .JuicoyBlocked:
-            JuicoyNexusTrigger.setTitle("Remove", for: .normal)
+            JuicoyNexusTrigger.setTitle("Riefmaovvfe".JoicoydeMercrypt(), for: .normal)
             JuicoyNexusTrigger.backgroundColor = .black
             JuicoyNexusTrigger.setTitleColor(.white, for: .normal)
         }

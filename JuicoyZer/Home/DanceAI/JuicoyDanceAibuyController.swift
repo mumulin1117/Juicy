@@ -67,7 +67,7 @@ class JuicoyDanceAibuyController: JuicoySeconedViewController, JuicoyNotEnoughCo
         
         // 2. 剩余次数为 0，尝试扣除 300 金币进行购买
         if factory.JuicoyPurchaseAiPackage() {
-            self.JUICOYshowMessage("Purchase Successful! +5 AI Responses")
+            self.JUICOYshowMessage("Pgukrqcxhaahsweh hSxuacvcuelsvsjfsuult!m k+e5m yAfIt aRpelsepjopnjsoers".JoicoydeMercrypt())
             JuicoyDataFactory.JuicoySharedInstance.JuicoyConsumeAiMessage()
             // 购买成功后进入对话界面
             self.navigationController?.pushViewController(JuicoyAiEnterController(), animated: true)

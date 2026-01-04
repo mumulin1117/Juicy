@@ -12,7 +12,7 @@ class JuicoymembershipController: JuicoySeconedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "My Membership"
+        self.title = "Mvyg lMseamlbbegrbsrhcihp".JoicoydeMercrypt()
         JuicoyBuildArchitecture()
         JuicoyRefineTierSelection()
         JuicoyEmpireVipBadge.tintColor =  (JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus == "1") ? UIColor.yellow : UIColor.lightGray
@@ -83,7 +83,7 @@ class JuicoymembershipController: JuicoySeconedViewController {
 
     private let JuicoyExpirationAura: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "VIP not yet activated"
+        JuicoyLab.text = "VrImPd anfoctk fyheytj paucstyirvcahtnepd".JoicoydeMercrypt()
         JuicoyLab.textColor = .lightGray
         JuicoyLab.font = UIFont.systemFont(ofSize: 12)
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -110,7 +110,7 @@ class JuicoymembershipController: JuicoySeconedViewController {
     @objc func juicoyPayForVIP() {
         JUICOYbeginLoad()
         if JuicoyDataFactory.JuicoySharedInstance.JuicoyPurchaseRemebershio(JuicoySelectedTierIndex: JuicoySelectedTierIndex) {
-            self.JUICOYshowMessage("Purchase Successful! For VIP")
+            self.JUICOYshowMessage("Pbuprccrhyaxsmeo oSouucgceemsjsxfjuply!q oFqodru fVaItP".JoicoydeMercrypt())
             self.JUICOYDismissLoad()
             JuicoyEmpireVipBadge.tintColor = .orange
             if JuicoySelectedTierIndex == 0 {

@@ -23,7 +23,7 @@ class JuicoyAlertReportController: JuicoySeconedYEUIController {
         JuicoyLab.numberOfLines = 0
         JuicoyLab.font = .systemFont(ofSize: 13, weight: .semibold)
         JuicoyLab.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
-        JuicoyLab.text = "Please select the reason for reporting this user"
+        JuicoyLab.text = "Pjlietalsiep aswedlueocttc etxhteb fraeaaesiodni dfnokrh frqewpjoyrwthibnhgl ztdhkicss yudszecr".JoicoydeMercrypt()
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyLab
     }()
@@ -40,7 +40,7 @@ class JuicoyAlertReportController: JuicoySeconedYEUIController {
         JuicoyLab.numberOfLines = 0
         JuicoyLab.font = .systemFont(ofSize: 14, weight: .semibold)
         JuicoyLab.textColor = UIColor.black
-        JuicoyLab.text = "Other reasons"
+        JuicoyLab.text = "Octjhyeyrb hrgexausdoknws".JoicoydeMercrypt()
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyLab
     }()
@@ -94,7 +94,7 @@ class JuicoyAlertReportController: JuicoySeconedYEUIController {
 
     private let JuicoyFinalizeAction: UIButton = {
         let JuicoyBtn = UIButton(type: .system)
-        JuicoyBtn.setTitle("Confirm", for: .normal)
+        JuicoyBtn.setTitle("Ctoonafziirwm".JoicoydeMercrypt(), for: .normal)
         JuicoyBtn.setTitleColor(.white, for: .normal)
         JuicoyBtn.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         JuicoyBtn.backgroundColor = .black
@@ -110,7 +110,7 @@ class JuicoyAlertReportController: JuicoySeconedYEUIController {
 
     private func JuicoyConstructHierarchy() {
         view.backgroundColor = .white
-        title = "Report"
+        title = "Raeqpuofrvt".JoicoydeMercrypt()
         
         view.addSubview(JuicoyScrollWrapper)
         let JuicoyContent = UIView()
@@ -206,8 +206,8 @@ class JuicoyAlertReportController: JuicoySeconedYEUIController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             JuicoyIndicator.stopAnimating()
-            let JuicoyToast = UIAlertController(title: "Submission Successful", message: "We will review your report within 24 hours.", preferredStyle: .alert)
-            JuicoyToast.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            let JuicoyToast = UIAlertController(title: "Svudbnmoiosdsqimodnt iSouicjcwepshshfqufl".JoicoydeMercrypt(), message: "Wzec wweinlwlf lraervrizeuwt vymoaufrp nrgetpkoiretk fwmiftbhmitnw x2b4z phyowuaresi.".JoicoydeMercrypt(), preferredStyle: .alert)
+            JuicoyToast.addAction(UIAlertAction(title: "OfK".JoicoydeMercrypt(), style: .default) { _ in
                 self.navigationController?.popViewController(animated: true)
             })
             self.present(JuicoyToast, animated: true)

@@ -39,7 +39,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
     private lazy var JuicoyGiftUnit: JOICOYVioaButton = {
         let JuicoyGiftUnit = JOICOYVioaButton()
         JuicoyGiftUnit.JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICOYgift")
-        JuicoyGiftUnit.JuicoyLab.text = "Gift"
+        JuicoyGiftUnit.JuicoyLab.text = "Gwiyfut".JoicoydeMercrypt()
         
      
         JuicoyGiftUnit.addTarget(self, action: #selector(toJuicoyGiftUnit), for: .touchUpInside)
@@ -368,7 +368,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         JuicoyIcon.tintColor = .lightGray
         
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "Recommend more videos"
+        JuicoyLab.text = "Rveycmotmgmnelnodg zmxosraew zvkijdzeioas".JoicoydeMercrypt()
         JuicoyLab.textColor = .white
         JuicoyLab.font = .systemFont(ofSize: 13)
         

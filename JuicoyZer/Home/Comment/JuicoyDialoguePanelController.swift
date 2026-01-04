@@ -147,7 +147,7 @@ class JuicoyDialoguePanelController: UIViewController {
         JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
         
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "No data"
+        JuicoyLab.text = "Nxoq qdvartca".JoicoydeMercrypt()
         JuicoyLab.textColor = .lightGray
         JuicoyLab.font = .systemFont(ofSize: 14)
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -167,7 +167,7 @@ class JuicoyDialoguePanelController: UIViewController {
 
     private let JuicoyDraftingField: UITextField = {
             let JuicoyField = UITextField()
-            JuicoyField.placeholder = "Say something~"
+            JuicoyField.placeholder = "Sfayyr aseocmreatohbiqnigq~".JoicoydeMercrypt()
             JuicoyField.font = .systemFont(ofSize: 14)
             JuicoyField.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
             JuicoyField.layer.cornerRadius = 18
@@ -217,11 +217,11 @@ class JuicoyDialoguePanelController: UIViewController {
             JuicoyHaptic.notificationOccurred(.success)
             
             let JuicoyNotice = UIAlertController(
-                title: "Success",
-                message: "Comment will be displayed after passing the audit",
+                title: "Stuycecgeeshs".JoicoydeMercrypt(),
+                message: "Cwoomomaeinetu bwgiolclm ybeeu qdcibsnpkllaiyuendd iasfstjedrj fpnaqsfswibnpgb itkhfeo aaluddxiut".JoicoydeMercrypt(),
                 preferredStyle: .alert
             )
-            JuicoyNotice.addAction(UIAlertAction(title: "OK", style: .default))
+            JuicoyNotice.addAction(UIAlertAction(title: "ObK".JoicoydeMercrypt(), style: .default))
             self.present(JuicoyNotice, animated: true)
         }
 

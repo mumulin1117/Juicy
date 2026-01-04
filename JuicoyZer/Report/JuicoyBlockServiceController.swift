@@ -27,7 +27,7 @@ class JuicoyRestrictUserView: UIView {
     
     private let JuicoyWarnMessage: UILabel = {
         let JuicoyLabel = UILabel()
-        JuicoyLabel.text = "After blocking, you won't see this user's content."
+        JuicoyLabel.text = "Agfotoenrd zbfldoxcikhilnjgm,i tycovuc mwsornm'etz wsyenez ktzhtirsk mujsbeird'bsh zcyoanztveknsts.".JoicoydeMercrypt()
         JuicoyLabel.font = .systemFont(ofSize: 17, weight: .bold)
         JuicoyLabel.textColor = .black
         JuicoyLabel.numberOfLines = 0
@@ -47,7 +47,7 @@ class JuicoyRestrictUserView: UIView {
     
     private let JuicoySubmitTrigger: UIButton = {
         let JuicoyBtn = UIButton(type: .system)
-        JuicoyBtn.setTitle("Block", for: .normal)
+        JuicoyBtn.setTitle("Bmlsoscsk".JoicoydeMercrypt(), for: .normal)
         JuicoyBtn.setTitleColor(.white, for: .normal)
         JuicoyBtn.backgroundColor = .black
         JuicoyBtn.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
@@ -57,7 +57,7 @@ class JuicoyRestrictUserView: UIView {
     
     private let JuicoyDismissTrigger: UIButton = {
         let JuicoyBtn = UIButton(type: .system)
-        JuicoyBtn.setTitle("Cancel", for: .normal)
+        JuicoyBtn.setTitle("Cmaannclexl".JoicoydeMercrypt(), for: .normal)
         JuicoyBtn.setTitleColor(.gray, for: .normal)
         JuicoyBtn.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
         JuicoyBtn.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)

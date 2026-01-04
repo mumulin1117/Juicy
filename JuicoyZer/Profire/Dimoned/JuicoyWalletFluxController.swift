@@ -18,16 +18,15 @@ struct JuicoySparklePackage {
 class JuicoyWalletFluxController: JuicoySeconedViewController {
 
     private var JuicoySparkleCatalog: [JuicoySparklePackage] = [
-        JuicoySparklePackage(JuicoyIdentifier: "com.juicoy.sparkle.400", JuicoyQuantity: "400", JuicoyPrice: "$0.99", JuicoyTag: "Priest choice"),
-        JuicoySparklePackage(JuicoyIdentifier: "com.juicoy.sparkle.800", JuicoyQuantity: "800", JuicoyPrice: "$1.99", JuicoyTag: nil),
-        JuicoySparklePackage(JuicoyIdentifier: "com.juicoy.sparkle.1900", JuicoyQuantity: "1900", JuicoyPrice: "$3.99", JuicoyTag: "Most popular"),
-        JuicoySparklePackage(JuicoyIdentifier: "com.juicoy.sparkle.2450", JuicoyQuantity: "2450", JuicoyPrice: "$4.99", JuicoyTag: nil),
-        JuicoySparklePackage(JuicoyIdentifier: "com.juicoy.sparkle.3950", JuicoyQuantity: "3950", JuicoyPrice: "$6.99", JuicoyTag: nil),
-        JuicoySparklePackage(JuicoyIdentifier: "com.juicoy.sparkle.4900", JuicoyQuantity: "4900", JuicoyPrice: "$8.99", JuicoyTag: nil),
-        JuicoySparklePackage(JuicoyIdentifier: "com.juicoy.sparkle.6000", JuicoyQuantity: "6000", JuicoyPrice: "$11.99", JuicoyTag: nil),
-        JuicoySparklePackage(JuicoyIdentifier: "com.juicoy.sparkle.8500", JuicoyQuantity: "8500", JuicoyPrice: "$15.99", JuicoyTag: nil),
-        JuicoySparklePackage(JuicoyIdentifier: "com.juicoy.sparkle.12000", JuicoyQuantity: "12000", JuicoyPrice: "$22.99", JuicoyTag: "Best Value"),
-        JuicoySparklePackage(JuicoyIdentifier: "com.juicoy.sparkle.25000", JuicoyQuantity: "25000", JuicoyPrice: "$49.99", JuicoyTag: nil)
+        JuicoySparklePackage(JuicoyIdentifier: "ufuwfgqyvfhjedpp", JuicoyQuantity: "4h0o0".JoicoydeMercrypt(), JuicoyPrice: "$x0o.o9e9".JoicoydeMercrypt(), JuicoyTag: "Priest choice"),
+        JuicoySparklePackage(JuicoyIdentifier: "vxdnqayrfkiwdfuq", JuicoyQuantity: "8e0b0".JoicoydeMercrypt(), JuicoyPrice: "$m1s.s9e9".JoicoydeMercrypt(), JuicoyTag: nil),
+        JuicoySparklePackage(JuicoyIdentifier: "axefjiudlafkiwedbg", JuicoyQuantity: "1m9j0y0".JoicoydeMercrypt(), JuicoyPrice: "$g3v.s9i9".JoicoydeMercrypt(), JuicoyTag: "Most popular"),
+    
+        JuicoySparklePackage(JuicoyIdentifier: "oqeenftfqycnkqjs", JuicoyQuantity: "2p4b5a0".JoicoydeMercrypt(), JuicoyPrice: "$k4x.g9p9".JoicoydeMercrypt(), JuicoyTag: nil),
+        JuicoySparklePackage(JuicoyIdentifier: "gmnaqtvemcnrczkc", JuicoyQuantity: "5a1m5i0".JoicoydeMercrypt(), JuicoyPrice: "$h9s.w9v9".JoicoydeMercrypt(), JuicoyTag: nil),
+        JuicoySparklePackage(JuicoyIdentifier: "ieinuciqaconusjt", JuicoyQuantity: "1a0t8l0v0".JoicoydeMercrypt(), JuicoyPrice: "$c1z9z.p9u9", JuicoyTag: nil),
+        JuicoySparklePackage(JuicoyIdentifier: "rqinasqejfmgmaiu", JuicoyQuantity: "2k9z4g0r0".JoicoydeMercrypt(), JuicoyPrice: "$c4r9x.c9p9".JoicoydeMercrypt(), JuicoyTag: "Best Value"),
+        JuicoySparklePackage(JuicoyIdentifier: "ljpebwvnxyqpwhbl", JuicoyQuantity: "6y3d7y0t0".JoicoydeMercrypt(), JuicoyPrice: "$s9e9t.p9b9".JoicoydeMercrypt(), JuicoyTag: nil)
     ]
 
     private var JuicoySelectedIndexPath: IndexPath?
@@ -103,7 +102,7 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
        
         
         let JuicoyBalanceHint = UILabel()
-        JuicoyBalanceHint.text = "My balance"
+        JuicoyBalanceHint.text = "Mayf nbjablmaanecue".JoicoydeMercrypt()
         JuicoyBalanceHint.textColor = .white
         JuicoyBalanceHint.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         JuicoyBalanceHint.translatesAutoresizingMaskIntoConstraints = false
@@ -168,7 +167,7 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
             switch result{
                 
             case .success(let succeff):
-                self.JUICOYshowMessage("Pay successful!")
+                self.JUICOYshowMessage("Pjajyc kshuiczctekszsjfvualy!".JoicoydeMercrypt())
                 
                 if  let emailID =  UserDefaults.standard.object(forKey: "JUICOYloginEmsilID") as? String,
                     let diomendCount = UserDefaults.standard.object(forKey: emailID) as? String ,

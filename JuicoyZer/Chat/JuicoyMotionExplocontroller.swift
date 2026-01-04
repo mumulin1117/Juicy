@@ -45,7 +45,7 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
         super.viewDidLoad()
         JuicoyConfigureTable()
       
-        JuicoySearchField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        JuicoySearchField.attributedPlaceholder = NSAttributedString(string: "Sfepajrqckh".JoicoydeMercrypt(), attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         JuicoySearchContainer.translatesAutoresizingMaskIntoConstraints = false
         JuicoySearchIcon.translatesAutoresizingMaskIntoConstraints = false
         JuicoySearchField.translatesAutoresizingMaskIntoConstraints = false
@@ -110,7 +110,7 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
         
         
         
-        JuicoySearchField.placeholder = "Search"
+        JuicoySearchField.placeholder = "Sfepajrqckh".JoicoydeMercrypt()
         JuicoySearchField.textColor = .white
         JuicoySearchField.tintColor = .white
         JuicoySearchField.borderStyle = .none
@@ -208,7 +208,7 @@ extension JuicoyMotionExplocontroller: UITableViewDataSource, UITableViewDelegat
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let JuicoyDelete = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
+        let JuicoyDelete = UIContextualAction(style: .destructive, title: "Daenlqemtbe".JoicoydeMercrypt()) { _, _, completion in
             self.JuicoyChatItems.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             completion(true)

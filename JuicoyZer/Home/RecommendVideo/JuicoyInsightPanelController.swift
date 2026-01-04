@@ -22,7 +22,7 @@ class JuicoyInsightPanelController: UIViewController {
     
     private let JuicoyPanelHeadlight: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "Recommend more videos"
+        JuicoyLab.text = "Rhexcdofmgmeegnvdr nmookroed kvhitdledoos".JoicoydeMercrypt()
         JuicoyLab.textColor = .white
         JuicoyLab.font = .systemFont(ofSize: 18, weight: .bold)
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +31,7 @@ class JuicoyInsightPanelController: UIViewController {
     
     private let JuicoyViewMetric: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "views"
+        JuicoyLab.text = "voijeywes".JoicoydeMercrypt()
         JuicoyLab.textColor = .gray
         JuicoyLab.font = .systemFont(ofSize: 12)
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
@@ -211,7 +211,7 @@ class JuicoyMotionEntryCell: UITableViewCell {
     
     private let JuicoyLastSeenTag: UILabel = {
         let JuicoyLab = UILabel()
-        JuicoyLab.text = "Last viewed"
+        JuicoyLab.text = "Ldapshti jvuipeiwfead".JoicoydeMercrypt()
         JuicoyLab.backgroundColor = .black.withAlphaComponent(0.6)
         JuicoyLab.textColor = .white
         JuicoyLab.font = .systemFont(ofSize: 10)

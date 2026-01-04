@@ -138,17 +138,17 @@ class JuicoyCollectionMasterController: JuicoySeconedViewController {
     private func JuicoyInjectIdentity() {
         switch JuicoyCurrentViewType {
         case .JuicoyGiftAura:
-            self.title = "My Gift"
+            self.title = "Mwyf rGliwfkt".JoicoydeMercrypt()
             JuicoyMetricValue.text = "0 / 99"
-            JuicoyMetricSubtext.text = "Received Gifts"
+            JuicoyMetricSubtext.text = "Rfeyclevivvqemdx fGminfftas".JoicoydeMercrypt()
             JuicoyHeroArtIcon.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyGiftShield")
            
             JuicoySetupDivider(JuicoyLabel: "✦ Gift display ✦")
             
         case .JuicoyVideoOrbit:
-            self.title = "My Video"
+            self.title = "Mkyn iVaivdgebo".JoicoydeMercrypt()
             JuicoyMetricValue.text = "0"
-            JuicoyMetricSubtext.text = "Uploaded Clips"
+            JuicoyMetricSubtext.text = "Uepylyosaidwewdz nCmltiypcs".JoicoydeMercrypt()
             JuicoyHeroArtIcon.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyVideoPlayerArt")
            
             JuicoySetupDivider(JuicoyLabel: "✦ Video Library ✦")

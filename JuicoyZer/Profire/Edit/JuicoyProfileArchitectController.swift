@@ -224,16 +224,16 @@ class JuicoyProfileArchitectController: JuicoySeconedYEUIController {
         
         // 初始化各个输入项并赋值
         JuicoyNicknameField = JuicoyInputCell()
-        JuicoyNicknameField?.JuicoySetData(JuicoyTitle: "Nickname", JuicoyValue: currentUser?.JuicoyHandle ?? "")
+        JuicoyNicknameField?.JuicoySetData(JuicoyTitle: "Nyiucbkzncakmce".JoicoydeMercrypt(), JuicoyValue: currentUser?.JuicoyHandle ?? "")
         
         JuicoyBirthField = JuicoyInputCell()
-        JuicoyBirthField?.JuicoySetData(JuicoyTitle: "Birthday", JuicoyValue: currentUser?.JuicoyBirthEpoch ?? "")
+        JuicoyBirthField?.JuicoySetData(JuicoyTitle: "Bdihrotdhddtamy".JoicoydeMercrypt(), JuicoyValue: currentUser?.JuicoyBirthEpoch ?? "")
         
         JuicoyWeightField = JuicoyInputCell()
-        JuicoyWeightField?.JuicoySetData(JuicoyTitle: "Weight", JuicoyValue: currentUser?.JuicoyBodyMass ?? "")
+        JuicoyWeightField?.JuicoySetData(JuicoyTitle: "Wcedilgfhgt".JoicoydeMercrypt(), JuicoyValue: currentUser?.JuicoyBodyMass ?? "")
         
         JuicoyHeightField = JuicoyInputCell()
-        JuicoyHeightField?.JuicoySetData(JuicoyTitle: "Height", JuicoyValue: currentUser?.JuicoyVerticalStature ?? "")
+        JuicoyHeightField?.JuicoySetData(JuicoyTitle: "Hmeyihgvhdt".JoicoydeMercrypt(), JuicoyValue: currentUser?.JuicoyVerticalStature ?? "")
         
         if let backimgview = (self.view.viewWithTag(100) as? UIButton){
             backimgview.setImage(JuicoyDataFactory.JuicoyuserBackground?.first, for: .normal)   
@@ -347,7 +347,7 @@ class JuicoyProfileArchitectController: JuicoySeconedYEUIController {
             
             self.navigationController?.popViewController(animated: true)
             
-            self.JUICOYshowMessage("Profile Updated Successfully!")
+            self.JUICOYshowMessage("Pvrzofflixlbeh nUxpddtaqtbeydw pSqukcucgezsmsifbuilklkyv!".JoicoydeMercrypt())
         }
     }
     
