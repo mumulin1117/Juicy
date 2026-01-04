@@ -114,7 +114,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
         ])
     }
     private lazy var  JUICYMotionStageContainer: UIImageView = {
-        let JUICOY = UIImageView.init(image: UIImage.init(named: "JuicyTitle"))
+        let JUICOY = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicyTitle"))
         JUICOY.translatesAutoresizingMaskIntoConstraints = false
         return JUICOY
     }()
@@ -122,7 +122,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
     
     private lazy var  JUICYAddSpinButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setImage(UIImage(named: "juicoyCreate"), for: .normal)
+        JUICYbutton.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyCreate"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
         JUICYbutton.addTarget(self, action: #selector(juicoyADDSoul), for: .touchUpInside)
@@ -133,7 +133,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
     
     private lazy var JUICYPoleSpinButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setBackgroundImage(UIImage(named: "juicoyAI"), for: .normal)
+        JUICYbutton.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyAI"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
         JUICYbutton.addTarget(self, action: #selector(juicoyPoleAI), for: .touchUpInside)
@@ -142,7 +142,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
     
     private lazy var JUICYPoleLoveButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setBackgroundImage(UIImage(named: "juicoyFaverite"), for: .normal)
+        JUICYbutton.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyFaverite"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
         JUICYbutton.addTarget(self, action: #selector(juicoyMayfavirateAI), for: .touchUpInside)
@@ -157,7 +157,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
     }()
     
     private lazy var  JUICYrecommendsr: UIImageView = {
-        let JUICOY = UIImageView.init(image: UIImage.init(named: "juicoyGuHand"))
+        let JUICOY = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyGuHand"))
         JUICOY.translatesAutoresizingMaskIntoConstraints = false
         return JUICOY
     }()

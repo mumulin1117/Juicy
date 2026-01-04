@@ -270,7 +270,7 @@ class JuicoyMotionEntryCell: UITableViewCell {
         JuicoyChronosLabel.text = JuicoyTime
         JuicoyHeartScore.text = JuicoyLikes
         JuicoyLastSeenTag.isHidden = !JuicoyLast
-        JuicoyPreviewFrame.image = UIImage(named: covrr)
+        JuicoyPreviewFrame.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: covrr)
         if JuicoyIndex == 0 {
             JuicoyTitleScript.textColor = .systemYellow
         } else {

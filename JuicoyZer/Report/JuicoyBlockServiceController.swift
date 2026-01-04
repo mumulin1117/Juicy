@@ -19,7 +19,7 @@ class JuicoyRestrictUserView: UIView {
     }()
     
     private let JuicoyEmojiHeader: UIImageView = {
-        let JuicoyLabel = UIImageView.init(image: UIImage.init(named: "closemonthe"))
+        let JuicoyLabel = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "closemonthe"))
   
         JuicoyLabel.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyLabel

@@ -79,7 +79,7 @@ class JuicoyTributePanelController: UIViewController {
         JuicoyBtn.setTitle("Send", for: .normal)
         JuicoyBtn.setTitleColor(.white, for: .normal)
         JuicoyBtn.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
-        JuicoyBtn.setBackgroundImage(UIImage(named: "levelSendJOICOY"), for: .normal)
+        JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "levelSendJOICOY"), for: .normal)
         JuicoyBtn.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyBtn
     }()
@@ -107,7 +107,7 @@ class JuicoyTributePanelController: UIViewController {
         JuicoyFooterPanel.addSubview(JuicoyTotalCostMarker)
         JuicoyFooterPanel.addSubview(JuicoyStepperBase)
         JuicoyFooterPanel.addSubview(JuicoyDispatchTrigger)
-        let dimaoneinmg = UIImageView(image: UIImage.init(named: "dimaoOKAneinmg"))
+        let dimaoneinmg = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "dimaoOKAneinmg"))
         dimaoneinmg.translatesAutoresizingMaskIntoConstraints = false
         JuicoyFooterPanel.addSubview(dimaoneinmg)
         let JuicoySub = JuicoyBuildStepBtn(JuicoySym: "minus.circle")
@@ -263,7 +263,7 @@ class JuicoyTributeCell: UICollectionViewCell {
         JuicoyCoreContainer.addSubview(JuicoyName)
         
         JuicoyCoreContainer.addSubview(JuicoyPrice)
-        let dimaoneinmg = UIImageView(image: UIImage.init(named: "dimaoOKAneinmg"))
+        let dimaoneinmg = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "dimaoOKAneinmg"))
         dimaoneinmg.translatesAutoresizingMaskIntoConstraints = false
         
         JuicoyCoreContainer.addSubview(dimaoneinmg)
@@ -297,7 +297,7 @@ class JuicoyTributeCell: UICollectionViewCell {
     required init?(coder: NSCoder) { fatalError() }
 
     func JuicoyRender(_ JuicoyData: [String: Any], JuicoyIsActive: Bool) {
-        JuicoySymbol.image = UIImage(named: JuicoyData["JuicoyIcon"] as? String ?? "")
+        JuicoySymbol.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: JuicoyData["JuicoyIcon"] as? String ?? "")
         JuicoyPrice.text = "\(JuicoyData["JuicoyCost"] ?? 0)"
         JuicoyName.text = JuicoyData["JuicoyName"] as? String
         if JuicoyIsActive {
@@ -322,7 +322,7 @@ extension JuicoyMotionDeepController: JuicoyLegacyTributeDelegate {
         JuicoyEffectNode.backgroundColor = .systemPurple.withAlphaComponent(0.6)
         JuicoyEffectNode.layer.cornerRadius = 40
         
-        let JuicoyRocket = UIImageView.init(image: UIImage.init(named: JuicoyAsset))
+        let JuicoyRocket = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: JuicoyAsset))
         JuicoyRocket.frame = CGRect(x: 20, y: 10, width: 60, height: 60)
         JuicoyRocket.contentMode = .scaleAspectFit
         let JuicoyCounter = UILabel(frame: CGRect(x: 100, y: 10, width: 150, height: 60))

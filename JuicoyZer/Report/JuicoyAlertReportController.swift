@@ -29,7 +29,7 @@ class JuicoyAlertReportController: JuicoySeconedYEUIController {
     }()
     
     lazy var repotclolor: UIImageView = {
-      let sinseion =  UIImageView.init(image: UIImage.init(named: "repotclolor"))
+      let sinseion =  UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "repotclolor"))
         sinseion.translatesAutoresizingMaskIntoConstraints = false
        
         return sinseion

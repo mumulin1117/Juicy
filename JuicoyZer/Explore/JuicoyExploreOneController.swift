@@ -24,7 +24,7 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
     private var cardsModels:Array<JuicoyStorageModel>  = Array<JuicoyStorageModel>()
     
     private lazy var  JUICYMotionStageContainer: UIImageView = {
-        let JUICOY = UIImageView.init(image: UIImage.init(named: "JUICYExplore"))
+        let JUICOY = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICYExplore"))
         JUICOY.translatesAutoresizingMaskIntoConstraints = false
         return JUICOY
     }()
@@ -32,7 +32,7 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
     
     private lazy var  JUICYPoleDanceButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setBackgroundImage(UIImage(named: "JUICYAcade"), for: .normal)
+        JUICYbutton.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICYAcade"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
         JUICYbutton.addTarget(self, action: #selector(juicoyPoleDanceAcademy), for: .touchUpInside)
@@ -101,7 +101,7 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
     
     
     private lazy var  JUICYIndicaterContainer: UIImageView = {
-        let JUICOY = UIImageView.init(image: UIImage.init(named: "JUICYpath"))
+        let JUICOY = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICYpath"))
         JUICOY.translatesAutoresizingMaskIntoConstraints = false
         return JUICOY
     }()

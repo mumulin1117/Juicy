@@ -12,14 +12,14 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
     private var JuicoyChatItems: [JuicoyConversationPreview] = []
     
     private lazy var  JUICYMotionStageContainer: UIImageView = {
-        let JUICOY = UIImageView.init(image: UIImage.init(named: "JuicychauiTitle"))
+        let JUICOY = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicychauiTitle"))
         JUICOY.translatesAutoresizingMaskIntoConstraints = false
         return JUICOY
     }()
     private lazy var JuicoyCommentCountButton: UIButton = {
         let JUICYbutton = UIButton()
         
-        JUICYbutton.setImage(UIImage(named: "JUICYchat"), for: .normal)
+        JUICYbutton.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICYchat"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         JUICYbutton.setTitle(" 0", for: .normal)
       
@@ -36,7 +36,7 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
         self.JuicoyChatTableView.reloadData()
         
     }
-    private let JuicoySearchIcon = UIImageView(image: UIImage.init(named: "Juicoyserchicon"))
+    private let JuicoySearchIcon = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "Juicoyserchicon"))
     private let JuicoySearchField = UITextField()
     private let JuicoyChatTableView = UITableView(frame: .zero, style: .plain)
     

@@ -319,7 +319,7 @@ class JuicoyTalkCell: UITableViewCell {
         JuicoyName.text = JuicoyData["JuicoyAuthorName"] as? String
         JuicoyMessage.text = JuicoyData["JuicoyCommentBody"] as? String
         JuicoyTiming.text = JuicoyData["JuicoyPostTime"] as? String
-        JuicoyAvatar.image = UIImage(named: JuicoyData["JuicoyAuthorAvatar"] as? String ?? "")
+        JuicoyAvatar.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: JuicoyData["JuicoyAuthorAvatar"] as? String ?? "")
     }
 }
 extension JuicoyDialoguePanelController: UITextFieldDelegate {

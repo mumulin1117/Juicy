@@ -10,7 +10,7 @@ import UIKit
 class JuicoyAboutController: JuicoySeconedYEUIController {
     private let JuicoyCoreIdentityIcon: UIImageView = {
             let JuicoyImg = UIImageView()
-            JuicoyImg.image = UIImage(named: "juicoyDynamicLog")
+            JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyDynamicLog")
             JuicoyImg.contentMode = .scaleAspectFill
             JuicoyImg.layer.cornerRadius = 24
             JuicoyImg.clipsToBounds = true

@@ -33,7 +33,7 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
     private var JuicoySelectedIndexPath: IndexPath?
 
     private let JuicoyCosmicBackdrop: UIImageView = {
-        let JuicoyView = UIImageView.init(image: UIImage.init(named: "coinBagchevron"))
+        let JuicoyView = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "coinBagchevron"))
         JuicoyView.contentMode = .scaleAspectFill
         JuicoyView.isUserInteractionEnabled = true
         JuicoyView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,7 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
     }()
 
     private let JuicoyHeaderPortal: UIImageView = {
-        let JuicoyView = UIImageView.init(image: UIImage.init(named: "joicoyBanbnbel"))
+        let JuicoyView = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyBanbnbel"))
         JuicoyView.contentMode = .scaleToFill
         JuicoyView.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyView
@@ -74,7 +74,7 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
 
     private let JuicoyCommitFluxTrigger: UIButton = {
         let JuicoyBtn = UIButton(type: .custom)
-        JuicoyBtn.setBackgroundImage(UIImage.init(named: "JuicoyCommitFluxTrigger"), for: .normal)
+        JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyCommitFluxTrigger"), for: .normal)
         JuicoyBtn.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyBtn
     }()
@@ -98,7 +98,7 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
         view.addSubview(JuicoyCosmicBackdrop)
         JuicoyCosmicBackdrop.addSubview(JuicoyHeaderPortal)
          
-        let JuicoyHeartIcon = UIImageView(image: UIImage(named: "joicoydisomend"))
+        let JuicoyHeartIcon = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoydisomend"))
         JuicoyHeartIcon.translatesAutoresizingMaskIntoConstraints = false
        
         

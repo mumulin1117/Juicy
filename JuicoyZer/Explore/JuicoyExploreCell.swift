@@ -10,11 +10,11 @@ import UIKit
 class JuicoyExploreCell: UICollectionViewCell {
   
     private let JuicoyBackImageView = UIImageView()
-    private let JuicoyPlayIcon = UIImageView(image: UIImage.init(named: "juicoyPause"))
+    private let JuicoyPlayIcon = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyPause"))
     lazy var JuicoyCommentCountButton: UIButton = {
         let JUICYbutton = UIButton()
         
-        JUICYbutton.setImage(UIImage(named: "JUICYchat"), for: .normal)
+        JUICYbutton.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICYchat"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         JUICYbutton.setTitle(" 0", for: .normal)
         JUICYbutton.titleLabel?.font = UIFont.systemFont(ofSize: 11)
@@ -44,7 +44,7 @@ class JuicoyExploreCell: UICollectionViewCell {
     
     lazy var JuiaddButton: UIButton = {
         let Juicoyimg = UIButton.init()
-        Juicoyimg.setImage(UIImage.init(named: "juicoyADD"), for: .normal)
+        Juicoyimg.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyADD"), for: .normal)
         Juicoyimg.translatesAutoresizingMaskIntoConstraints = false
         return Juicoyimg
     }()
@@ -60,7 +60,7 @@ class JuicoyExploreCell: UICollectionViewCell {
     }()
     
     lazy var JuicoyVIPView: UIImageView = {
-        let Juicoyimg = UIImageView.init(image: UIImage.init(named: "juicoyVIP"))
+        let Juicoyimg = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyVIP"))
       
         Juicoyimg.translatesAutoresizingMaskIntoConstraints = false
        
@@ -70,14 +70,14 @@ class JuicoyExploreCell: UICollectionViewCell {
  
     lazy var JuicoyviovakkButton: UIButton = {
         let Juicoyimg = UIButton.init()
-        Juicoyimg.setImage(UIImage.init(named: "JUICYcalakk"), for: .normal)
+        Juicoyimg.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICYcalakk"), for: .normal)
         Juicoyimg.translatesAutoresizingMaskIntoConstraints = false
         return Juicoyimg
     }()
     
     lazy var JuicoysendmesageButton: UIButton = {
         let Juicoyimg = UIButton.init()
-        Juicoyimg.setImage(UIImage.init(named: "JUICYcontact"), for: .normal)
+        Juicoyimg.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICYcontact"), for: .normal)
         Juicoyimg.translatesAutoresizingMaskIntoConstraints = false
         return Juicoyimg
     }()
@@ -101,7 +101,7 @@ class JuicoyExploreCell: UICollectionViewCell {
        
         contentView.addSubview(JuicoyCommentCountButton)
         
-        let JuicoyhotIcon = UIImageView(image: UIImage.init(named: "juicoyHot"))
+        let JuicoyhotIcon = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyHot"))
         JuicoyhotIcon.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(JuicoyhotIcon)
         JuicoyPlayIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -175,9 +175,9 @@ class JuicoyExploreCell: UICollectionViewCell {
     
   
     func JUICYmainfreverr(loie:JuicoyStorageModel)  {
-        JuicoyImgView.image = UIImage(named: loie.JuicoyAvatarKey)
+        JuicoyImgView.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: loie.JuicoyAvatarKey)
         JUICYnameTitle.text = loie.JuicoyHandle
-        JuicoyBackImageView.image = UIImage(named: loie.JuicoyMediaCover)
+        JuicoyBackImageView.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: loie.JuicoyMediaCover)
         JuicoyVIPView.isHidden = !(loie.JuicoyPremiumStatus == "1")
         JuicoyCommentCountButton.setTitle(" \(loie.JuicoyPublicFeedback.count)", for: .normal)
     }

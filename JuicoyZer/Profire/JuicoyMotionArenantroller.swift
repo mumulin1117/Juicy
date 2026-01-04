@@ -26,13 +26,13 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         let JuicoyImg = UIImageView()
         JuicoyImg.contentMode = .scaleAspectFill
         JuicoyImg.clipsToBounds = true
-        JuicoyImg.image = UIImage(named: "JuicoyProfileCover")
+        JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyProfileCover")
         return JuicoyImg
     }()
 
     private lazy var JuicoyGlassSettingTrigger: UIButton = {
         let JuicoyBtn = UIButton()
-        JuicoyBtn.setImage(UIImage(named: "joicoysoite"), for: .normal)
+        JuicoyBtn.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoysoite"), for: .normal)
         JuicoyBtn.addTarget(self, action: #selector(juicoyShapeConsistency), for: .touchUpInside)
         return JuicoyBtn
     }()
@@ -46,7 +46,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyView.layer.cornerRadius = 14
         JuicoyView.layer.masksToBounds = true
         JuicoyView.backgroundColor = UIColor(red: 0.45, green: 0.18, blue: 0.86, alpha: 1)
-        let img = UIImageView(image: UIImage.init(named: "joicoydisomend"))
+        let img = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoydisomend"))
         img.frame = CGRect(x: 0, y: 0, width: 33, height: 33)
         JuicoyView.addSubview(img)
         
@@ -66,7 +66,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     //edit
     private let Juicoyedit: UIButton = {
         let JuicoyView = UIButton()
-        JuicoyView.setImage(UIImage(named: "joicoyedit"), for: .normal)
+        JuicoyView.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyedit"), for: .normal)
         JuicoyView.layer.cornerRadius = 15
         JuicoyView.layer.masksToBounds = true
         JuicoyView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
@@ -85,7 +85,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyImg.contentMode = .scaleAspectFill
         JuicoyImg.layer.cornerRadius = 45
         JuicoyImg.layer.masksToBounds = true
-        JuicoyImg.image = UIImage(named: "joicoybackimag")
+        JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoybackimag")
         return JuicoyImg
     }()
 
@@ -98,7 +98,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     
     private let JuicoyGlassVIPTrigger: UIButton = {
         let JuicoyBtn = UIButton()
-        JuicoyBtn.setImage(UIImage(named: "joicoyprem"), for: .normal)
+        JuicoyBtn.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyprem"), for: .normal)
         return JuicoyBtn
     }()
 
@@ -113,7 +113,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
 
     private let JuicoyEliteVipTag: UIImageView = {
         let JuicoyImg = UIImageView()
-        JuicoyImg.image = UIImage(named: "juicoyVIP")
+        JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyVIP")
         
         
         return JuicoyImg
@@ -130,8 +130,8 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     //my gift
     private let JuicoyGIFTHeader: UIButton = {
         let JuicoyView = UIButton()
-        JuicoyView.setBackgroundImage(UIImage.init(named: "joicoyhaikjuo"), for: .normal)
-        let img = UIImageView(image: UIImage.init(named: "joicoyopnert"))
+        JuicoyView.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyhaikjuo"), for: .normal)
+        let img = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyopnert"))
         img.frame = CGRect(x: 0, y: 0, width: 27, height: 27)
         JuicoyView.addSubview(img)
         
@@ -159,7 +159,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
 //vip
     private lazy var JuicoyImperialVIPAd: UIButton = {
         let JuicoyBtn = UIButton()
-        JuicoyBtn.setBackgroundImage(UIImage(named: "joicoysizevip"), for: .normal)
+        JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoysizevip"), for: .normal)
         JuicoyBtn.addTarget(self, action: #selector(JJuicoyUMPJuicoymembershipController), for: .touchUpInside)
         
         return JuicoyBtn
@@ -172,10 +172,10 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     private let JuicoyGlimpseVideoHeader: UIButton = {
         let JuicoyView = UIButton()
         
-        let img = UIImageView(image: UIImage.init(named: "joicoyshaiur"))
+        let img = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyshaiur"))
         img.frame = CGRect(x: 0, y: (35 - 16)/2, width: 16, height: 16)
         JuicoyView.addSubview(img)
-        let joicoynext = UIImageView(image: UIImage.init(named: "joicoynext"))
+        let joicoynext = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoynext"))
         joicoynext.frame = CGRect(x: 300, y: (35 - 30)/2, width: 34, height: 30)
         
         
@@ -198,7 +198,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     
     private let JuicoyDesolateStateIcon: UIImageView = {
         let JuicoyImg = UIImageView()
-        JuicoyImg.image = UIImage(named: "joicoynodatare")
+        JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoynodatare")
         JuicoyImg.contentMode = .scaleAspectFit
         return JuicoyImg
     }()
@@ -369,8 +369,8 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         guard let useiINfo = JuicoyDataFactory.currentUserModel else {
             return
         }
-        JuicoyStageCoverImage.image = UIImage(named: useiINfo.JuicoyAvatarKey)
-        JuicoyIconicAvatarFrame.image = UIImage(named: useiINfo.JuicoyAvatarKey)
+        JuicoyStageCoverImage.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: useiINfo.JuicoyAvatarKey)
+        JuicoyIconicAvatarFrame.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: useiINfo.JuicoyAvatarKey)
         JuicoyStylePersonaName.text = useiINfo.JuicoyHandle
         
         
@@ -383,14 +383,14 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
             JuicoyStageCoverImage.image = JuicoyDataFactory.JuicoyuserBackground?.first!
            
         }else{
-            JuicoyStageCoverImage.image = UIImage(named: "juicoyDynamicLog")
+            JuicoyStageCoverImage.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyDynamicLog")
         }
         
         if JuicoyDataFactory.Juicoyuserphtho != nil{
             JuicoyIconicAvatarFrame.image = JuicoyDataFactory.Juicoyuserphtho!
            
         }else{
-            JuicoyIconicAvatarFrame.image = UIImage(named:useiINfo.JuicoyAvatarKey)
+            JuicoyIconicAvatarFrame.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:useiINfo.JuicoyAvatarKey)
         }
         
     }

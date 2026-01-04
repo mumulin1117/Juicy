@@ -39,7 +39,7 @@ class JuicoymembershipController: JuicoySeconedViewController {
 
     private let JuicoyHeroAuraBackdrop: UIImageView = {
         let JuicoyImg = UIImageView()
-        JuicoyImg.image = UIImage(named: "JuicoySeizeBanner")
+        JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoySeizeBanner")
         JuicoyImg.contentMode = .scaleToFill
         JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyImg
@@ -48,7 +48,7 @@ class JuicoymembershipController: JuicoySeconedViewController {
    
 
     private let JuicoyIdentityCardContainer: UIImageView = {
-        let JuicoyView = UIImageView(image:  UIImage(named: "juicoypremiijLog"))
+        let JuicoyView = UIImageView(image:  JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoypremiijLog"))
         JuicoyView.contentMode = .scaleToFill
         JuicoyView.isUserInteractionEnabled = true
         JuicoyView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +57,7 @@ class JuicoymembershipController: JuicoySeconedViewController {
 
     private let JuicoySoulAvatar: UIImageView = {
         let JuicoyImg = UIImageView()
-        JuicoyImg.image = UIImage(named:JuicoyDataFactory.currentUserModel?.JuicoyAvatarKey ?? "juicoyDynamicLog")
+        JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:JuicoyDataFactory.currentUserModel?.JuicoyAvatarKey ?? "juicoyDynamicLog")
         JuicoyImg.contentMode = .scaleAspectFill
         JuicoyImg.layer.cornerRadius = 25
         JuicoyImg.clipsToBounds = true
@@ -101,7 +101,7 @@ class JuicoymembershipController: JuicoySeconedViewController {
 
     private let JuicoyInitiateEmpireTrigger: UIButton = {
         let JuicoyBtn = UIButton()
-        JuicoyBtn.setBackgroundImage(UIImage(named: "Juicoygetit"), for: .normal)
+        JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "Juicoygetit"), for: .normal)
         JuicoyBtn.translatesAutoresizingMaskIntoConstraints = false
         JuicoyBtn.addTarget(self, action: #selector(juicoyPayForVIP), for: .touchUpInside)
         return JuicoyBtn
@@ -138,7 +138,7 @@ class JuicoymembershipController: JuicoySeconedViewController {
     
     private let JuicoyPrivilegeGraphicBoard: UIImageView = {
         let JuicoyImg = UIImageView()
-        JuicoyImg.image = UIImage(named: "JuicoyPrivilegesFooter")
+        JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyPrivilegesFooter")
         JuicoyImg.contentMode = .scaleAspectFit
         JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyImg
@@ -266,14 +266,14 @@ class JuicoyTierPortalView: UIView {
     }()
     
     private let JuicoyHeartIcon: UIImageView = {
-        let JuicoyImg = UIImageView(image: UIImage(named: "smallheart.fill"))
+        let JuicoyImg = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "smallheart.fill"))
         
         JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyImg
     }()
     
     private let JuicoyHotEcho: UIImageView = {
-        let JuicoyLab = UIImageView.init(image: UIImage.init(named: "juicoypoupo"))
+        let JuicoyLab = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoypoupo"))
       
         JuicoyLab.isHidden = true
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false

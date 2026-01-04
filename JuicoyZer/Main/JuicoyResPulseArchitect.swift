@@ -82,17 +82,17 @@ extension JuicoyResPulseArchitect {
     /// - Parameter fullName: 传入不带 .enc 的全名，例如 "poledance0@3x.png"
     static func JuicoyExtractVisualPulse(fullIdentifier fullName: String) -> UIImage? {
         // 1. 调用核心解密获取原始 Data
-        guard let JuicoyDecryptedData = JuicoyProcessCoreDecryption(resourceName: fullName) else {
+        guard let JuicoyDecryptedData = JuicoyProcessCoreDecryption(resourceName: fullName + "@3x.png") else {
             return nil
         }
         
         // 2. 自动判断 Scale (倍率)
-        var JuicoyDisplayScale: CGFloat = 1.0
-        if fullName.contains("@3x") {
-            JuicoyDisplayScale = 3.0
-        } else if fullName.contains("@2x") {
-            JuicoyDisplayScale = 2.0
-        }
+        let JuicoyDisplayScale: CGFloat = 3.0
+//        if fullName.contains("@3x") {
+//            JuicoyDisplayScale = 3.0
+//        } else if fullName.contains("@2x") {
+//            JuicoyDisplayScale = 2.0
+//        }
         
         // 3. 将 Data 转换为指定倍率的 UIImage
         // 这样可以确保 poledance0@3x.png 在不同机型上显示尺寸正确

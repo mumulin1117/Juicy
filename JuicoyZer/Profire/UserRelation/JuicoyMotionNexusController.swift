@@ -197,7 +197,7 @@ class JuicoySoulStreamCell: UITableViewCell {
 
     func JuicoyInfuseProfile(_ JuicoyData: JuicoyStorageModel, JuicoyMode: JuicoyKineticMode) {
         JuicoyHandleLabel.text = JuicoyData.JuicoyHandle
-        JuicoyAvatarOrb.image = UIImage(named: JuicoyData.JuicoyAvatarKey)
+        JuicoyAvatarOrb.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: JuicoyData.JuicoyAvatarKey)
         
         switch JuicoyMode {
         case .JuicoyFollower:

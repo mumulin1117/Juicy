@@ -17,7 +17,7 @@ class JuicoyDanceAibuyController: JuicoySeconedViewController, JuicoyNotEnoughCo
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let air = UIImageView(image: UIImage.init(named: "juicoydanceAibg"))
+        let air = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoydanceAibg"))
         air.frame = UIScreen.main.bounds
         air.contentMode = .scaleAspectFill
         self.view.addSubview(air)
@@ -41,7 +41,7 @@ class JuicoyDanceAibuyController: JuicoySeconedViewController, JuicoyNotEnoughCo
             JUICYbutton.setBackgroundImage(nil, for: .normal)
         }else{
             JUICYbutton.setTitle(nil, for: .normal)
-            JUICYbutton.setBackgroundImage(UIImage(named: "juicoydanceAiNeed"), for: .normal)
+            JUICYbutton.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoydanceAiNeed"), for: .normal)
         }
         
     }

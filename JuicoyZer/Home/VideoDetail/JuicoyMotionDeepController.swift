@@ -20,7 +20,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
     
     private lazy var JuicoyLikeUnit: JOICOYVioaButton = {
         let JuicoyLikeUnit = JOICOYVioaButton()
-        JuicoyLikeUnit.JuicoyImg.image = UIImage(named: "budianzanJUICOY")
+        JuicoyLikeUnit.JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "budianzanJUICOY")
         
         JuicoyLikeUnit.JuicoyLab.text = "0"
         JuicoyLikeUnit.addTarget(self, action: #selector(JuicoyonGiveLikeningButtonTapped), for: .touchUpInside)
@@ -30,7 +30,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
     
     private lazy var JuicoyCommentUnit: JOICOYVioaButton = {
         let JuicoyLikeUnit = JOICOYVioaButton()
-        JuicoyLikeUnit.JuicoyImg.image = UIImage(named: "JUICOYbianmore")
+        JuicoyLikeUnit.JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICOYbianmore")
      
         JuicoyLikeUnit.addTarget(self, action: #selector(toJuicoyCommentUnit), for: .touchUpInside)
         return JuicoyLikeUnit
@@ -38,7 +38,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
     
     private lazy var JuicoyGiftUnit: JOICOYVioaButton = {
         let JuicoyGiftUnit = JOICOYVioaButton()
-        JuicoyGiftUnit.JuicoyImg.image = UIImage(named: "JUICOYgift")
+        JuicoyGiftUnit.JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICOYgift")
         JuicoyGiftUnit.JuicoyLab.text = "Gift"
         
      
@@ -73,12 +73,12 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
     
     private func JuicoyreloadData()  {
         
-        JuicoyLikeUnit.JuicoyImg.image = UIImage(named:(self.juicoyModel.JuicoyFaverateStatus == "1") ?  "yidianzanJUICOY" : "budianzanJUICOY")
+        JuicoyLikeUnit.JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:(self.juicoyModel.JuicoyFaverateStatus == "1") ?  "yidianzanJUICOY" : "budianzanJUICOY")
         JuicoyLikeUnit.JuicoyLab.text = (self.juicoyModel.JuicoyFaverateStatus == "1") ?  "1" : "0"
         
         JuicoyBioScript.text = juicoyModel.JuicoyMediaNarration
         JuicoyCreatorName.text = juicoyModel.JuicoyHandle
-        JuicoyCreatorAvatar.image = UIImage(named: juicoyModel.JuicoyAvatarKey)
+        JuicoyCreatorAvatar.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: juicoyModel.JuicoyAvatarKey)
         
         JuicoyCommentUnit.JuicoyLab.text = "\(juicoyModel.JuicoyPublicFeedback.count)"
         
@@ -154,7 +154,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
     
     private lazy var JuicoyGoCallPulse: UIButton = {
         let JuicoyBtn = UIButton()
-        JuicoyBtn.setImage(UIImage(named: "JUICOYvideocall"), for: .normal)
+        JuicoyBtn.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICOYvideocall"), for: .normal)
         JuicoyBtn.addTarget(self, action: #selector(JuicoyGoCallPulseTo), for: .touchUpInside)
         JuicoyBtn.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyBtn
@@ -258,7 +258,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         
         
         JuicoyLikeUnit.isSelected = !JuicoyLikeUnit.isSelected
-        JuicoyLikeUnit.JuicoyImg.image = UIImage(named:JuicoyLikeUnit.isSelected ?  "yidianzanJUICOY" : "budianzanJUICOY")
+        JuicoyLikeUnit.JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:JuicoyLikeUnit.isSelected ?  "yidianzanJUICOY" : "budianzanJUICOY")
         JuicoyLikeUnit.JuicoyLab.text = JuicoyLikeUnit.isSelected ?  "1" : "0"
         self.juicoyModel.JuicoyFaverateStatus = JuicoyLikeUnit.isSelected ?  "1" : "0"
         self.delegate?.JuicoyupdateJuicoyStorageModel(model: juicoyModel)
@@ -285,7 +285,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         self.navigationController?.pushViewController(cebte, animated: true)
     }
     private func JuicoyAssembleScene() {
-        let moreimh = UIImage(named: "jocoymoieh")
+        let moreimh = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "jocoymoieh")
        
         self.JuicoyaddRightBarButton(image:moreimh )
          

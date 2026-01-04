@@ -69,7 +69,7 @@ class JUICYLegalAgreementViewController: UIViewController {
     
     private let JUICYAcceptSpinButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setImage(UIImage.init(named: "JOICYAgree"), for: .normal)
+        JUICYbutton.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JOICYAgree"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         JUICYbutton.addTarget(self, action: #selector(juicoyCreativeSignature), for: .touchUpInside)
         return JUICYbutton

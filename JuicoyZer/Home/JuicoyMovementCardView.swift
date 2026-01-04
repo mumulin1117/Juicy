@@ -10,11 +10,11 @@ import UIKit
 final class JuicoyMovementCardView: UIButton {
 
     private let JuicoyBackImageView = UIImageView()
-    private let JuicoyPlayIcon = UIImageView(image: UIImage.init(named: "juicoyPause"))
+    private let JuicoyPlayIcon = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyPause"))
     lazy var JuicoyMoreButton: UIButton = {
         let JUICYbutton = UIButton()
         
-        JUICYbutton.setBackgroundImage(UIImage(named: "jocoymoieh"), for: .normal)
+        JUICYbutton.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "jocoymoieh"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
       
@@ -43,7 +43,7 @@ final class JuicoyMovementCardView: UIButton {
     
     lazy var JuiaddButton: UIButton = {
         let Juicoyimg = UIButton.init()
-        Juicoyimg.setImage(UIImage.init(named: "juicoyADD"), for: .normal)
+        Juicoyimg.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyADD"), for: .normal)
         Juicoyimg.translatesAutoresizingMaskIntoConstraints = false
         return Juicoyimg
     }()
@@ -59,7 +59,7 @@ final class JuicoyMovementCardView: UIButton {
     }()
     
     lazy var JuicoyVIPView: UIImageView = {
-        let Juicoyimg = UIImageView.init(image: UIImage.init(named: "juicoyVIP"))
+        let Juicoyimg = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyVIP"))
       
         Juicoyimg.translatesAutoresizingMaskIntoConstraints = false
        
@@ -78,7 +78,7 @@ final class JuicoyMovementCardView: UIButton {
     lazy var JuicoyWatchButton: UIButton = {
         let Juicoyimg = UIButton.init()
         Juicoyimg.isUserInteractionEnabled = true
-        Juicoyimg.setImage(UIImage.init(named: "juicoyWatchnow"), for: .normal)
+        Juicoyimg.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyWatchnow"), for: .normal)
         Juicoyimg.translatesAutoresizingMaskIntoConstraints = false
         return Juicoyimg
     }()
@@ -103,7 +103,7 @@ final class JuicoyMovementCardView: UIButton {
        
         addSubview(JuicoyMoreButton)
         
-        let JuicoyhotIcon = UIImageView(image: UIImage.init(named: "juicoyHot"))
+        let JuicoyhotIcon = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyHot"))
         JuicoyhotIcon.translatesAutoresizingMaskIntoConstraints = false
         addSubview(JuicoyhotIcon)
         JuicoyPlayIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -179,9 +179,9 @@ final class JuicoyMovementCardView: UIButton {
     
   
     func JUICYmainfreverr(loie:JuicoyStorageModel)  {
-        JuicoyImgView.image = UIImage(named: loie.JuicoyAvatarKey)
+        JuicoyImgView.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: loie.JuicoyAvatarKey)
         JUICYnameTitle.text = loie.JuicoyHandle
-        JuicoyBackImageView.image = UIImage(named: loie.JuicoyMediaCover)
+        JuicoyBackImageView.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: loie.JuicoyMediaCover)
         JuicoyVIPView.isHidden = !(loie.JuicoyPremiumStatus == "1")
         JUICYsigniitle.text = loie.JuicoyMotto
     }

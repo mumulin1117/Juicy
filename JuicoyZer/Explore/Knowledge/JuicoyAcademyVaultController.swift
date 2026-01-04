@@ -37,7 +37,7 @@ class JuicoyAcademyVaultController: JuicoySeconedViewController {
     }()
     
     private let JuicoyTrendBadge: UIImageView = {
-        let JuicoyView = UIImageView.init(image: UIImage.init(named: "JuicoyTrendBadge"))
+        let JuicoyView = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyTrendBadge"))
       
         JuicoyView.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyView
@@ -74,14 +74,14 @@ class JuicoyAcademyVaultController: JuicoySeconedViewController {
     
     private let JuicoyPreviousStep: UIButton = {
         let JuicoyBtn = UIButton(type: .custom)
-        JuicoyBtn.setBackgroundImage(UIImage.init(named: "JuicoyPreviousStep"), for: .normal)
+        JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyPreviousStep"), for: .normal)
         JuicoyBtn.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyBtn
     }()
     
     private let JuicoyNextStep: UIButton = {
         let JuicoyBtn = UIButton(type: .custom)
-        JuicoyBtn.setBackgroundImage(UIImage.init(named: "JuicoyNextStep"), for: .normal)
+        JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyNextStep"), for: .normal)
         return JuicoyBtn
     }()
 
@@ -152,7 +152,7 @@ class JuicoyAcademyVaultController: JuicoySeconedViewController {
     
     private func JuicoySynchronizeData() {
         if JuicoyKnowledgeCursor == 0 {
-            JuicoyAtmosphericStage.image = UIImage(named: "JuicoyAtmosphericStage0")
+            JuicoyAtmosphericStage.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyAtmosphericStage0")
             JuicoyModuleSubject.text = "Pole Dance — Grip, Not Panic"
             JuicoyDetailedScript.text = "Grip in pole dance isn’t about squeezing as hard as possible. It’s about knowing when to engage and when to relax. A calm, responsive grip gives you better control, smoother spins, and way less wasted energy."
             JuicoyPreviousStep.alpha = 0.5
@@ -160,7 +160,7 @@ class JuicoyAcademyVaultController: JuicoySeconedViewController {
             JuicoyNextStep.alpha = 1.0
             JuicoyNextStep.isEnabled = true
         }else if JuicoyKnowledgeCursor == 1   {
-            JuicoyAtmosphericStage.image = UIImage(named: "JuicoyAtmosphericStage1")
+            JuicoyAtmosphericStage.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyAtmosphericStage1")
             JuicoyModuleSubject.text = "Pole Dance Inverts: Built, Not Rushed"
             JuicoyDetailedScript.text = "In pole dance, inverts don’t come from throwing yourself upside down. They come from strong shoulders, an active core, and patience. Slow progress builds cleaner lines and a lot more confidence in the air."
             JuicoyPreviousStep.alpha = 1.0
@@ -168,7 +168,7 @@ class JuicoyAcademyVaultController: JuicoySeconedViewController {
             JuicoyNextStep.alpha = 1
             JuicoyNextStep.isEnabled = true
         }else if JuicoyKnowledgeCursor == 2   {
-            JuicoyAtmosphericStage.image = UIImage(named: "JuicoyAtmosphericStage2")
+            JuicoyAtmosphericStage.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyAtmosphericStage2")
             JuicoyModuleSubject.text = "Flow Mode: Pole Dance in Control"
             JuicoyDetailedScript.text = "Pole dance flow happens when strength meets awareness. Slowing your transitions, feeling each weight shift, and breathing through movement turns separate tricks into something that feels connected and effortless."
             JuicoyPreviousStep.alpha = 1.0

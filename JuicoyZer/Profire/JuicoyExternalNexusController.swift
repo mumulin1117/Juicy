@@ -61,7 +61,7 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
     }()
 
     private let JuicoyVipBadge: UIImageView = {
-        let JuicoyImg = UIImageView(image: UIImage.init(named: "juicoyVIP"))
+        let JuicoyImg = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyVIP"))
        
         JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyImg
@@ -77,8 +77,8 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
 
     private let JuicoyFollowTrigger: UIButton = {
         let JuicoyBtn = UIButton()
-        JuicoyBtn.setImage(UIImage.init(named: "BigoYfollo"), for: .normal)
-        JuicoyBtn.setImage(UIImage.init(named: "BigoBufollo"), for: .selected)
+        JuicoyBtn.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "BigoYfollo"), for: .normal)
+        JuicoyBtn.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "BigoBufollo"), for: .selected)
        
         JuicoyBtn.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyBtn
@@ -100,7 +100,7 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
 
     private let JuicoyVideoCallEmit: UIButton = {
         let JuicoyBtn = UIButton(type: .system)
-        JuicoyBtn.setBackgroundImage(UIImage.init(named: "hunweibacy"), for: .normal)
+        JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "hunweibacy"), for: .normal)
         JuicoyBtn.translatesAutoresizingMaskIntoConstraints = false
         JuicoyBtn.addTarget(self, action: #selector(toJuicoyVideoCallEmit), for: .touchUpInside)
         return JuicoyBtn
@@ -108,7 +108,7 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
 
     private lazy var JuicoyMessageEmit: UIButton = {
         let JuicoyBtn = UIButton(type: .system)
-        JuicoyBtn.setBackgroundImage(UIImage.init(named: "JuicoyMessageEmit"), for: .normal)
+        JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyMessageEmit"), for: .normal)
         JuicoyBtn.translatesAutoresizingMaskIntoConstraints = false
         JuicoyBtn.addTarget(self, action: #selector(toJuicoyMessageEmit), for: .touchUpInside)
         return JuicoyBtn
@@ -130,12 +130,12 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
-        self.JuicoyaddRightBarButton(image: UIImage(named: "jocoymoieh"),action: #selector(JuicoyInvokeMenuSheet))
+        self.JuicoyaddRightBarButton(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "jocoymoieh"),action: #selector(JuicoyInvokeMenuSheet))
         
         
         JuicoyAssembleInterface()
-        JuicoyProfileHeader.image = UIImage(named: juicoyModel.JuicoyAvatarKey)
-        JuicoyAvatarOrbit.image = UIImage(named: juicoyModel.JuicoyAvatarKey)
+        JuicoyProfileHeader.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: juicoyModel.JuicoyAvatarKey)
+        JuicoyAvatarOrbit.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: juicoyModel.JuicoyAvatarKey)
         JuicoyIdentityLabel.text = juicoyModel.JuicoyHandle
         JuicoyVipBadge.isHidden = !(self.juicoyModel.JuicoyPremiumStatus == "1")
     }
@@ -369,7 +369,7 @@ extension JuicoyExternalNexusController {
             JuicoyCircle.translatesAutoresizingMaskIntoConstraints = false
             JuicoyCircle.widthAnchor.constraint(equalToConstant: 60).isActive = true
             JuicoyCircle.heightAnchor.constraint(equalToConstant: 60).isActive = true
-            JuicoyCircle.image = UIImage(named: juicoyModel.JuicoyPeerAvatars[i])
+            JuicoyCircle.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: juicoyModel.JuicoyPeerAvatars[i])
             JuicoyAvatarStack.addArrangedSubview(JuicoyCircle)
         }
         

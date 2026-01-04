@@ -37,29 +37,29 @@ class JuicoyTabarcontroller: UITabBarController {
         let Juicoyone =  JuicoyBaseNavigationController.init(rootViewController: JuicoyOneneController())
         Juicoyone.tabBarItem = UITabBarItem(
             title: "Home",
-            image:UIImage(named: "juicoyGripTechnique1")?.withRenderingMode(.alwaysOriginal) ,
-            selectedImage:UIImage(named: "juicoyGripTechnique1_")?.withRenderingMode(.alwaysOriginal)
+            image:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyGripTechnique1")?.withRenderingMode(.alwaysOriginal) ,
+            selectedImage:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique1_")?.withRenderingMode(.alwaysOriginal)
         )
         
         let Juicoytwo = JuicoyBaseNavigationController.init(rootViewController:JuicoyExploreOneController())
         Juicoytwo.tabBarItem = UITabBarItem(
             title: "Explore",
-            image:UIImage(named: "juicoyGripTechnique2")?.withRenderingMode(.alwaysOriginal) ,
-            selectedImage:UIImage(named: "juicoyGripTechnique2_")?.withRenderingMode(.alwaysOriginal)
+            image:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique2")?.withRenderingMode(.alwaysOriginal) ,
+            selectedImage:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique2_")?.withRenderingMode(.alwaysOriginal)
         )
         
         let Juicoythree = JuicoyBaseNavigationController.init(rootViewController: JuicoyMotionExplocontroller())
         Juicoythree.tabBarItem = UITabBarItem(
             title: "Chat",
-            image:UIImage(named: "juicoyGripTechnique3")?.withRenderingMode(.alwaysOriginal) ,
-            selectedImage:UIImage(named: "juicoyGripTechnique3_")?.withRenderingMode(.alwaysOriginal)
+            image:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique3")?.withRenderingMode(.alwaysOriginal) ,
+            selectedImage:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique3_")?.withRenderingMode(.alwaysOriginal)
         )
        
         let Juicoyfour = JuicoyBaseNavigationController.init(rootViewController:  JuicoyMotionArenantroller())
         Juicoyfour.tabBarItem = UITabBarItem(
             title: "Plore",
-            image:UIImage(named: "juicoyGripTechnique4")?.withRenderingMode(.alwaysOriginal),
-            selectedImage: UIImage(named: "juicoyGripTechnique4_")?.withRenderingMode(.alwaysOriginal)
+            image:JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique4")?.withRenderingMode(.alwaysOriginal),
+            selectedImage: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:"juicoyGripTechnique4_")?.withRenderingMode(.alwaysOriginal)
         )
         
         self.viewControllers = [Juicoyone, Juicoytwo, Juicoythree, Juicoyfour]
@@ -98,7 +98,7 @@ class JuicoyBaseNavigationController: UINavigationController {
 
                 viewController.navigationItem.leftBarButtonItem =
                     UIBarButtonItem(
-                        image: UIImage(named: "Juicoynav_back")?.withRenderingMode(.alwaysOriginal),
+                        image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "Juicoynav_back")?.withRenderingMode(.alwaysOriginal),
                         style: .plain,
                         target: self,
                         action: #selector(JuicoyhandleBack)
@@ -118,7 +118,7 @@ class JuicoyBasicController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let air = UIImageView(image: UIImage.init(named: "UICOYBaoc"))
+        let air = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "UICOYBaoc"))
         air.frame = UIScreen.main.bounds
         air.contentMode = .scaleAspectFill
         self.view.addSubview(air)
@@ -179,7 +179,7 @@ class JuicoySeconedYEUIController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        let JuicoyLayer1 = UIImageView(image: UIImage.init(named: "JuicoyoouyBG"))
+        let JuicoyLayer1 = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyoouyBG"))
         JuicoyLayer1.contentMode = .scaleToFill
         JuicoyLayer1.frame = self.view.bounds
         view.addSubview(JuicoyLayer1)
@@ -187,7 +187,7 @@ class JuicoySeconedYEUIController: UIViewController {
         
         navigationItem.leftBarButtonItem =
             UIBarButtonItem(
-                image: UIImage(named: "Juicoynavhei_back")?.withRenderingMode(.alwaysOriginal),
+                image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "Juicoynavhei_back")?.withRenderingMode(.alwaysOriginal),
                 style: .plain,
                 target: self,
                 action: #selector(JuicoyhandleBack)

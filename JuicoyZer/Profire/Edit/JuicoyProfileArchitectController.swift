@@ -37,7 +37,7 @@ class JuicoyProfileArchitectController: JuicoySeconedYEUIController {
     
     private let JuicoyAvatarPencil: UIButton = {
         let JuicoyImg = UIButton.init()
-        JuicoyImg.setImage(UIImage.init(named: "joicoyavatoercha"), for: .normal)
+        JuicoyImg.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyavatoercha"), for: .normal)
         JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
         JuicoyImg.addTarget(self, action: #selector(JuicoyInvokeAvatarPicker), for: .touchUpInside)
         return JuicoyImg
@@ -86,7 +86,7 @@ class JuicoyProfileArchitectController: JuicoySeconedYEUIController {
     
     private let JuicoyCommitTrigger: UIButton = {
         let JuicoyBtn = UIButton()
-        JuicoyBtn.setBackgroundImage(UIImage.init(named: "joicoyDave"), for: .normal)
+        JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyDave"), for: .normal)
         JuicoyBtn.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyBtn
     }()
@@ -116,10 +116,10 @@ class JuicoyProfileArchitectController: JuicoySeconedYEUIController {
             }
             
             if !currentUser.JuicoyAvatarKey.isEmpty {
-                JuicoyAvatarHalo.image = UIImage(named: currentUser.JuicoyAvatarKey)
+                JuicoyAvatarHalo.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: currentUser.JuicoyAvatarKey)
                 return
             }
-            JuicoyAvatarHalo.image = UIImage(named: "juicoyDynamicLog")
+            JuicoyAvatarHalo.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyDynamicLog")
         }
     }
     private func JuicoyInitializeStage() {

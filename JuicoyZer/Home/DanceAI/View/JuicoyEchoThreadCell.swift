@@ -106,10 +106,10 @@ class JuicoyEchoThreadCell: UITableViewCell {
             JuicoyPulseBubble.backgroundColor = .white
             JuicoyContentEcho.textColor = .black
             if JuicoyisAI {
-                JuicoyAvatarOrb.image = UIImage(named: "juicoydanceAiAvator")
+                JuicoyAvatarOrb.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoydanceAiAvator")
             }else{
                 
-                JuicoyAvatarOrb.image = UIImage(named: uimage ?? "")
+                JuicoyAvatarOrb.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: uimage ?? "")
                 
             }
             
@@ -121,7 +121,7 @@ class JuicoyEchoThreadCell: UITableViewCell {
             NSLayoutConstraint.activate(JuicoyFollowConstraints)
             JuicoyPulseBubble.backgroundColor = UIColor(red: 168/255, green: 70/255, blue: 255/255, alpha: 1.0)
             JuicoyContentEcho.textColor = .white
-            JuicoyAvatarOrb.image = UIImage(named: "juicoyDynamicLog")
+            JuicoyAvatarOrb.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyDynamicLog")
         }
     }
 }

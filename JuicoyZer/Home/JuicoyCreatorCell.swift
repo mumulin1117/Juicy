@@ -40,7 +40,7 @@ final class JuicoyCreatorCell: UICollectionViewCell {
     
 
     private lazy var JuicoyfollowView: UIImageView = {
-        let Juicoyimg = UIImageView.init(image: UIImage.init(named: "juicoyFollow"))
+        let Juicoyimg = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyFollow"))
         Juicoyimg.contentMode = .scaleAspectFill
         Juicoyimg.translatesAutoresizingMaskIntoConstraints = false
        
@@ -115,7 +115,7 @@ final class JuicoyCreatorCell: UICollectionViewCell {
     }
     
     func JUICYmainfreverr(loie:JuicoyStorageModel)  {
-        JuicoyImgView.image = UIImage(named: loie.JuicoyAvatarKey)
+        JuicoyImgView.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: loie.JuicoyAvatarKey)
         JUICYnameTitle.text = loie.JuicoyHandle
         JUICYfanscountTitle.text = loie.JuicoyConnectionInCount  + " followers"
        

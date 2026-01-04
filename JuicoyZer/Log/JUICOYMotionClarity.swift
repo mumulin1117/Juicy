@@ -34,7 +34,7 @@ class JUICOYMotionClarity: UIViewController {
     
     
     private let JUICYMotionStageContainer: UIImageView = {
-        let JUICOY = UIImageView.init(image: UIImage.init(named: "juicoyBodyLinearity"))
+        let JUICOY = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyBodyLinearity"))
         JUICOY.frame = UIScreen.main.bounds
         return JUICOY
     }()
@@ -42,7 +42,7 @@ class JUICOYMotionClarity: UIViewController {
     
     private let JUICYELUASpinButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setImage(UIImage(named: "juicoyDynamicTransition"), for: .normal)
+        JUICYbutton.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyDynamicTransition"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
         JUICYbutton.addTarget(self, action: #selector(juicoyELUASoul), for: .touchUpInside)
@@ -52,7 +52,7 @@ class JUICOYMotionClarity: UIViewController {
     
     
     private let JUICYMainHeadingLabel:  UIImageView = {
-        let JUICOYview = UIImageView.init(image: UIImage.init(named: "juicoyMomentumShift"))
+        let JUICOYview = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyMomentumShift"))
         JUICOYview.contentMode = .scaleAspectFill
         JUICOYview.translatesAutoresizingMaskIntoConstraints = false
         return JUICOYview
@@ -74,7 +74,7 @@ class JUICOYMotionClarity: UIViewController {
         JUICOYfield.placeholder = "Enter Email"
         JUICOYfield.font = UIFont.systemFont(ofSize: 15)
         JUICOYfield.translatesAutoresizingMaskIntoConstraints = false
-        let JUICYIconView = UIImageView(image: UIImage(named: "juicoyMovementDialect"))
+        let JUICYIconView = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyMovementDialect"))
         JUICOYfield.borderStyle = .roundedRect
         JUICOYfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 24))
         JUICYIconView.frame = CGRect(x: 12, y: 0, width: 24, height: 24)
@@ -93,7 +93,7 @@ class JUICOYMotionClarity: UIViewController {
         field.font = UIFont.systemFont(ofSize: 15)
         field.translatesAutoresizingMaskIntoConstraints = false
         
-        let JUICYLeftIcon = UIImageView(image: UIImage(named: "juicoyFlowContinuity"))
+        let JUICYLeftIcon = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyFlowContinuity"))
         JUICYLeftIcon.tintColor = .white.withAlphaComponent(0.6)
         field.borderStyle = .roundedRect
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 24))
@@ -107,7 +107,7 @@ class JUICOYMotionClarity: UIViewController {
     
     private let JUICYContinueSpinButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setBackgroundImage(UIImage(named: "JUICOYlogin"), for: .normal)
+        JUICYbutton.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICOYlogin"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
         JUICYbutton.addTarget(self, action: #selector(juicoyMovementSoul), for: .touchUpInside)
@@ -119,8 +119,8 @@ class JUICOYMotionClarity: UIViewController {
     private let JUICYcircleSpinButton: UIButton = {
         let JUICYbutton = UIButton()
        
-        JUICYbutton.setImage(UIImage(named: "juicoyPoleAlignment"), for: .normal)
-        JUICYbutton.setImage(UIImage(named: "juicoyHoldStability"), for: .selected)
+        JUICYbutton.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyPoleAlignment"), for: .normal)
+        JUICYbutton.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyHoldStability"), for: .selected)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         JUICYbutton.addTarget(self, action: #selector(juicoyArtisticEssence(jiucoy:)), for: .touchUpInside)
         

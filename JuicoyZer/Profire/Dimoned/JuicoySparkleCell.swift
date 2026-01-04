@@ -26,7 +26,7 @@ class JuicoySparkleCell: UICollectionViewCell {
     }()
     
     private let JuicoyCoreHeart: UIImageView = {
-        let JuicoyImg = UIImageView(image: UIImage(named: "joicoydisomend"))
+        let JuicoyImg = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoydisomend"))
         JuicoyImg.contentMode = .scaleAspectFit
         JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyImg
@@ -100,7 +100,7 @@ class JuicoySparkleCell: UICollectionViewCell {
     func JuicoyConfigureEntity(_ JuicoyData: JuicoySparklePackage, JuicoyIsActive: Bool) {
         JuicoyQuantityLabel.text = JuicoyData.JuicoyQuantity
         JuicoyPriceLabel.text = JuicoyData.JuicoyPrice
-        JuicoyTagLabel.image = UIImage(named: JuicoyData.JuicoyTag ?? "") 
+        JuicoyTagLabel.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: JuicoyData.JuicoyTag ?? "") 
         JuicoyTagLabel.isHidden = JuicoyData.JuicoyTag == nil
         
         JuicoyContainer.layer.borderColor = JuicoyIsActive ? UIColor.systemPurple.cgColor : UIColor.clear.cgColor

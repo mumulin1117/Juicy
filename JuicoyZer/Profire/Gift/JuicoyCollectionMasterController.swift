@@ -22,7 +22,7 @@ class JuicoyCollectionMasterController: JuicoySeconedViewController {
     
     private let JuicoyHeroPanel: UIImageView = {
         let JuicoyView = UIImageView()
-        JuicoyView.image = UIImage(named: "joicoyCorner")
+        JuicoyView.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyCorner")
         JuicoyView.contentMode = .scaleToFill
         JuicoyView.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyView
@@ -69,7 +69,7 @@ class JuicoyCollectionMasterController: JuicoySeconedViewController {
     
     private let JuicoyGhostIcon: UIImageView = {
         let JuicoyView = UIImageView()
-        JuicoyView.image = UIImage(named: "joicoyEmityData")
+        JuicoyView.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyEmityData")
         JuicoyView.contentMode = .scaleToFill
         JuicoyView.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyView
@@ -141,7 +141,7 @@ class JuicoyCollectionMasterController: JuicoySeconedViewController {
             self.title = "My Gift"
             JuicoyMetricValue.text = "0 / 99"
             JuicoyMetricSubtext.text = "Received Gifts"
-            JuicoyHeroArtIcon.image = UIImage(named: "JuicoyGiftShield")
+            JuicoyHeroArtIcon.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyGiftShield")
            
             JuicoySetupDivider(JuicoyLabel: "✦ Gift display ✦")
             
@@ -149,7 +149,7 @@ class JuicoyCollectionMasterController: JuicoySeconedViewController {
             self.title = "My Video"
             JuicoyMetricValue.text = "0"
             JuicoyMetricSubtext.text = "Uploaded Clips"
-            JuicoyHeroArtIcon.image = UIImage(named: "JuicoyVideoPlayerArt")
+            JuicoyHeroArtIcon.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyVideoPlayerArt")
            
             JuicoySetupDivider(JuicoyLabel: "✦ Video Library ✦")
         }

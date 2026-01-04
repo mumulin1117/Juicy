@@ -111,8 +111,8 @@ class JuicoyFavThreadCell: UICollectionViewCell {
     }
 
     func JuicoySyncVibe(_ JuicoyVibe: JuicoyStorageModel) {
-        JuicoySpinCanvas.image = UIImage(named: JuicoyVibe.JuicoyMediaCover)
-        JuicoyPerformerOrb.image = UIImage(named: JuicoyVibe.JuicoyAvatarKey)
+        JuicoySpinCanvas.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: JuicoyVibe.JuicoyMediaCover)
+        JuicoyPerformerOrb.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: JuicoyVibe.JuicoyAvatarKey)
         JuicoyStageName.text = JuicoyVibe.JuicoyHandle
         JuicoyAuraLabel.text = JuicoyVibe.JuicoyMediaNarration
         

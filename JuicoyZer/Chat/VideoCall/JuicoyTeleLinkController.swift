@@ -79,7 +79,7 @@ class JuicoyTeleLinkController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
         JuicoyConstructPortal()
         JuicoyInvokePulseEffect()
-        JuicoyStaticBackdrop.image = UIImage(named: juicoyModel.JuicoyAvatarKey)
+        JuicoyStaticBackdrop.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: juicoyModel.JuicoyAvatarKey)
         JuicoyPeerIdentity.text = juicoyModel.JuicoyHandle
     }
     

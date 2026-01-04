@@ -54,7 +54,7 @@ final class JuicoyChatCell: UITableViewCell {
         JuicoyTitleLabel.text = item.JuicoyUser.JuicoyHandle
         JuicoySubtitleLabel.text = item.JuicoyLastMsg.JuicoyContent
         
-        JuicoyAvatarView.image =   UIImage(named: item.JuicoyUser.JuicoyAvatarKey)
+        JuicoyAvatarView.image =   JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: item.JuicoyUser.JuicoyAvatarKey)
         JuicoyAvatarView.tintColor = .white
     }
 }

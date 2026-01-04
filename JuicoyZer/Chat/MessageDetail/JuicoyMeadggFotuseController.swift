@@ -50,7 +50,7 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
       
     private lazy var  JUICYsendButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setBackgroundImage(UIImage(named: "juicoydanceAiSend"), for: .normal)
+        JUICYbutton.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoydanceAiSend"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
         JUICYbutton.addTarget(self, action: #selector(JuicoyExecuteSignalTransmission), for: .touchUpInside)
@@ -84,13 +84,13 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
         NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
 
         self.title = juicoyModel.JuicoyHandle
-//        JuicoyStaticBackdrop.image = UIImage(named: juicoyModel.JuicoyAvatarKey)
+//        JuicoyStaticBackdrop.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: juicoyModel.JuicoyAvatarKey)
       
         navigationItem.rightBarButtonItems =
             [
                
                 UIBarButtonItem(
-                    image: UIImage(named: "jocoymoiehwhite")?.withRenderingMode(.alwaysOriginal),
+                    image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "jocoymoiehwhite")?.withRenderingMode(.alwaysOriginal),
                     style: .plain,
                     target: self,
                     action: #selector(JuicoyonRightBarButtonTapped)
@@ -98,7 +98,7 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
                 
             ,
                 UIBarButtonItem(
-                    image: UIImage(named: "Userhuanwecall")?.withRenderingMode(.alwaysOriginal),
+                    image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "Userhuanwecall")?.withRenderingMode(.alwaysOriginal),
                     style: .plain,
                     target: self,
                     action: #selector(JuicoyonvicolldnTapped)

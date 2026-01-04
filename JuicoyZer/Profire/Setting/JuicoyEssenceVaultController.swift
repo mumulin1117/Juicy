@@ -59,7 +59,7 @@ class JuicoyEssenceVaultController: JuicoySeconedYEUIController {
 
     private let JuicoyExitStageTrigger: UIButton = {
         let JuicoyBtn = UIButton(type: .custom)
-        JuicoyBtn.setBackgroundImage(UIImage(named: "uicoyLogin"), for: .normal)
+        JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "uicoyLogin"), for: .normal)
         JuicoyBtn.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyBtn
     }()
