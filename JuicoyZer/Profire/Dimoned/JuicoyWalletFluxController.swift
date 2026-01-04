@@ -24,7 +24,7 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
     
         JuicoySparklePackage(JuicoyIdentifier: "oqeenftfqycnkqjs", JuicoyQuantity: "2p4b5a0".JoicoydeMercrypt(), JuicoyPrice: "$k4x.g9p9".JoicoydeMercrypt(), JuicoyTag: nil),
         JuicoySparklePackage(JuicoyIdentifier: "gmnaqtvemcnrczkc", JuicoyQuantity: "5a1m5i0".JoicoydeMercrypt(), JuicoyPrice: "$h9s.w9v9".JoicoydeMercrypt(), JuicoyTag: nil),
-        JuicoySparklePackage(JuicoyIdentifier: "ieinuciqaconusjt", JuicoyQuantity: "1a0t8l0v0".JoicoydeMercrypt(), JuicoyPrice: "$c1z9z.p9u9", JuicoyTag: nil),
+        JuicoySparklePackage(JuicoyIdentifier: "ieinuciqaconusjt", JuicoyQuantity: "1a0t8l0v0".JoicoydeMercrypt(), JuicoyPrice: "$c1z9z.p9u9".JoicoydeMercrypt(), JuicoyTag: nil),
         JuicoySparklePackage(JuicoyIdentifier: "rqinasqejfmgmaiu", JuicoyQuantity: "2k9z4g0r0".JoicoydeMercrypt(), JuicoyPrice: "$c4r9x.c9p9".JoicoydeMercrypt(), JuicoyTag: "Best Value"),
         JuicoySparklePackage(JuicoyIdentifier: "ljpebwvnxyqpwhbl", JuicoyQuantity: "6y3d7y0t0".JoicoydeMercrypt(), JuicoyPrice: "$s9e9t.p9b9".JoicoydeMercrypt(), JuicoyTag: nil)
     ]
