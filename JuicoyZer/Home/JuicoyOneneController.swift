@@ -11,12 +11,10 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
     func JuicoyupdateJuicoyStorageModel(model: JuicoyStorageModel) {
         if let JuicoyTargetIndex = self.cardsModels.firstIndex(where: { $0.JuicoyIdentifier == model.JuicoyIdentifier }) {
                 
-                // 2. 将数组中该位置的数据更新为最新的 model
+              
                 self.cardsModels[JuicoyTargetIndex] = model
                 
-                // 3. 这里的 model 可能是被关注了或者被拉黑了
-                // 如果你的 UI 正在显示这个列表，记得刷新
-                // self.JuicoyMainGrid.reloadItems(at: [IndexPath(item: JuicoyTargetIndex, section: 0)])
+               
             }
       
     }
@@ -30,23 +28,21 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
     }
    
     private func JuicoyRefreshDynamicStream() {
-        // 1. 从工厂获取所有有效数据（带封面的视频）
+      
         let JuicoyPool = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedPayload().filter {
             !$0.JuicoyMediaCover.isEmpty
         }
-        
-        // 2. 打乱顺序
+     
         let JuicoyShuffledPool = JuicoyPool.shuffled()
         
-        // 3. 随机决定展示的数量（例如 1 到 5 条）
         let JuicoyRandomCount = Int.random(in: 5...min(7, JuicoyShuffledPool.count))
         
-        // 4. 更新当前控制器的 cardsModels
+       
         self.cardsModels = Array(JuicoyShuffledPool.prefix(JuicoyRandomCount))
         randomuserModels = Array(JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedPayload().shuffled().suffix(8))
     }
     
-    //拉黑刷新数据
+  
     @objc func observeJuicoyUserBlacklisted() {
         JuicoyRefreshDynamicStream()
         self.JuicoyConfigureCards()
@@ -76,7 +72,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        // 确保只初始化一次，否则每次 layout 都会重新生成卡片
+       
         if JuicoyCardViews.isEmpty {
             JuicoyConfigureCards()
         }
@@ -206,17 +202,17 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
    
 
     private func JuicoyConfigureCards() {
-        // 1. 清空旧数据（防止重复配置）
+       
         JuicoyCardViews.forEach { $0.removeFromSuperview() }
         JuicoyCardViews.removeAll()
         
-        // 2. 倒序生成卡片，确保索引 0 的卡片在视觉最上方
+      
         for JuicoyIndex in (0..<5).reversed() {
             let JuicoyCard = JuicoyMovementCardView(frame: JuicoyCardContainerView.bounds)
             JuicoyCard.isUserInteractionEnabled = true
             JuicoyCard.layer.cornerRadius = 10
             JuicoyCard.JUICYmainfreverr(loie: cardsModels[JuicoyIndex])
-            // 初始偏移位置
+           
             JuicoyCard.transform = CGAffineTransform(translationX: 0, y: CGFloat(JuicoyIndex) * JuicoyCardSpacing)
             JuicoyCard.alpha = JuicoyIndex == 0 ? 1 : 0.9
             JuicoyCard.tag = JuicoyIndex
@@ -229,14 +225,14 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
             JuicoyCardViews.insert(JuicoyCard, at: 0)
         }
         
-        // 此时 JuicoyCardViews.first 是最后添加进 addSubview 的，即视觉最上层
+   
         JuicoyAttachPanToTopCard()
     }
 
     private func JuicoyAttachPanToTopCard() {
         guard let JuicoyTopCard = JuicoyCardViews.first else { return }
         
-        // 移除旧手势防止堆叠
+     
         JuicoyTopCard.gestureRecognizers?.forEach { JuicoyTopCard.removeGestureRecognizer($0) }
         
         let JuicoyPan = UIPanGestureRecognizer(target: self, action: #selector(JuicoyHandlePan))
@@ -253,12 +249,12 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
             JuicoyCardOriginalCenter = JuicoyTopCard.center
 
         case .changed:
-            // 优化：使用 translation 配合 CGAffineTransform，或者直接修改 center
+           
             let JuicoyNewX = JuicoyCardOriginalCenter.x + JuicoyTranslation.x
-            let JuicoyNewY = JuicoyCardOriginalCenter.y + JuicoyTranslation.y * 0.2 // 降低纵向跟随感
+            let JuicoyNewY = JuicoyCardOriginalCenter.y + JuicoyTranslation.y * 0.2
             JuicoyTopCard.center = CGPoint(x: JuicoyNewX, y: JuicoyNewY)
             
-            // 旋转弧度限制
+           
             let JuicoyRotationAngle = (JuicoyTranslation.x / JuicoyCardContainerView.bounds.width) * 0.4
             JuicoyTopCard.transform = CGAffineTransform(rotationAngle: JuicoyRotationAngle)
 
@@ -268,7 +264,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
             let JuicoyVelocity = JuicoyGesture.velocity(in: JuicoyCardContainerView)
             let JuicoyOffsetX = JuicoyTopCard.center.x - JuicoyCardOriginalCenter.x
             
-            // 判定条件：位移超过120 或 划动速度极快
+           
             if abs(JuicoyOffsetX) > 120 || abs(JuicoyVelocity.x) > 500 {
                 JuicoyAnimateCardDismiss(JuicoyTopCard, direction: JuicoyOffsetX > 0)
             } else {
@@ -288,10 +284,10 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
     }
 
     private func JuicoyAnimateCardDismiss(_ JuicoyCard: UIView, direction: Bool) {
-        JuicoyCard.isUserInteractionEnabled = false // 动画期间禁用交互
+        JuicoyCard.isUserInteractionEnabled = false
         
         UIView.animate(withDuration: 0.3, animations: {
-            // 飞出屏幕
+           
             let JuicoyExitX = direction ? self.view.bounds.width * 1.5 : -self.view.bounds.width * 0.5
             JuicoyCard.center = CGPoint(x: JuicoyExitX, y: JuicoyCard.center.y)
             JuicoyCard.alpha = 0
@@ -305,15 +301,15 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
     }
 
     private func JuicoyPromoteNextCard() {
-        // 重新排列剩余卡片
+        
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
             for (JuicoyIndex, JuicoyCard) in self.JuicoyCardViews.enumerated() {
-                // 每一张往上挪一个位置
+               
                 JuicoyCard.transform = CGAffineTransform(translationX: 0, y: CGFloat(JuicoyIndex) * self.JuicoyCardSpacing)
                 JuicoyCard.alpha = JuicoyIndex == 0 ? 1 : 0.9
             }
         }) { _ in
-            // 给当前最上面的卡片绑定手势
+           
             self.JuicoyAttachPanToTopCard()
         }
     }

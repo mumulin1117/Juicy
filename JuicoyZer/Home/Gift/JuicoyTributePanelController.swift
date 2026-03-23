@@ -248,9 +248,6 @@ extension JuicoyTributePanelController: UICollectionViewDelegate, UICollectionVi
         collectionView.reloadData()
     }
 
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: (view.frame.width - 7*3 - 20) / 4, height: 110)
-//    }
 }
 
 class JuicoyTributeCell: UICollectionViewCell {

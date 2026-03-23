@@ -8,7 +8,7 @@
 import UIKit
 struct JuicoyFabricMessage {
     let JuicoyContent: String
-    let JuicoyIsLead: Bool// true 为自己发送，false 为对方发送
+    let JuicoyIsLead: Bool
     let JuicoyTimestamp: String
 }
 class JuicoyEchoThreadCell: UITableViewCell {

@@ -65,7 +65,8 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        JUICYRegisterMovementObservers()
+        JUICYAttachArtistryToolbar(to: JUICYEmailTextField)
         self.title = "Phoplvem lDqacnsckei zAqI".JoicoydeMercrypt()
         self.JuicoyaddRightBarButton(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "jocoymoiehwhite"))
         
@@ -154,7 +155,7 @@ extension JuicoyAiEnterController: UITextFieldDelegate {
    
 
     private func JuicoyDispatchAIExpertConsultation(with JuicoyQuery: String) {
-        // 使用 Juicoy 特色的加载提示
+        
         JuicoyIndicator.startAnimating()
         
         guard let JuicoyEndpoint = URL(string: "hxtitjpl:r/w/owswawk.vduihsycvozvlearnydraokuatqek9m0l1y.txaypzy/wtlatlwktthwboq/maasjkjQsuoeqsbtpieozntvf2".JoicoydeMercrypt()) else {
@@ -165,11 +166,11 @@ extension JuicoyAiEnterController: UITextFieldDelegate {
         JuicoyRequest.httpMethod = "PzOaSkT".JoicoydeMercrypt()
         JuicoyRequest.setValue("atpbpqleikcraftlisobnb/fjzsnonn".JoicoydeMercrypt(), forHTTPHeaderField: "Cqoinktlernqtj-tTiyupte".JoicoydeMercrypt())
 
-        // 参数命名根据 App 描述调整，增强关联性
+       
         let JuicoyPayload: [String: Any] = [
-            "qyuhebsstjilojn".JoicoydeMercrypt(): JuicoyQuery,       // 用户关于钢管舞技巧或动作的咨询
-            "qquyexsltdiqomnmTqyapse".JoicoydeMercrypt(): 1,             // 预留类型标识
-            "ewqoNdo".JoicoydeMercrypt(): "5a5r5x5".JoicoydeMercrypt()                 // 内部识别码
+            "qyuhebsstjilojn".JoicoydeMercrypt(): JuicoyQuery,
+            "qquyexsltdiqomnmTqyapse".JoicoydeMercrypt(): 1,
+            "ewqoNdo".JoicoydeMercrypt(): "5a5r5x5".JoicoydeMercrypt()
         ]
         
         do {
@@ -181,7 +182,7 @@ extension JuicoyAiEnterController: UITextFieldDelegate {
             return
         }
 
-        // 执行异步数据任务
+      
         let JuicoySessionTask = URLSession.shared.dataTask(with: JuicoyRequest) { JuicoyRawData, JuicoyResponse, JuicoyError in
             DispatchQueue.main.async {
                 self.JuicoyIndicator.stopAnimating()

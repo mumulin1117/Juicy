@@ -101,9 +101,7 @@ class JuicoyCollectionMasterController: JuicoySeconedViewController {
         JuicoyHeroPanel.addSubview(JuicoyHeroArtIcon)
         view.addSubview(JuicoySectionDivider)
         view.addSubview(JuicoyGhostIcon)
-//        JuicoyEmptyStateBox.addArrangedSubview(JuicoyGhostIcon)
-//        
-        
+  
         NSLayoutConstraint.activate([
         
             

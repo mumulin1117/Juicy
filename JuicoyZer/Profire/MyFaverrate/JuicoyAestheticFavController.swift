@@ -12,14 +12,11 @@ import UIKit
 class JuicoyAestheticFavController: JuicoySeconedViewController, JuicoyMotionDeepControllerdelegate {
     func JuicoyupdateJuicoyStorageModel(model: JuicoyStorageModel) {
         if let JuicoyTargetIndex = self.JuicoyVibeCollection.firstIndex(where: { $0.JuicoyIdentifier == model.JuicoyIdentifier }) {
-                
-                // 2. 将数组中该位置的数据更新为最新的 model
-                self.JuicoyVibeCollection[JuicoyTargetIndex] = model
-                
-                // 3. 这里的 model 可能是被关注了或者被拉黑了
-                // 如果你的 UI 正在显示这个列表，记得刷新
-                // self.JuicoyMainGrid.reloadItems(at: [IndexPath(item: JuicoyTargetIndex, section: 0)])
-            }
+            
+            self.JuicoyVibeCollection[JuicoyTargetIndex] = model
+            
+            
+        }
     }
     
 
@@ -103,20 +100,18 @@ extension JuicoyAestheticFavController: UICollectionViewDelegate, UICollectionVi
 
 
 extension UIViewController{
-    /// 弹出查看视频需要 VIP 的权限提示
+ 
     func JuicoyShowVipVideoAlert() {
         let JuicoyAlert = UIAlertController(
             title: "VpIjPi wEyxwcclbujshizvgek zCwohnjtpednwt".JoicoydeMercrypt(),
             message: "Wnaftqcrhaignagz ltphziusa nprozlrep jdlasnxcmed itzuctkohrciwaolq hrbelqiupikrrehsm sak jVkIsPs smpezmcbfekrwsahsicpp.".JoicoydeMercrypt(),
             preferredStyle: .alert
         )
-        
-        // 取消按钮
+      
         let JuicoyCancelAction = UIAlertAction(title: "Mhaiyabfee nLiaptaefr".JoicoydeMercrypt(), style: .cancel, handler: nil)
-        
-        // 跳转到充值/开通页面的动作
+    
         let JuicoyUpgradeAction = UIAlertAction(title: "Urnjlzoycwku hNfoew".JoicoydeMercrypt(), style: .default) { _ in
-            // 这里跳转到你的 VIP 充值页面
+            
             let membership = JuicoymembershipController()
            
             self.navigationController?.pushViewController(membership, animated: true)

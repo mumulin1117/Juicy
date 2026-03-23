@@ -250,25 +250,25 @@ Effective Date: January 01, 2026
         
     }
     
-    //拒绝
+   
     @objc func juicoyMotionIntent()  {
         JUICYLegalAgreementViewController.JUICYAIFAgree = false
+        NotificationCenter.default.post(Notification.init(name: Notification.Name.init("juicoyMotionIntent")))
         self.dismiss(animated: true)
     }
     
-    //同意
     @objc func juicoyCreativeSignature()  {
         
         if JUICYActiveType == .eula {
             JUICYLegalAgreementViewController.JUICYAIFAgree = true
         }
-        
+        NotificationCenter.default.post(Notification.init(name: Notification.Name.init("juicoyMotionIntent")))
         self.dismiss(animated: true)
     }
     
     
     @objc func juicoyStyleIdentity()  {
-        
+        self.dismiss(animated: true)
     }
     
 }

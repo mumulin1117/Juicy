@@ -213,7 +213,7 @@ class JuicoySeconedYEUIController: UIViewController {
     }
 
     @objc func JuicoyonRightBarButtonTapped() {
-        // 子类 override
+       
         self.navigationController?.pushViewController(JuicoyAlertReportController(), animated: true)
     }
 }
@@ -226,13 +226,13 @@ extension UIViewController{
         Juicoyappearance.configureWithOpaqueBackground()
         Juicoyappearance.backgroundColor = .clear
         
-        // 中间标题样式
+    
         Juicoyappearance.titleTextAttributes = [
             .foregroundColor:isWhiteTItle ? UIColor.white : UIColor.black,
             .font: UIFont.systemFont(ofSize: 16, weight: .semibold)
         ]
         
-        // 隐藏系统返回文字
+        
         Juicoyappearance.backButtonAppearance.normal.titleTextAttributes = [
             .foregroundColor: UIColor.clear
         ]

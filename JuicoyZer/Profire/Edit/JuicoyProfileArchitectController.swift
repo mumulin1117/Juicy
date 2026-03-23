@@ -314,14 +314,13 @@ class JuicoyProfileArchitectController: JuicoySeconedYEUIController {
     
     @objc private func JuicoyExecutePersistence() {
         guard var currentUser = JuicoyDataFactory.currentUserModel else { return }
-        
-        // 1. 提取 UI 上的新值
+      
         let newName = JuicoyNicknameField?.JuicoyGetValue() ?? ""
         let newBirth = JuicoyBirthField?.JuicoyGetValue() ?? ""
         let newWeight = JuicoyWeightField?.JuicoyGetValue() ?? ""
         let newHeight = JuicoyHeightField?.JuicoyGetValue() ?? ""
         
-        // 2. 更新本地模型字段
+        
         currentUser.JuicoyHandle = newName
         currentUser.JuicoyBirthEpoch = newBirth
         currentUser.JuicoyBodyMass = newWeight
@@ -330,15 +329,9 @@ class JuicoyProfileArchitectController: JuicoySeconedYEUIController {
         
         JuicoyDataFactory.Juicoyuserphtho =  JuicoyAvatarHalo.image
         JuicoyDataFactory.JuicoyuserBackground = uBagImags
-       
-        //(UIImage(systemName: "photo.on.rectangle"))
-        
-        
-        
-        // 3. 将更新后的模型写回全局单例
+      
         JuicoyDataFactory.currentUserModel = currentUser
-        
-        // 4. 执行 UI 提示和返回
+     
         JUICOYbeginLoad()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             

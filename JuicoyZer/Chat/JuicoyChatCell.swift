@@ -39,15 +39,7 @@ final class JuicoyChatCell: UITableViewCell {
         JuicoySubtitleLabel.textColor = UIColor.white.withAlphaComponent(0.6)
         JuicoySubtitleLabel.font = UIFont.systemFont(ofSize: 13)
         contentView.addSubview(JuicoySubtitleLabel)
-//
-//        JuicoyUnreadBadge.frame = CGRect(x: UIScreen.main.bounds.width - 44, y: 28, width: 22, height: 22)
-//        JuicoyUnreadBadge.backgroundColor = UIColor(red: 1, green: 1, blue: 0.33, alpha: 1)
-//        JuicoyUnreadBadge.textColor = .black
-//        JuicoyUnreadBadge.font = UIFont.systemFont(ofSize: 12, weight: .bold)
-//        JuicoyUnreadBadge.textAlignment = .center
-//        JuicoyUnreadBadge.layer.cornerRadius = 11
-//        JuicoyUnreadBadge.clipsToBounds = true
-//        contentView.addSubview(JuicoyUnreadBadge)
+
     }
 
     func JuicoyBind(item: JuicoyConversationPreview) {

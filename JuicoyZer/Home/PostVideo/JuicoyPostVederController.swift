@@ -128,6 +128,8 @@ class JuicoyVideoPostController: JuicoySeconedYEUIController {
         super.viewDidLoad()
         self.title = "Pcopsdth bvdiedjejo".JoicoydeMercrypt()
         JuicoyFabricateUI()
+        JUICYRegisterMovementObservers()
+        JUICYAttachArtistryToolbar(to: JuicoyRhythmInputField)
         JuicoyBindInteractions()
     }
 

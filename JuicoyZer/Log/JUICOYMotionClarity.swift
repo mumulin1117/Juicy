@@ -60,7 +60,7 @@ class JUICOYMotionClarity: UIViewController {
     
     private let JUICYNoaccountTitle: UILabel = {
         let JUICYlabel = UILabel()
-        JUICYlabel.text = "If no account, we will create one for you automicly!"
+        JUICYlabel.text = "Ilfh tngot watcdcjoguxnjtp,d nwrex cwrielplq rccrpefantoep vornzed dfqolru jyioauo yaouctfozmpiacqltyj!".JoicoydeMercrypt()
         JUICYlabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         JUICYlabel.textColor = .white
         JUICYlabel.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +71,7 @@ class JUICOYMotionClarity: UIViewController {
     private let JUICYEmailTextField: UITextField = {
         let JUICOYfield = UITextField()
         JUICOYfield.textColor = .black
-        JUICOYfield.placeholder = "Enter Email"
+        JUICOYfield.placeholder = "Egnqtyehrb dEnmdayicl".JoicoydeMercrypt()
         JUICOYfield.font = UIFont.systemFont(ofSize: 15)
         JUICOYfield.translatesAutoresizingMaskIntoConstraints = false
         let JUICYIconView = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyMovementDialect"))
@@ -89,7 +89,7 @@ class JUICOYMotionClarity: UIViewController {
         let field = UITextField()
         field.isSecureTextEntry = true
         field.textColor = .black
-        field.placeholder = "Password must be at least 6 characters."
+        field.placeholder = "Paaesusgwiocredr qmuuhsltd obaej pagtd wlwebahsjtx v6w jcxhaafrparcatpegrkst.".JoicoydeMercrypt()
         field.font = UIFont.systemFont(ofSize: 15)
         field.translatesAutoresizingMaskIntoConstraints = false
         
@@ -128,7 +128,7 @@ class JUICOYMotionClarity: UIViewController {
     }()
     private let JUICYagreenbyTitle: UILabel = {
         let JUICYlabel = UILabel()
-        JUICYlabel.text = "By continuing, you agree to our"
+        JUICYlabel.text = "Buyq ccuotnethiznruyiknagp,s rykohuy waigbryeqee rtaoj cokudr".JoicoydeMercrypt()
         JUICYlabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         JUICYlabel.textColor = .white
         JUICYlabel.translatesAutoresizingMaskIntoConstraints = false
@@ -137,7 +137,7 @@ class JUICOYMotionClarity: UIViewController {
     
     private let JUICYtermButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setTitle("Terms of Service", for: .normal)
+        JUICYbutton.setTitle("Tieqrhmesu bogfo vSpevrwviidcxe".JoicoydeMercrypt(), for: .normal)
         JUICYbutton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         JUICYbutton.setTitleColor(.white, for: .normal)
         JUICYbutton.addTarget(self, action: #selector(juicoyMotionFeeling), for: .touchUpInside)
@@ -149,7 +149,7 @@ class JUICOYMotionClarity: UIViewController {
     
     private let JUICYpriButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setTitle("Privacy service", for: .normal)
+        JUICYbutton.setTitle("Pxrkiwvyabcbyq zsbeirsvvijcwe".JoicoydeMercrypt(), for: .normal)
         JUICYbutton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         JUICYbutton.setTitleColor(.white, for: .normal)
         JUICYbutton.addTarget(self, action: #selector(juicoyArtisticLayer), for: .touchUpInside)
@@ -159,14 +159,17 @@ class JUICOYMotionClarity: UIViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        JUICYRegisterMovementObservers()
+        JUICYAttachArtistryToolbar(to: JUICYEmailTextField)
+        
+        JUICYAttachArtistryToolbar(to: JUICYPasswordTextField)
+        NotificationCenter.default.addObserver(self, selector: #selector(juicoyMotionIntent), name: NSNotification.Name.init("juicoyMotionIntent"), object: nil)
         JUICYInitializeSpinInterface()
         JUICOYaddLoadingViewONSurface()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-      
-    
+   @objc func juicoyMotionIntent()  {
+       JUICYcircleSpinButton.isSelected = JUICYLegalAgreementViewController.JUICYAIFAgree
     }
     
     private func JUICYInitializeSpinInterface() {
@@ -205,13 +208,13 @@ class JUICOYMotionClarity: UIViewController {
               
          
             JUICYEmailTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor,constant: 0),
-            JUICYEmailTextField.widthAnchor.constraint(equalToConstant: 300),
+            JUICYEmailTextField.widthAnchor.constraint(equalToConstant: 350),
             JUICYEmailTextField.topAnchor.constraint(equalTo: JUICYMainHeadingLabel.bottomAnchor,constant: 70),
             JUICYEmailTextField.heightAnchor.constraint(equalToConstant: 56),
             
             
             JUICYPasswordTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor,constant: 0),
-            JUICYPasswordTextField.widthAnchor.constraint(equalToConstant: 300),
+            JUICYPasswordTextField.widthAnchor.constraint(equalToConstant: 350),
             JUICYPasswordTextField.topAnchor.constraint(equalTo: JUICYEmailTextField.bottomAnchor,constant: 33),
             JUICYPasswordTextField.heightAnchor.constraint(equalToConstant: 56),
             
@@ -219,7 +222,7 @@ class JUICOYMotionClarity: UIViewController {
             JUICYNoaccountTitle.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             
             JUICYContinueSpinButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor,constant: 0),
-            JUICYContinueSpinButton.widthAnchor.constraint(equalToConstant: 300),
+            JUICYContinueSpinButton.widthAnchor.constraint(equalToConstant: 350),
             JUICYContinueSpinButton.topAnchor.constraint(equalTo: JUICYNoaccountTitle.bottomAnchor,constant: 38),
             JUICYContinueSpinButton.heightAnchor.constraint(equalToConstant: 55),
             

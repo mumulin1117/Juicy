@@ -73,7 +73,6 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
         
     }()
     
-    //拉黑刷新数据
     @objc func observeJuicoyUserBlacklisted() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -82,10 +81,12 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
         
         self.JuicoyFabricCollection =  JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainConversation(with: self.juicoyModel.JuicoyIdentifier)
         NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
-
+       
+        JUICYRegisterMovementObservers()
+        JUICYAttachArtistryToolbar(to: JUICYEmailTextField)
+        
         self.title = juicoyModel.JuicoyHandle
-//        JuicoyStaticBackdrop.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: juicoyModel.JuicoyAvatarKey)
-      
+     
         navigationItem.rightBarButtonItems =
             [
                
@@ -127,8 +128,6 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
             JuicoyChatTableView.topAnchor.constraint(equalTo: self.view.topAnchor,constant:JUICOYalltotalTop + 10),
             ])
     }
-    
-//举报
 
     @objc func JuicoyonReportButtonTapped() {
         self.navigationController?.pushViewController(JuicoyAlertReportController(), animated: true)
@@ -151,8 +150,6 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
         let JuicoyNewPulse = JuicoyFabricMessage(JuicoyContent: JuicoyRawText, JuicoyIsLead: false, JuicoyTimestamp: "")
         
       
-
-        // 保存到工厂缓存
         JuicoyDataFactory.JuicoySharedInstance.JuicoyPersistNewMessage(to: juicoyModel.JuicoyIdentifier, JuicoyMsg: JuicoyNewPulse)
         
         JuicoyFabricCollection.append(JuicoyNewPulse)
@@ -188,3 +185,56 @@ extension JuicoyMeadggFotuseController: UITextFieldDelegate {
     }
     
 }
+
+
+
+
+extension UIViewController {
+    
+    func JUICYRegisterMovementObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(JUICYHandleKeyboardSpin(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(JUICYHandleKeyboardSpin(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func JUICYHandleKeyboardSpin(notification: NSNotification) {
+        guard let JUICYUserInfo = notification.userInfo,
+              let JUICYFrame = (JUICYUserInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+              let JUICYDuration = JUICYUserInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
+        
+        let JUICYIsVisible = notification.name == UIResponder.keyboardWillShowNotification
+        let JUICYMoveDistance = JUICYIsVisible ? -JUICYFrame.height / 2 : 0
+        
+        UIView.animate(withDuration: JUICYDuration) {
+            self.view.frame.origin.y = JUICYMoveDistance
+        }
+    }
+    
+    func JUICYAttachArtistryToolbar(to JUICYField: UITextField) {
+        let JUICYToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        JUICYToolbar.barStyle = .default
+        
+        let JUICYFlexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let JUICYDoneSpinBtn = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(JUICYDismissStageKeyboard))
+        JUICYDoneSpinBtn.tintColor = UIColor.blue
+        
+        JUICYToolbar.items = [JUICYFlexSpace, JUICYDoneSpinBtn]
+        JUICYToolbar.sizeToFit()
+        
+        JUICYField.inputAccessoryView = JUICYToolbar
+    }
+    
+    @objc private func JUICYDismissStageKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+// 在你的 JUICYLoginViewController 的 viewDidLoad 中调用：
+/*
+override func viewDidLoad() {
+    super.viewDidLoad()
+    JUICYInitializeSpinInterface()
+    JUICYRegisterMovementObservers()
+    JUICYAttachArtistryToolbar(to: JUICYEmailTextField)
+    JUICYAttachArtistryToolbar(to: JUICYPasswordTextField)
+}
+*/

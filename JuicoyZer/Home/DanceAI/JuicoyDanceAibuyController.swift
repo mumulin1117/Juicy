@@ -9,7 +9,7 @@ import UIKit
 
 class JuicoyDanceAibuyController: JuicoySeconedViewController, JuicoyNotEnoughControllerDelegate {
     func toshowbuy() {
-//        JuicoyDataFactory.JuicoySharedInstance.JuicoyConsumeAiMessage()
+
         self.navigationController?.pushViewController(JuicoyWalletFluxController(), animated: true)
     }
     
@@ -30,7 +30,7 @@ class JuicoyDanceAibuyController: JuicoySeconedViewController, JuicoyNotEnoughCo
         super.viewWillAppear(animated)
         let factory = JuicoyDataFactory.JuicoySharedInstance
         
-        // 1. 检查是否还有剩余次数
+      
         if factory.JuicoyObtainAiQuota() > 0 {
             JUICYbutton.layer.cornerRadius = 31
             JUICYbutton.layer.masksToBounds = true
@@ -56,23 +56,22 @@ class JuicoyDanceAibuyController: JuicoySeconedViewController, JuicoyNotEnoughCo
 
     @objc func juicoyPoleAI() {
         let factory = JuicoyDataFactory.JuicoySharedInstance
-        
-        // 1. 检查是否还有剩余次数
+      
         if factory.JuicoyObtainAiQuota() > 0 {
-            // 直接进入 AI 对话界面
+           
             JuicoyDataFactory.JuicoySharedInstance.JuicoyConsumeAiMessage()
             self.navigationController?.pushViewController(JuicoyAiEnterController(), animated: true)
             return
         }
         
-        // 2. 剩余次数为 0，尝试扣除 300 金币进行购买
+      
         if factory.JuicoyPurchaseAiPackage() {
             self.JUICOYshowMessage("Pgukrqcxhaahsweh hSxuacvcuelsvsjfsuult!m k+e5m yAfIt aRpelsepjopnjsoers".JoicoydeMercrypt())
             JuicoyDataFactory.JuicoySharedInstance.JuicoyConsumeAiMessage()
-            // 购买成功后进入对话界面
+           
             self.navigationController?.pushViewController(JuicoyAiEnterController(), animated: true)
         } else {
-            // 3. 金币不足，展示余额不足页面
+          
             let juicoymodal = JuicoyNotEnoughController()
             juicoymodal.delegate = self
             juicoymodal.modalPresentationStyle = .overCurrentContext

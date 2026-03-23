@@ -11,12 +11,10 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
     func JuicoyupdateJuicoyStorageModel(model: JuicoyStorageModel) {
         if let JuicoyTargetIndex = self.cardsModels.firstIndex(where: { $0.JuicoyIdentifier == model.JuicoyIdentifier }) {
                 
-                // 2. 将数组中该位置的数据更新为最新的 model
                 self.cardsModels[JuicoyTargetIndex] = model
                 
-                // 3. 这里的 model 可能是被关注了或者被拉黑了
-                // 如果你的 UI 正在显示这个列表，记得刷新
-                // self.JuicoyMainGrid.reloadItems(at: [IndexPath(item: JuicoyTargetIndex, section: 0)])
+               
+                 self.JuicoyBottomCollectionView.reloadItems(at: [IndexPath(item: JuicoyTargetIndex, section: 0)])
             }
       
     }
@@ -123,8 +121,7 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
         JuicoyBottomCollectionView.contentInset = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
         return JuicoyBottomCollectionView
     }()
-    
-    //拉黑刷新数据
+   
     @objc func observeJuicoyUserBlacklisted() {
         self.JUICOYbeginLoad()
         JuicoyRefreshDynamicStream()
@@ -134,28 +131,20 @@ class JuicoyExploreOneController: JuicoyBasicController, UICollectionViewDelegat
         }))
         
     }
-    // 在 JuicoyExploreOneController 中
-
+  
     private func JuicoyRefreshDynamicStream() {
-        // 1. 从工厂获取所有有效数据（带封面的视频）
+ 
         let JuicoyPool = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedPayload().filter {
             !$0.JuicoyMediaCover.isEmpty
         }
         
-        // 2. 打乱顺序
         let JuicoyShuffledPool = JuicoyPool.shuffled()
-        
-        // 3. 随机决定展示的数量（例如 1 到 5 条）
+   
         let JuicoyRandomCount = Int.random(in: 1...min(5, JuicoyShuffledPool.count))
         
-        // 4. 更新当前控制器的 cardsModels
         self.cardsModels = Array(JuicoyShuffledPool.prefix(JuicoyRandomCount))
         
-        // 5. 刷新界面
-        // 假设你的列表变量名为 JuicoyMainGrid
-//        self.JuicoyMainGrid.reloadData()
-        
-        // 6. 可选：添加轻微的震动反馈增加真实感
+
         let JuicoyImpact = UIImpactFeedbackGenerator(style: .light)
         JuicoyImpact.impactOccurred()
     }

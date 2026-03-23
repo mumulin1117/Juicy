@@ -40,7 +40,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     @objc func juicoyShapeConsistency()  {
         self.navigationController?.pushViewController(JuicoyEssenceVaultController(), animated: true)
     }
-    //金币
+   
     private let JuicoyGDIOmentCount: UIButton = {
         let JuicoyView = UIButton()
         JuicoyView.layer.cornerRadius = 14
@@ -63,7 +63,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         self.navigationController?.pushViewController(JuicoyWalletFluxController(), animated: true)
      }
     
-    //edit
+   
     private let Juicoyedit: UIButton = {
         let JuicoyView = UIButton()
         JuicoyView.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyedit"), for: .normal)
@@ -156,7 +156,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyStack.alignment = .center
         return JuicoyStack
     }()
-//vip
+
     private lazy var JuicoyImperialVIPAd: UIButton = {
         let JuicoyBtn = UIButton()
         JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoysizevip"), for: .normal)
@@ -168,7 +168,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
    @objc func JJuicoyUMPJuicoymembershipController() {
        self.navigationController?.pushViewController(JuicoymembershipController(), animated: true)
     }
-//my video
+
     private let JuicoyGlimpseVideoHeader: UIButton = {
         let JuicoyView = UIButton()
         

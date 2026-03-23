@@ -173,11 +173,5 @@ class JuicoyBlockServiceController: UIViewController {
             self.dismiss(animated: false)
         }
     }
-    
-//    static func JuicoyShow(from JuicoyParent: UIViewController) {
-//        let JuicoyVC = JuicoyBlockServiceController(juicoyModel: <#JuicoyStorageModel#>)
-//        JuicoyVC.modalPresentationStyle = .overFullScreen
-//        JuicoyVC.modalTransitionStyle = .crossDissolve
-//        JuicoyParent.present(JuicoyVC, animated: true)
-//    }
+
 }

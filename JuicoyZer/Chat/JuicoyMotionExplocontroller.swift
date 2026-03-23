@@ -51,6 +51,8 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
         JuicoySearchField.translatesAutoresizingMaskIntoConstraints = false
         JuicoyChatTableView.translatesAutoresizingMaskIntoConstraints = false
         JuicoyChatTableView.backgroundColor = .clear
+        JUICYRegisterMovementObservers()
+        JUICYAttachArtistryToolbar(to: JuicoySearchField)
         
         JuicoyConfigureSearch()
         JuicoyAssembleFashionComponents()
@@ -187,7 +189,6 @@ extension JuicoyMotionExplocontroller: UITextFieldDelegate {
         return true
     }
     
-    // 当点击清除按钮时
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.JuicoyRestoreDiscoveryStream()

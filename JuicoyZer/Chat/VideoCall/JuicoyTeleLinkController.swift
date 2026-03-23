@@ -70,7 +70,6 @@ class JuicoyTeleLinkController: UIViewController {
         return JuicoyBtn
     }()
     
-    //拉黑刷新数据
     @objc func observeJuicoyUserBlacklisted() {
         self.dismiss(animated: true)
     }
@@ -126,20 +125,5 @@ class JuicoyTeleLinkController: UIViewController {
     
     @objc private func JuicoyExecDisconnect() {
         self.navigationController?.popViewController(animated: true)
-//        let JuicoyFeedback = UIImpactFeedbackGenerator(style: .heavy)
-//        JuicoyFeedback.impactOccurred()
-//        
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.view.alpha = 0
-//            self.view.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-//        }) { _ in
-//            self.dismiss(animated: false, completion: nil)
-//        }
     }
-    
-//    static func JuicoyLaunchSession(from JuicoyHost: UIViewController) {
-//        let JuicoyVC = JuicoyTeleLinkController()
-//        JuicoyVC.modalPresentationStyle = .fullScreen
-//        JuicoyHost.present(JuicoyVC, animated: true, completion: nil)
-//    }
 }

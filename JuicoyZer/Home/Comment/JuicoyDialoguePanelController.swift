@@ -190,7 +190,8 @@ class JuicoyDialoguePanelController: UIViewController {
         private func JuicoySetupInputVisuals() {
             JuicoyInputVault.addSubview(JuicoyDraftingField)
             JuicoyInputVault.addSubview(JuicoyVelocityEmit)
-            
+            JUICYRegisterMovementObservers()
+            JUICYAttachArtistryToolbar(to: JuicoyDraftingField)
             JuicoyDraftingField.delegate = self
             JuicoyVelocityEmit.addTarget(self, action: #selector(JuicoyExecuteSubmission), for: .touchUpInside)
             

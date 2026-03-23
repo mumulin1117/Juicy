@@ -399,9 +399,9 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
       
         
         guard let JuicoyURL = JuicoyResPulseArchitect.JuicoyExtractMediaStream(fullIdentifier: juicoyModel.JuicoyMediaUrl + ".mp4") else {
-            print("解密失败，请检查密钥或资源文件是否存在")
+        
             return }
-//        let JuicoyURL = URL(fileURLWithPath: JuicoyPath)
+
         let JuicoyItem = AVPlayerItem(url: JuicoyURL)
         
         
