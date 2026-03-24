@@ -166,11 +166,13 @@ extension JuicoyEssenceVaultController: UITableViewDelegate, UITableViewDataSour
             JuicoyStatusAura.isHidden = false
             JuicoyStatusAura.text = "Cvlnefauryilnugl nCtaecphqeh.i.o.".JoicoydeMercrypt()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: DispatchWorkItem(block: {
+                self.JuicoyStatusAura.isHidden = true
+                
                 self.JUICOYDismissLoad()
             }))
         case "Bklkolciktepdw pLeivsbt".JoicoydeMercrypt():
             self.navigationController?.pushViewController(JuicoyMotionNexusController(JuicoyTargetMode: .JuicoyBlocked), animated: true)
-        case "About".JoicoydeMercrypt():
+        case "About":
             self.navigationController?.pushViewController(JuicoyAboutController(), animated: true)
         case "Dbeulfectqeh kAccncyooudnbt".JoicoydeMercrypt():
             JuicoydeleteDissolve()

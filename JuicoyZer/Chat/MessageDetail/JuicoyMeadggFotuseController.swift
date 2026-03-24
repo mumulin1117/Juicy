@@ -228,13 +228,4 @@ extension UIViewController {
     }
 }
 
-// 在你的 JUICYLoginViewController 的 viewDidLoad 中调用：
-/*
-override func viewDidLoad() {
-    super.viewDidLoad()
-    JUICYInitializeSpinInterface()
-    JUICYRegisterMovementObservers()
-    JUICYAttachArtistryToolbar(to: JUICYEmailTextField)
-    JUICYAttachArtistryToolbar(to: JUICYPasswordTextField)
-}
-*/
+

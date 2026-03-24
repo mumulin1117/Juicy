@@ -35,7 +35,7 @@ struct JuicoyStorageModel: Codable {
     var JuicoyFaverateStatus: String
     var JuicoydiomonedCount: String
     var JUICOYUneedVIP:String
-    var JUICOYUVIPExpireTime:String
+//    var JUICOYUVIPExpireTime:Date?
     enum CodingKeys: String, CodingKey {
         case JuicoyIdentifier = "JUICOYUID"
         case JuicoyHandle = "JUICOYUName"
@@ -59,11 +59,15 @@ struct JuicoyStorageModel: Codable {
         case JuicoyFaverateStatus = "JuicoyFaverateStatus"
         case JuicoydiomonedCount = "JuicoydiomonedCount"
         case JUICOYUneedVIP = "JUICOYUneedVIP"
-        case JUICOYUVIPExpireTime = "JUICOYUVIPExpireTime"
+       
     }
 }
 
 class JuicoyDataFactory {
+    //VIP管理
+    private let JuicoyVipStatusKey = "JUICOY_USER_VIP_ACTIVE"
+    private let JuicoyVipExpiryKey = "JUICOY_USER_VIP_EXPIRY_DATE"
+    
     
     static let JuicoySharedInstance = JuicoyDataFactory()
     private var JuicoyLocalCache: [JuicoyStorageModel] = []
@@ -107,8 +111,9 @@ class JuicoyDataFactory {
                 JuicoyFollowStatus:JuicoyDict["JuicoyFollowStatus"] ?? "0",
                 JuicoyFaverateStatus: JuicoyDict["JuicoyFaverateStatus"] ?? "0",
                 JuicoydiomonedCount: JuicoyDict["JuicoydiomonedCount"] ?? "0",
-                JUICOYUneedVIP: JuicoyDict["JUICOYUneedVIP"] ?? "0",
-                JUICOYUVIPExpireTime:JuicoyDict["JUICOYUVIPExpireTime"] ?? "VIP not yet activated"
+                JUICOYUneedVIP: JuicoyDict["JUICOYUneedVIP"] ?? "0"
+//                ,
+//                JUICOYUVIPExpireTime:JuicoyDict["JUICOYUVIPExpireTime"] //?? "VIP not yet activated"
             )
         }
         
@@ -256,13 +261,16 @@ extension JuicoyDataFactory {
         if  let emailID =  UserDefaults.standard.object(forKey: "JUICOYloginEmsilID") as? String {
          
             let diomendCount = UserDefaults.standard.object(forKey: emailID) as? String ?? "0"
+            
+            let (isVip, expiryString) = JuicoyLoadVipProfileFromLocal()
+            
             if emailID == "juicy456@gmail.com" {
-                JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "Jusper", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "1", JUICOYUVIPExpireTime: "Expires on 2026-01-30")
-                
+                JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "Jusper", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: isVip ? "1" : "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "1")
+              
                 JuicoySetupTestAccountData()
             }else{
                 
-                JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "\(Int.random(in: 1000...9999))", JuicoyHandle: emailID, JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "No signiture", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: [""], JuicoyPassionTags: [], JuicoyBirthEpoch: "", JuicoyBodyMass: "", JuicoyVerticalStature: "", JuicoyConnectionInCount: "", JuicoyConnectionOutCount: "", JuicoyPremiumStatus: "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "0", JUICOYUVIPExpireTime: "VIP not yet activated")
+                JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "\(Int.random(in: 1000...9999))", JuicoyHandle: emailID, JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "No signiture", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: [""], JuicoyPassionTags: [], JuicoyBirthEpoch: "", JuicoyBodyMass: "", JuicoyVerticalStature: "", JuicoyConnectionInCount: "", JuicoyConnectionOutCount: "", JuicoyPremiumStatus: isVip ? "1" : "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "0")
             }
             
             
@@ -281,7 +289,7 @@ extension JuicoyDataFactory {
                 UserDefaults.standard.set("0", forKey: email)
             }
             
-            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "1", JUICOYUVIPExpireTime: "Expires on 2026-01-30")
+            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "1")
             
             JuicoySetupTestAccountData()
             return true
@@ -296,7 +304,7 @@ extension JuicoyDataFactory {
             if UserDefaults.standard.object(forKey: email) as? String == nil {
                 UserDefaults.standard.set("0", forKey: email)
             }
-            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "\(Int.random(in: 1000...9999))", JuicoyHandle: email, JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: [""], JuicoyPassionTags: [], JuicoyBirthEpoch: "", JuicoyBodyMass: "", JuicoyVerticalStature: "", JuicoyConnectionInCount: "", JuicoyConnectionOutCount: "", JuicoyPremiumStatus: "", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "0", JUICOYUVIPExpireTime: "VIP not yet activated")
+            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "\(Int.random(in: 1000...9999))", JuicoyHandle: email, JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: [""], JuicoyPassionTags: [], JuicoyBirthEpoch: "", JuicoyBodyMass: "", JuicoyVerticalStature: "", JuicoyConnectionInCount: "", JuicoyConnectionOutCount: "", JuicoyPremiumStatus: "", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "0")
             
             return true
         }
@@ -343,7 +351,8 @@ extension JuicoyDataFactory {
         JuicoyDataFactory.currentUserModel = nil
         
         UserDefaults.standard.removeObject(forKey: "JUICOYloginEmsilID")
-       
+        UserDefaults.standard.removeObject(forKey: JuicoyVipStatusKey)   // 清理 VIP 状态
+            UserDefaults.standard.removeObject(forKey: JuicoyVipExpiryKey)
         JuicoyDataFactory.JuicoyChatRegistry.removeAll()
         
         UserDefaults.standard.synchronize()
@@ -414,6 +423,135 @@ extension JuicoyDataFactory {
             }
             
         }
+        return false
+    }
+}
+
+
+extension JuicoyDataFactory {
+    
+    // 执行 VIP 购买并更新本地存储 (Purchase & Update)
+    func JuicoyUpgradeUserArtistryVip(with tier: Int) -> Bool {
+        // 先检查金币是否足够 (调用你现有的扣款逻辑)
+        let purchaseSuccess = self.JuicoyPurchaseRemebershio(JuicoySelectedTierIndex: tier)
+        
+        guard purchaseSuccess else { return false }
+        
+        // 计算新的到期时间
+        let calendar = Calendar.current
+        let (isCurrentlyVip, currentExpiry) = JuicoyLoadVipProfileFromLocal()
+        
+        // 如果当前是 VIP，在原到期日后累加；如果不是，从现在开始计算
+        let baseDate = (isCurrentlyVip && currentExpiry != nil) ? currentExpiry! : Date()
+        
+        var dateComponents = DateComponents()
+        switch tier {
+        case 0: dateComponents.day = 7    // 周卡
+        case 1: dateComponents.month = 1  // 月卡
+        case 2: dateComponents.month = 12 // 年卡 (假设索引2是年卡)
+        default: dateComponents.month = 1
+        }
+        
+        if let newExpiryDate = calendar.date(byAdding: dateComponents, to: baseDate) {
+            // 同步到本地
+            JuicoyPersistVipToLocal(status: true, expiry: newExpiryDate)
+            
+            // 同步到内存模型
+            JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus = "1"
+            return true
+        }
+        
+        return false
+    }
+
+    // 持久化存储 (Save)
+    private func JuicoyPersistVipToLocal(status: Bool, expiry: Date) {
+        UserDefaults.standard.set(status, forKey: JuicoyVipStatusKey)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateString = formatter.string(from: expiry)
+        UserDefaults.standard.set(dateString, forKey: JuicoyVipExpiryKey)
+        UserDefaults.standard.synchronize()
+    }
+
+    // 从本地加载并校验 (Load & Verify)
+    func JuicoyLoadVipProfileFromLocal() -> (isActive: Bool, expiry: Date?) {
+        let isStoredVip = UserDefaults.standard.bool(forKey: JuicoyVipStatusKey)
+        guard let dateString = UserDefaults.standard.string(forKey: JuicoyVipExpiryKey) else {
+            return (false, nil)
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        if let expiryDate = formatter.date(from: dateString) {
+            // 自动检查：如果当前时间超过到期时间，则 VIP 失效
+            if expiryDate < Date() {
+                return (false, expiryDate)
+            }
+            return (isStoredVip, expiryDate)
+        }
+        return (false, nil)
+    }
+    
+    func JuicoyObtainVipStatusNarrative() -> String {
+        let (JuicoyIsActive, JuicoyExpiryDate) = self.JuicoyLoadVipProfileFromLocal()
+        
+        if JuicoyIsActive, let JuicoyDate = JuicoyExpiryDate {
+            let JuicoyFormatter = DateFormatter()
+            // 使用标准的 年-月-日 格式
+            JuicoyFormatter.dateFormat = "yyyy-MM-dd"
+            let JuicoyDateString = JuicoyFormatter.string(from: JuicoyDate)
+            
+            // 如果是VIP，显示到期时间
+            return "Expiry Date: \(JuicoyDateString)"
+        } else {
+            // 如果不是VIP，显示提示语
+            return "You are not a VIP yet"
+        }
+        
+    }
+    
+    
+    
+}
+
+extension JuicoyDataFactory {
+    
+    func JuicoyProcessPurchaseAction(at JuicoyIndex: Int) -> Bool {
+        // 调用你现有的扣币逻辑
+        let JuicoySuccess = self.JuicoyPurchaseRemebershio(JuicoySelectedTierIndex: JuicoyIndex)
+        
+        guard JuicoySuccess else { return false }
+        
+        let JuicoyCalendar = Calendar.current
+        let (JuicoyActive, JuicoyCurrentExpiry) = self.JuicoyLoadVipProfileFromLocal()
+        let JuicoyBaseDate = (JuicoyActive && JuicoyCurrentExpiry != nil) ? JuicoyCurrentExpiry! : Date()
+        
+        var JuicoyNewExpiry: Date?
+        
+        switch JuicoyIndex {
+        case 0: // Weekly - 7 Days
+            JuicoyNewExpiry = JuicoyCalendar.date(byAdding: .day, value: 7, to: JuicoyBaseDate)
+        case 1: // Yearly - 1 Year
+            JuicoyNewExpiry = JuicoyCalendar.date(byAdding: .year, value: 1, to: JuicoyBaseDate)
+        case 2: // Lifetime - Set to year 2099
+            var JuicoyComp = DateComponents()
+            JuicoyComp.year = 2099
+            JuicoyComp.month = 1
+            JuicoyComp.day = 1
+            JuicoyNewExpiry = JuicoyCalendar.date(from: JuicoyComp)
+        default:
+            break
+        }
+        
+        if let JuicoyFinalDate = JuicoyNewExpiry {
+            // 保存到本地同步
+            self.JuicoyPersistVipToLocal(status: true, expiry: JuicoyFinalDate)
+            // 同步内存模型状态
+            JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus = "1"
+            return true
+        }
+        
         return false
     }
 }

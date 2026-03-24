@@ -57,9 +57,6 @@
             isEnabled = "YES">
          </AdditionalOption>
       </AdditionalOptions>
-      <StoreKitConfigurationFileReference
-         identifier = "../../JuicoyZer/com.juicoy.sparkle.storekit">
-      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

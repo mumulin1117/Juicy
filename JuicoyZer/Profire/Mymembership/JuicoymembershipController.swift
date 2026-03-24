@@ -15,8 +15,16 @@ class JuicoymembershipController: JuicoySeconedViewController {
         self.title = "Mvyg lMseamlbbegrbsrhcihp".JoicoydeMercrypt()
         JuicoyBuildArchitecture()
         JuicoyRefineTierSelection()
-        JuicoyEmpireVipBadge.tintColor =  (JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus == "1") ? UIColor.yellow : UIColor.lightGray
-        JuicoyExpirationAura.text = JuicoyDataFactory.currentUserModel?.JUICOYUVIPExpireTime
+//        JuicoyEmpireVipBadge.tintColor =  (JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus == "1") ? UIColor.yellow : UIColor.lightGray
+        JuicoyExpirationAura.text = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainVipStatusNarrative()
+        
+        if JuicoyExpirationAura.text?.contains("Expiry") == true {
+            JuicoyExpirationAura.textColor = .systemPurple // VIP 专属紫色
+            JuicoyEmpireVipBadge.tintColor = .systemPurple
+            } else {
+                JuicoyExpirationAura.textColor = .lightGray
+                JuicoyEmpireVipBadge.tintColor = .lightGray
+            }
     }
     
 
@@ -109,28 +117,25 @@ class JuicoymembershipController: JuicoySeconedViewController {
     
     @objc func juicoyPayForVIP() {
         JUICOYbeginLoad()
-        if JuicoyDataFactory.JuicoySharedInstance.JuicoyPurchaseRemebershio(JuicoySelectedTierIndex: JuicoySelectedTierIndex) {
+        let JuicoyIsSuccess = JuicoyDataFactory.JuicoySharedInstance.JuicoyProcessPurchaseAction(at: JuicoySelectedTierIndex)
+        
+        if JuicoyIsSuccess {
+            JuicoyExpirationAura.textColor = .systemPurple
             self.JUICOYshowMessage("Pbuprccrhyaxsmeo oSouucgceemsjsxfjuply!q oFqodru fVaItP".JoicoydeMercrypt())
             self.JUICOYDismissLoad()
-            JuicoyEmpireVipBadge.tintColor = .orange
-            if JuicoySelectedTierIndex == 0 {
-                JuicoyExpirationAura.text = "Expires on 2026-02-07"
+            JuicoyExpirationAura.text = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainVipStatusNarrative()
+            JuicoyEmpireVipBadge.tintColor = UIColor.systemPurple
+            JuicoyExpirationAura.textColor = UIColor.systemPurple
+            } else {
+                self.JUICOYshowMessage("Insufficient balance")
+                
+                self.JUICOYDismissLoad()
+                let juicoymodal = JuicoyWalletFluxController()
+                self.navigationController?.pushViewController(juicoymodal, animated: true)
             }
-            
-            if JuicoySelectedTierIndex == 1 {
-                JuicoyExpirationAura.text = "Expires on 2027-01-30"
-            }
-            
-            if JuicoySelectedTierIndex == 2 {
-                JuicoyExpirationAura.text = "Lifetime"
-            }
-            JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus = "1"
-            JuicoyDataFactory.currentUserModel?.JUICOYUVIPExpireTime = JuicoyExpirationAura.text ?? ""
-        } else {
-            self.JUICOYDismissLoad()
-            let juicoymodal = JuicoyWalletFluxController()
-            self.navigationController?.pushViewController(juicoymodal, animated: true)
-        }
+        
+        
+       
         
        
     }
