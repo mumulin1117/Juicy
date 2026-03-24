@@ -40,7 +40,7 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
       
     private lazy var  JUICYsendButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoydanceAiSend"), for: .normal)
+        JUICYbutton.setBackgroundImage(UIImage(named: "juicoydanceAiSend"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
         JUICYbutton.addTarget(self, action: #selector(JuicoyExecuteSignalTransmission), for: .touchUpInside)

@@ -50,7 +50,7 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
       
     private lazy var  JUICYsendButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoydanceAiSend"), for: .normal)
+        JUICYbutton.setImage(UIImage.init(named: "juicoydanceAiSend"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
         JUICYbutton.addTarget(self, action: #selector(JuicoyExecuteSignalTransmission), for: .touchUpInside)

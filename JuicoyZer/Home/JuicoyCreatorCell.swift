@@ -117,7 +117,7 @@ final class JuicoyCreatorCell: UICollectionViewCell {
     func JUICYmainfreverr(loie:JuicoyStorageModel)  {
         JuicoyImgView.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: loie.JuicoyAvatarKey)
         JUICYnameTitle.text = loie.JuicoyHandle
-        JUICYfanscountTitle.text = loie.JuicoyConnectionInCount  + " fooglvldobwgezrns".JoicoydeMercrypt()
+        JUICYfanscountTitle.text = loie.JuicoyConnectionInCount  + "fooglvldobwgezrns".JoicoydeMercrypt()
        
     }
 }
