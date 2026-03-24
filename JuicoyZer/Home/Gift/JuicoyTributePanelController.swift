@@ -6,7 +6,7 @@ protocol JuicoyLegacyTributeDelegate: AnyObject {
 }
 class JuicoyTributePanelController: UIViewController, JuicoyNotEnoughControllerDelegate {
     func toshowbuy() {
-        self.present(JuicoyWalletFluxController(), animated: true)
+        self.present(JuicoyThirdFluxController(), animated: true)
     }
     
     
@@ -223,7 +223,7 @@ class JuicoyTributePanelController: UIViewController, JuicoyNotEnoughControllerD
             self.present(juicoymodal, animated: true)
             
 //            self.JuicoyDelegate?.persentDimaonedController()
-//            self.navigationController?.pushViewController(JuicoyWalletFluxController(), animated: true)
+//            self.navigationController?.pushViewController(JuicoyThirdFluxController(), animated: true)
         }
         
         
@@ -346,7 +346,7 @@ class JuicoyTributeCell: UICollectionViewCell {
 
 extension JuicoyMotionDeepController: JuicoyLegacyTributeDelegate {
     func persentDimaonedController() {
-        self.navigationController?.pushViewController(JuicoyWalletFluxController(), animated: true)
+        self.navigationController?.pushViewController(JuicoyThirdFluxController(), animated: true)
     }
     
     

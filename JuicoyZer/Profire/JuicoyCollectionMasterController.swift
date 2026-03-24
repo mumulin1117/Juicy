@@ -57,16 +57,7 @@ class JuicoyCollectionMasterController: JuicoySeconedViewController {
         JuicoyView.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyView
     }()
-    
-//    private let JuicoyEmptyStateBox: UIStackView = {
-//        let JuicoyStack = UIStackView()
-//        JuicoyStack.axis = .vertical
-//        JuicoyStack.alignment = .center
-//        JuicoyStack.spacing = 15
-//        JuicoyStack.translatesAutoresizingMaskIntoConstraints = false
-//        return JuicoyStack
-//    }()
-    
+
     private let JuicoyGhostIcon: UIImageView = {
         let JuicoyView = UIImageView()
         JuicoyView.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyEmityData")

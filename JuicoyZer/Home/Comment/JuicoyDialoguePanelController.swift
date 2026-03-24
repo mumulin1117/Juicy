@@ -76,11 +76,10 @@ class JuicoyDialoguePanelController: UIViewController {
     private func JuicoyConstructLayout() {
         view.backgroundColor = .clear
         
-        // 假设这是从 JuicoyStorageModel 中获取的原始数据
+       
         let JuicoyOriginalComments = juicoyModel.JuicoyPublicFeedback
         var JuicoyFinalCommentManifest: [[String: String?]] = []
 
-        // 1. 先将原始 plist 中的评论转化为字典格式并加入最终数组
         for JuicoyText in JuicoyOriginalComments where !JuicoyText.isEmpty {
             let JuicoyItem = [
                 "JuicoyCommentBody": JuicoyText,
@@ -92,9 +91,7 @@ class JuicoyDialoguePanelController: UIViewController {
         }
 
         self.JuicoyTalkRegistry = JuicoyFinalCommentManifest
-        // 打印或使用最终的字典数组
-        // print(JuicoyFinalCommentManifest)
-        
+     
         
         let JuicoyDimmer = UITapGestureRecognizer(target: self, action: #selector(JuicoyDismissPanel))
         let JuicoyBg = UIView(frame: view.bounds)

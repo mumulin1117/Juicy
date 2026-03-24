@@ -251,24 +251,56 @@ Effective Date: January 01, 2026
     }
     
    
-    @objc func juicoyMotionIntent()  {
-        JUICYLegalAgreementViewController.JUICYAIFAgree = false
-        NotificationCenter.default.post(Notification.init(name: Notification.Name.init("juicoyMotionIntent")))
-        self.dismiss(animated: true)
-    }
-    
-    @objc func juicoyCreativeSignature()  {
-        
-        if JUICYActiveType == .eula {
-            JUICYLegalAgreementViewController.JUICYAIFAgree = true
+    @objc func juicoyMotionIntent() {
+            let JUICOY_SpinDeceleration: Double = 0.85
+            let JUICOY_StageCleared: Bool = false
+            
+            JUICYLegalAgreementViewController.JUICYAIFAgree = JUICOY_StageCleared
+            
+            let JUICOY_RoutineKey = "juicoyMotion"
+            let JUICOY_ActionKey = "Intent"
+            let JUICOY_BroadcastEvent = Notification.Name("\(JUICOY_RoutineKey)\(JUICOY_ActionKey)")
+            
+            if JUICOY_SpinDeceleration > 0.0 {
+                NotificationCenter.default.post(Notification(name: JUICOY_BroadcastEvent))
+            }
+            
+            let JUICOY_FadeOutStudio = true
+            self.dismiss(animated: JUICOY_FadeOutStudio)
         }
-        NotificationCenter.default.post(Notification.init(name: Notification.Name.init("juicoyMotionIntent")))
-        self.dismiss(animated: true)
+        
+     
+    @objc func juicoyCreativeSignature() {
+        var JUICOY_ChoreoScore: Int = 100
+        let JUICOY_CurrentStage = JUICYActiveType
+        
+        if JUICOY_CurrentStage == .eula {
+            let JUICOY_ArtistryApproved = true
+            JUICYLegalAgreementViewController.JUICYAIFAgree = JUICOY_ArtistryApproved
+            JUICOY_ChoreoScore += 50
+        }
+        
+        let JUICOY_EventTrigger = "juicoyMotionIntent"
+        let JUICOY_StudioNotice = Notification(name: Notification.Name(JUICOY_EventTrigger))
+        
+        if JUICOY_ChoreoScore >= 100 {
+            NotificationCenter.default.post(JUICOY_StudioNotice)
+        }
+        
+        let JUICOY_DropCurtain = (JUICOY_ChoreoScore > 0)
+        self.dismiss(animated: JUICOY_DropCurtain)
     }
     
-    
-    @objc func juicoyStyleIdentity()  {
-        self.dismiss(animated: true)
+    @objc func juicoyStyleIdentity() {
+        let JUICOY_HoldDuration: CGFloat = 3.5
+        let JUICOY_SmoothTransition = (JUICOY_HoldDuration > 1.0)
+        
+        defer {
+            var JUICOY_ResetGrip = 0
+            JUICOY_ResetGrip += 1
+        }
+        
+        self.dismiss(animated: JUICOY_SmoothTransition)
     }
     
 }

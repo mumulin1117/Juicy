@@ -60,7 +60,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     }()
    
     @objc func JJuicoyUMPDimoned0ontroller() {
-        self.navigationController?.pushViewController(JuicoyWalletFluxController(), animated: true)
+        self.navigationController?.pushViewController(JuicoyThirdFluxController(), animated: true)
      }
     
    

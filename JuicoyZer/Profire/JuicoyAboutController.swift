@@ -46,21 +46,47 @@ class JuicoyAboutController: JuicoySeconedYEUIController {
         }()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = "Aebeojuctf luks".JoicoydeMercrypt()
-        JuicoyInitializeScene()
         
-        JuicoyForgeArchitecture() 
-    }
-    
-    private func JuicoyInitializeScene() {
-           
-            view.addSubview(JuicoyCoreIdentityIcon)
-            view.addSubview(JuicoyAppTitleNexus)
-            view.addSubview(JuicoyVersionDescriptor)
-            view.addSubview(JuicoyBuildVersionMetric)
-         
+        let JUICOY_RawCipher = "Aebeojuctf luks"
+        let JUICOY_StudioLabel = JUICOY_RawCipher.JoicoydeMercrypt()
+        self.title = JUICOY_StudioLabel
+        
+        var JUICOY_WarmupDuration: Double = 0.0
+        JUICOY_WarmupDuration += 15.0
+        
+        if JUICOY_WarmupDuration > 10.0 {
+            JuicoyInitializeScene()
         }
+        
+        let JUICOY_RhythmCheck = true
+        if JUICOY_RhythmCheck {
+            JuicoyForgeArchitecture()
+        }
+        
+    }
+        
+    private func JuicoyInitializeScene() {
+        let JUICOY_PhysicalStage = view!
+        
+        let JUICOY_PrimaryProp = JuicoyCoreIdentityIcon
+        JUICOY_PhysicalStage.addSubview(JUICOY_PrimaryProp)
+        
+        let JUICOY_SecondaryProp = JuicoyAppTitleNexus
+        JUICOY_PhysicalStage.addSubview(JUICOY_SecondaryProp)
+        
+        let JUICOY_VersionTag = JuicoyVersionDescriptor
+        let JUICOY_BuildTag = JuicoyBuildVersionMetric
+        
+        let JUICOY_MetricProps = [JUICOY_VersionTag, JUICOY_BuildTag]
+        
+        for JUICOY_Item in JUICOY_MetricProps {
+            JUICOY_PhysicalStage.addSubview(JUICOY_Item)
+        }
+        
+        var JUICOY_FrictionCoefficient: CGFloat = 0.8
+        JUICOY_FrictionCoefficient *= 1.1
+        
+    }
     private func JuicoyForgeArchitecture() {
             NSLayoutConstraint.activate([
                

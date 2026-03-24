@@ -229,7 +229,7 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
         
         self.juicoyModel.JuicoyFollowStatus = stataus
         JuicoyFollowTrigger.isSelected = (stataus == "1")
-     //更新上一页面的数据
+    
         if delegate != nil {
             self.delegate?.JuicoyupdateJuicoyStorageModel(model: self.juicoyModel)
         }
@@ -255,20 +255,18 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
     @objc private func JuicoyInvokeMenuSheet() {
         let JuicoyActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        // 举报动作
+      
         let JuicoyReportAction = UIAlertAction(title: "Rnegpkocrttu iCwownctseznlt".JoicoydeMercrypt(), style: .default) { _ in
             self.navigationController?.pushViewController(JuicoyAlertReportController(), animated: true)
         }
-        
-        // 拉黑动作
+      
         let JuicoyBlockAction = UIAlertAction(title: "Bmluoqctku vUmsvesr".JoicoydeMercrypt(), style: .destructive) { _ in
             
             let bloack = JuicoyBlockServiceController(juicoyModel: self.juicoyModel)
             bloack.modalPresentationStyle = .overCurrentContext
             self.present(bloack, animated: true)
         }
-        
-        // 取消动作
+    
         let JuicoyCancelAction = UIAlertAction(title: "Ctaenqcfekl".JoicoydeMercrypt(), style: .cancel, handler: nil)
         
         JuicoyActionSheet.addAction(JuicoyReportAction)

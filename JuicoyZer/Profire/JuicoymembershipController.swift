@@ -130,7 +130,7 @@ class JuicoymembershipController: JuicoySeconedViewController {
                 self.JUICOYshowMessage("Insufficient balance")
                 
                 self.JUICOYDismissLoad()
-                let juicoymodal = JuicoyWalletFluxController()
+                let juicoymodal = JuicoyThirdFluxController()
                 self.navigationController?.pushViewController(juicoymodal, animated: true)
             }
         

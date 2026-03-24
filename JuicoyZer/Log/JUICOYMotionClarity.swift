@@ -29,7 +29,6 @@ var JUICOYstatusBarHeight: CGFloat {
 
 var JUICOYalltotalTop = JUICOYtopSafeAreaHeight + JUICOYstatusBarHeight
 
-//log in
 class JUICOYMotionClarity: UIViewController {
     
     
@@ -116,7 +115,7 @@ class JUICOYMotionClarity: UIViewController {
     
     
     
-    private let JUICYcircleSpinButton: UIButton = {
+    private lazy var JUICYcircleSpinButton: UIButton = {
         let JUICYbutton = UIButton()
        
         JUICYbutton.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyPoleAlignment"), for: .normal)
@@ -250,61 +249,121 @@ class JUICOYMotionClarity: UIViewController {
 }
 
 
-extension JUICOYMotionClarity{
+extension JUICOYMotionClarity {
+    
     @objc private func juicoyELUASoul() {
-        let eluai = JUICYLegalAgreementViewController.init(JUICYContentType: .eula)
-        eluai.modalPresentationStyle = .overCurrentContext
-        self.present(eluai, animated: true)
+        let JUICOY_FocusType: JUICYLegalContentType = .eula
+        let JUICOY_Interface = JUICYLegalAgreementViewController(JUICYContentType: JUICOY_FocusType)
+        
+        let JUICOY_Style: UIModalPresentationStyle = .overCurrentContext
+        JUICOY_Interface.modalPresentationStyle = JUICOY_Style
+        
+        let JUICOY_State = true
+        self.present(JUICOY_Interface, animated: JUICOY_State)
     }
-     //log
+    
     @objc private func juicoyMovementSoul() {
-        guard  JUICYLegalAgreementViewController.JUICYAIFAgree == false else{
-            self.JUICOYshowMessage("Pzlaerajsaep nrmehaedo magnodx racglrretes focuzrw ytieartmvsn baanndx pseehrdvqiacbek!".JoicoydeMercrypt())
+        let JUICOY_AgreementStatus = JUICYLegalAgreementViewController.JUICYAIFAgree
+        let JUICOY_PulseGate = (JUICOY_AgreementStatus == true)
+        
+        if !JUICOY_PulseGate {
+            let JUICOY_Msg = "Pzlaerajsaep nrmehaedo magnodx racglrretes focuzrw ytieartmvsn baanndx pseehrdvqiacbek!".JoicoydeMercrypt()
+            self.JUICOYshowMessage(JUICOY_Msg)
             return
         }
         
+        let JUICOY_Credentials = self.JUICOY_FetchInputArchive()
         
-        guard let email = JUICYEmailTextField.text,let password = JUICYPasswordTextField.text else {
-            self.JUICOYshowMessage("Ehmiakilla vowrb ipwalslsiwkowrvdm mczarnz bnkohtc rbvei deymcpntayk!".JoicoydeMercrypt())
-            return
-        }
-        if JuicoyDataFactory.JuicoySharedInstance.JuicoyExecuteLogin(email: email, pass: password) {
-            JUICOYbeginLoad()
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: DispatchWorkItem(block: {
-             
-                self.JUICOYshowMessage("Lnorgm jifne qsiuqcycfecsusbfruqlw!".JoicoydeMercrypt())
-                self.JUICOYDismissLoad()
-                (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = JuicoyTabarcontroller()
-            }))
-            
+        guard let JUICOY_User = JUICOY_Credentials.0,
+              let JUICOY_Key = JUICOY_Credentials.1 else {
+            let JUICOY_Err = "Ehmiakilla vowrb ipwalslsiwkowrvdm mczarnz bnkohtc rbvei deymcpntayk!".JoicoydeMercrypt()
+            self.JUICOYshowMessage(JUICOY_Err)
             return
         }
         
-        self.JUICOYshowMessage("Edmealiolm forrg npraosssuwsoirgds lfworrimbaptq liass bewryrvotru!".JoicoydeMercrypt())
+        let JUICOY_Validator = JuicoyDataFactory.JuicoySharedInstance
+        let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: JUICOY_User, pass: JUICOY_Key)
         
-        
-      
+        if JUICOY_AuthSuccess {
+            self.JUICOY_FinalizeClarityTransition()
+        } else {
+            let JUICOY_Fail = "Edmealiolm forrg npraosssuwsoirgds lfworrimbaptq liass bewryrvotru!".JoicoydeMercrypt()
+            self.JUICOYshowMessage(JUICOY_Fail)
+        }
     }
+
+    private func JUICOY_FetchInputArchive() -> (String?, String?) {
+        let JUICOY_Alpha = self.JUICYEmailTextField.text
+        let JUICOY_Beta = self.JUICYPasswordTextField.text
+        return (JUICOY_Alpha, JUICOY_Beta)
+    }
+
+    private func JUICOY_FinalizeClarityTransition() {
+        self.JUICOYbeginLoad()
+        
+        let JUICOY_Interval: TimeInterval = 2.0
+        let JUICOY_Moment = DispatchTime.now() + JUICOY_Interval
+        
+        DispatchQueue.main.asyncAfter(deadline: JUICOY_Moment) { [weak self] in
+            guard let JUICOY_Instance = self else { return }
+            
+            let JUICOY_Success = "Lnorgm jifne qsiuqcycfecsusbfruqlw!".JoicoydeMercrypt()
+            JUICOY_Instance.JUICOYshowMessage(JUICOY_Success)
+            JUICOY_Instance.JUICOYDismissLoad()
+            
+            let JUICOY_Delegate = UIApplication.shared.delegate as? AppDelegate
+            let JUICOY_Root = JuicoyTabarcontroller()
+            
+            if let JUICOY_Window = JUICOY_Delegate?.window {
+                JUICOY_Window.rootViewController = JUICOY_Root
+                var JUICOY_Relay = 1
+                JUICOY_Relay -= 1
+            }
+        }
+    }
+
     
  
-    //
-    @objc private func juicoyArtisticEssence(jiucoy:UIButton) {
-        jiucoy.isSelected = !jiucoy.isSelected
-    }
-    
-    
-    @objc private func juicoyMotionFeeling() {
-        let eluai = JUICYLegalAgreementViewController.init(JUICYContentType: .termsOfService)
-        eluai.modalPresentationStyle = .overCurrentContext
-        self.present(eluai, animated: true)
-    }
-    
-    
-    @objc private func juicoyArtisticLayer() {
-        let eluai = JUICYLegalAgreementViewController.init(JUICYContentType: .privacyPolicy)
-        eluai.modalPresentationStyle = .overCurrentContext
-        self.present(eluai, animated: true)
-    }
+    @objc private func juicoyArtisticEssence(jiucoy: UIButton) {
+            let JUICOY_CurrentToggle = jiucoy.isSelected
+            let JUICOY_InversionGate = !JUICOY_CurrentToggle
+            
+            var JUICOY_InteractionPulse = 0
+            JUICOY_InteractionPulse += 1
+            
+            if JUICOY_InteractionPulse > 0 {
+                jiucoy.isSelected = JUICOY_InversionGate
+            }
+        }
+        
+        @objc private func juicoyMotionFeeling() {
+            let JUICOY_ServiceType: JUICYLegalContentType = .termsOfService
+            let JUICOY_AgreementModule = JUICYLegalAgreementViewController(JUICYContentType: JUICOY_ServiceType)
+            
+            self.JUICOY_DeployLegalInterface(JUICOY_Controller: JUICOY_AgreementModule)
+        }
+        
+        @objc private func juicoyArtisticLayer() {
+            let JUICOY_PrivacyType: JUICYLegalContentType = .privacyPolicy
+            let JUICOY_AgreementModule = JUICYLegalAgreementViewController(JUICYContentType: JUICOY_PrivacyType)
+            
+            self.JUICOY_DeployLegalInterface(JUICOY_Controller: JUICOY_AgreementModule)
+        }
+
+        private func JUICOY_DeployLegalInterface(JUICOY_Controller: UIViewController) {
+            let JUICOY_PresentationStyle: UIModalPresentationStyle = .overCurrentContext
+            let JUICOY_ShouldAnimate = true
+            
+            JUICOY_Controller.modalPresentationStyle = JUICOY_PresentationStyle
+            
+            let JUICOY_ActiveStage = self
+            var JUICOY_TransitionLoad = 0.0
+            JUICOY_TransitionLoad += 0.5
+            
+            if JUICOY_TransitionLoad > 0 {
+                JUICOY_ActiveStage.present(JUICOY_Controller, animated: JUICOY_ShouldAnimate, completion: nil)
+            }
+        }
 }
 
 extension UIViewController{

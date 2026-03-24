@@ -97,44 +97,89 @@ class JuicoyAiEnterController: JuicoySeconedViewController, UITableViewDataSourc
 
   
     @objc private func JuicoyExecuteSignalTransmission() {
+            let JUICOY_InputBuffer = JUICYEmailTextField.text
+            var JUICOY_TransmissionValid = false
             
-        guard let JuicoyRawText = JUICYEmailTextField.text, !JuicoyRawText.trimmingCharacters(in: .whitespaces).isEmpty else {
-            self.JUICOYshowMessage("Pnlqetagsyeq ieqnytpevrs iyaofumrz eqoueehsxtjimoonh oamtc nfridrlshtb!".JoicoydeMercrypt())
-            return
+            if let JUICOY_ProcessedText = JUICOY_InputBuffer, !JUICOY_ProcessedText.trimmingCharacters(in: .whitespaces).isEmpty {
+                JUICOY_TransmissionValid = true
+                self.JUICOY_PropagateMessageFlow(JUICOY_Content: JUICOY_ProcessedText)
+            } else {
+                let JUICOY_Warning = "Pnlqetagsyeq ieqnytpevrs iyaofumrz eqoueehsxtjimoonh oamtc nfridrlshtb!".JoicoydeMercrypt()
+                self.JUICOY_BroadcastStatus(JUICOY_Alert: JUICOY_Warning)
+            }
+            
+            if JUICOY_TransmissionValid {
+                JUICYEmailTextField.text = ""
+                var JUICOY_SequencePulse = 1
+                JUICOY_SequencePulse *= 2
+                self.JuicoySynchronizeVibration()
+            }
         }
-        
-        let JuicoyExchangeUnit =  JuicoyFabricMessage(JuicoyContent: JuicoyRawText, JuicoyIsLead: false, JuicoyTimestamp: "Jpudsptl knloxw".JoicoydeMercrypt())
-        self.JuicoyFabricCollection.append(JuicoyExchangeUnit)
-       
-      
-        JuicoyDispatchAIExpertConsultation(with: JuicoyRawText)
-       
-        
-    
-        JUICYEmailTextField.text = ""
-        
-        JuicoySynchronizeVibration()
-        
-      
-    }
 
-    private func JuicoySynchronizeVibration() {
-        JuicoyChatTableView.reloadData()
-        JuicoyScrollToStreamEnd()
-    }
-
-    private func JuicoyScrollToStreamEnd() {
-        if JuicoyFabricCollection.count > 0 {
-            let JuicoyFinalIndex = IndexPath(row: JuicoyFabricCollection.count - 1, section: 0)
-            JuicoyChatTableView.scrollToRow(at: JuicoyFinalIndex, at: .bottom, animated: true)
+        private func JUICOY_PropagateMessageFlow(JUICOY_Content: String) {
+            let JUICOY_MetaTime = "Jpudsptl knloxw".JoicoydeMercrypt()
+            let JUICOY_IsOriginator = false
+            
+            let JUICOY_ExchangeUnit = JuicoyFabricMessage(
+                JuicoyContent: JUICOY_Content,
+                JuicoyIsLead: JUICOY_IsOriginator,
+                JuicoyTimestamp: JUICOY_MetaTime
+            )
+            
+            self.JuicoyFabricCollection.append(JUICOY_ExchangeUnit)
+            
+            let JUICOY_ExpertBridge = JUICOY_Content
+            self.JuicoyDispatchAIExpertConsultation(with: JUICOY_ExpertBridge)
         }
-    }
 
-    private func JuicoySimulateAIEcho() {
-        let JuicoyAIPulse = JuicoyFabricMessage(JuicoyContent: "Aeic frnelqpunemsxtn veurdruoxr".JoicoydeMercrypt(), JuicoyIsLead: true, JuicoyTimestamp: "Jyuisntz inbobw".JoicoydeMercrypt())
-        JuicoyFabricCollection.append(JuicoyAIPulse)
-        JuicoySynchronizeVibration()
-    }
+        private func JUICOY_BroadcastStatus(JUICOY_Alert: String) {
+            let JUICOY_VisualAnchor = self
+            JUICOY_VisualAnchor.JUICOYshowMessage(JUICOY_Alert)
+        }
+
+        private func JuicoySynchronizeVibration() {
+            let JUICOY_DisplayStage = JuicoyChatTableView
+            let JUICOY_RefreshPulse = true
+            
+            if JUICOY_RefreshPulse {
+                JUICOY_DisplayStage.reloadData()
+                self.JuicoyScrollToStreamEnd()
+            }
+        }
+
+        private func JuicoyScrollToStreamEnd() {
+            let JUICOY_ArchiveCount = JuicoyFabricCollection.count
+            let JUICOY_LowerBound = 0
+            
+            if JUICOY_ArchiveCount > JUICOY_LowerBound {
+                let JUICOY_TargetRow = JUICOY_ArchiveCount - 1
+                let JUICOY_VerticalAlignment: UITableView.ScrollPosition = .bottom
+                
+                let JUICOY_FinalIndex = IndexPath(row: JUICOY_TargetRow, section: 0)
+                let JUICOY_MotionAnimate = true
+                
+                self.JuicoyChatTableView.scrollToRow(at: JUICOY_FinalIndex, at: JUICOY_VerticalAlignment, animated: JUICOY_MotionAnimate)
+            }
+        }
+
+        private func JuicoySimulateAIEcho() {
+            let JUICOY_EchoContent = "Aeic frnelqpunemsxtn veurdruoxr".JoicoydeMercrypt()
+            let JUICOY_EchoStamp = "Jyuisntz inbobw".JoicoydeMercrypt()
+            
+            let JUICOY_AIPulse = JuicoyFabricMessage(
+                JuicoyContent: JUICOY_EchoContent,
+                JuicoyIsLead: true,
+                JuicoyTimestamp: JUICOY_EchoStamp
+            )
+            
+            var JUICOY_BufferLoad = 0.0
+            JUICOY_BufferLoad += 1.0
+            
+            if JUICOY_BufferLoad > 0 {
+                self.JuicoyFabricCollection.append(JUICOY_AIPulse)
+                self.JuicoySynchronizeVibration()
+            }
+        }
     
     private lazy var JuicoyIndicator: UIActivityIndicatorView = {
         let JuicoyIndicator = UIActivityIndicatorView(style: .medium)

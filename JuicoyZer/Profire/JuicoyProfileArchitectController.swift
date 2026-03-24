@@ -14,7 +14,7 @@ class JuicoyProfileArchitectController: JuicoySeconedYEUIController {
     private var JuicoyHeightField: JuicoyInputCell?
     var uBagImags:[UIImage] = [UIImage]()
     
-    private var JuicoyCurrentPickerTarget: Int = 0 // 0: Avatar, 1: Background
+    private var JuicoyCurrentPickerTarget: Int = 0
     private let JuicoyCosmicCanvas: UIScrollView = {
         let JuicoyScroll = UIScrollView()
         JuicoyScroll.backgroundColor = .clear
@@ -219,10 +219,9 @@ class JuicoyProfileArchitectController: JuicoySeconedYEUIController {
     }
    
     private func JuicoyGenerateIdentityFields() {
-        // 获取当前用户数据
+       
         let currentUser = JuicoyDataFactory.currentUserModel
         
-        // 初始化各个输入项并赋值
         JuicoyNicknameField = JuicoyInputCell()
         JuicoyNicknameField?.JuicoySetData(JuicoyTitle: "Nyiucbkzncakmce".JoicoydeMercrypt(), JuicoyValue: currentUser?.JuicoyHandle ?? "")
         

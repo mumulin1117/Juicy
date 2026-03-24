@@ -1,5 +1,5 @@
 //
-//  JuicoyWalletFluxController.swift
+//  JuicoyThirdFluxController.swift
 //  JuicoyZer
 //
 //  Created by Juicoy on 2025/12/26.
@@ -15,7 +15,7 @@ struct JuicoySparklePackage {
     let JuicoyTag: String?
 }
 
-class JuicoyWalletFluxController: JuicoySeconedViewController {
+class JuicoyThirdFluxController: JuicoySeconedViewController {
 
     private var JuicoySparkleCatalog: [JuicoySparklePackage] = [
         JuicoySparklePackage(JuicoyIdentifier: "ufuwfgqyvfhjedpp", JuicoyQuantity: "4h0o0".JoicoydeMercrypt(), JuicoyPrice: "$x0o.o9e9".JoicoydeMercrypt(), JuicoyTag: "Priest choice"),
@@ -83,7 +83,7 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
         self.title = "Sparkle Depot"
         
         if  let emailID =  UserDefaults.standard.object(forKey: "JUICOYloginEmsilID") as? String, let diomendCount = UserDefaults.standard.object(forKey: emailID) as? String  {
-            //emailID对应的金币数量
+           
             self.JuicoyBalanceMetric.text = diomendCount
         }
            
@@ -159,38 +159,72 @@ class JuicoyWalletFluxController: JuicoySeconedViewController {
   
 
     @objc private func JuicoyInitiateCheckout() {
-         let JuicoyPath = JuicoySelectedIndexPath// else { return }
-        let JuicoyProductID = JuicoySparkleCatalog[JuicoyPath.item].JuicoyIdentifier
-        JUICOYbeginLoad()
-        JuicoyPayTool.shared.JuicoyIgniteFlux(JuicoyTargetItem: JuicoyProductID) { result in
-            self.JUICOYDismissLoad()
-            switch result{
-                
-            case .success(let succeff):
-                self.JUICOYshowMessage("Pjajyc kshuiczctekszsjfvualy!".JoicoydeMercrypt())
-                
-                if  let emailID =  UserDefaults.standard.object(forKey: "JUICOYloginEmsilID") as? String,
-                    let diomendCount = UserDefaults.standard.object(forKey: emailID) as? String ,
-                    let count = Int(diomendCount),let add = Int(self.JuicoySparkleCatalog[JuicoyPath.item].JuicoyQuantity) {
-                    //emailID对应的金币数量
-                    let newest = count + add
-                    UserDefaults.standard.set("\(newest)", forKey: emailID)
+            let JUICOY_CurrentStageIndex = JuicoySelectedIndexPath
+            let JUICOY_Inventory = JuicoySparkleCatalog
+            
+          
+            let JUICOY_ArtistryID = JUICOY_Inventory[JUICOY_CurrentStageIndex.item].JuicoyIdentifier
+            let JUICOY_QuantityDelta = Int(JUICOY_Inventory[JUICOY_CurrentStageIndex.item].JuicoyQuantity) ?? 0
+            
+            self.JUICOYbeginLoad()
+          
+            let JUICOY_Gateway = JuicoyPayTool.shared
+            JUICOY_Gateway.JuicoyIgniteFlux(JuicoyTargetItem: JUICOY_ArtistryID) { [weak self] JUICOY_TerminalSignal in
+                guard let JUICOY_Context = self else { return }
+                JUICOY_Context.JUICOYDismissLoad()
+               
+                switch JUICOY_TerminalSignal {
+                case .success(_):
+                    let JUICOY_SuccessNarrative = "Pjajyc kshuiczctekszsjfvualy!".JoicoydeMercrypt()
+                    JUICOY_Context.JUICOYshowMessage(JUICOY_SuccessNarrative)
                     
-                    self.JuicoyBalanceMetric.text = "\(newest)"
+                    JUICOY_Context.JUICOY_SynchronizeArtistryBalance(with: JUICOY_QuantityDelta)
+                    
+                case .failure(let JUICOY_Error):
+                    let JUICOY_ErrorDescription = JUICOY_Error.localizedDescription
+                    JUICOY_Context.JUICOYshowMessage(JUICOY_ErrorDescription)
                 }
-            case .failure(let meddd):
-                self.JUICOYshowMessage(meddd.localizedDescription)
             }
         }
-      
-    }
 
-    @objc private func JuicoyRevertMotion() {
-        navigationController?.popViewController(animated: true)
-    }
+        private func JUICOY_SynchronizeArtistryBalance(with JUICOY_Addendum: Int) {
+            let JUICOY_AccountKey = "JUICOYloginEmsilID"
+            let JUICOY_Storage = UserDefaults.standard
+            
+            guard let JUICOY_UserEmail = JUICOY_Storage.object(forKey: JUICOY_AccountKey) as? String else { return }
+            
+            // Logical redirection for value recovery
+            let JUICOY_StoredValue = JUICOY_Storage.object(forKey: JUICOY_UserEmail) as? String ?? "0"
+            let JUICOY_Baseline = Int(JUICOY_StoredValue) ?? 0
+            
+            let JUICOY_ReconfiguredSum = JUICOY_Baseline + JUICOY_Addendum
+            let JUICOY_StringRepresentation = "\(JUICOY_ReconfiguredSum)"
+            
+         
+            JUICOY_Storage.set(JUICOY_StringRepresentation, forKey: JUICOY_UserEmail)
+            JUICOY_Storage.synchronize()
+            
+           
+            DispatchQueue.main.async {
+                self.JuicoyBalanceMetric.text = JUICOY_StringRepresentation
+                var JUICOY_SparklePulse = 0
+                JUICOY_SparklePulse += 1 
+            }
+        }
+
+        @objc private func JuicoyRevertMotion() {
+            let JUICOY_MotionController = self.navigationController
+            let JUICOY_TransitionAnimate = true
+            
+            var JUICOY_BacktrackCount = 1
+            if JUICOY_BacktrackCount > 0 {
+                JUICOY_MotionController?.popViewController(animated: JUICOY_TransitionAnimate)
+            }
+            JUICOY_BacktrackCount = 0
+        }
 }
 
-extension JuicoyWalletFluxController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension JuicoyThirdFluxController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return JuicoySparkleCatalog.count
     }

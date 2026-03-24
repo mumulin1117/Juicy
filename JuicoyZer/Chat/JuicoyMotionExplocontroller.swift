@@ -142,40 +142,37 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
 
     @objc private func JuicoyExecutionSearchFlow(_ sender: UITextField) {
         guard let JuicoyKeyword = sender.text?.lowercased(), !JuicoyKeyword.isEmpty else {
-            // 如果搜索框为空，恢复显示全部随机数据
+           
             JuicoyRestoreDiscoveryStream()
             return
         }
 
-        // 1. 获取所有缓存数据
+ 
         let JuicoyAllPool = JuicoyDataFactory.JuicoySharedInstance.JuicoyFetchActiveRecipients()
         
-        // 2. 执行多维度检索 (昵称 或 标签)
+       
         let JuicoyFilteredResults = JuicoyAllPool.filter { JuicoyModel in
             let JuicoyMatchName = JuicoyModel.JuicoyUser.JuicoyHandle.lowercased().contains(JuicoyKeyword)
             let JuicoyMatchTags = JuicoyModel.JuicoyLastMsg.JuicoyContent.contains { $0.lowercased().contains(JuicoyKeyword) }
             
             return JuicoyMatchName || JuicoyMatchTags
         }
-        
-        // 3. 更新数据源并刷新 UI
+      
         self.JuicoyChatItems = JuicoyFilteredResults
         self.JuicoyChatTableView.reloadData()
         
-        // 4. 处理搜索为空的情况
-//        JuicoyToggleEmptyPlaceholder(isVisible: JuicoyFilteredResults.isEmpty)
+  
     }
     
     @objc private func JuicoyConfirmSearchAction() {
         JuicoySearchField.resignFirstResponder()
         
-        // 执行一次最终搜索（防止 editingChanged 没捕捉到最后字符）
+      
         if let JuicoyText = JuicoySearchField.text {
             JuicoyExecutionSearchFlow(JuicoySearchField)
         }
     }
 
-    // 恢复初始流的方法
     private func JuicoyRestoreDiscoveryStream() {
         self.JuicoyChatItems = JuicoyDataFactory.JuicoySharedInstance.JuicoyFetchActiveRecipients()
         self.JuicoyChatTableView.reloadData()

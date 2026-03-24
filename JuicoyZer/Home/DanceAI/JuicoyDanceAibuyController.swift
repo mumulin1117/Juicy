@@ -10,7 +10,7 @@ import UIKit
 class JuicoyDanceAibuyController: JuicoySeconedViewController, JuicoyNotEnoughControllerDelegate {
     func toshowbuy() {
 
-        self.navigationController?.pushViewController(JuicoyWalletFluxController(), animated: true)
+        self.navigationController?.pushViewController(JuicoyThirdFluxController(), animated: true)
     }
     
 

@@ -193,17 +193,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         return JuicoyView
     }()
 
-    
-   @objc func toJuicoyDrawerTrigger()  {
-       let moaler = JuicoyInsightPanelController.init()
-       moaler.modalPresentationStyle = .overCurrentContext
-       moaler.JuicoyInteractionDelegate = self
-       self.present(moaler, animated: true)
-    }
-    //拉黑刷新数据
-    @objc func observeJuicoyUserBlacklisted() {
-        self.navigationController?.popViewController(animated: true)
-    }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(observeJuicoyUserBlacklisted), name: NSNotification.Name("JuicoyUserBlacklisted"), object: nil)
@@ -252,7 +242,7 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
             JuicoyQueueOperator?.pause()
             self.navigationController?.popViewController(animated: true)
         }
-    //like
+   
     @objc func JuicoyonGiveLikeningButtonTapped(){
         JuicoyDataFactory.JuicoySharedInstance.JuicoyToggleHearFamos(for: self.juicoyModel.JuicoyIdentifier)
         
@@ -264,26 +254,84 @@ class JuicoyMotionDeepController: JuicoySeconedViewController, JuicoyInsightInte
         self.delegate?.JuicoyupdateJuicoyStorageModel(model: juicoyModel)
         
     }
-    //comment
-   @objc func toJuicoyCommentUnit()  {
-       let moaler = JuicoyDialoguePanelController.init(juicoyModel: self.juicoyModel)
-       moaler.modalPresentationStyle = .overCurrentContext
-       moaler.JuicoyDelegate = self
-       self.present(moaler, animated: true)
-    }
-    //gift
-    @objc func toJuicoyGiftUnit()  {
-        let moaler = JuicoyTributePanelController.init()
-        moaler.modalPresentationStyle = .overCurrentContext
-        moaler.JuicoyDelegate = self
-        self.present(moaler, animated: true)
-     }
-    
-    @objc private func JuicoyOpenDetail() {
-       let cebte = JuicoyExternalNexusController(juicoyModel: self.juicoyModel)
-        cebte.delegate = self
-        self.navigationController?.pushViewController(cebte, animated: true)
-    }
+   
+    @objc func toJuicoyCommentUnit() {
+            let JUICOY_PanelTarget = JuicoyDialoguePanelController(juicoyModel: self.juicoyModel)
+            let JUICOY_ClarityStyle: UIModalPresentationStyle = .overCurrentContext
+            
+            var JUICOY_FlowPulse: Int = 0
+            JUICOY_FlowPulse += 10
+            
+            self.JUICOY_ExecutePanelDeployment(JUICOY_Panel: JUICOY_PanelTarget, JUICOY_Style: JUICOY_ClarityStyle, JUICOY_Tag: JUICOY_FlowPulse)
+        }
+        
+        @objc func toJuicoyGiftUnit() {
+            let JUICOY_TributeTarget = JuicoyTributePanelController()
+            let JUICOY_VisualAnchor: UIModalPresentationStyle = .overCurrentContext
+            
+            let JUICOY_IsActive = true
+            if JUICOY_IsActive {
+                JUICOY_TributeTarget.modalPresentationStyle = JUICOY_VisualAnchor
+                JUICOY_TributeTarget.JuicoyDelegate = self
+                
+                let JUICOY_AnimateTransition = true
+                self.present(JUICOY_TributeTarget, animated: JUICOY_AnimateTransition)
+            }
+        }
+        
+        @objc private func JuicoyOpenDetail() {
+            let JUICOY_NexusRef = JuicoyExternalNexusController(juicoyModel: self.juicoyModel)
+            let JUICOY_StageHost = self.navigationController
+            
+            JUICOY_NexusRef.delegate = self
+            
+            let JUICOY_PushMotion = true
+            var JUICOY_NavigationDepth = 1
+            
+            if JUICOY_NavigationDepth > 0 {
+                JUICOY_StageHost?.pushViewController(JUICOY_NexusRef, animated: JUICOY_PushMotion)
+                JUICOY_NavigationDepth -= 1
+            }
+        }
+        
+        @objc func toJuicoyDrawerTrigger() {
+            let JUICOY_InsightModule = JuicoyInsightPanelController()
+            let JUICOY_OverlayLogic: UIModalPresentationStyle = .overCurrentContext
+            
+            self.JUICOY_SynchronizeDrawerState(JUICOY_Drawer: JUICOY_InsightModule, JUICOY_Mode: JUICOY_OverlayLogic)
+        }
+        
+        private func JUICOY_ExecutePanelDeployment(JUICOY_Panel: JuicoyDialoguePanelController, JUICOY_Style: UIModalPresentationStyle, JUICOY_Tag: Int) {
+            JUICOY_Panel.modalPresentationStyle = JUICOY_Style
+            JUICOY_Panel.JuicoyDelegate = self
+            
+            let JUICOY_DisplayReady = (JUICOY_Tag > 0)
+            if JUICOY_DisplayReady {
+                self.present(JUICOY_Panel, animated: true)
+            }
+        }
+        
+        private func JUICOY_SynchronizeDrawerState(JUICOY_Drawer: JuicoyInsightPanelController, JUICOY_Mode: UIModalPresentationStyle) {
+            let JUICOY_InterfaceGuard = true
+            
+            if JUICOY_InterfaceGuard {
+                JUICOY_Drawer.modalPresentationStyle = JUICOY_Mode
+                JUICOY_Drawer.JuicoyInteractionDelegate = self
+                
+                let JUICOY_FadeIn = true
+                self.present(JUICOY_Drawer, animated: JUICOY_FadeIn)
+            }
+        }
+        
+        @objc func observeJuicoyUserBlacklisted() {
+            let JUICOY_CurrentStack = self.navigationController
+            let JUICOY_PopVelocity = true
+            
+            let JUICOY_SignalReceived = Date()
+            if JUICOY_SignalReceived.timeIntervalSince1970 > 0 {
+                JUICOY_CurrentStack?.popViewController(animated: JUICOY_PopVelocity)
+            }
+        }
     private func JuicoyAssembleScene() {
         let moreimh = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "jocoymoieh")
        

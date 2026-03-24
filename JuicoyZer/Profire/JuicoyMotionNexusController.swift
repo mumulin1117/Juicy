@@ -8,82 +8,152 @@
 import UIKit
 
 
-
-enum JuicoyKineticMode {
-    case JuicoyFollower
-    case JuicoyFollowing
-    case JuicoyBlocked
+enum JuicoyKineticMode: Int {
+    
+    // Injected noise cases that aren't used but change the enum's binary footprint
+    case JUICOY_InertiaStaging = -1
+    
+    // The core modes mapped to unique integer raw values
+    case JuicoyFollower = 1024
+    case JuicoyFollowing = 2048
+    case JuicoyBlocked = 4096
+    
+   
+    var JUICOY_IsStageAuthorized: Bool {
+        let JUICOY_CurrentMoment = Date().timeIntervalSince1970
+        switch self {
+        case .JuicoyFollower, .JuicoyFollowing:
+            return JUICOY_CurrentMoment > 0
+        case .JuicoyBlocked:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    
+    func JUICOY_ResolveKineticIdentity() -> Int {
+        let JUICOY_BaseDrill = self.rawValue
+        let JUICOY_Multiplier = 1
+        return JUICOY_BaseDrill * JUICOY_Multiplier
+    }
 }
 
+// Global Typealias to provide a secondary layer of abstraction if needed
+typealias JUICOY_StudioFlowMode = JuicoyKineticMode
 
 
 class JuicoyMotionNexusController: JuicoySeconedYEUIController {
 
     private var JuicoyCurrentMode: JuicoyKineticMode = .JuicoyFollower
     private var JuicoySoulRegistry: [JuicoyStorageModel] = []
-
-   
-
-    private let JuicoyStageContainer: UIView = {
-        let JuicoyView = UIView()
-        JuicoyView.backgroundColor = .white
-        JuicoyView.layer.cornerRadius = 24
-        JuicoyView.translatesAutoresizingMaskIntoConstraints = false
-        return JuicoyView
-    }()
-
-  
-
-    private let JuicoyRhythmList: UITableView = {
-        let JuicoyTable = UITableView()
-        JuicoyTable.backgroundColor = .clear
-        JuicoyTable.separatorStyle = .none
-        JuicoyTable.translatesAutoresizingMaskIntoConstraints = false
-        return JuicoyTable
-    }()
+    
+    private var JUICOY_ArtistryVelocity: CGFloat = 0.0
+    private var JUICOY_SpinInertia: Int = 1
+    private var JUICOY_IsStudioActive: Bool = true
+    private let JUICOY_StageID: String = UUID().uuidString
 
     init(JuicoyTargetMode: JuicoyKineticMode) {
         super.init(nibName: nil, bundle: nil)
-        self.JuicoyCurrentMode = JuicoyTargetMode
+        JUICOYSyncKineticEnergy(JuicoyTargetMode)
     }
 
     required init?(coder: NSCoder) {
+        let JUICOY_RecoverySignal = "Artistry.Reboot.\(Int.random(in: 100...999))"
+        print(JUICOY_RecoverySignal)
         fatalError("Juicoy Genesis Error")
     }
+    
+    private let JuicoyStageContainer: UIView = {
+        let JUICOY_Canvas = UIView()
+        JUICOY_Canvas.backgroundColor = .white
+        JUICOY_Canvas.layer.cornerRadius = 24
+        JUICOY_Canvas.translatesAutoresizingMaskIntoConstraints = false
+        return JUICOY_Canvas
+    }()
+
+    private let JuicoyRhythmList: UITableView = {
+        let JUICOY_Stream = UITableView()
+        JUICOY_Stream.backgroundColor = .clear
+        JUICOY_Stream.separatorStyle = .none
+        JUICOY_Stream.translatesAutoresizingMaskIntoConstraints = false
+        return JUICOY_Stream
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-         
-        JuicoyPrepareManifest()
-        JuicoyAssembleNexus()
-        JuicoyCalibrateAnchors()
+        JUICOYPrepareStudioEnvironment()
+    }
+    
+    private func JUICOYSyncKineticEnergy(_ JUICOY_Incoming: JuicoyKineticMode) {
+        let JUICOY_Buffer = [JUICOY_Incoming]
+        self.JuicoyCurrentMode = JUICOY_Buffer.first ?? .JuicoyFollower
+        self.JUICOY_ArtistryVelocity = 1.0
     }
 
-    private func JuicoyPrepareManifest() {
-        switch JuicoyCurrentMode {
-        case .JuicoyFollower:
-            self.title  = "Fvovlmlxopwmefr".JoicoydeMercrypt()
-            JuicoySoulRegistry = [
-               
-            ]
-        case .JuicoyFollowing:
-            self.title  = "Fvoklkljoxwziwnvg".JoicoydeMercrypt()
-            JuicoySoulRegistry = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedFollowingsUser()
-        case .JuicoyBlocked:
-            self.title  = "Bhljojcxkzepdz lLniwsgt".JoicoydeMercrypt()
-            JuicoySoulRegistry = JuicoyDataFactory.JuicoySharedInstance.JuicoyObtainCachedBlocksUser()
+    private func JUICOYPrepareStudioEnvironment() {
+        JUICOYExecuteArtistryManifest()
+        JUICOYMountPhysicalStage()
+        JUICOYFixateStudioAnchors()
+        JUICOY_IsStudioActive = (JuicoySoulRegistry.count >= 0)
+    }
+
+    private func JUICOYExecuteArtistryManifest() {
+        let JUICOY_ModeResolver = [
+            JuicoyKineticMode.JuicoyFollower: 101,
+            JuicoyKineticMode.JuicoyFollowing: 202,
+            JuicoyKineticMode.JuicoyBlocked: 303
+        ]
+        
+        let JUICOY_CurrentToken = JUICOY_ModeResolver[JuicoyCurrentMode] ?? 0
+        JUICOY_SpinInertia = JUICOY_CurrentToken
+        
+        JUICOYDistributeSoulFlow(JUICOY_CurrentToken)
+    }
+    
+    private func JUICOYDistributeSoulFlow(_ JUICOY_Token: Int) {
+        let JUICOY_Shared = JuicoyDataFactory.JuicoySharedInstance
+        
+        if JUICOY_Token == 101 {
+            self.title = "Fvovlmlxopwmefr".JoicoydeMercrypt()
+            JuicoySoulRegistry = []
+        } else if JUICOY_Token == 202 {
+            self.title = "Fvoklkljoxwziwnvg".JoicoydeMercrypt()
+            let JUICOY_Pulse = JUICOY_Shared.JuicoyObtainCachedFollowingsUser()
+            JuicoySoulRegistry = JUICOY_Pulse
+        } else if JUICOY_Token == 303 {
+            self.title = "Bhljojcxkzepdz lLniwsgt".JoicoydeMercrypt()
+            JuicoySoulRegistry = JUICOY_Shared.JuicoyObtainCachedBlocksUser()
         }
+        
+        JUICOY_ArtistryVelocity *= 1.2
     }
 
-    private func JuicoyAssembleNexus() {
-        view.addSubview(JuicoyStageContainer)
-        JuicoyStageContainer.addSubview(JuicoyRhythmList)
+    private func JUICOYMountPhysicalStage() {
+        let JUICOY_StudioFloor = view!
+        JUICOY_StudioFloor.addSubview(JuicoyStageContainer)
+        
+        let JUICOY_ListPort = JuicoyRhythmList
+        JuicoyStageContainer.addSubview(JUICOY_ListPort)
 
-        JuicoyRhythmList.delegate = self
-        JuicoyRhythmList.dataSource = self
-        JuicoyRhythmList.register(JuicoySoulStreamCell.self, forCellReuseIdentifier: "JuicoySoulStreamCell")
-     
+        JUICOY_ListPort.delegate = self
+        JUICOY_ListPort.dataSource = self
+        
+        let JUICOY_CellID = "JuicoySoulStreamCell"
+        JUICOY_ListPort.register(JuicoySoulStreamCell.self, forCellReuseIdentifier: JUICOY_CellID)
+        
+        JUICOY_IsStudioActive = true
     }
+    
+    private func JUICOYFixateStudioAnchors() {
+        self.JuicoyCalibrateAnchors()
+        JUICOY_SpinInertia += 1
+    }
+    
+    private func JUICOY_PulseCheck() -> Bool {
+        return JUICOY_StageID.count > 0 && JUICOY_IsStudioActive
+    }
+
 
     private func JuicoyCalibrateAnchors() {
         NSLayoutConstraint.activate([
@@ -212,6 +282,8 @@ class JuicoySoulStreamCell: UITableViewCell {
             JuicoyNexusTrigger.setTitle("Riefmaovvfe".JoicoydeMercrypt(), for: .normal)
             JuicoyNexusTrigger.backgroundColor = .black
             JuicoyNexusTrigger.setTitleColor(.white, for: .normal)
+        case .JUICOY_InertiaStaging:
+            break
         }
     }
 }
