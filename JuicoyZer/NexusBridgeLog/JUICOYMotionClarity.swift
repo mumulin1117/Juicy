@@ -200,7 +200,7 @@ class JUICOYMotionClarity: UIViewController {
             JUICYELUASpinButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -15),
             JUICYELUASpinButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: JUICOYalltotalTop + 40),
         
-            JUICYMainHeadingLabel.topAnchor.constraint(equalTo: JUICYELUASpinButton.bottomAnchor, constant:70),
+            JUICYMainHeadingLabel.topAnchor.constraint(equalTo: JUICYELUASpinButton.bottomAnchor, constant:60),
             JUICYMainHeadingLabel.widthAnchor.constraint(equalToConstant: 198),
             JUICYMainHeadingLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             JUICYMainHeadingLabel.heightAnchor.constraint(equalToConstant: 124),
@@ -208,7 +208,7 @@ class JUICOYMotionClarity: UIViewController {
          
             JUICYEmailTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor,constant: 0),
             JUICYEmailTextField.widthAnchor.constraint(equalToConstant: 350),
-            JUICYEmailTextField.topAnchor.constraint(equalTo: JUICYMainHeadingLabel.bottomAnchor,constant: 70),
+            JUICYEmailTextField.topAnchor.constraint(equalTo: JUICYMainHeadingLabel.bottomAnchor,constant: 60),
             JUICYEmailTextField.heightAnchor.constraint(equalToConstant: 56),
             
             
@@ -222,14 +222,14 @@ class JUICOYMotionClarity: UIViewController {
             
             JUICYContinueSpinButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor,constant: 0),
             JUICYContinueSpinButton.widthAnchor.constraint(equalToConstant: 350),
-            JUICYContinueSpinButton.topAnchor.constraint(equalTo: JUICYNoaccountTitle.bottomAnchor,constant: 38),
-            JUICYContinueSpinButton.heightAnchor.constraint(equalToConstant: 55),
+            JUICYContinueSpinButton.bottomAnchor.constraint(equalTo: JUICYcircleSpinButton.topAnchor,constant: -15),
+            JUICYContinueSpinButton.heightAnchor.constraint(equalToConstant: 50),
             
             
             JUICYcircleSpinButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 25),
             JUICYcircleSpinButton.widthAnchor.constraint(equalToConstant: 25),
             JUICYcircleSpinButton.heightAnchor.constraint(equalToConstant: 25),
-            JUICYcircleSpinButton.bottomAnchor.constraint(equalTo:self.view.bottomAnchor ,constant: -self.view.safeAreaInsets.bottom - 35),
+            JUICYcircleSpinButton.bottomAnchor.constraint(equalTo:self.view.bottomAnchor ,constant: -self.view.safeAreaInsets.bottom - 25),
             
             JUICYagreenbyTitle.leadingAnchor.constraint(equalTo: self.JUICYcircleSpinButton.trailingAnchor, constant: 8),
             JUICYagreenbyTitle.centerYAnchor.constraint(equalTo: JUICYcircleSpinButton.centerYAnchor),
@@ -274,9 +274,9 @@ extension JUICOYMotionClarity {
         
         let JUICOY_Credentials = self.JUICOY_FetchInputArchive()
         
-        guard let JUICOY_User = JUICOY_Credentials.0,
-              let JUICOY_Key = JUICOY_Credentials.1 else {
-            let JUICOY_Err = "Ehmiakilla vowrb ipwalslsiwkowrvdm mczarnz bnkohtc rbvei deymcpntayk!".JoicoydeMercrypt()
+        guard let JUICOY_User = JUICOY_Credentials.0,JUICOY_User.isEmpty == false,
+              let JUICOY_Key = JUICOY_Credentials.1,JUICOY_Key.isEmpty == false else {
+            let JUICOY_Err = "The email and password you entered cannot be empty!"
             self.JUICOYshowMessage(JUICOY_Err)
             return
         }
@@ -325,16 +325,19 @@ extension JUICOYMotionClarity {
     
  
     @objc private func juicoyArtisticEssence(jiucoy: UIButton) {
-            let JUICOY_CurrentToggle = jiucoy.isSelected
-            let JUICOY_InversionGate = !JUICOY_CurrentToggle
-            
-            var JUICOY_InteractionPulse = 0
-            JUICOY_InteractionPulse += 1
-            
-            if JUICOY_InteractionPulse > 0 {
-                jiucoy.isSelected = JUICOY_InversionGate
-            }
+        let JUICOY_CurrentToggle = jiucoy.isSelected
+        let JUICOY_InversionGate = !JUICOY_CurrentToggle
+        
+        var JUICOY_InteractionPulse = 0
+        JUICOY_InteractionPulse += 1
+        
+        if JUICOY_InteractionPulse > 0 {
+            jiucoy.isSelected = JUICOY_InversionGate
         }
+        
+        JUICYLegalAgreementViewController.JUICYAIFAgree =  JUICYcircleSpinButton.isSelected
+        
+    }
         
         @objc private func juicoyMotionFeeling() {
             let JUICOY_ServiceType: JUICYLegalContentType = .termsOfService

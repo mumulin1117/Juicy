@@ -8,6 +8,23 @@
 import UIKit
 
 class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , JuicoyExternalNexusControllerDelegate, JuicoyMotionDeepControllerdelegate {
+   
+    private lazy var JuicoyMainScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = false
+      
+        scrollView.alwaysBounceVertical = true
+        return scrollView
+    }()
+
+    private lazy var JuicoyScrollContentView: UIView = {
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+    
+    
     func JuicoyupdateJuicoyStorageModel(model: JuicoyStorageModel) {
         if let JuicoyTargetIndex = self.cardsModels.firstIndex(where: { $0.JuicoyIdentifier == model.JuicoyIdentifier }) {
                 
@@ -59,59 +76,88 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
         JuicoyRefreshDynamicStream()
         view.addSubview(JUICYMotionStageContainer)
         view.addSubview(JUICYAddSpinButton)
-        view.addSubview(JUICYPoleSpinButton)
-        view.addSubview(JUICYPoleLoveButton)
+        view.addSubview(JuicoyMainScrollView)
+        JuicoyMainScrollView.addSubview(JuicoyScrollContentView)
         
-        view.addSubview(JuicoyCardContainerView)
-        view.addSubview(JUICYrecommendsr)
-        view.addSubview(JuicoyBottomCollectionView)
+       
+        JuicoyScrollContentView.addSubview(JUICYPoleSpinButton)
+        JuicoyScrollContentView.addSubview(JUICYPoleLoveButton)
+        JuicoyScrollContentView.addSubview(JuicoyCardContainerView)
+        JuicoyScrollContentView.addSubview(JUICYrecommendsr)
+        JuicoyScrollContentView.addSubview(JuicoyBottomCollectionView)
+        
         JUICOYconstrainet()
         JUICOYaddLoadingViewONSurface()
     }
     
+    private var isJuicoyInitialLayoutDone = false
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-       
-        if JuicoyCardViews.isEmpty {
+        // 只有在第一次确定了尺寸且模型不为空时才配置
+        if !isJuicoyInitialLayoutDone && JuicoyCardContainerView.bounds.width > 0 && !cardsModels.isEmpty {
             JuicoyConfigureCards()
+            isJuicoyInitialLayoutDone = true
         }
     }
-    func JUICOYconstrainet()  {
+    func JUICOYconstrainet() {
+        // 适配比例因子（沿用上一条建议的比例适配，确保视觉统一）
+        let ratio = UIScreen.main.bounds.width / 375.0
+        func f(_ v: CGFloat) -> CGFloat { return v * ratio }
+
         NSLayoutConstraint.activate([
-            JUICYMotionStageContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            JUICYMotionStageContainer.widthAnchor.constraint(equalToConstant: 69),
-            JUICYMotionStageContainer.heightAnchor.constraint(equalToConstant: 30),
-            JUICYMotionStageContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: JUICOYtopSafeAreaHeight + 14),
+            JUICYMotionStageContainer.centerXAnchor.constraint(equalTo: JuicoyScrollContentView.centerXAnchor),
+            JUICYMotionStageContainer.widthAnchor.constraint(equalToConstant: f(69)),
+            JUICYMotionStageContainer.heightAnchor.constraint(equalToConstant: f(30)),
+            JUICYMotionStageContainer.topAnchor.constraint(equalTo: self.view.topAnchor, constant: JUICOYtopSafeAreaHeight + f(14)),
             
-            JUICYAddSpinButton.widthAnchor.constraint(equalToConstant: 35),
-            JUICYAddSpinButton.heightAnchor.constraint(equalToConstant: 35),
-            JUICYAddSpinButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -19),
+            JUICYAddSpinButton.widthAnchor.constraint(equalToConstant: f(35)),
+            JUICYAddSpinButton.heightAnchor.constraint(equalToConstant: f(35)),
+            JUICYAddSpinButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -f(19)),
             JUICYAddSpinButton.centerYAnchor.constraint(equalTo: JUICYMotionStageContainer.centerYAnchor),
+            // ScrollView 占据全屏
+            JuicoyMainScrollView.topAnchor.constraint(equalTo: JUICYAddSpinButton.bottomAnchor,constant: 5),
+            JuicoyMainScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            JuicoyMainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            JuicoyMainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            JUICYPoleSpinButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15),
-            JUICYPoleSpinButton.heightAnchor.constraint(equalToConstant: 83),
-            JUICYPoleSpinButton.topAnchor.constraint(equalTo: self.JUICYAddSpinButton.bottomAnchor, constant: 25),
+            // ContentView 约束（决定滚动范围的关键）
+            JuicoyScrollContentView.topAnchor.constraint(equalTo: JuicoyMainScrollView.topAnchor),
+            JuicoyScrollContentView.leadingAnchor.constraint(equalTo: JuicoyMainScrollView.leadingAnchor),
+            JuicoyScrollContentView.trailingAnchor.constraint(equalTo: JuicoyMainScrollView.trailingAnchor),
+            JuicoyScrollContentView.bottomAnchor.constraint(equalTo: JuicoyMainScrollView.bottomAnchor),
+            JuicoyScrollContentView.widthAnchor.constraint(equalTo: JuicoyMainScrollView.widthAnchor),
+            
+         
+            JUICYPoleSpinButton.leadingAnchor.constraint(equalTo: JuicoyScrollContentView.leadingAnchor, constant: f(15)),
+            JUICYPoleSpinButton.heightAnchor.constraint(equalToConstant: f(83)),
+            JUICYPoleSpinButton.topAnchor.constraint(equalTo: JuicoyScrollContentView.topAnchor, constant: f(15)),
             JUICYPoleSpinButton.widthAnchor.constraint(equalTo: JUICYPoleLoveButton.widthAnchor),
             
-            JUICYPoleLoveButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15),
-            JUICYPoleLoveButton.heightAnchor.constraint(equalToConstant: 83),
-            JUICYPoleLoveButton.topAnchor.constraint(equalTo: self.JUICYAddSpinButton.bottomAnchor, constant: 25),
-            
-            JuicoyBottomCollectionView.heightAnchor.constraint(equalToConstant: 98),
-            JuicoyBottomCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            JuicoyBottomCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            JuicoyBottomCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor,constant:-self.view.safeAreaInsets.bottom - (self.tabBarController?.tabBar.frame.height ?? 0) - 20),
+            JUICYPoleLoveButton.leadingAnchor.constraint(equalTo: JUICYPoleSpinButton.trailingAnchor, constant: 15),
+            JUICYPoleLoveButton.trailingAnchor.constraint(equalTo: JuicoyScrollContentView.trailingAnchor, constant: -f(15)),
+            JUICYPoleLoveButton.heightAnchor.constraint(equalToConstant: f(83)),
+            JUICYPoleLoveButton.topAnchor.constraint(equalTo: JuicoyScrollContentView.topAnchor, constant: f(15)),
            
-            JUICYrecommendsr.widthAnchor.constraint(equalToConstant: 130),
-            JUICYrecommendsr.heightAnchor.constraint(equalToConstant: 21),
-            JUICYrecommendsr.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 15),
-            JUICYrecommendsr.bottomAnchor.constraint(equalTo: JuicoyBottomCollectionView.topAnchor, constant: -15),
+            JuicoyCardContainerView.leadingAnchor.constraint(equalTo: JuicoyScrollContentView.leadingAnchor, constant: f(15)),
+            JuicoyCardContainerView.trailingAnchor.constraint(equalTo: JuicoyScrollContentView.trailingAnchor, constant: -f(15)),
+            JuicoyCardContainerView.topAnchor.constraint(equalTo: JUICYPoleSpinButton.bottomAnchor, constant: f(55)),
+           
+            JuicoyCardContainerView.heightAnchor.constraint(equalToConstant: f( UIScreen.main.bounds.height > 700 ? 380 : 300)),
             
-            JuicoyCardContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            JuicoyCardContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            JuicoyCardContainerView.bottomAnchor.constraint(equalTo: JUICYrecommendsr.topAnchor, constant: -15),
-            JuicoyCardContainerView.topAnchor.constraint(equalTo: JUICYPoleSpinButton.bottomAnchor, constant: 55)
+            JUICYrecommendsr.widthAnchor.constraint(equalToConstant: f(130)),
+            JUICYrecommendsr.heightAnchor.constraint(equalToConstant: f(21)),
+            JUICYrecommendsr.leadingAnchor.constraint(equalTo: JuicoyScrollContentView.leadingAnchor, constant: f(15)),
+            JUICYrecommendsr.topAnchor.constraint(equalTo: JuicoyCardContainerView.bottomAnchor, constant: f(20)),
+            
+            JuicoyBottomCollectionView.heightAnchor.constraint(equalToConstant: f(98)),
+            JuicoyBottomCollectionView.leadingAnchor.constraint(equalTo: JuicoyScrollContentView.leadingAnchor),
+            JuicoyBottomCollectionView.trailingAnchor.constraint(equalTo: JuicoyScrollContentView.trailingAnchor),
+            JuicoyBottomCollectionView.topAnchor.constraint(equalTo: JUICYrecommendsr.bottomAnchor, constant: f(15)),
+            
+            // 非常重要：最后一个控件的 bottom 必须连接到 ContentView 的 bottom
+            JuicoyBottomCollectionView.bottomAnchor.constraint(equalTo: JuicoyScrollContentView.bottomAnchor, constant: -f(40))
         ])
     }
     private lazy var  JUICYMotionStageContainer: UIImageView = {
@@ -202,13 +248,20 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
    
 
     private func JuicoyConfigureCards() {
-       
+        JuicoyScrollContentView.layoutIfNeeded()
+           
+        JuicoyCardContainerView.layoutIfNeeded()
         JuicoyCardViews.forEach { $0.removeFromSuperview() }
         JuicoyCardViews.removeAll()
         
-      
-        for JuicoyIndex in (0..<5).reversed() {
+        if JuicoyCardContainerView.bounds.width == 0 {
+            
+            return
+            
+        }
+        for JuicoyIndex in (0..<cardsModels.count).reversed() {
             let JuicoyCard = JuicoyMovementCardView(frame: JuicoyCardContainerView.bounds)
+            JuicoyCard.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             JuicoyCard.isUserInteractionEnabled = true
             JuicoyCard.layer.cornerRadius = 10
             JuicoyCard.JUICYmainfreverr(loie: cardsModels[JuicoyIndex])
@@ -223,6 +276,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
             JuicoyCard.JuicoyMoreButton.addTarget(self, action: #selector(JuicoyonRightBarButtonTapped), for: .touchUpInside)
             JuicoyCardContainerView.addSubview(JuicoyCard)
             JuicoyCardViews.insert(JuicoyCard, at: 0)
+            JuicoyCardContainerView.bringSubviewToFront(JuicoyCard)
         }
         
    
@@ -237,6 +291,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
         
         let JuicoyPan = UIPanGestureRecognizer(target: self, action: #selector(JuicoyHandlePan))
         JuicoyTopCard.addGestureRecognizer(JuicoyPan)
+        JuicoyPan.cancelsTouchesInView = false
         JuicoyTopCard.isUserInteractionEnabled = true
     }
 
@@ -296,7 +351,15 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
             if !self.JuicoyCardViews.isEmpty {
                 self.JuicoyCardViews.removeFirst()
             }
-            self.JuicoyPromoteNextCard()
+            if self.JuicoyCardViews.isEmpty {
+                        // 如果卡片刷完了，重新获取数据并配置
+                        self.JuicoyRefreshDynamicStream() // 重新随机数据
+                        self.JuicoyConfigureCards()       // 重新生成卡片视图
+                    } else {
+                        self.JuicoyPromoteNextCard()
+                    }
+            
+//            self.JuicoyPromoteNextCard()
         }
     }
 

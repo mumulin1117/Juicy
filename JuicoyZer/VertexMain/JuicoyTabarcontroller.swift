@@ -148,6 +148,7 @@ class JuicoySeconedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+
         configureNavigationBarAppearance(isWhiteTItle: true)
     }
     
@@ -175,6 +176,7 @@ class JuicoySeconedYEUIController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+        
         configureNavigationBarAppearance(isWhiteTItle: false)
     }
     override func viewDidLoad() {
@@ -225,6 +227,11 @@ extension UIViewController{
         let Juicoyappearance = UINavigationBarAppearance()
         Juicoyappearance.configureWithOpaqueBackground()
         Juicoyappearance.backgroundColor = .clear
+        
+ 
+        
+        Juicoyappearance.shadowColor = .clear
+        Juicoyappearance.shadowImage = UIImage()
         
     
         Juicoyappearance.titleTextAttributes = [

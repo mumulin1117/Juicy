@@ -22,9 +22,10 @@ class JuicoyDanceAibuyController: JuicoySeconedViewController, JuicoyNotEnoughCo
         air.contentMode = .scaleAspectFill
         self.view.addSubview(air)
         
-        view.addSubview(JUICYPoleLoveButton)
+        view.addSubview(JUICYbutton)
+        JUICYbutton.addTarget(self, action: #selector(juicoyPoleAI), for: .touchUpInside)
     }
-    let JUICYbutton = UIButton.init(frame: CGRect.init(x: (UIScreen.main.bounds.width - 345)/2, y: (UIScreen.main.bounds.height - 62 - JUICOYstatusBarHeight - 30), width: 345, height: 62))
+    let JUICYbutton = UIButton.init(frame: CGRect.init(x: (UIScreen.main.bounds.width - 345)/2, y: (UIScreen.main.bounds.height - 62 - JUICOYstatusBarHeight ), width: 345, height: 62))
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -45,13 +46,13 @@ class JuicoyDanceAibuyController: JuicoySeconedViewController, JuicoyNotEnoughCo
         }
         
     }
-    private lazy var JUICYPoleLoveButton: UIButton = {
-       
-       
-         
-        JUICYbutton.addTarget(self, action: #selector(juicoyPoleAI), for: .touchUpInside)
-        return JUICYbutton
-    }()
+//    private lazy var JUICYPoleLoveButton: UIButton = {
+//       
+//       
+//         
+//        
+//        return JUICYbutton
+//    }()
     
 
     @objc func juicoyPoleAI() {

@@ -152,7 +152,7 @@
 		<key>JUICOYUVINfofolloweisvip</key>
 		<string>1</string>
 		<key>JUICOYUneedVIP</key>
-		<string>1</string>
+		<string>0</string>
 	</dict>
 	<dict>
 		<key>JUICOYUID</key>
@@ -228,7 +228,7 @@
 		<key>JUICOYUVINfofolloweisvip</key>
 		<string>1</string>
 		<key>JUICOYUneedVIP</key>
-		<string>1</string>
+		<string>0</string>
 	</dict>
 	<dict>
 		<key>JUICOYUID</key>
@@ -266,7 +266,7 @@
 		<key>JUICOYUVINfofolloweisvip</key>
 		<string>1</string>
 		<key>JUICOYUneedVIP</key>
-		<string>1</string>
+		<string>0</string>
 	</dict>
 	<dict>
 		<key>JUICOYUID</key>
@@ -304,7 +304,7 @@
 		<key>JUICOYUVINfofolloweisvip</key>
 		<string>1</string>
 		<key>JUICOYUneedVIP</key>
-		<string>1</string>
+		<string>0</string>
 	</dict>
 	<dict>
 		<key>JUICOYUID</key>
@@ -412,7 +412,7 @@
 		<key>JUICOYUVINfofollowerscount</key>
 		<string>3</string>
 		<key>JUICOYUVINfofolloweisvip</key>
-		<string>1</string>
+		<string>0</string>
 	</dict>
 	<dict>
 		<key>JUICOYUID</key>

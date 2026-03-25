@@ -78,7 +78,7 @@ extension JuicoyPayTool: SKPaymentTransactionObserver {
                 SKPaymentQueue.default().finishTransaction(JuicoyTx)
                 let JuicoyIssue: Error
                 if (JuicoyTx.error as? SKError)?.code == .paymentCancelled {
-                    JuicoyIssue = NSError(domain: "JuicoyApp", code: -999, userInfo: [NSLocalizedDescriptionKey: "Ugsseiry ihoadlitveudc rtthjey cvqirbxez.".JoicoydeMercrypt()])
+                    JuicoyIssue = NSError(domain: "JuicoyApp", code: -999, userInfo: [NSLocalizedDescriptionKey: "Cdawnacyemlp bpeayytmlesnit".JoicoydeMercrypt()])
                 } else {
                     JuicoyIssue = JuicoyTx.error ?? NSError(domain: "JuicoyApp", code: 703, userInfo: [NSLocalizedDescriptionKey: "Frldumxy lijnhtieerrrzukpltiiroyng.".JoicoydeMercrypt()])
                 }

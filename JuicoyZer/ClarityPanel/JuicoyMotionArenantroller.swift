@@ -26,7 +26,8 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         let JuicoyImg = UIImageView()
         JuicoyImg.contentMode = .scaleAspectFill
         JuicoyImg.clipsToBounds = true
-        JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyProfileCover")
+        
+        JuicoyImg.image = UIImage(named: "jouicyanweitu")//JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicoyProfileCover")
         return JuicoyImg
     }()
 
@@ -228,6 +229,9 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     }
 
     private func JuicoyCalibrateFabricArchitecture() {
+        let ratio = UIScreen.main.bounds.height / 812.0
+        func f(_ v: CGFloat) -> CGFloat { return v * ratio }
+
         NSLayoutConstraint.activate([
             JuicoyVelvetScrollContainer.topAnchor.constraint(equalTo: view.topAnchor),
             JuicoyVelvetScrollContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -244,7 +248,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
             JuicoyStageCoverImage.topAnchor.constraint(equalTo: JuicoyFabricContentStack.topAnchor),
             JuicoyStageCoverImage.leadingAnchor.constraint(equalTo: JuicoyFabricContentStack.leadingAnchor),
             JuicoyStageCoverImage.trailingAnchor.constraint(equalTo: JuicoyFabricContentStack.trailingAnchor),
-            JuicoyStageCoverImage.heightAnchor.constraint(equalToConstant: 380),
+            JuicoyStageCoverImage.heightAnchor.constraint(equalToConstant: 300*ratio),
 
            
             JuicoyGlassSettingTrigger.topAnchor.constraint(equalTo: JuicoyFabricContentStack.topAnchor, constant: 50),
@@ -369,7 +373,8 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         guard let useiINfo = JuicoyDataFactory.currentUserModel else {
             return
         }
-        JuicoyStageCoverImage.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: useiINfo.JuicoyAvatarKey)
+//        JuicoyStageCoverImage.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: useiINfo.JuicoyAvatarKey)
+        
         JuicoyIconicAvatarFrame.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: useiINfo.JuicoyAvatarKey)
         JuicoyStylePersonaName.text = useiINfo.JuicoyHandle
         
@@ -383,7 +388,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
             JuicoyStageCoverImage.image = JuicoyDataFactory.JuicoyuserBackground?.first!
            
         }else{
-            JuicoyStageCoverImage.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyDynamicLog")
+            JuicoyStageCoverImage.image = UIImage(named: "jouicyanweitu")//JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyDynamicLog")
         }
         
         if JuicoyDataFactory.Juicoyuserphtho != nil{
