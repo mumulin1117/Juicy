@@ -1,0 +1,6 @@
+framework module Pods_JuicoyZer {
+  umbrella header "Pods-JuicoyZer-umbrella.h"
+
+  export *
+  module * { export * }
+}
