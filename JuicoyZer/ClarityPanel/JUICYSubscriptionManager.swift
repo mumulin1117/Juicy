@@ -2,7 +2,7 @@
 //  JUICYSubscriptionManager.swift
 //  JuicoyZer
 //
-//  Created by mumu on 2026/3/24.
+//  Created by  on 2026/3/24.
 //
 
 import Foundation

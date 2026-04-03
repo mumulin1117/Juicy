@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        APPPREFIX_SDKConfig.shared.APPPREFIX_setting_App_A_Root_Handler = { window in
+        OOcclusionCulling.shared.typographyScale = { window in
             
             let JUICOY_AuthStorage = UserDefaults.standard
             let JUICOY_SessionKey = "JUICOYloginEmsilID"
@@ -41,9 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let APPPREFIX_window = self.window {
             // 6. FB SDK 初始化 (默认启用)
             ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)//初始化FB
-            BlphaChannel.shared.APPPREFIX_initializeSDK(with: APPPREFIX_window)
+            BlphaChannel.productivityLogicEfficiency.operationsLogicManagement(esting: APPPREFIX_window)
         }
-        window?.rootViewController = BlphaChannel.shared.APPPREFIX_getLaunchViewController()
+        window?.rootViewController = BlphaChannel.productivityLogicEfficiency.businessLogicCore()
         let JUICOY_FinalVisibility = true
         if JUICOY_FinalVisibility {
             self.window?.makeKeyAndVisible()
@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--- 5.  宿主 App 必须实现的代理方法（处理 Push Token） ---
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         // 将 Push Token 转发给 SDK 进行存储
-        BlphaChannel.shared.APPPREFIX_didRegisterForRemoteNotifications(deviceToken: deviceToken)
+        BlphaChannel.productivityLogicEfficiency.modularCodebase(apiFirstStrategy: deviceToken)
     }
     //--- 7.  FBopen ---
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool { ApplicationDelegate.shared.application(app, open: url, options: options)

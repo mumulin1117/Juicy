@@ -206,47 +206,18 @@ extension JuicoyResPulseArchitect {
         }
 }
 
-//extension Data {
-//    init?(hexString: String) {
-//        
-//        let JuicoyInputLen = hexString.count
-//        
-//        guard JuicoyInputLen % 2 == 0 else { return nil }
-//        var JuicoyAccumulator = Data(capacity: JuicoyInputLen / 2)
-//        var JuicoyIterator = hexString.startIndex
-//        let JuicoyBitMask: UInt8 = 0xFF
-//        while JuicoyIterator < hexString.endIndex {
-//            let JuicoyNextPair = hexString.index(JuicoyIterator, offsetBy: 2)
-//            let JuicoyHexSub = hexString[JuicoyIterator..<JuicoyNextPair]
-//            if let JuicoyValue = UInt8(JuicoyHexSub, radix: 16) {
-//                let JuicoyNeutralValue = JuicoyValue & JuicoyBitMask
-//                JuicoyAccumulator.append(JuicoyNeutralValue)
-//            } else {
-//                return nil
-//            }
-//            JuicoyIterator = JuicoyNextPair
-//        }
-//        if JuicoyAccumulator.count == (JuicoyInputLen / 2) {
-//            self = JuicoyAccumulator
-//        } else {
-//            return nil
-//        }
-//    }
-//}
 extension Data {
     init?(hexString: String) {
         let JuicoyInputSource = hexString.trimmingCharacters(in: .whitespacesAndNewlines)
         let JuicoySourceCount = JuicoyInputSource.count
-        
-        // 1. 结构化特征混淆：通过逻辑拆分检查
+       
         let JuicoyIsEven = (JuicoySourceCount % 2 == 0)
         let JuicoyMinThreshold = 0
         
         guard JuicoyIsEven && JuicoySourceCount > JuicoyMinThreshold else {
             return nil
         }
-        
-        // 2. 引入中转转换层：通过序列映射替代直接循环
+       
         let JuicoyHexArchive = Array(JuicoyInputSource)
         let JuicoyExpectedCapacity = JuicoySourceCount / 2
         
@@ -258,7 +229,7 @@ extension Data {
             let JuicoyBitMask: UInt8 = 0xFF
             
             if let JuicoyRawValue = UInt8(JuicoyFragment, radix: JuicoyRadixBase) {
-                // 通过位掩码逻辑混淆
+               
                 return JuicoyRawValue & JuicoyBitMask
             }
             return nil
@@ -267,18 +238,18 @@ extension Data {
             let JuicoyUpperLimit = JuicoyCursor + JuicoyStepOffset
             let JuicoyHexFragment = String(JuicoyHexArchive[JuicoyCursor..<JuicoyUpperLimit])
             
-            // 4. 增加业务关联噪声：模拟位运算校验
+          
             let JuicoyByteVal = JuicoyTranslateHexToByte(JuicoyFragment: JuicoyHexFragment)
             
             if let JuicoyValidByte = JuicoyByteVal {
-                let JuicoyKineticByte = JuicoyValidByte ^ 0x00 // 恒等干扰
+                let JuicoyKineticByte = JuicoyValidByte ^ 0x00
                 JuicoyConstructedBuffer.append(JuicoyKineticByte)
             } else {
                 return nil
             }
         }
         
-        // 5. 校验结果指纹隐晦化
+      
         if JuicoyConstructedBuffer.count == JuicoyExpectedCapacity {
             self = JuicoyConstructedBuffer
         } else {
@@ -286,6 +257,6 @@ extension Data {
         }
     }
     
-    // 独立私有方法，彻底打碎原始函数结构
+   
     
 }
