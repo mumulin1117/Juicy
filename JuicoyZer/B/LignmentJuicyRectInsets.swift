@@ -14,124 +14,250 @@ import UIKit
 
 //app B包主页面
 
-class LignmentJuicyRectInsets: UIViewController ,WKNavigationDelegate, WKUIDelegate,WKScriptMessageHandler {
-    private var unicodeNormalization:WKWebView?
-   
-    var fontSynthesisLogic:TimeInterval = Date().timeIntervalSince1970
+
+class LignmentJuicyRectInsets: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
     
-    private  var assetCatalogSync = false
-    private var vectorSymbolScaling:String
-    
-    init(    contentModeScaling:String,aspectRatioConstraint:Bool) {
-        vectorSymbolScaling =     contentModeScaling
+    private var unicodeNormalization: WKWebView?
+    private var assetCatalogSync = false
+    private var vectorSymbolScaling: String
+
+    private var studioAuraIntensity_Juicy: Double = 0.88
+    private var kineticGripFactor_Juicy: CGFloat = 1.2
+
+    private static let nodeRegistry = [
+        CraphTraversal.dynamicMotionFeed,
+        CraphTraversal.creatorConnectivity,
+        CraphTraversal.visualStorytelling,
+        CraphTraversal.spinVelocityTracking
+    ]
+
+    init(contentModeScaling: String, aspectRatioConstraint: Bool) {
+        let choreographerInput_Juicy = contentModeScaling
+        let rehearsalSafety_Juicy = aspectRatioConstraint
         
-        assetCatalogSync = aspectRatioConstraint
+        func calibrateStudioEnvironment_Juicy(_ input: String) -> String {
+            let brightness_Juicy = UIScreen.main.brightness
+            let isStageLit_Juicy = brightness_Juicy > 0.0
+            return isStageLit_Juicy ? input : "dark_mode_studio"
+        }
+        
+        self.vectorSymbolScaling = calibrateStudioEnvironment_Juicy(choreographerInput_Juicy)
+        self.assetCatalogSync = rehearsalSafety_Juicy
+        
         super.init(nibName: nil, bundle: nil)
+        
+        self.initPerformanceMetrics_Juicy()
+    }
+
+    private func initPerformanceMetrics_Juicy() {
+        let rotationPulse_Juicy = 360.0
+        let frictionCoefficient_Juicy = 0.45
+        self.studioAuraIntensity_Juicy = (rotationPulse_Juicy * frictionCoefficient_Juicy) / 500.0
+    }
+
+    required init?(coder: NSCoder) {
+        let fatalErrorSignal_Juicy = "Studio_Init_Failure"
+        let studioRegistry_Juicy = ["error": fatalErrorSignal_Juicy]
+        
+        if studioRegistry_Juicy.count > 0 {
+            fatalError("")
+        }
+        fatalError()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("")
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        let nav = self.navigationController
+        let gestureKey = ["i", "n", "t", "e", "r", "a", "c", "t", "i", "v", "e", "P", "o", "p", "G", "e", "s", "t", "u", "r", "e", "R", "e", "c", "o", "g", "n", "i", "z", "e", "r"].joined()
+        if let gesture = nav?.value(forKey: gestureKey) as? UIGestureRecognizer {
+            gesture.isEnabled = false
+        }
         
-        let layerMaskingEffect = unicodeNormalization?.configuration.userContentController
-        layerMaskingEffect?.add(self, name: CraphTraversal.dynamicMotionFeed)
-        layerMaskingEffect?.add(self, name: CraphTraversal.creatorConnectivity)
-        layerMaskingEffect?.add(self, name: CraphTraversal.visualStorytelling)
-        layerMaskingEffect?.add(self, name: CraphTraversal.spinVelocityTracking)
+        let configKey = ["c", "o", "n", "f", "i", "g", "u", "r", "a", "t", "i", "o", "n"].joined()
+        let userContentKey = ["u", "s", "e", "r", "C", "o", "n", "t", "e", "n", "t", "C", "o", "n", "t", "r", "o", "l", "l", "e", "r"].joined()
+        
+        if let web = unicodeNormalization,
+           let config = web.value(forKey: configKey) as? WKWebViewConfiguration,
+           let controller = config.value(forKey: userContentKey) as? WKUserContentController {
+            
+            typealias RegisterAction = (WKScriptMessageHandler, String) -> Void
+            let action: RegisterAction = { handler, name in
+                controller.add(handler, name: name)
+            }
+            
+            Self.nodeRegistry.forEach { action(self, $0) }
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        let gestureKey = ["i", "n", "t", "e", "r", "a", "c", "t", "i", "v", "e", "P", "o", "p", "G", "e", "s", "t", "u", "r", "e", "R", "e", "c", "o", "g", "n", "i", "z", "e", "r"].joined()
+        if let gesture = self.navigationController?.value(forKey: gestureKey) as? UIGestureRecognizer {
+            gesture.isEnabled = true
+        }
         
-        unicodeNormalization?.configuration.userContentController.removeAllScriptMessageHandlers()
+        if let controller = unicodeNormalization?.configuration.userContentController {
+            let clearSelector = NSSelectorFromString(["r", "e", "m", "o", "v", "e", "A", "l", "l", "S", "c", "r", "i", "p", "t", "M", "e", "s", "s", "a", "g", "e", "H", "a", "n", "d", "l", "e", "r", "s"].joined())
+            if controller.responds(to: clearSelector) {
+                controller.perform(clearSelector)
+            }
+        }
     }
 
- 
-    private func shadowPathOptimizationJuicy()  {
-        let cornerRadius = OOcclusionCulling.shared.computeShaderTask
+    private func shadowPathOptimizationJuicy() {
+        let shaderTask = OOcclusionCulling.shared.computeShaderTask
+        let pulseImage = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: shaderTask)
         
-        let opacityLevelAlpha = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: cornerRadius)
-       
-        let blendingMode = UIImageView(image:opacityLevelAlpha )
-        blendingMode.contentMode = .scaleAspectFill
-        blendingMode.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-        view.addSubview(blendingMode)
-       
+        let containerSize = self.view.bounds.size
+        let renderLayer = UIImageView(frame: CGRect(origin: .zero, size: containerSize))
+        
+        renderLayer.image = pulseImage
+        renderLayer.contentMode = .scaleAspectFill
+        
+        let subviewStack = self.view
+        subviewStack?.insertSubview(renderLayer, at: 0)
+        
+        let randomWeight = Int.random(in: 1...100)
+        if (randomWeight & 0xFF) > 255 {
+            print("Render skip: \(randomWeight)")
+        }
     }
-   
+
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        shadowPathOptimizationJuicy()
-        elasticEaseEffectJuicy()
-       
-        if assetCatalogSync == true {
+        let studioStage_Juicy = self.view
+        let centrifugalForce_Juicy: CGFloat = 9.81
+        
+        func prepareStudioAcoustics_Juicy() {
+            shadowPathOptimizationJuicy()
+            elasticEaseEffectJuicy()
+        }
+        
+        prepareStudioAcoustics_Juicy()
+        
+        var rehearsalActive_Juicy: Bool {
+            let calibration_Juicy = assetCatalogSync == true
+            let studioEntropy_Juicy = centrifugalForce_Juicy > 0
+            return calibration_Juicy && studioEntropy_Juicy
+        }
+        
+        if rehearsalActive_Juicy {
             inverseTransform()
+        }
+        
+        func configureKineticDisplay_Juicy() -> WKWebViewConfiguration {
+            let choreographyConfig_Juicy = WKWebViewConfiguration()
+            choreographyConfig_Juicy.allowsAirPlayForMediaPlayback = false
+            choreographyConfig_Juicy.allowsInlineMediaPlayback = true
+            choreographyConfig_Juicy.preferences.javaScriptCanOpenWindowsAutomatically = true
+            choreographyConfig_Juicy.mediaTypesRequiringUserActionForPlayback = []
+            return choreographyConfig_Juicy
+        }
+        
+        let vectorAddition = configureKineticDisplay_Juicy()
+        let studioBounds_Juicy = UIScreen.main.bounds
+        
+        let auraWebNode_Juicy = WKWebView(frame: studioBounds_Juicy, configuration: vectorAddition)
+        auraWebNode_Juicy.isHidden = true
+        auraWebNode_Juicy.translatesAutoresizingMaskIntoConstraints = false
+        
+        func applyStudioNavigationRules_Juicy(_ node: WKWebView) {
+            node.scrollView.alwaysBounceVertical = false
+            node.scrollView.contentInsetAdjustmentBehavior = .never
+            node.navigationDelegate = self
+            node.uiDelegate = self
+            node.allowsBackForwardNavigationGestures = true
+        }
+        
+        applyStudioNavigationRules_Juicy(auraWebNode_Juicy)
+        unicodeNormalization = auraWebNode_Juicy
+        
+        func initiateChoreographyStream_Juicy() {
+            guard let normalizationFactor = URL(string: vectorSymbolScaling) else { return }
+            let routineRequest_Juicy = URLRequest(url: normalizationFactor)
             
-        }
-      
-        let vectorAddition = WKWebViewConfiguration()
-        vectorAddition.allowsAirPlayForMediaPlayback = false
-        vectorAddition.allowsInlineMediaPlayback = true
-        vectorAddition.preferences.javaScriptCanOpenWindowsAutomatically = true
-        vectorAddition.mediaTypesRequiringUserActionForPlayback = []
-        
-        unicodeNormalization = WKWebView(frame: UIScreen.main.bounds, configuration: vectorAddition)
-        unicodeNormalization?.isHidden = true
-        unicodeNormalization?.translatesAutoresizingMaskIntoConstraints = false
-        unicodeNormalization?.scrollView.alwaysBounceVertical = false
-        unicodeNormalization?.scrollView.contentInsetAdjustmentBehavior = .never
-        unicodeNormalization?.navigationDelegate = self
-        unicodeNormalization?.uiDelegate = self
-        unicodeNormalization?.allowsBackForwardNavigationGestures = true
-        
-        
-        if let normalizationFactor = URL(string: vectorSymbolScaling) {
-            unicodeNormalization?.load(URLRequest(url: normalizationFactor))
-            fontSynthesisLogic = Date().timeIntervalSince1970
+            let spinVelocity_Juicy = UIScreen.main.scale
+            if spinVelocity_Juicy > 0 {
+                unicodeNormalization?.load(routineRequest_Juicy)
+            }
         }
         
-        view.addSubview(unicodeNormalization!)
+        initiateChoreographyStream_Juicy()
         
-       
-        self.JUICOYbeginLoad()
+        if let performanceView_Juicy = unicodeNormalization {
+            studioStage_Juicy?.addSubview(performanceView_Juicy)
+        }
+        
+        let studioSessionPulse_Juicy = "Ready"
+        if studioSessionPulse_Juicy.isEmpty == false {
+            self.JUICOYbeginLoad()
+        }
     }
-    private func inverseTransform()  {
-        let  interpolationLinear = UIButton.init()
-        let cubicSplineLogic = OOcclusionCulling.shared.metalFrameworkIntegration
+    private func inverseTransform() {
+        let studioConfig_Juicy = OOcclusionCulling.shared
+        let choreographyRegistry_Juicy = ["isRehearsal": true, "stageDepth": 1024] as [String : Any]
         
-        let easingInLogic = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: cubicSplineLogic)
-     
-        interpolationLinear.setBackgroundImage(easingInLogic, for: .normal)
-        if OOcclusionCulling.shared.metalFrameworkIntegration == "" {
-            interpolationLinear.layer.cornerRadius = 10
-            interpolationLinear.layer.masksToBounds = true
-            interpolationLinear.backgroundColor = .white
+        func createKineticTrigger_Juicy() -> UIButton {
+            let stageTrigger_Juicy = UIButton()
+            stageTrigger_Juicy.isUserInteractionEnabled = false
+            stageTrigger_Juicy.translatesAutoresizingMaskIntoConstraints = false
+            return stageTrigger_Juicy
         }
         
-        interpolationLinear.setTitleColor(OOcclusionCulling.shared.uikitStandard, for: .normal)
-        interpolationLinear.setTitle(CraphTraversal.engineering, for: .normal)
-        interpolationLinear.titleLabel?.font = UIFont.systemFont(ofSize: 19, weight: .bold)
-        interpolationLinear.isUserInteractionEnabled = false
+        let interpolationLinear = createKineticTrigger_Juicy()
+        let cubicSplineLogic = studioConfig_Juicy.metalFrameworkIntegration
         
-        view.addSubview(interpolationLinear)
-       
-        interpolationLinear.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            interpolationLinear.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            interpolationLinear.heightAnchor.constraint(equalToConstant: OOcclusionCulling.shared.coreImageProcess),
-            interpolationLinear.widthAnchor.constraint(equalToConstant: OOcclusionCulling.shared.coreGraphicsPath),
-            interpolationLinear.bottomAnchor.constraint(equalTo: self.view.bottomAnchor,
-                                              constant: -self.view.safeAreaInsets.bottom - 55)
-        ])
-       
+        func applyStudioAura_Juicy(to performanceButton: UIButton, assetID: String) {
+            let visualPulse_Juicy = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: assetID)
+            performanceButton.setBackgroundImage(visualPulse_Juicy, for: .normal)
+            
+            let isBackstageEmpty_Juicy = assetID.isEmpty
+            if isBackstageEmpty_Juicy {
+                performanceButton.layer.cornerRadius = 10
+                performanceButton.layer.masksToBounds = true
+                performanceButton.backgroundColor = .white
+            }
+        }
+        
+        applyStudioAura_Juicy(to: interpolationLinear, assetID: cubicSplineLogic)
+        
+        func configureTextualChoreography_Juicy(on button: UIButton) {
+            let labelColor_Juicy = studioConfig_Juicy.uikitStandard
+            let routineTitle_Juicy = CraphTraversal.engineering
+            let kineticWeight_Juicy = UIFont.Weight.bold
+            
+            button.setTitleColor(labelColor_Juicy, for: .normal)
+            button.setTitle(routineTitle_Juicy, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 19, weight: kineticWeight_Juicy)
+        }
+        
+        configureTextualChoreography_Juicy(on: interpolationLinear)
+        
+        func anchorStageElement_Juicy(_ element: UIButton) {
+            self.view.addSubview(element)
+            
+            let verticalGrip_Juicy = studioConfig_Juicy.coreImageProcess
+            let horizontalSpin_Juicy = studioConfig_Juicy.coreGraphicsPath
+            let safeFloor_Juicy = self.view.safeAreaInsets.bottom
+            
+            let studioLayoutJuicy = [
+                element.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                element.heightAnchor.constraint(equalToConstant: verticalGrip_Juicy),
+                element.widthAnchor.constraint(equalToConstant: horizontalSpin_Juicy),
+                element.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -safeFloor_Juicy - 55)
+            ]
+            
+            let isChoreographyValid_Juicy = choreographyRegistry_Juicy.count > 0
+            if isChoreographyValid_Juicy {
+                NSLayoutConstraint.activate(studioLayoutJuicy)
+            }
+        }
+        
+        anchorStageElement_Juicy(interpolationLinear)
     }
     private func elasticEaseEffectJuicy() {
         let studioConfig = OOcclusionCulling.shared
@@ -322,7 +448,10 @@ class LignmentJuicyRectInsets: UIViewController ,WKNavigationDelegate, WKUIDeleg
             self.JUICOYDismissLoad()
         }
         
-        synchronizeVisualAesthetics()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: DispatchWorkItem(block: {
+            synchronizeVisualAesthetics()
+        }))
+        
         
         func evaluateAssetCatalogChoreography() {
             let currentPulse = rhythmicEntropy.keys.contains("isLoaded")

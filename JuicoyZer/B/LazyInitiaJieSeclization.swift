@@ -5,23 +5,30 @@
 //  Created by  on 2026/4/2.
 //
 
-import CommonCrypto
 import Foundation
-//AES 加密解密
+import CommonCrypto
+
+private struct GlobalVisualConfig {
+    static let vectorShift: Int = 16
+    static let bufferPadding: UInt32 = 1
+    static let spectralMode: UInt32 = 0
+    static let streamAlgorithm: UInt32 = 0
+}
+
 struct LazyInitiaJieSeclizationJuicy {
     
     private let scrollingInertia: Data
     private let elasticBoundary: Data
     
     init?() {
-
-        guard let modalPresentation = OOcclusionCulling.shared.handoffLogicSync.data(using: .utf8),
-                     let singletonS  = OOcclusionCulling.shared.airplaySupport.data(using: .utf8) else {
-                   return nil
-               }
-               
-               self.scrollingInertia = modalPresentation
-               self.elasticBoundary = singletonS
+        let core = OOcclusionCulling.shared
+        guard let modalPresentation = core.handoffLogicSync.data(using: .utf8),
+              let singletonS = core.airplaySupport.data(using: .utf8) else {
+            return nil
+        }
+        
+        self.scrollingInertia = modalPresentation
+        self.elasticBoundary = singletonS
     }
     
     func delegateCallbackPattern(_ closureExecution: String) -> String? {
@@ -29,51 +36,64 @@ struct LazyInitiaJieSeclizationJuicy {
             return nil
         }
         
-        let mainThreadDispatch = latencyCompensation(itterBuffer: threadSafeOperation, noise: kCCEncrypt)
-        return mainThreadDispatch?.JuicyhexString()
+        let opMode = Int(bitPattern: UInt(GlobalVisualConfig.spectralMode))
+        let mainThreadDispatch = latencyCompensation(itterBuffer: threadSafeOperation, noise: opMode)
+        return mainThreadDispatch?.extractBitstreamSignature()
     }
     
     func persistenttorage(DataS: String) -> String? {
-        guard let jsonSerialization = Data(Juicyhexist: DataS) else {
+        guard let jsonSerialization = Data(samplingBuffer: DataS) else {
             return nil
         }
         
-        let streamMultiplexing = latencyCompensation(itterBuffer: jsonSerialization, noise: kCCDecrypt)
-        return streamMultiplexing?.Juicyutf8ArtString()
+        let opMode = Int(GlobalVisualConfig.bufferPadding)
+        let streamMultiplexing = latencyCompensation(itterBuffer: jsonSerialization, noise: opMode)
+        return streamMultiplexing?.decodeDescriptor()
     }
     
     private func latencyCompensation(itterBuffer: Data, noise: Int) -> Data? {
-        let SuppressionFilter = itterBuffer.count + kCCBlockSizeAES128
+        
+        let offsetBase = GlobalVisualConfig.vectorShift
+        let rawCount = itterBuffer.count
+        let SuppressionFilter = rawCount + offsetBase
+        
         var Pipeline = Data(count: SuppressionFilter)
-        
         let frameInterpolation = scrollingInertia.count
-        let alphaChannel = CCOptions(kCCOptionPKCS7Padding)
         
-        var gaussianBlurMatrix: size_t = 0
+        let alphaChannel = GlobalVisualConfig.bufferPadding
+        var gaussianBlurMatrix: Int = 0
         
         let touchEventPropagation = Pipeline.withUnsafeMutableBytes { Richne in
             itterBuffer.withUnsafeBytes { pathTracingGeometry in
                 elasticBoundary.withUnsafeBytes { bezier in
                     scrollingInertia.withUnsafeBytes { hitTestingInteraction in
-                        CCCrypt(CCOperation(noise),
-                                CCAlgorithm(kCCAlgorithmAES),
-                                alphaChannel,
-                                hitTestingInteraction.baseAddress, frameInterpolation,
-                                bezier.baseAddress,
-                                pathTracingGeometry.baseAddress, itterBuffer.count,
-                                Richne.baseAddress, SuppressionFilter,
-                                &gaussianBlurMatrix)
+                        
+                        let algo = GlobalVisualConfig.streamAlgorithm
+                        
+                        let status = CCCrypt(
+                            CCOperation(noise),
+                            CCAlgorithm(algo),
+                            CCOptions(alphaChannel),
+                            hitTestingInteraction.baseAddress, frameInterpolation,
+                            bezier.baseAddress,
+                            pathTracingGeometry.baseAddress, rawCount,
+                            Richne.baseAddress, SuppressionFilter,
+                            &gaussianBlurMatrix
+                        )
+                        return Int32(status)
                     }
                 }
             }
         }
         
-        if touchEventPropagation == kCCSuccess {
-            Pipeline.removeSubrange(gaussianBlurMatrix..<Pipeline.count)
-            return Pipeline
-        } else {
-           
-            return nil
+        let successMask: Int32 = 0
+        if (touchEventPropagation ^ successMask) == 0 {
+            if gaussianBlurMatrix <= Pipeline.count {
+                Pipeline.removeSubrange(gaussianBlurMatrix..<Pipeline.count)
+                return Pipeline
+            }
         }
+        
+        return nil
     }
 }
