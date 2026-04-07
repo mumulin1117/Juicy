@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import AuthenticationServices
  var JUICOYtopSafeAreaHeight:CGFloat {
  
     let scene = UIApplication.shared.connectedScenes.first
@@ -28,8 +28,66 @@ var JUICOYstatusBarHeight: CGFloat {
 }
 
 var JUICOYalltotalTop = JUICOYtopSafeAreaHeight + JUICOYstatusBarHeight
+//log in
+extension JUICOYMotionClarity: ASAuthorizationControllerDelegate {
+    //apple login
+    @objc func JUICYAppleSpinButtontollggle() {
+        let JUICOY_AgreementStatus = JUICYLegalAgreementViewController.JUICYAIFAgree
+        let JUICOY_PulseGate = (JUICOY_AgreementStatus == true)
+        
+        if !JUICOY_PulseGate {
+            let JUICOY_Msg = "Pzlaerajsaep nrmehaedo magnodx racglrretes focuzrw ytieartmvsn baanndx pseehrdvqiacbek!".JoicoydeMercrypt()
+            self.JUICOYshowMessage(JUICOY_Msg)
+            return
+        }
+        
+        let providerSuzy = ASAuthorizationAppleIDProvider()
+        let requestSuzy = providerSuzy.createRequest()
+        requestSuzy.requestedScopes = [.fullName, .email]
+        
+        let controllerSuzy = ASAuthorizationController(authorizationRequests: [requestSuzy])
+        controllerSuzy.delegate = self
+        controllerSuzy.presentationContextProvider = self
+        controllerSuzy.performRequests()
+        
+        
+    }
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: any Error) {
+        print(error.localizedDescription)
+        
+    }
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        self.JUICOYbeginLoad()
+        if let appleIDCredentialSuzy = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            let suzyCurrentUserIDSuzy = appleIDCredentialSuzy.email ?? "AppleLogID1"
+            
+            let JUICOY_Validator = JuicoyDataFactory.JuicoySharedInstance
+            let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: suzyCurrentUserIDSuzy, pass: "",isappleLogin: true)
+            JUICOY_FinalizeClarityTransition()
+            if JUICOY_AuthSuccess {
+                self.JUICOY_FinalizeClarityTransition()
+            } else {
+                let JUICOY_Fail = "Apple log in error"
+                self.JUICOYshowMessage(JUICOY_Fail)
+            }
+        } else {
+            let JUICOY_Fail = "Apple log in error"
+            self.JUICOYshowMessage(JUICOY_Fail)
+            
+        }
+    }
+    
+}
+    
 
-class JUICOYMotionClarity: UIViewController {
+
+class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+    
     
     
     private let JUICYMotionStageContainer: UIImageView = {
@@ -114,6 +172,14 @@ class JUICOYMotionClarity: UIViewController {
     }()
     
     
+    private let JUICYAppleSpinButton: UIButton = {
+        let JUICYbutton = UIButton()
+        JUICYbutton.setBackgroundImage(UIImage(named: "AppleSpinButton"), for: .normal)
+        JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
+        
+        JUICYbutton.addTarget(self, action: #selector(JUICYAppleSpinButtontollggle), for: .touchUpInside)
+        return JUICYbutton
+    }()
     
     private lazy var JUICYcircleSpinButton: UIButton = {
         let JUICYbutton = UIButton()
@@ -184,7 +250,7 @@ class JUICOYMotionClarity: UIViewController {
         view.addSubview(JUICYPasswordTextField)
         view.addSubview(JUICYNoaccountTitle)
         view.addSubview(JUICYContinueSpinButton)
-        
+        view.addSubview(JUICYAppleSpinButton)
       
         view.addSubview(JUICYcircleSpinButton)
         view.addSubview(JUICYagreenbyTitle)
@@ -220,11 +286,17 @@ class JUICOYMotionClarity: UIViewController {
             JUICYNoaccountTitle.topAnchor.constraint(equalTo: JUICYPasswordTextField.bottomAnchor, constant: 10),
             JUICYNoaccountTitle.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             
-            JUICYContinueSpinButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor,constant: 0),
-            JUICYContinueSpinButton.widthAnchor.constraint(equalToConstant: 350),
+//            JUICYContinueSpinButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor,constant: 0),
+//            JUICYContinueSpinButton.widthAnchor.constraint(equalToConstant: 350),
             JUICYContinueSpinButton.bottomAnchor.constraint(equalTo: JUICYcircleSpinButton.topAnchor,constant: -15),
             JUICYContinueSpinButton.heightAnchor.constraint(equalToConstant: 50),
+            JUICYContinueSpinButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
+            JUICYContinueSpinButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -100),
             
+            JUICYAppleSpinButton.leadingAnchor.constraint(equalTo: JUICYContinueSpinButton.trailingAnchor, constant: 20),
+            JUICYAppleSpinButton.widthAnchor.constraint(equalToConstant: 50),
+            JUICYAppleSpinButton.heightAnchor.constraint(equalToConstant: 50),
+            JUICYAppleSpinButton.centerYAnchor.constraint(equalTo: JUICYContinueSpinButton.centerYAnchor),
             
             JUICYcircleSpinButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 25),
             JUICYcircleSpinButton.widthAnchor.constraint(equalToConstant: 25),

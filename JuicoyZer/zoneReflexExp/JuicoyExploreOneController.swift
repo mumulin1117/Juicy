@@ -253,6 +253,18 @@ extension JuicoyExploreOneController: UICollectionViewDataSource {
     
     @objc func toJuicoyVideoCallEmit(juicoy:UIButton)  {
         let indexData = cardsModels[juicoy.tag]
-        self.navigationController?.pushViewController(JuicoyTeleLinkController(juicoyModel: indexData), animated: true)
+        let notfriend = NotFriendAlertViewControllerJuicy.init()
+        notfriend.modalPresentationStyle = .overCurrentContext
+        notfriend.kineticFollowAction = {
+            let JuicoyNewPulse = JuicoyFabricMessage(JuicoyContent: "I have sent you a friend request", JuicoyIsLead: false, JuicoyTimestamp: "")
+            
+          
+            JuicoyDataFactory.JuicoySharedInstance.JuicoyPersistNewMessage(to: indexData.JuicoyIdentifier, JuicoyMsg: JuicoyNewPulse)
+            
+            
+            self.JUICOYshowMessage("You have successfully sent a friend request to the other party!")
+        }
+        self.present(notfriend, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(JuicoyTeleLinkController(juicoyModel: indexData), animated: true)
     }
 }

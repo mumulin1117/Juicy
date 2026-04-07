@@ -279,7 +279,7 @@ extension JuicoyDataFactory {
       
     }
 
-    func JuicoyExecuteLogin(email: String, pass: String) -> Bool {
+    func JuicoyExecuteLogin(email: String, pass: String,isappleLogin:Bool = false) -> Bool {
        
         if email == "juicy456@gmail.com" && pass == "67896789" {
             UserDefaults.standard.set(email, forKey: "JUICOYloginEmsilID")
@@ -298,6 +298,16 @@ extension JuicoyDataFactory {
             return false
         }
         
+        if isappleLogin {
+            UserDefaults.standard.set(email, forKey: "JUICOYloginEmsilID")
+            let diomendCount = UserDefaults.standard.object(forKey: email) as? String ?? "0"
+            if UserDefaults.standard.object(forKey: email) as? String == nil {
+                UserDefaults.standard.set("0", forKey: email)
+            }
+            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "\(Int.random(in: 9999...99999))", JuicoyHandle: email, JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: [""], JuicoyPassionTags: [], JuicoyBirthEpoch: "", JuicoyBodyMass: "", JuicoyVerticalStature: "", JuicoyConnectionInCount: "", JuicoyConnectionOutCount: "", JuicoyPremiumStatus: "", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "0")
+            
+            return true
+        }
         if email.contains("@") && pass.count >= 6 {
             UserDefaults.standard.set(email, forKey: "JUICOYloginEmsilID")
             let diomendCount = UserDefaults.standard.object(forKey: email) as? String ?? "0"

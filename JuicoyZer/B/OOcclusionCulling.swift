@@ -22,7 +22,7 @@ class OOcclusionCulling: NSObject {
             self.activeMovementContext["studioVibe"] = kineticSeed > 50 ? "vibrant" : "focused"
         }
         
-        var handshake: Bool = true
+        var handshake: Bool = false
         
    
     var flowControlMechanism: String = {

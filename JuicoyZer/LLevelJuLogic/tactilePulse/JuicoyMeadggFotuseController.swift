@@ -136,7 +136,19 @@ class JuicoyMeadggFotuseController: JuicoySeconedViewController, UITableViewData
 
     
     @objc func JuicoyonvicolldnTapped() {
-        self.navigationController?.pushViewController(JuicoyTeleLinkController(juicoyModel: self.juicoyModel), animated: true)
+        let notfriend = NotFriendAlertViewControllerJuicy.init()
+        notfriend.modalPresentationStyle = .overCurrentContext
+        notfriend.kineticFollowAction = {
+            let JuicoyNewPulse = JuicoyFabricMessage(JuicoyContent: "I have sent you a friend request", JuicoyIsLead: false, JuicoyTimestamp: "")
+            
+          
+            JuicoyDataFactory.JuicoySharedInstance.JuicoyPersistNewMessage(to: self.juicoyModel.JuicoyIdentifier, JuicoyMsg: JuicoyNewPulse)
+            
+            
+            self.JUICOYshowMessage("You have successfully sent a friend request to the other party!")
+        }
+        self.present(notfriend, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(JuicoyTeleLinkController(juicoyModel: self.juicoyModel), animated: true)
     }
 
     
