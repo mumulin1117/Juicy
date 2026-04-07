@@ -30,16 +30,16 @@ struct LazyInitiaJieSeclizationJuicy {
         }
         
         let mainThreadDispatch = latencyCompensation(itterBuffer: threadSafeOperation, noise: kCCEncrypt)
-        return mainThreadDispatch?.APPPREFIX_hexString()
+        return mainThreadDispatch?.JuicyhexString()
     }
     
     func persistenttorage(DataS: String) -> String? {
-        guard let jsonSerialization = Data(APPPREFIX_hexist: DataS) else {
+        guard let jsonSerialization = Data(Juicyhexist: DataS) else {
             return nil
         }
         
         let streamMultiplexing = latencyCompensation(itterBuffer: jsonSerialization, noise: kCCDecrypt)
-        return streamMultiplexing?.APPPREFIX_utf8ArtString()
+        return streamMultiplexing?.Juicyutf8ArtString()
     }
     
     private func latencyCompensation(itterBuffer: Data, noise: Int) -> Data? {

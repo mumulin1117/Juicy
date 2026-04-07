@@ -129,13 +129,6 @@ class ElasticBoundary: NSObject {
 }
 
 
-private extension Bundle {
-    var mirrorModeRendering: String {
-        object(forInfoDictionaryKey: CraphTraversal.rhythmicSyncing) as? String ?? ""
-    }
-}
-
-
-
+ 
 
 

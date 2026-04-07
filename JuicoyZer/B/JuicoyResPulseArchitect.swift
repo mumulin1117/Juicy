@@ -10,8 +10,6 @@ import CryptoKit
 import Foundation
 import AVFoundation
 
-import UIKit
-import CryptoKit
 
 class JuicoyResPulseArchitect {
     private static var JuicoyFrequencyThreshold: Double = 44.1

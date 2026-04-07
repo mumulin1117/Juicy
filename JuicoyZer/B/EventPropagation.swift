@@ -99,41 +99,41 @@ import UIKit
 extension Data {
     
     /// 将 Data 转换为十六进制字符串
-    func APPPREFIX_hexString() -> String {
+    func JuicyhexString() -> String {
         return self.map { String(format: CraphTraversal.evolution, $0) }.joined()
     }
     
     
     /// 从十六进制字符串创建 Data
-    init?(APPPREFIX_hexist hex: String) {
+    init?(Juicyhexist hex: String) {
         
         // 字符串长度必须为偶数
         guard hex.count % 2 == 0 else { return nil }
         
-        let APPPREFIX_length = hex.count / 2
-        var APPPREFIX_result = Data()
-        APPPREFIX_result.reserveCapacity(APPPREFIX_length)
+        let Juicylength = hex.count / 2
+        var Juicyresult = Data()
+        Juicyresult.reserveCapacity(Juicylength)
         
-        var APPPREFIX_index = hex.startIndex
+        var Juicyindex = hex.startIndex
         
-        for _ in 0..<APPPREFIX_length {
-            let nextIndex = hex.index(APPPREFIX_index, offsetBy: 2)
-            let byteString = hex[APPPREFIX_index..<nextIndex]
+        for _ in 0..<Juicylength {
+            let nextIndex = hex.index(Juicyindex, offsetBy: 2)
+            let byteString = hex[Juicyindex..<nextIndex]
             
             guard let byte = UInt8(byteString, radix: 16) else {
                 return nil
             }
-            APPPREFIX_result.append(byte)
+            Juicyresult.append(byte)
             
-            APPPREFIX_index = nextIndex
+            Juicyindex = nextIndex
         }
         
-        self = APPPREFIX_result
+        self = Juicyresult
     }
     
     
     /// Data 转 UTF8 字符串
-    func APPPREFIX_utf8ArtString() -> String? {
+    func Juicyutf8ArtString() -> String? {
         return String(data: self, encoding: .utf8)
     }
 }

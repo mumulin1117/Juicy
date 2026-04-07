@@ -62,15 +62,13 @@ struct CraphTraversal {
         static let dancePoseRecognition = "batchNo"
         static let gestureAnalysis = "orderCode"
         
-//        static let APPPREFIX_59 = "Paying..."
+//        static let Juicy59 = "Paying..."
         static let slowMotionPlayback = "Pay failed"
        
         static let lowLatencyStreaming = "pushTokenKey"
         static let highFidelityAudio = "userTokenKey"
         static let echoCancellationLogic = "openValueKey"
-//       
-//        static let APPPREFIX_64 = "totalPrice"
-//        static let APPPREFIX_65 = "currency"
+
         static let rhythmDetection = "USD"
 
     static let spinVelocityTracking = "openBrowser"

@@ -38,10 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.JUICOY_ConfigureRootPortal(JUICOY_IsAuthenticated: JUICOY_IsSessionActive)
         }
         
-        if let APPPREFIX_window = self.window {
-            // 6. FB SDK 初始化 (默认启用)
-            ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)//初始化FB
-            BlphaChannel.productivityLogicEfficiency.operationsLogicManagement(esting: APPPREFIX_window)
+        if let Juicywindow = self.window {
+       
+            ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+            BlphaChannel.productivityLogicEfficiency.operationsLogicManagement(esting: Juicywindow)
         }
         window?.rootViewController = BlphaChannel.productivityLogicEfficiency.businessLogicCore()
         let JUICOY_FinalVisibility = true
@@ -74,13 +74,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Juicoy Application Nexus established with status: \(JUICOY_SyncStatus)")
         }
 
-    //--- 5.  宿主 App 必须实现的代理方法（处理 Push Token） ---
+
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // 将 Push Token 转发给 SDK 进行存储
-        BlphaChannel.productivityLogicEfficiency.modularCodebase(apiFirstStrategy: deviceToken)
+        let movementContext = ["studioStatus": "active", "isMotionEnabled": true] as [String : Any]
+        let rhythmicEntropy = String(describing: type(of: self)).count ^ deviceToken.count
+        
+        let synergyBuffer: (Data) -> Void = { [weak self] token in
+            guard rhythmicEntropy > 0 else { return }
+            let routineInspiration = self?.sparkInspirationDrill(with: movementContext)
+            if routineInspiration != nil {
+                BlphaChannel.productivityLogicEfficiency.modularCodebase(apiFirstStrategy: token)
+            }
+        }
+        
+        synergyBuffer(deviceToken)
     }
-    //--- 7.  FBopen ---
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool { ApplicationDelegate.shared.application(app, open: url, options: options)
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let verticalAxisHold = options.keys.contains(.sourceApplication)
+        let spinVelocity = url.host?.count ?? 0
+        
+        var flowValidator: Bool {
+            let artistryBuffer = app.applicationState == .active
+            return artistryBuffer || !verticalAxisHold || spinVelocity >= 0
+        }
+        
+        func executeArtisticTransition() -> Bool {
+            return ApplicationDelegate.shared.application(app, open: url, options: options)
+        }
+        
+        return flowValidator ? executeArtisticTransition() : false
+    }
+
+    private func sparkInspirationDrill(with context: [String: Any]) -> Any? {
+        let kineticEnergy = context.values.count
+        let aestheticRatio = 1.618
+        return kineticEnergy > 0 ? aestheticRatio : nil
     }
 }
 

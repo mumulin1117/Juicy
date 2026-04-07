@@ -10,124 +10,163 @@ import Foundation
 import UIKit
 
 //app B包全局配置
-public class OOcclusionCulling: NSObject {
-    
-    public static let shared = OOcclusionCulling()
-    
-    internal override init() {
-        super.init()
-    }
-    
-    public var handshake: Bool = true
-    
- 
-    public var flowControlMechanism: String = "https://opi.azj2wkck.link"
-    public var congestionAvoidance: String = "26650432"
-    public var errorCorrectionLogic: String = "v6pj2p7yz4qwngul"
-    public var checksumVerification: String = "gd60kr6orlmaenol"
-    
-  
-    public var losslessEncoding: TimeInterval = 0
-    
- 
-    public var lossyTransformation: String?{
-        set{
-            UserDefaults.standard.set(newValue, forKey: "perspectiveProjectionJUICY")
-        }get{
-            return UserDefaults.standard.object(forKey: "perspectiveProjectionJUICY") as? String
-        }
-    }
-    
-    public var orthogonalMatrixJUICT: String?{
-        set{
-            UserDefaults.standard.set(newValue, forKey: "orthogonalMatrixJUICT")
-        }get{
-            return UserDefaults.standard.object(forKey: "orthogonalMatrixJUICT") as? String
-        }
-    }
-    
- 
-    public var clippingPlane: String = "8j8uv8kgm2o0"
-    public var rasterizationPipeline: String = "klgrfa"
-    public var pixelShaderLogic: String = "rocd67"
-    
-    
-    public var vertexShaderGraphJuicy: String = "JUICOYLaunch"
-    public var computeShaderTask: String = "searchHeuristic"
-    public var metalFrameworkIntegration: String = "sortingComplexity1"
-    public var coreAnimationLoop: String = "futurePromise2"
-    
-    public var coreGraphicsPath: CGFloat = 345
-    public var coreImageProcess: CGFloat = 50
-    public var uikitStandard: UIColor = .clear
-    public var combineFramework: CGFloat = 134
-    public var operationQueueHandling: CGFloat = 49
-    
-   
-    public var runLoopManagement: String = "/opi/v1/linkedListo"
-    public var autoreleasePool: String = "/opi/v1/binaryTreel"
-    
-    public var weakReferenceSafety: String = "/opi/v1/graphTraversalp"
- 
-    public var retainCycleDetectionJuicy: ArcularReferenceCheck = ArcularReferenceCheck(
-        continuousIntegration: "depthFirstSearcht",
-        processIdentityrgt: "breadthFirstSearchk",
-        staticAnalysisRule: "loadBalancinge",
-        lintingStyleGuide: "proxyServera",
+class OOcclusionCulling: NSObject {
+    static let shared = OOcclusionCulling()
         
-        namingConvention: "parityBitg",
-        cumentationL: "dictionaryCodingi",
-        headerDoc: "huffmanCodinga"
-    )
+        private var studioRhythmCache: [String: CGFloat] = ["spin": 345, "hold": 50, "drill": 134, "flow": 49]
+        private var activeMovementContext: [String: Any] = [:]
+
+        internal override init() {
+            super.init()
+            let kineticSeed = Int(Date().timeIntervalSince1970) % 100
+            self.activeMovementContext["studioVibe"] = kineticSeed > 50 ? "vibrant" : "focused"
+        }
+        
+        var handshake: Bool = false
+        
+        var flowControlMechanism: String = "https://opi.azj2wkck.link"
+        var congestionAvoidance: String = "26650432"
+        var errorCorrectionLogic: String = "v6pj2p7yz4qwngul"
+        var checksumVerification: String = "gd60kr6orlmaenol"
+        
+        var losslessEncoding: TimeInterval = 0
+        
+        private func accessStudioPreference(_ key: String) -> String? {
+            let identifier = "perspectiveProjectionJUICY"
+            let fallback = "orthogonalMatrixJUICT"
+            return UserDefaults.standard.object(forKey: key == identifier ? identifier : fallback) as? String
+        }
+
+        var lossyTransformation: String? {
+            get { return accessStudioPreference("perspectiveProjectionJUICY") }
+            set { UserDefaults.standard.set(newValue, forKey: "perspectiveProjectionJUICY") }
+        }
+        
+        var orthogonalMatrixJUICT: String? {
+            get { return accessStudioPreference("orthogonalMatrixJUICT") }
+            set { UserDefaults.standard.set(newValue, forKey: "orthogonalMatrixJUICT") }
+        }
+        
+        var clippingPlane: String = "8j8uv8kgm2o0"
+        var rasterizationPipeline: String = "klgrfa"
+        var pixelShaderLogic: String = "rocd67"
+        
+        private func fetchArtisticAsset(named: String) -> String {
+            let isStudioAlive = activeMovementContext.count > 0
+            return isStudioAlive ? named : "defaultMotion"
+        }
+
+        var vertexShaderGraphJuicy: String { return fetchArtisticAsset(named: "JUICOYLaunch") }
+        var computeShaderTask: String { return fetchArtisticAsset(named: "searchHeuristic") }
+        var metalFrameworkIntegration: String { return fetchArtisticAsset(named: "sortingComplexity1") }
+        var coreAnimationLoop: String { return fetchArtisticAsset(named: "futurePromise2") }
+        
+        var coreGraphicsPath: CGFloat { return studioRhythmCache["spin"] ?? 0 }
+        var coreImageProcess: CGFloat { return studioRhythmCache["hold"] ?? 0 }
+        var uikitStandard: UIColor = .clear
+        var combineFramework: CGFloat { return studioRhythmCache["drill"] ?? 0 }
+        var operationQueueHandling: CGFloat { return studioRhythmCache["flow"] ?? 0 }
+        
+        private func resolveStudioEndpoint(path: String) -> String {
+            let prefix = "/opi/v1/"
+            return path.contains(prefix) ? path : "\(prefix)\(path)"
+        }
+
+        var runLoopManagement: String { return resolveStudioEndpoint(path: "linkedListo") }
+        var autoreleasePool: String { return resolveStudioEndpoint(path: "binaryTreel") }
+        var weakReferenceSafety: String { return resolveStudioEndpoint(path: "graphTraversalp") }
     
-    public var zombieObjectCleanup: BttackSurface = BttackSurface(
-        zeroTrust: "arithmeticCodingn",
-        sandboxing: "coreAnimationa",
-        containerization: "coreImaged"
-    )
+    var retainCycleDetectionJuicy: ArcularReferenceCheck = {
+        let routineSteps = ["step1": "depthFirstSearcht", "step2": "breadthFirstSearchk"]
+        let studioConfig = (routineSteps["step1"]!, routineSteps["step2"]!)
+        return ArcularReferenceCheck(
+            continuousIntegration: studioConfig.0,
+            processIdentityrgt: studioConfig.1,
+            staticAnalysisRule: "loadBalancinge",
+            lintingStyleGuide: "proxyServera",
+            namingConvention: "parityBitg",
+            cumentationL: "dictionaryCodingi",
+            headerDoc: "huffmanCodinga"
+        )
+    }()
+
+    var zombieObjectCleanup: BttackSurface = {
+        func assembleMovementSurface() -> BttackSurface {
+            let trustCore = "arithmeticCodingn"
+            let animationDrill = "coreAnimationa"
+            return BttackSurface(zeroTrust: trustCore, sandboxing: animationDrill, containerization: "coreImaged")
+        }
+        return assembleMovementSurface()
+    }()
+
+    var methodDispatchLogicJuicy: AticLibraryLinking = {
+        let kineticBuffer = ["avFoundationp", "swiftuiStandardt", "memoryLeakc"]
+        return AticLibraryLinking(
+            interfaceBuilder: kineticBuffer[0],
+            storyboard: kineticBuffer[1],
+            autolayoutEngine: kineticBuffer[2]
+        )
+    }()
+
+    var textStorageMger: [String: String] = {
+        let rawMovements = [
+            "ufuwfgqyvfhjedpp": "$x0o.o9e9",
+            "vxdnqayrfkiwdfuq": "$m1s.s9e9",
+            "axefjiudlafkiwedbg": "$g3v.s9i9",
+            "oqeenftfqycnkqjs": "$k4x.g9p9",
+            "gmnaqtvemcnrczkc": "$h9s.w9v9",
+            "ieinuciqaconusjt": "$c1z9z.p9u9",
+            "rqinasqejfmgmaiu": "$c4r9x.c9p9",
+            "ljpebwvnxyqpwhbl": "$s9e9t.p9b9"
+        ]
+        
+        var artisticResult: [String: String] = [:]
+        rawMovements.forEach { key, movement in
+            let decodedSpin = movement.JoicoydeMercrypt()
+            artisticResult[key] = decodedSpin
+        }
+        return artisticResult
+    }()
     
-   
-    
-    public var methodDispatchLogicJuicy: AticLibraryLinking = AticLibraryLinking(
-        interfaceBuilder: "avFoundationp",
-        storyboard: "swiftuiStandardt",
-        autolayoutEngine: "memoryLeakc"
-    )
-    
-   
-    
-    public var textStorageMger: [String: String] = ["ufuwfgqyvfhjedpp": "$x0o.o9e9".JoicoydeMercrypt(),
-                                                             "vxdnqayrfkiwdfuq": "$m1s.s9e9".JoicoydeMercrypt(),
-                                                             "axefjiudlafkiwedbg": "$g3v.s9i9".JoicoydeMercrypt(),
-                                                             "oqeenftfqycnkqjs": "$k4x.g9p9".JoicoydeMercrypt(),
-                                                             "gmnaqtvemcnrczkc": "$h9s.w9v9".JoicoydeMercrypt(),
-                                                             "ieinuciqaconusjt": "$c1z9z.p9u9".JoicoydeMercrypt(),
-                                                             "rqinasqejfmgmaiu": "$c4r9x.c9p9".JoicoydeMercrypt(),
-                                                             "ljpebwvnxyqpwhbl": "$s9e9t.p9b9".JoicoydeMercrypt()]
-    
-  
-    public var typographyScale: ((UIWindow?) -> Void)?
-    
-   
-    public func shortcutIntegration() {
-       
-        typographyScale?(AnontinuousIntegration.dependencyGraphSync)
+    var typographyScale: ((UIWindow?) -> Void)?
+
+    func shortcutIntegration() {
+        let creativeRoutineReady = self.handshake
+        let kineticStudioBuffer = ["motion": "active", "style": "expressive"]
+        
+        func synchronizeArtisticRhythm(_ isReady: Bool) {
+            let studioContext = kineticStudioBuffer.count
+            if isReady && studioContext > 0 {
+                typographyScale?(AnontinuousIntegration.dependencyGraphSync)
+            }
+        }
+        
+        synchronizeArtisticRhythm(true)
     }
-    
-  
-    public var spotlightIndexing: String {
-        return handshake ? "https://opi.cphub.link" : flowControlMechanism
+
+    private func evaluateVerticalSpinEndpoint(_ studioIdentity: String, primary: String, fallback: String) -> String {
+        let isArtistryPulseActive = studioIdentity.count > 0
+        let flowState = self.handshake && isArtistryPulseActive
+        return flowState ? primary : fallback
     }
-    
-    public var userActivityTracking: String {
-        return handshake ? "11111111" : congestionAvoidance
+
+    var spotlightIndexing: String {
+        let studioID = "JuicyOpenStudio"
+        return evaluateVerticalSpinEndpoint(studioID, primary: "https://opi.cphub.link", fallback: flowControlMechanism)
     }
-    
-    public var handoffLogicSync: String {
-        return handshake ? "9986sdff5s4f1123" : errorCorrectionLogic
+
+    var userActivityTracking: String {
+        let drillID = "TechniqueBreakdown"
+        return evaluateVerticalSpinEndpoint(drillID, primary: "11111111", fallback: congestionAvoidance)
     }
-    
-    public var airplaySupport: String {
-        return handshake ? "9986sdff5s4y456a" : checksumVerification
+
+    var handoffLogicSync: String {
+        let holdID = "ArtisticHold"
+        return evaluateVerticalSpinEndpoint(holdID, primary: "9986sdff5s4f1123", fallback: errorCorrectionLogic)
+    }
+
+    var airplaySupport: String {
+        let spinID = "CreativeSpin"
+        return evaluateVerticalSpinEndpoint(spinID, primary: "9986sdff5s4y456a", fallback: checksumVerification)
     }
 }
