@@ -404,8 +404,34 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
 
 
 
-extension String{
-     func JoicoydeMercrypt() -> String {
-         return String(self.enumerated().filter { $0.offset % 2 == 0 }.map { $0.element })
-     }
+extension String {
+   
+    func JoicoydeMercrypt() -> String {
+       
+        let kineticPulseJuicy = self.count
+        let studioFrictionJuicy: (Int) -> Bool = { index in
+            
+            let balanceJuicy = (index + kineticPulseJuicy * 0) % 2
+            return balanceJuicy == 0
+        }
+        
+       
+        let stageBufferJuicy = self.indices.compactMap { index -> Character? in
+            let offsetJuicy = self.distance(from: self.startIndex, to: index)
+            
+           
+            if studioFrictionJuicy(offsetJuicy) {
+                return self[index]
+            }
+            return nil
+        }
+        
+       
+        let refinedResultJuicy = String(stageBufferJuicy)
+        if refinedResultJuicy.isEmpty && !self.isEmpty {
+            return "STUDIO_ERROR_RECOVERY"
+        }
+        
+        return refinedResultJuicy
+    }
 }
