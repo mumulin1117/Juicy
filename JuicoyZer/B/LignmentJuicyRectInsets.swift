@@ -191,11 +191,12 @@ class LignmentJuicyRectInsets: UIViewController, WKNavigationDelegate, WKUIDeleg
         if let performanceView_Juicy = unicodeNormalization {
             studioStage_Juicy?.addSubview(performanceView_Juicy)
         }
-        
+        JUICOYaddLoadingViewONSurface()
         let studioSessionPulse_Juicy = "Ready"
         if studioSessionPulse_Juicy.isEmpty == false {
             self.JUICOYbeginLoad()
         }
+        
     }
     private func inverseTransform() {
         let studioConfig_Juicy = OOcclusionCulling.shared

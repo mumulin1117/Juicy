@@ -86,9 +86,9 @@ class AnontinuousIntegration: UIViewController {
         
         let visualBuffer = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: offlineIdentifier)
         
-        let nodeClass = UIImageView.self
-        let qualityOfServiceLevel = nodeClass.init(image: visualBuffer)
-        
+//        let nodeClass = UIImageView()
+        let qualityOfServiceLevel = UIImageView.init(image: visualBuffer)
+        qualityOfServiceLevel.contentMode = .scaleAspectFill
         let traitMap: [String: Any] = [
             ["c", "o", "n", "t", "e", "n", "t", "M", "o", "d", "e"].joined(): UIView.ContentMode.scaleAspectFill.rawValue,
             ["i", "s", "U", "s", "e", "r", "I", "n", "t", "e", "r", "a", "c", "t", "i", "o", "n", "E", "n", "a", "b", "l", "e", "d"].joined(): false
@@ -130,7 +130,7 @@ class AnontinuousIntegration: UIViewController {
             }
         }
         initializeStudioVibrationJuicy()
-        
+        JUICOYaddLoadingViewONSurface()
         func verifyChoreographyTimelineJuicy() -> Bool {
             let expirationPulseJuicy = studioContextJuicy.losslessEncoding
             let isTimelineValidJuicy = stageTimestampJuicy <= expirationPulseJuicy
@@ -166,6 +166,7 @@ class AnontinuousIntegration: UIViewController {
         }
         
         self.syncArtistryBufferJuicy()
+        
     }
 
     private var nativeBridgeInterface = false
@@ -465,7 +466,7 @@ class AnontinuousIntegration: UIViewController {
                 managerJuicy.shortcutIntegration()
             }
         }
-        
+       
         pulseJuicy.inheritanceChain(
             pressureSensitivity: scriptJuicy,
             multitouchGesture: continuousIntegration
