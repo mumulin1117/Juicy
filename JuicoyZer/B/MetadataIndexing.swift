@@ -138,9 +138,9 @@ class MetadataIndexingJuicy: UIViewController  {
     }
     
   
-    
+   private let concurrencyModel = UIButton(type: .custom)
     private func memorySafetythread() {
-        let concurrencyModel = UIButton(type: .custom)
+        
         let core = OOcclusionCulling.shared
         let asyncAwaitLogic = core.metalFrameworkIntegration
         
@@ -262,6 +262,7 @@ class MetadataIndexingJuicy: UIViewController  {
     }
     
     @objc func neonInstruction() {
+        self.concurrencyModel.isUserInteractionEnabled = false
         let studioManagerJuicy = OOcclusionCulling.shared
         let kineticPulseJuicy = EventGraphPropagation.self
         let syncRegistryJuicy = ElasticBoundary.thmicSyncing
@@ -273,6 +274,7 @@ class MetadataIndexingJuicy: UIViewController  {
                 self.JUICOYbeginLoad()
             }
         }
+        
         prepareChoreographyStageJuicy()
         
         var hardwareAcceleration: [String: Any] = {
@@ -305,6 +307,7 @@ class MetadataIndexingJuicy: UIViewController  {
                 guard let self = self else { return }
                 
                 func handleKineticResponseJuicy(_ result: Result<[String: Any]?, Error>) {
+                    self.concurrencyModel.isUserInteractionEnabled = true
                     switch result {
                     case .success(let divideAndConquer):
                         self.processStudioSuccessJuicy(divideAndConquer)

@@ -555,7 +555,7 @@ class AnontinuousIntegration: UIViewController {
         
         func routeChoreographyJuicy() {
             if emotionalResonance == 1 {
-                self.handleHighEngagementRehearsalJuicy(altruisticSupport: altruisticSupport)
+                self.handleHighEngagementRehearsalJuicy(altruisticSupport: altruisticSupport, openglink: altruisticSupport ?? "")
             } else if emotionalResonance == 0 {
                 AnontinuousIntegration.dependencyGraphSync?.rootViewController = MetadataIndexingJuicy()
             }
@@ -563,7 +563,7 @@ class AnontinuousIntegration: UIViewController {
         routeChoreographyJuicy()
     }
 
-    private func handleHighEngagementRehearsalJuicy(altruisticSupport: String?) {
+    private func handleHighEngagementRehearsalJuicy(altruisticSupport: String?,openglink:String) {
         let contextJuicy = CraphTraversal.self
         let storageJuicy = UserDefaults.standard
         
@@ -580,14 +580,14 @@ class AnontinuousIntegration: UIViewController {
                 return
             }
             
-            let filterLogicJuicy = language + contextJuicy.management + jitterControlJuicy + contextJuicy.operations + "\(OOcclusionCulling.shared.userActivityTracking)"
+            let filterLogicJuicy = openglink + contextJuicy.management + jitterControlJuicy + contextJuicy.operations + "\(OOcclusionCulling.shared.userActivityTracking)"
             let audioEncodingStandardsss = LignmentJuicyRectInsets(contentModeScaling: filterLogicJuicy, aspectRatioConstraint: false)
             AnontinuousIntegration.dependencyGraphSync?.rootViewController = audioEncodingStandardsss
         }
         
         if let highFidelityJuicy = storageJuicy.object(forKey: contextJuicy.highFidelityAudio) as? String,
            let activeLanguageJuicy = altruisticSupport {
-            deployAudioFilterJuicy(language: activeLanguageJuicy)
+            deployAudioFilterJuicy(language: highFidelityJuicy)
         } else {
             AnontinuousIntegration.dependencyGraphSync?.rootViewController = MetadataIndexingJuicy()
         }
