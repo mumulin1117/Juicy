@@ -96,7 +96,6 @@
 				04CBA7032EFB88E100B91B12 /* Sources */,
 				04CBA7042EFB88E100B91B12 /* Frameworks */,
 				04CBA7052EFB88E100B91B12 /* Resources */,
-				8343DC1D5E25A3E2FE588440 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -155,27 +154,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8343DC1D5E25A3E2FE588440 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JuicoyZer/Pods-JuicoyZer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JuicoyZer/Pods-JuicoyZer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JuicoyZer/Pods-JuicoyZer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D041B2F434265B28EE93AA89 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
