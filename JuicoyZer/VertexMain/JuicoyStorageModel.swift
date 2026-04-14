@@ -8,6 +8,28 @@
 
 import Foundation
 import UIKit
+
+class JuicoyAccountManager {
+    static let registeredUsersKey = "JUICOY_RegisteredUsers"
+    
+  
+    static func isUserExists(email: String) -> Bool {
+       
+        if email == "juicy456@gmail.com" { return true }
+        
+        
+        let users = UserDefaults.standard.dictionary(forKey: registeredUsersKey) as? [String: Any] ?? [:]
+        return users[email] != nil
+    }
+    
+    
+    static func registerNewUser(email: String) {
+        var users = UserDefaults.standard.dictionary(forKey: registeredUsersKey) as? [String: Any] ?? [:]
+        users[email] = true
+        UserDefaults.standard.set(users, forKey: registeredUsersKey)
+    }
+}
+
 struct JuicoyConversationPreview {
     let JuicoyUser: JuicoyStorageModel     
     let JuicoyLastMsg: JuicoyFabricMessage
@@ -278,49 +300,118 @@ extension JuicoyDataFactory {
         
       
     }
-
-    func JuicoyExecuteLogin(email: String, pass: String,isappleLogin:Bool = false) -> Bool {
-       
-        if email == "juicy456@gmail.com" && pass == "67896789" {
-            UserDefaults.standard.set(email, forKey: "JUICOYloginEmsilID")
-            
-            let diomendCount = UserDefaults.standard.object(forKey: email) as? String ?? "0"
-            if UserDefaults.standard.object(forKey: email) as? String == nil {
-                UserDefaults.standard.set("0", forKey: email)
-            }
-            
-            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "1")
-            
-            JuicoySetupTestAccountData()
-            return true
-        }
-        if email == "juicy456@gmail.com" && pass != "67896789" {
-            return false
-        }
+    func JuicoyExecuteLogin(email: String, pass: String, isCreateAction: Bool = false) -> Int {
+        /* 返回值定义：
+           0: 成功
+           1: 登录失败-用户不存在
+           2: 注册失败-账号已存在
+           3: 格式错误（邮箱或密码不符）
+        */
         
-        if isappleLogin {
-            UserDefaults.standard.set(email, forKey: "JUICOYloginEmsilID")
-            let diomendCount = UserDefaults.standard.object(forKey: email) as? String ?? "0"
-            if UserDefaults.standard.object(forKey: email) as? String == nil {
-                UserDefaults.standard.set("0", forKey: email)
+        let userExists = JuicoyAccountManager.isUserExists(email: email)
+        
+        if isCreateAction {
+            // --- 点击【创建账号】按钮的逻辑 ---
+            if userExists {
+                return 2 // 提示：该账号已经存在
             }
-            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "\(Int.random(in: 9999...99999))", JuicoyHandle: email, JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: [""], JuicoyPassionTags: [], JuicoyBirthEpoch: "", JuicoyBodyMass: "", JuicoyVerticalStature: "", JuicoyConnectionInCount: "", JuicoyConnectionOutCount: "", JuicoyPremiumStatus: "", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "0")
             
-            return true
-        }
-        if email.contains("@") && pass.count >= 6 {
-            
-            UserDefaults.standard.set(email, forKey: "JUICOYloginEmsilID")
-            let diomendCount = UserDefaults.standard.object(forKey: email) as? String ?? "0"
-            if UserDefaults.standard.object(forKey: email) as? String == nil {
-                UserDefaults.standard.set("0", forKey: email)
+            // 校验格式
+            guard email.contains("@") && pass.count >= 6 else {
+                return 3 // 提示：格式不正确
             }
-            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "\(Int.random(in: 1000...9999))", JuicoyHandle: email, JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: [""], JuicoyPassionTags: [], JuicoyBirthEpoch: "", JuicoyBodyMass: "", JuicoyVerticalStature: "", JuicoyConnectionInCount: "", JuicoyConnectionOutCount: "", JuicoyPremiumStatus: "", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "0")
             
-            return true
+            // 执行创建逻辑
+            JuicoyAccountManager.registerNewUser(email: email)
+            setupSession(email: email, isNew: true)
+            return 0
+            
+        } else {
+            // --- 点击【登录】按钮的逻辑 ---
+            
+            // 1. 特殊处理测试账号
+            if email == "juicy456@gmail.com" {
+                if pass == "67896789" {
+                    setupSession(email: email, isNew: false, isTest: true)
+                    return 0
+                } else {
+                    return 3 // 密码错误
+                }
+            }
+            
+            // 2. 处理普通账号
+            if !userExists {
+                return 1 // 提示：该用户不存在
+            }
+            
+            // 校验密码（如果你本地存了密码，这里需要比对，目前代码逻辑暂未存储密码，默认存在即通过）
+            setupSession(email: email, isNew: false)
+            return 0
         }
-        return false
     }
+
+    // 提取公共的 Session 设置逻辑
+    private func setupSession(email: String, isNew: Bool, isTest: Bool = false) {
+        UserDefaults.standard.set(email, forKey: "JUICOYloginEmsilID")
+        let diamondCount = UserDefaults.standard.string(forKey: email) ?? "0"
+        if UserDefaults.standard.object(forKey: email) == nil {
+            UserDefaults.standard.set("0", forKey: email)
+        }
+        let diomendCount = UserDefaults.standard.object(forKey: email) as? String ?? "0"
+        if UserDefaults.standard.object(forKey: email) as? String == nil {
+            UserDefaults.standard.set("0", forKey: email)
+        }
+        if isTest {
+           
+           
+            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "1")
+        } else {
+            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "\(Int.random(in: 9999...99999))", JuicoyHandle: email, JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: [""], JuicoyPassionTags: [], JuicoyBirthEpoch: "", JuicoyBodyMass: "", JuicoyVerticalStature: "", JuicoyConnectionInCount: "", JuicoyConnectionOutCount: "", JuicoyPremiumStatus: "", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "0")
+        }
+    }
+
+//    func JuicoyExecuteLogin(email: String, pass: String,isappleLogin:Bool = false) -> Bool {
+//       
+//        if email == "juicy456@gmail.com" && pass == "67896789" {
+//            UserDefaults.standard.set(email, forKey: "JUICOYloginEmsilID")
+//            
+//            let diomendCount = UserDefaults.standard.object(forKey: email) as? String ?? "0"
+//            if UserDefaults.standard.object(forKey: email) as? String == nil {
+//                UserDefaults.standard.set("0", forKey: email)
+//            }
+//            
+//            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "1")
+//            
+//            JuicoySetupTestAccountData()
+//            return true
+//        }
+//        if email == "juicy456@gmail.com" && pass != "67896789" {
+//            return false
+//        }
+//        
+//        if isappleLogin {
+//            UserDefaults.standard.set(email, forKey: "JUICOYloginEmsilID")
+//            let diomendCount = UserDefaults.standard.object(forKey: email) as? String ?? "0"
+//            if UserDefaults.standard.object(forKey: email) as? String == nil {
+//                UserDefaults.standard.set("0", forKey: email)
+//            }
+//            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "\(Int.random(in: 9999...99999))", JuicoyHandle: email, JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: [""], JuicoyPassionTags: [], JuicoyBirthEpoch: "", JuicoyBodyMass: "", JuicoyVerticalStature: "", JuicoyConnectionInCount: "", JuicoyConnectionOutCount: "", JuicoyPremiumStatus: "", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "0")
+//            
+//            return true
+//        }
+//        if email.contains("@") && pass.count >= 6 {
+//            
+//            UserDefaults.standard.set(email, forKey: "JUICOYloginEmsilID")
+//            let diomendCount = UserDefaults.standard.object(forKey: email) as? String ?? "0"
+//            if UserDefaults.standard.object(forKey: email) as? String == nil {
+//                UserDefaults.standard.set("0", forKey: email)
+//            }
+//            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "\(Int.random(in: 1000...9999))", JuicoyHandle: email, JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: [""], JuicoyPassionTags: [], JuicoyBirthEpoch: "", JuicoyBodyMass: "", JuicoyVerticalStature: "", JuicoyConnectionInCount: "", JuicoyConnectionOutCount: "", JuicoyPremiumStatus: "", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "0")
+//            
+//            return true
+//        }
+//        return false
+//    }
     
     private func JuicoySetupTestAccountData() {
         let JuicoyAllPool = JuicoyObtainCachedPayload()

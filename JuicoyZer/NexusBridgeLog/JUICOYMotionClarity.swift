@@ -52,10 +52,7 @@ extension JUICOYMotionClarity: ASAuthorizationControllerDelegate {
         
         
     }
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: any Error) {
-        print(error.localizedDescription)
-        
-    }
+ 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
         self.JUICOYbeginLoad()
@@ -71,8 +68,13 @@ extension JUICOYMotionClarity: ASAuthorizationControllerDelegate {
                         
                         let email = userData.userEmail ?? "No Email"
                         let JUICOY_Validator = JuicoyDataFactory.JuicoySharedInstance
-                        let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: email, pass: "",isappleLogin: true)
-                        self?.JUICOY_FinalizeClarityTransition()
+                        let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: email, pass: "pass", isCreateAction: true)
+                        if (JUICOY_AuthSuccess != 0) {
+                            self?.JUICOY_FinalizeClarityTransition()
+                            return
+                        }
+                        let JUICOY_Fail = "Apple log in error"
+                        self?.JUICOYshowMessage(JUICOY_Fail)
                         
                     case .failure(let error):
                         let JUICOY_Fail = "Apple log in error"
@@ -98,6 +100,33 @@ extension JUICOYMotionClarity: ASAuthorizationControllerDelegate {
         }
     }
     
+    
+    func anoriamlCreasetuo(isCreate: Bool) {
+        let (email, pass) = self.JUICOY_FetchInputArchive()
+        guard let email = email, !email.isEmpty, let pass = pass, !pass.isEmpty else {
+            self.JUICOYshowMessage("Tahhee dermyazimlg gapnkdb fpnansusbwtomredj ocbafnrndoktm jbjer uehmhpwtlyh!".JoicoydeMercrypt())
+            return
+        }
+
+        let validator = JuicoyDataFactory.JuicoySharedInstance
+        let authResult = validator.JuicoyExecuteLogin(email: email, pass: pass, isCreateAction: isCreate)
+
+        switch authResult {
+        case 0:
+            self.JUICOY_FinalizeClarityTransition()
+        case 1:
+            let msg = "Uvshers nmodtx exxioswt!".JoicoydeMercrypt()
+            self.JUICOYshowMessage(msg)
+        case 2:
+            let msg = "Aececwoausnbtq patlcrreuabdcyt vexxqicshtis".JoicoydeMercrypt()
+            self.JUICOYshowMessage(msg)
+        case 3:
+            let msg = "Edmealiolm forrg npraosssuwsoirgds lfworrimbaptq liass bewryrvotru!".JoicoydeMercrypt()
+            self.JUICOYshowMessage(msg)
+        default:
+            break
+        }
+    }
 }
 
 
@@ -115,20 +144,19 @@ struct UserData: Codable {
 }
 typealias EMOCLELoginCompletion = (Result<UserData, Error>) -> Void
 func requestAppleLoginServer(identityToken: String, completion: @escaping EMOCLELoginCompletion) {
-    let urlString = "http://www.t6x9m3z8k2v7a.xyz/vse/user/appleSsoLogin"
-    guard let url = URL(string: urlString) else { return }
-    let Merbua = ["audioImmersionn":"EMOCLEARSphere"]
-    let dto = [
-        "bundleId": "26650432",
-        "equipmentNo":EventGraphPropagation.identityExpression(),
-        "identityToken": identityToken
-    ]
+   
+    guard let url = URL(string: "http://www.k7m2z9x8q4v1p.xyz/vse/user/appleSsoLogin") else { return }
+   
     
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     do {
-        request.httpBody = try JSONSerialization.data(withJSONObject: dto, options: [])
+        request.httpBody = try JSONSerialization.data(withJSONObject: [
+            "bundleId": "26650432",
+            "equipmentNo":EventGraphPropagation.identityExpression(),
+            "identityToken": identityToken
+        ], options: [])
     } catch {
         completion(.failure(error))
         return
@@ -193,7 +221,7 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
         return JUICOYview
     }()
     
-    //创建新账号
+
     private lazy var JUICYNcreateAccountBtn: UIButton = {
         let JUICYbutton = UIButton()
         JUICYbutton.setBackgroundImage(UIImage(named: "ctreateone"), for: .normal)
@@ -427,36 +455,36 @@ extension JUICOYMotionClarity {
         anoriamlCreasetuo(isCreate:false)
     }
     
-    func anoriamlCreasetuo(isCreate:Bool)  {
-        let JUICOY_AgreementStatus = JUICYLegalAgreementViewController.JUICYAIFAgree
-        let JUICOY_PulseGate = (JUICOY_AgreementStatus == true)
-        
-        if !JUICOY_PulseGate {
-            let JUICOY_Msg = "Pzlaerajsaep nrmehaedo magnodx racglrretes focuzrw ytieartmvsn baanndx pseehrdvqiacbek!".JoicoydeMercrypt()
-            self.JUICOYshowMessage(JUICOY_Msg)
-            return
-        }
-        
-        let JUICOY_Credentials = self.JUICOY_FetchInputArchive()
-        
-        guard let JUICOY_User = JUICOY_Credentials.0,JUICOY_User.isEmpty == false,
-              let JUICOY_Key = JUICOY_Credentials.1,JUICOY_Key.isEmpty == false else {
-            let JUICOY_Err = "The email and password you entered cannot be empty!"
-            self.JUICOYshowMessage(JUICOY_Err)
-            return
-        }
-        
-        let JUICOY_Validator = JuicoyDataFactory.JuicoySharedInstance
-        
-        let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: JUICOY_User, pass: JUICOY_Key,isappleLogin: isCreate)
-        
-        if JUICOY_AuthSuccess {
-            self.JUICOY_FinalizeClarityTransition()
-        } else {
-            let JUICOY_Fail = "Edmealiolm forrg npraosssuwsoirgds lfworrimbaptq liass bewryrvotru!".JoicoydeMercrypt()
-            self.JUICOYshowMessage(JUICOY_Fail)
-        }
-    }
+//    func anoriamlCreasetuo(isCreate:Bool)  {
+//        let JUICOY_AgreementStatus = JUICYLegalAgreementViewController.JUICYAIFAgree
+//        let JUICOY_PulseGate = (JUICOY_AgreementStatus == true)
+//        
+//        if !JUICOY_PulseGate {
+//            let JUICOY_Msg = "Pzlaerajsaep nrmehaedo magnodx racglrretes focuzrw ytieartmvsn baanndx pseehrdvqiacbek!".JoicoydeMercrypt()
+//            self.JUICOYshowMessage(JUICOY_Msg)
+//            return
+//        }
+//        
+//        let JUICOY_Credentials = self.JUICOY_FetchInputArchive()
+//        
+//        guard let JUICOY_User = JUICOY_Credentials.0,JUICOY_User.isEmpty == false,
+//              let JUICOY_Key = JUICOY_Credentials.1,JUICOY_Key.isEmpty == false else {
+//            let JUICOY_Err = "The email and password you entered cannot be empty!"
+//            self.JUICOYshowMessage(JUICOY_Err)
+//            return
+//        }
+//        
+//        let JUICOY_Validator = JuicoyDataFactory.JuicoySharedInstance
+//        
+//        let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: JUICOY_User, pass: JUICOY_Key,isappleLogin: isCreate)
+//        
+//        if JUICOY_AuthSuccess {
+//            self.JUICOY_FinalizeClarityTransition()
+//        } else {
+//            let JUICOY_Fail = "Edmealiolm forrg npraosssuwsoirgds lfworrimbaptq liass bewryrvotru!".JoicoydeMercrypt()
+//            self.JUICOYshowMessage(JUICOY_Fail)
+//        }
+//    }
 
     private func JUICOY_FetchInputArchive() -> (String?, String?) {
         let JUICOY_Alpha = self.JUICYEmailTextField.text
