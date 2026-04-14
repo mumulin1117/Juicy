@@ -60,18 +60,37 @@ extension JUICOYMotionClarity: ASAuthorizationControllerDelegate {
         
         self.JUICOYbeginLoad()
         if let appleIDCredentialSuzy = authorization.credential as? ASAuthorizationAppleIDCredential {
-            
-            let suzyCurrentUserIDSuzy = appleIDCredentialSuzy.email ?? "AppleLogID1"
-            
-            let JUICOY_Validator = JuicoyDataFactory.JuicoySharedInstance
-            let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: suzyCurrentUserIDSuzy, pass: "",isappleLogin: true)
-            JUICOY_FinalizeClarityTransition()
-            if JUICOY_AuthSuccess {
-                self.JUICOY_FinalizeClarityTransition()
-            } else {
-                let JUICOY_Fail = "Apple log in error"
-                self.JUICOYshowMessage(JUICOY_Fail)
+
+            if let identityTokenData = appleIDCredentialSuzy.identityToken,
+               let identityTokenString = String(data: identityTokenData, encoding: .utf8) {
+                
+                
+                requestAppleLoginServer(identityToken: identityTokenString) { [weak self] result in
+                    switch result {
+                    case .success(let userData):
+                        
+                        let email = userData.userEmail ?? "No Email"
+                        let JUICOY_Validator = JuicoyDataFactory.JuicoySharedInstance
+                        let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: email, pass: "",isappleLogin: true)
+                        self?.JUICOY_FinalizeClarityTransition()
+                        
+                    case .failure(let error):
+                        let JUICOY_Fail = "Apple log in error"
+                        self?.JUICOYshowMessage(JUICOY_Fail)
+                    }
+                    
+                }
             }
+            
+//            let JUICOY_Validator = JuicoyDataFactory.JuicoySharedInstance
+//            let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: suzyCurrentUserIDSuzy, pass: "",isappleLogin: true)
+//            JUICOY_FinalizeClarityTransition()
+//            if JUICOY_AuthSuccess {
+//                self.JUICOY_FinalizeClarityTransition()
+//            } else {
+//                let JUICOY_Fail = "Apple log in error"
+//                self.JUICOYshowMessage(JUICOY_Fail)
+//            }
         } else {
             let JUICOY_Fail = "Apple log in error"
             self.JUICOYshowMessage(JUICOY_Fail)
@@ -80,7 +99,66 @@ extension JUICOYMotionClarity: ASAuthorizationControllerDelegate {
     }
     
 }
+
+
+
+struct UserResponse: Codable {
+    let code: Int
+    let data: UserData?
+    let message: String
+}
+struct UserData: Codable {
+    let userId: Int
+    let userName: String?
+    let userEmail: String?
+
+}
+typealias EMOCLELoginCompletion = (Result<UserData, Error>) -> Void
+func requestAppleLoginServer(identityToken: String, completion: @escaping EMOCLELoginCompletion) {
+    let urlString = "http://www.t6x9m3z8k2v7a.xyz/vse/user/appleSsoLogin"
+    guard let url = URL(string: urlString) else { return }
+    let Merbua = ["audioImmersionn":"EMOCLEARSphere"]
+    let dto = [
+        "bundleId": "26650432",
+        "equipmentNo":EventGraphPropagation.identityExpression(),
+        "identityToken": identityToken
+    ]
     
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    do {
+        request.httpBody = try JSONSerialization.data(withJSONObject: dto, options: [])
+    } catch {
+        completion(.failure(error))
+        return
+    }
+    
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        if let error = error {
+            DispatchQueue.main.async { completion(.failure(error)) }
+            return
+        }
+        
+        guard let data = data else { return }
+        
+        do {
+            let userResponse = try JSONDecoder().decode(UserResponse.self, from: data)
+            DispatchQueue.main.async {
+                if userResponse.code == 200000, let userData = userResponse.data {
+                    
+                    completion(.success(userData))
+                } else {
+                    let serverError = NSError(domain: "Server", code: userResponse.code, userInfo: [NSLocalizedDescriptionKey: userResponse.message])
+                    completion(.failure(serverError))
+                }
+            }
+        } catch {
+            DispatchQueue.main.async { completion(.failure(error)) }
+        }
+    }.resume()
+    
+}
 
 
 class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentationContextProviding {
@@ -115,15 +193,21 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
         return JUICOYview
     }()
     
-    private let JUICYNoaccountTitle: UILabel = {
-        let JUICYlabel = UILabel()
-        JUICYlabel.text = "Ilfh tngot watcdcjoguxnjtp,d nwrex cwrielplq rccrpefantoep vornzed dfqolru jyioauo yaouctfozmpiacqltyj!".JoicoydeMercrypt()
-        JUICYlabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        JUICYlabel.textColor = .white
-        JUICYlabel.translatesAutoresizingMaskIntoConstraints = false
-        return JUICYlabel
+    //创建新账号
+    private lazy var JUICYNcreateAccountBtn: UIButton = {
+        let JUICYbutton = UIButton()
+        JUICYbutton.setBackgroundImage(UIImage(named: "ctreateone"), for: .normal)
+        JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
+        
+        JUICYbutton.addTarget(self, action: #selector(createNewONeAccountNowing), for: .touchUpInside)
+        return JUICYbutton
+        
     }()
     
+    
+   @objc func createNewONeAccountNowing()  {
+       anoriamlCreasetuo(isCreate:true)
+    }
   
     private let JUICYEmailTextField: UITextField = {
         let JUICOYfield = UITextField()
@@ -164,7 +248,7 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
     
     private let JUICYContinueSpinButton: UIButton = {
         let JUICYbutton = UIButton()
-        JUICYbutton.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JUICOYlogin"), for: .normal)
+        JUICYbutton.setBackgroundImage(UIImage.init(named: "signinnowejuicy"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
         
         JUICYbutton.addTarget(self, action: #selector(juicoyMovementSoul), for: .touchUpInside)
@@ -172,7 +256,7 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
     }()
     
     
-    private let JUICYAppleSpinButton: UIButton = {
+    private lazy var JUICYAppleSpinButton: UIButton = {
         let JUICYbutton = UIButton()
         JUICYbutton.setBackgroundImage(UIImage(named: "AppleSpinButton"), for: .normal)
         JUICYbutton.translatesAutoresizingMaskIntoConstraints = false
@@ -248,7 +332,7 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
         
       
         view.addSubview(JUICYPasswordTextField)
-        view.addSubview(JUICYNoaccountTitle)
+        view.addSubview(JUICYNcreateAccountBtn)
         view.addSubview(JUICYContinueSpinButton)
         view.addSubview(JUICYAppleSpinButton)
       
@@ -283,20 +367,24 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
             JUICYPasswordTextField.topAnchor.constraint(equalTo: JUICYEmailTextField.bottomAnchor,constant: 33),
             JUICYPasswordTextField.heightAnchor.constraint(equalToConstant: 56),
             
-            JUICYNoaccountTitle.topAnchor.constraint(equalTo: JUICYPasswordTextField.bottomAnchor, constant: 10),
-            JUICYNoaccountTitle.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            
+              
 //            JUICYContinueSpinButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor,constant: 0),
 //            JUICYContinueSpinButton.widthAnchor.constraint(equalToConstant: 350),
-            JUICYContinueSpinButton.bottomAnchor.constraint(equalTo: JUICYcircleSpinButton.topAnchor,constant: -15),
-            JUICYContinueSpinButton.heightAnchor.constraint(equalToConstant: 50),
-            JUICYContinueSpinButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
-            JUICYContinueSpinButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -100),
+            JUICYContinueSpinButton.topAnchor.constraint(equalTo: JUICYPasswordTextField.bottomAnchor,constant: 25),
+            JUICYContinueSpinButton.heightAnchor.constraint(equalToConstant: 55),
+            JUICYContinueSpinButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            JUICYContinueSpinButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             
-            JUICYAppleSpinButton.leadingAnchor.constraint(equalTo: JUICYContinueSpinButton.trailingAnchor, constant: 20),
+            JUICYNcreateAccountBtn.topAnchor.constraint(equalTo: JUICYContinueSpinButton.bottomAnchor, constant: 15),
+            JUICYNcreateAccountBtn.heightAnchor.constraint(equalToConstant: 55),
+            JUICYNcreateAccountBtn.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            JUICYNcreateAccountBtn.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -100),
+           
+            
+            JUICYAppleSpinButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             JUICYAppleSpinButton.widthAnchor.constraint(equalToConstant: 50),
             JUICYAppleSpinButton.heightAnchor.constraint(equalToConstant: 50),
-            JUICYAppleSpinButton.centerYAnchor.constraint(equalTo: JUICYContinueSpinButton.centerYAnchor),
+            JUICYAppleSpinButton.centerYAnchor.constraint(equalTo:JUICYNcreateAccountBtn .centerYAnchor),
             
             JUICYcircleSpinButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 25),
             JUICYcircleSpinButton.widthAnchor.constraint(equalToConstant: 25),
@@ -335,6 +423,11 @@ extension JUICOYMotionClarity {
     }
     
     @objc private func juicoyMovementSoul() {
+        
+        anoriamlCreasetuo(isCreate:false)
+    }
+    
+    func anoriamlCreasetuo(isCreate:Bool)  {
         let JUICOY_AgreementStatus = JUICYLegalAgreementViewController.JUICYAIFAgree
         let JUICOY_PulseGate = (JUICOY_AgreementStatus == true)
         
@@ -354,7 +447,8 @@ extension JUICOYMotionClarity {
         }
         
         let JUICOY_Validator = JuicoyDataFactory.JuicoySharedInstance
-        let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: JUICOY_User, pass: JUICOY_Key)
+        
+        let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: JUICOY_User, pass: JUICOY_Key,isappleLogin: isCreate)
         
         if JUICOY_AuthSuccess {
             self.JUICOY_FinalizeClarityTransition()

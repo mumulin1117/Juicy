@@ -309,6 +309,7 @@ extension JuicoyDataFactory {
             return true
         }
         if email.contains("@") && pass.count >= 6 {
+            
             UserDefaults.standard.set(email, forKey: "JUICOYloginEmsilID")
             let diomendCount = UserDefaults.standard.object(forKey: email) as? String ?? "0"
             if UserDefaults.standard.object(forKey: email) as? String == nil {
