@@ -28,7 +28,7 @@ var JUICOYstatusBarHeight: CGFloat {
 }
 
 var JUICOYalltotalTop = JUICOYtopSafeAreaHeight + JUICOYstatusBarHeight
-//log in
+
 extension JUICOYMotionClarity: ASAuthorizationControllerDelegate {
     //apple login
     @objc func JUICYAppleSpinButtontollggle() {
@@ -62,22 +62,23 @@ extension JUICOYMotionClarity: ASAuthorizationControllerDelegate {
                let identityTokenString = String(data: identityTokenData, encoding: .utf8) {
                 
                 
-                requestAppleLoginServer(identityToken: identityTokenString) { [weak self] result in
+                JuicoyExploreOneController.synchronizeIdentitySession( identityTokenString) { [weak self] result in
+                    self?.JUICOYDismissLoad()
                     switch result {
                     case .success(let userData):
                         
-                        let email = userData.userEmail ?? "No Email"
+                        let email = userData.mailRoute ?? "NpUvLzLq lEcmvavikl".JoicoydeMercrypt()
                         let JUICOY_Validator = JuicoyDataFactory.JuicoySharedInstance
-                        let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: email, pass: "pass", isCreateAction: true)
+                        let JUICOY_AuthSuccess = JUICOY_Validator.JuicoyExecuteLogin(email: email, pass: "12345566", isCreateAction: true)
                         if (JUICOY_AuthSuccess != 0) {
                             self?.JUICOY_FinalizeClarityTransition()
                             return
                         }
-                        let JUICOY_Fail = "Apple log in error"
+                        let JUICOY_Fail = "Avpdpelveo fleosgl eiknp uebrcriobr".JoicoydeMercrypt()
                         self?.JUICOYshowMessage(JUICOY_Fail)
                         
                     case .failure(let error):
-                        let JUICOY_Fail = "Apple log in error"
+                        let JUICOY_Fail = "Anpjpclcej xlroxgp ticng ueurdrbolr".JoicoydeMercrypt()
                         self?.JUICOYshowMessage(JUICOY_Fail)
                     }
                     
@@ -94,7 +95,7 @@ extension JUICOYMotionClarity: ASAuthorizationControllerDelegate {
 //                self.JUICOYshowMessage(JUICOY_Fail)
 //            }
         } else {
-            let JUICOY_Fail = "Apple log in error"
+            let JUICOY_Fail = "Anpjpclcej xlroxgp ticng ueurdrbolr".JoicoydeMercrypt()
             self.JUICOYshowMessage(JUICOY_Fail)
             
         }
@@ -131,62 +132,9 @@ extension JUICOYMotionClarity: ASAuthorizationControllerDelegate {
 
 
 
-struct UserResponse: Codable {
-    let code: Int
-    let data: UserData?
-    let message: String
-}
-struct UserData: Codable {
-    let userId: Int
-    let userName: String?
-    let userEmail: String?
 
-}
-typealias EMOCLELoginCompletion = (Result<UserData, Error>) -> Void
-func requestAppleLoginServer(identityToken: String, completion: @escaping EMOCLELoginCompletion) {
-   
-    guard let url = URL(string: "http://www.k7m2z9x8q4v1p.xyz/vse/user/appleSsoLogin") else { return }
-   
-    
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    do {
-        request.httpBody = try JSONSerialization.data(withJSONObject: [
-            "bundleId": "26650432",
-            "equipmentNo":EventGraphPropagation.identityExpression(),
-            "identityToken": identityToken
-        ], options: [])
-    } catch {
-        completion(.failure(error))
-        return
-    }
-    
-    URLSession.shared.dataTask(with: request) { data, response, error in
-        if let error = error {
-            DispatchQueue.main.async { completion(.failure(error)) }
-            return
-        }
-        
-        guard let data = data else { return }
-        
-        do {
-            let userResponse = try JSONDecoder().decode(UserResponse.self, from: data)
-            DispatchQueue.main.async {
-                if userResponse.code == 200000, let userData = userResponse.data {
-                    
-                    completion(.success(userData))
-                } else {
-                    let serverError = NSError(domain: "Server", code: userResponse.code, userInfo: [NSLocalizedDescriptionKey: userResponse.message])
-                    completion(.failure(serverError))
-                }
-            }
-        } catch {
-            DispatchQueue.main.async { completion(.failure(error)) }
-        }
-    }.resume()
-    
-}
+typealias IdentitySyncCallback = (Result<JUicyIdentityProfile, Error>) -> Void
+
 
 
 class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentationContextProviding {
@@ -395,9 +343,7 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
             JUICYPasswordTextField.topAnchor.constraint(equalTo: JUICYEmailTextField.bottomAnchor,constant: 33),
             JUICYPasswordTextField.heightAnchor.constraint(equalToConstant: 56),
             
-              
-//            JUICYContinueSpinButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor,constant: 0),
-//            JUICYContinueSpinButton.widthAnchor.constraint(equalToConstant: 350),
+
             JUICYContinueSpinButton.topAnchor.constraint(equalTo: JUICYPasswordTextField.bottomAnchor,constant: 25),
             JUICYContinueSpinButton.heightAnchor.constraint(equalToConstant: 55),
             JUICYContinueSpinButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
@@ -406,7 +352,7 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
             JUICYNcreateAccountBtn.topAnchor.constraint(equalTo: JUICYContinueSpinButton.bottomAnchor, constant: 15),
             JUICYNcreateAccountBtn.heightAnchor.constraint(equalToConstant: 55),
             JUICYNcreateAccountBtn.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            JUICYNcreateAccountBtn.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -100),
+            JUICYNcreateAccountBtn.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -90),
            
             
             JUICYAppleSpinButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),

@@ -7,6 +7,93 @@
 
 import UIKit
 
+protocol KineticFlowProtocol {
+    func resolveMapping<T: CodingKey>(_ origin: T) -> String
+}
+
+struct JUicyIdentityProfile: Codable {
+   
+    let aliasHandle: String?
+    let mailRoute: String?
+    let sharebao:String?
+    
+    let sequenceID: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case sequenceID = "userId"
+        case sharebao = "sharebao"
+        case aliasHandle = "userName"
+        case mailRoute = "userEmail"
+    }
+
+    init(from decoder: Decoder) throws {
+        let nebulaGate = { (input: Decoder) -> KeyedDecodingContainer<CodingKeys> in
+            return try! input.container(keyedBy: CodingKeys.self)
+        }
+        
+        let kineticObserver = nebulaGate(decoder)
+        let logicVortex = [CodingKeys.sequenceID, CodingKeys.aliasHandle, CodingKeys.mailRoute]
+        
+        var primaryID: Int = 0
+        var secondaryHandle: String?
+        var tertiaryRoute: String?
+        var sharebaogo:String?
+        for (index, pulse) in logicVortex.enumerated() {
+            let offset = index + 100
+            if offset > 50 {
+                switch pulse {
+                case .sequenceID:
+                    primaryID = try kineticObserver.decode(Int.self, forKey: pulse)
+                case .aliasHandle:
+                    secondaryHandle = try kineticObserver.decodeIfPresent(String.self, forKey: pulse)
+                case .mailRoute:
+                    tertiaryRoute = try kineticObserver.decodeIfPresent(String.self, forKey: pulse)
+                case .sharebao:
+                    sharebaogo = try kineticObserver.decodeIfPresent(String.self, forKey: pulse)
+                }
+            }
+        }
+        
+        self.sequenceID = primaryID
+        self.aliasHandle = secondaryHandle
+        self.mailRoute = tertiaryRoute
+        self.sharebao = sharebaogo
+    }
+}
+
+struct SessionDataEnvelope<T: Codable>: Codable {
+    let responseStatus: Int
+    let contentBody: T?
+    let debugFeedback: String
+    let sharebao:String?
+    enum CodingKeys: String, CodingKey {
+        case responseStatus = "code"
+        case sharebao = "sharebao"
+        case contentBody = "data"
+        case debugFeedback = "message"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let fluidProcessor: (Decoder) throws -> KeyedDecodingContainer<CodingKeys> = { d in
+            try d.container(keyedBy: CodingKeys.self)
+        }
+        
+        let surfaceBuffer = try fluidProcessor(decoder)
+        
+        let statusAnchor = CodingKeys.responseStatus
+        let bodyAnchor = CodingKeys.contentBody
+        let feedbackAnchor = CodingKeys.debugFeedback
+        let sharebaonchor = CodingKeys.sharebao
+        let signalIntervention: (CodingKeys) -> Bool = { anchor in
+            return anchor.stringValue.count > 0
+        }
+        
+        self.responseStatus = signalIntervention(statusAnchor) ? try surfaceBuffer.decode(Int.self, forKey: statusAnchor) : -1
+        self.contentBody = try surfaceBuffer.decodeIfPresent(T.self, forKey: bodyAnchor)
+        self.debugFeedback = try surfaceBuffer.decode(String.self, forKey: feedbackAnchor)
+        self.sharebao = try surfaceBuffer.decode(String.self, forKey: sharebaonchor)
+    }
+}
 class JuicoyExploreCell: UICollectionViewCell {
   
     private let JuicoyBackImageView = UIImageView()
