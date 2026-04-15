@@ -209,7 +209,7 @@ class JuicoyExternalNexusController: JuicoySeconedViewController {
 
             JuicoyIdentityLabel.topAnchor.constraint(equalTo: JuicoyAvatarOrbit.bottomAnchor, constant: 15),
             JuicoyIdentityLabel.leadingAnchor.constraint(equalTo: JuicoyContentHolder.leadingAnchor, constant: 20),
-
+            JuicoyIdentityLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 150),
             JuicoyVipBadge.centerYAnchor.constraint(equalTo: JuicoyIdentityLabel.centerYAnchor),
             JuicoyVipBadge.leadingAnchor.constraint(equalTo: JuicoyIdentityLabel.trailingAnchor, constant: 8),
             JuicoyVipBadge.widthAnchor.constraint(equalToConstant: 35),

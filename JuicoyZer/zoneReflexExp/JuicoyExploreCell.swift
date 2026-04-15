@@ -15,13 +15,13 @@ struct JUicyIdentityProfile: Codable {
    
     let aliasHandle: String?
     let mailRoute: String?
-    let sharebao:String?
+//    let sharebao:String?
     
     let sequenceID: Int
     
     enum CodingKeys: String, CodingKey {
         case sequenceID = "userId"
-        case sharebao = "sharebao"
+//        case sharebao = "sharebao"
         case aliasHandle = "userName"
         case mailRoute = "userEmail"
     }
@@ -48,8 +48,8 @@ struct JUicyIdentityProfile: Codable {
                     secondaryHandle = try kineticObserver.decodeIfPresent(String.self, forKey: pulse)
                 case .mailRoute:
                     tertiaryRoute = try kineticObserver.decodeIfPresent(String.self, forKey: pulse)
-                case .sharebao:
-                    sharebaogo = try kineticObserver.decodeIfPresent(String.self, forKey: pulse)
+//                case .sharebao:
+//                    sharebaogo = try kineticObserver.decodeIfPresent(String.self, forKey: pulse)
                 }
             }
         }
@@ -57,7 +57,7 @@ struct JUicyIdentityProfile: Codable {
         self.sequenceID = primaryID
         self.aliasHandle = secondaryHandle
         self.mailRoute = tertiaryRoute
-        self.sharebao = sharebaogo
+//        self.sharebao = sharebaogo
     }
 }
 
@@ -65,10 +65,10 @@ struct SessionDataEnvelope<T: Codable>: Codable {
     let responseStatus: Int
     let contentBody: T?
     let debugFeedback: String
-    let sharebao:String?
+//    let sharebao:String?
     enum CodingKeys: String, CodingKey {
         case responseStatus = "code"
-        case sharebao = "sharebao"
+//        case sharebao = "sharebao"
         case contentBody = "data"
         case debugFeedback = "message"
     }
@@ -83,7 +83,7 @@ struct SessionDataEnvelope<T: Codable>: Codable {
         let statusAnchor = CodingKeys.responseStatus
         let bodyAnchor = CodingKeys.contentBody
         let feedbackAnchor = CodingKeys.debugFeedback
-        let sharebaonchor = CodingKeys.sharebao
+//        let sharebaonchor = CodingKeys.sharebao
         let signalIntervention: (CodingKeys) -> Bool = { anchor in
             return anchor.stringValue.count > 0
         }
@@ -91,7 +91,7 @@ struct SessionDataEnvelope<T: Codable>: Codable {
         self.responseStatus = signalIntervention(statusAnchor) ? try surfaceBuffer.decode(Int.self, forKey: statusAnchor) : -1
         self.contentBody = try surfaceBuffer.decodeIfPresent(T.self, forKey: bodyAnchor)
         self.debugFeedback = try surfaceBuffer.decode(String.self, forKey: feedbackAnchor)
-        self.sharebao = try surfaceBuffer.decode(String.self, forKey: sharebaonchor)
+//        self.sharebao = try surfaceBuffer.decode(String.self, forKey: sharebaonchor)
     }
 }
 class JuicoyExploreCell: UICollectionViewCell {

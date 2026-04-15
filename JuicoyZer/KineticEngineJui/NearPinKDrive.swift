@@ -2,9 +2,12 @@ import StoreKit
 
 class JuicoyPayTool: NSObject {
     static let shared = JuicoyPayTool()
+    static let JuicoyDidQueuePaymentNotification = Notification.Name("JuicoyDidQueuePaymentNotification")
     
     private var JuicoyEnergyResponse: ((Result<Void, Error>) -> Void)?
     private var JuicoyCurrentSignal: SKProductsRequest?
+//    private var JuicoyTimeoutTask: DispatchWorkItem?
+//    private var JuicoyDidReceiveCatalogResponse = false
     var JuicoyLatestPulseID: String?
     
     private override init() {
@@ -23,43 +26,92 @@ class JuicoyPayTool: NSObject {
                                          code: 701,
                                          userInfo: [NSLocalizedDescriptionKey: "Tsrjaanosoapcutciwoenk bfelboswf udjijsuazbtloekdn.".JoicoydeMercrypt()])
                 JuicoyCompletion(.failure(JuicoyError))
+                
             }
             return
         }
         
         self.JuicoyEnergyResponse = JuicoyCompletion
+//        JuicoyTimeoutTask?.cancel()
         JuicoyCurrentSignal?.cancel()
+//        JuicoyDidReceiveCatalogResponse = false
         
         let JuicoyRequest = SKProductsRequest(productIdentifiers: [JuicoyProductID])
         JuicoyRequest.delegate = self
         self.JuicoyCurrentSignal = JuicoyRequest
         JuicoyRequest.start()
+//        
+//        let JuicoyTimeoutTask = DispatchWorkItem { [weak self] in
+//            guard let self else { return }
+//            self.JuicoyDidReceiveCatalogResponse = true
+//            self.JuicoyCurrentSignal?.cancel()
+//            self.JuicoyCurrentSignal = nil
+//            let JuicoyTimeoutError = NSError(
+//                domain: "JuicoyApp",
+//                code: 704,
+//                userInfo: [NSLocalizedDescriptionKey: "Purchase request timed out. Please try again."]
+//            )
+//            self.JuicoyFinalizeEnergyResult(.failure(JuicoyTimeoutError))
+//        }
+//        self.JuicoyTimeoutTask = JuicoyTimeoutTask
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 15, execute: JuicoyTimeoutTask)
     }
 }
 
 extension JuicoyPayTool: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+//        JuicoyTimeoutTask?.cancel()
+//        JuicoyTimeoutTask = nil
+//        JuicoyCurrentSignal = nil
+//        JuicoyDidReceiveCatalogResponse = true
+        
         guard let JuicoyValidProduct = response.products.first else {
+            
             DispatchQueue.main.async {
-                let JuicoyMissingError = NSError(domain: "JuicoyApp",
-                                                code: 702,
-                                                userInfo: [NSLocalizedDescriptionKey: "Igtbexme nstpleqcythrmuemc pnmogtj rfuopuonkdt.".JoicoydeMercrypt()])
-                self.JuicoyEnergyResponse?(.failure(JuicoyMissingError))
-                self.JuicoyEnergyResponse = nil
+                
+                let JuicoyInvalidIdentifier = response.invalidProductIdentifiers.first ?? ""
+                let JuicoyMissingError = NSError(
+                    domain: "JuicoyApp",
+                    code: 702,
+                    userInfo: [NSLocalizedDescriptionKey: JuicoyInvalidIdentifier.isEmpty ? "Item not found." : "Item not found: \(JuicoyInvalidIdentifier)"]
+                )
+                self.JuicoyFinalizeEnergyResult(.failure(JuicoyMissingError))
+                
             }
+            
             return
         }
-        
-        let JuicoyPayment = SKPayment(product: JuicoyValidProduct)
-        SKPaymentQueue.default().add(JuicoyPayment)
+        SKPaymentQueue.default().add(SKPayment(product:JuicoyValidProduct))
+//        DispatchQueue.main.async {
+//            NotificationCenter.default.post(name: Self.JuicoyDidQueuePaymentNotification, object: JuicoyValidProduct.productIdentifier)
+//            
+//            
+//        }
     }
     
     func request(_ request: SKRequest, didFailWithError error: Error) {
+//        JuicoyTimeoutTask?.cancel()
+//        JuicoyTimeoutTask = nil
         DispatchQueue.main.async {
-            self.JuicoyEnergyResponse?(.failure(error))
-            self.JuicoyEnergyResponse = nil
+            self.JuicoyCurrentSignal = nil
+            self.JuicoyFinalizeEnergyResult(.failure(error))
         }
+        
+//        JuicoyDidReceiveCatalogResponse = true
+        
     }
+    
+//    func requestDidFinish(_ request: SKRequest) {
+//        guard request === JuicoyCurrentSignal || JuicoyDidReceiveCatalogResponse == false else { return }
+//        guard JuicoyEnergyResponse != nil else { return }
+//        let JuicoyError = NSError(
+//            domain: "JuicoyApp",
+//            code: 705,
+//            userInfo: [NSLocalizedDescriptionKey: "Unable to load purchase information right now. Please try again."]
+//        )
+//        JuicoyCurrentSignal = nil
+//        self.JuicoyFinalizeEnergyResult(.failure(JuicoyError))
+//    }
 }
 
 extension JuicoyPayTool: SKPaymentTransactionObserver {
@@ -70,9 +122,9 @@ extension JuicoyPayTool: SKPaymentTransactionObserver {
                 self.JuicoyLatestPulseID = JuicoyTx.transactionIdentifier
                 SKPaymentQueue.default().finishTransaction(JuicoyTx)
                 DispatchQueue.main.async {
-                    self.JuicoyEnergyResponse?(.success(()))
-                    self.JuicoyEnergyResponse = nil
+                    self.JuicoyFinalizeEnergyResult(.success(()))
                 }
+                
                 
             case .failed:
                 SKPaymentQueue.default().finishTransaction(JuicoyTx)
@@ -83,15 +135,17 @@ extension JuicoyPayTool: SKPaymentTransactionObserver {
                     JuicoyIssue = JuicoyTx.error ?? NSError(domain: "JuicoyApp", code: 703, userInfo: [NSLocalizedDescriptionKey: "Frldumxy lijnhtieerrrzukpltiiroyng.".JoicoydeMercrypt()])
                 }
                 DispatchQueue.main.async {
-                    self.JuicoyEnergyResponse?(.failure(JuicoyIssue))
-                    self.JuicoyEnergyResponse = nil
+                    self.JuicoyFinalizeEnergyResult(.failure(JuicoyIssue))
                 }
+                
                 
             case .restored:
                 SKPaymentQueue.default().finishTransaction(JuicoyTx)
+//                self.JuicoyFinalizeEnergyResult(.success(()))
+                
+            case .deferred, .purchasing:
                 DispatchQueue.main.async {
-                    self.JuicoyEnergyResponse?(.success(()))
-                    self.JuicoyEnergyResponse = nil
+                    NotificationCenter.default.post(name: Self.JuicoyDidQueuePaymentNotification, object: JuicoyTx.payment.productIdentifier)
                 }
                 
             default:
@@ -102,6 +156,16 @@ extension JuicoyPayTool: SKPaymentTransactionObserver {
 }
 
 extension JuicoyPayTool {
+    private func JuicoyFinalizeEnergyResult(_ JuicoyResult: Result<Void, Error>) {
+//        JuicoyTimeoutTask?.cancel()
+//        JuicoyTimeoutTask = nil
+//        JuicoyDidReceiveCatalogResponse = false
+        DispatchQueue.main.async {
+            self.JuicoyEnergyResponse?(JuicoyResult)
+            self.JuicoyEnergyResponse = nil
+        }
+    }
+    
     func JuicoyFetchLocalVoucher() -> Data? {
         guard let JuicoyPath = Bundle.main.appStoreReceiptURL else {
             return nil

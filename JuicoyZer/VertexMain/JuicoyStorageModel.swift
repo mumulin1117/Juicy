@@ -11,6 +11,10 @@ import UIKit
 
 class JuicoyAccountManager {
     static let registeredUsersKey = "JUICOY_RegisteredUsers"
+    private static let JuicoyNameKey = "JUICOYUName"
+    private static let JuicoyPasswordKey = "JUICOYUPassword"
+    private static let JuicoyAvatarDataKey = "JUICOYUAvatarData"
+    private static let JuicoyIdentifierKey = "JUICOYUID"
     
   
     static func isUserExists(email: String) -> Bool {
@@ -23,9 +27,54 @@ class JuicoyAccountManager {
     }
     
     
-    static func registerNewUser(email: String) {
+    static func registerNewUser(email: String, name: String = "", password: String = "", avatarImage: UIImage? = nil) {
         var users = UserDefaults.standard.dictionary(forKey: registeredUsersKey) as? [String: Any] ?? [:]
-        users[email] = true
+        var JuicoyRecord = (users[email] as? [String: Any]) ?? [:]
+        JuicoyRecord[JuicoyIdentifierKey] = JuicoyRecord[JuicoyIdentifierKey] as? String ?? "\(Int.random(in: 10000...99999))"
+        JuicoyRecord[JuicoyNameKey] = name
+        JuicoyRecord[JuicoyPasswordKey] = password
+        if let JuicoyAvatarData = avatarImage?.jpegData(compressionQuality: 0.85) {
+            JuicoyRecord[JuicoyAvatarDataKey] = JuicoyAvatarData
+        }
+        users[email] = JuicoyRecord
+        UserDefaults.standard.set(users, forKey: registeredUsersKey)
+    }
+    
+    static func JuicoyFetchAccountRecord(email: String) -> [String: Any]? {
+        let users = UserDefaults.standard.dictionary(forKey: registeredUsersKey) as? [String: Any] ?? [:]
+        return users[email] as? [String: Any]
+    }
+    
+    static func JuicoyDisplayName(email: String) -> String? {
+        return JuicoyFetchAccountRecord(email: email)?[JuicoyNameKey] as? String
+    }
+    
+    static func JuicoyPassword(email: String) -> String? {
+        return JuicoyFetchAccountRecord(email: email)?[JuicoyPasswordKey] as? String
+    }
+    
+    static func JuicoyIdentifier(email: String) -> String? {
+        return JuicoyFetchAccountRecord(email: email)?[JuicoyIdentifierKey] as? String
+    }
+    
+    static func JuicoyAvatarImage(email: String) -> UIImage? {
+        guard let JuicoyAvatarData = JuicoyFetchAccountRecord(email: email)?[JuicoyAvatarDataKey] as? Data else { return nil }
+        return UIImage(data: JuicoyAvatarData)
+    }
+    
+    static func JuicoyUpdateProfile(email: String, name: String? = nil, avatarImage: UIImage? = nil) {
+        var users = UserDefaults.standard.dictionary(forKey: registeredUsersKey) as? [String: Any] ?? [:]
+        guard var JuicoyRecord = (users[email] as? [String: Any]) else { return }
+        
+        if let name, name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false {
+            JuicoyRecord[JuicoyNameKey] = name
+        }
+        
+        if let avatarImage, let JuicoyAvatarData = avatarImage.jpegData(compressionQuality: 0.85) {
+            JuicoyRecord[JuicoyAvatarDataKey] = JuicoyAvatarData
+        }
+        
+        users[email] = JuicoyRecord
         UserDefaults.standard.set(users, forKey: registeredUsersKey)
     }
 }
@@ -97,6 +146,39 @@ class JuicoyDataFactory {
     private var JuicoyBlocklistCache: [JuicoyStorageModel] = []
     static var Juicoyuserphtho:UIImage?
     static var JuicoyuserBackground:[UIImage]?
+    
+    private func JuicoyAssembleLocalUser(email: String, diomendCount: String, premiumStatus: String, needsVIP: String) -> JuicoyStorageModel {
+        let JuicoyStoredName = JuicoyAccountManager.JuicoyDisplayName(email: email)?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let JuicoyResolvedName = (JuicoyStoredName?.isEmpty == false) ? JuicoyStoredName! : email
+        let JuicoyIdentifier = JuicoyAccountManager.JuicoyIdentifier(email: email) ?? "\(Int.random(in: 1000...9999))"
+        
+        JuicoyDataFactory.Juicoyuserphtho = JuicoyAccountManager.JuicoyAvatarImage(email: email)
+        
+        return JuicoyStorageModel.init(
+            JuicoyIdentifier: JuicoyIdentifier,
+            JuicoyHandle: JuicoyResolvedName,
+            JuicoyAvatarKey: "juicoyDynamicLog",
+            JuicoyMotto: "No signiture",
+            JuicoyMediaCover: "",
+            JuicoyMediaUrl: "",
+            JuicoyMediaNarration: "",
+            JuicoyPublicFeedback: [""],
+            JuicoyPeerAvatars: [""],
+            JuicoyPassionTags: [],
+            JuicoyBirthEpoch: "",
+            JuicoyBodyMass: "",
+            JuicoyVerticalStature: "",
+            JuicoyConnectionInCount: "",
+            JuicoyConnectionOutCount: "",
+            JuicoyPremiumStatus: premiumStatus,
+            JUICOYUViadioTime: "",
+            JuicoyFollowStatus: "",
+            JuicoyFaverateStatus: "",
+            JuicoydiomonedCount: diomendCount,
+            JUICOYUneedVIP: needsVIP
+        )
+    }
+    
     func JuicoySynchronizeFromPlist() {
         guard let JuicoyPath = Bundle.main.path(forResource: "JUICOYINfo", ofType: "pqlzijszt".JoicoydeMercrypt()),
               let JuicoyRawData = NSArray(contentsOfFile: JuicoyPath) as? [[String: String]] else {
@@ -287,12 +369,12 @@ extension JuicoyDataFactory {
             let (isVip, expiryString) = JuicoyLoadVipProfileFromLocal()
             
             if emailID == "juicy456@gmail.com" {
+                JuicoyDataFactory.Juicoyuserphtho = nil
                 JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "Jusper", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: isVip ? "1" : "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "1")
               
                 JuicoySetupTestAccountData()
             }else{
-                
-                JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "\(Int.random(in: 1000...9999))", JuicoyHandle: emailID, JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "No signiture", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: [""], JuicoyPassionTags: [], JuicoyBirthEpoch: "", JuicoyBodyMass: "", JuicoyVerticalStature: "", JuicoyConnectionInCount: "", JuicoyConnectionOutCount: "", JuicoyPremiumStatus: isVip ? "1" : "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "0")
+                JuicoyDataFactory.currentUserModel = JuicoyAssembleLocalUser(email: emailID, diomendCount: diomendCount, premiumStatus: isVip ? "1" : "0", needsVIP: "0")
             }
             
             
@@ -322,7 +404,7 @@ extension JuicoyDataFactory {
             }
             
             // 执行创建逻辑
-            JuicoyAccountManager.registerNewUser(email: email)
+            JuicoyAccountManager.registerNewUser(email: email, password: pass)
             setupSession(email: email, isNew: true)
             return 0
             
@@ -344,7 +426,12 @@ extension JuicoyDataFactory {
                 return 1 // 提示：该用户不存在
             }
             
-            // 校验密码（如果你本地存了密码，这里需要比对，目前代码逻辑暂未存储密码，默认存在即通过）
+            if let JuicoyStoredPassword = JuicoyAccountManager.JuicoyPassword(email: email),
+               JuicoyStoredPassword.isEmpty == false,
+               JuicoyStoredPassword != pass {
+                return 3
+            }
+            
             setupSession(email: email, isNew: false)
             return 0
         }
@@ -362,11 +449,10 @@ extension JuicoyDataFactory {
             UserDefaults.standard.set("0", forKey: email)
         }
         if isTest {
-           
-           
+            JuicoyDataFactory.Juicoyuserphtho = nil
             JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "1")
         } else {
-            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "\(Int.random(in: 9999...99999))", JuicoyHandle: email, JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: [""], JuicoyPassionTags: [], JuicoyBirthEpoch: "", JuicoyBodyMass: "", JuicoyVerticalStature: "", JuicoyConnectionInCount: "", JuicoyConnectionOutCount: "", JuicoyPremiumStatus: "", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "0")
+            JuicoyDataFactory.currentUserModel = JuicoyAssembleLocalUser(email: email, diomendCount: diomendCount, premiumStatus: "", needsVIP: "0")
         }
     }
 

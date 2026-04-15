@@ -11,6 +11,15 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
     
     private var JuicoyChatItems: [JuicoyConversationPreview] = []
     
+    private let JuicoyDesolateStateIcon: UIImageView = {
+        let JuicoyImg = UIImageView()
+        JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoynodatare")
+        JuicoyImg.contentMode = .scaleAspectFit
+        JuicoyImg.translatesAutoresizingMaskIntoConstraints = false
+        JuicoyImg.isHidden = true
+        return JuicoyImg
+    }()
+    
     private lazy var  JUICYMotionStageContainer: UIImageView = {
         let JUICOY = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicychauiTitle"))
         JUICOY.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +42,7 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
         
         self.JuicoyChatItems = JuicoyDataFactory.JuicoySharedInstance.JuicoyFetchActiveRecipients()
         
-        self.JuicoyChatTableView.reloadData()
+        self.JuicoyRefreshChatPresentation()
         
     }
     private let JuicoySearchIcon = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "Juicoyserchicon"))
@@ -66,6 +75,7 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
         JuicoySearchContainer.addSubview(JuicoySearchField)
         
         view.addSubview(JuicoyChatTableView)
+        view.addSubview(JuicoyDesolateStateIcon)
         NSLayoutConstraint.activate([
             JUICYMotionStageContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             JUICYMotionStageContainer.widthAnchor.constraint(equalToConstant: 61),
@@ -96,6 +106,11 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
             JuicoyChatTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             JuicoyChatTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             JuicoyChatTableView.topAnchor.constraint(equalTo: JuicoySearchContainer.bottomAnchor, constant:27),
+            
+            JuicoyDesolateStateIcon.centerXAnchor.constraint(equalTo: JuicoyChatTableView.centerXAnchor),
+            JuicoyDesolateStateIcon.centerYAnchor.constraint(equalTo: JuicoyChatTableView.centerYAnchor, constant: -30),
+            JuicoyDesolateStateIcon.widthAnchor.constraint(equalToConstant: 210),
+            JuicoyDesolateStateIcon.heightAnchor.constraint(equalToConstant: 210)
            
         ])
     }
@@ -159,7 +174,7 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
         }
       
         self.JuicoyChatItems = JuicoyFilteredResults
-        self.JuicoyChatTableView.reloadData()
+        self.JuicoyRefreshChatPresentation()
         
   
     }
@@ -175,8 +190,16 @@ class JuicoyMotionExplocontroller: JuicoyBasicController {
 
     private func JuicoyRestoreDiscoveryStream() {
         self.JuicoyChatItems = JuicoyDataFactory.JuicoySharedInstance.JuicoyFetchActiveRecipients()
-        self.JuicoyChatTableView.reloadData()
+        self.JuicoyRefreshChatPresentation()
         
+    }
+    
+    private func JuicoyRefreshChatPresentation() {
+        let JuicoyMessageCount = JuicoyChatItems.count
+        JuicoyChatTableView.reloadData()
+        JuicoyDesolateStateIcon.isHidden = JuicoyMessageCount > 0
+        JuicoyChatTableView.isHidden = JuicoyMessageCount == 0
+        JuicoyCommentCountButton.setTitle(" \(JuicoyMessageCount)", for: .normal)
     }
 }
 
@@ -208,7 +231,7 @@ extension JuicoyMotionExplocontroller: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let JuicoyDelete = UIContextualAction(style: .destructive, title: "Daenlqemtbe".JoicoydeMercrypt()) { _, _, completion in
             self.JuicoyChatItems.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.JuicoyRefreshChatPresentation()
             completion(true)
         }
         JuicoyDelete.backgroundColor = UIColor(red: 1, green: 0.35, blue: 0.3, alpha: 1)

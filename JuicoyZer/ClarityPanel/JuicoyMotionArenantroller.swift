@@ -73,6 +73,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         JuicoyView.setTitle(" sEqdfiht".JoicoydeMercrypt(), for: .normal)
         JuicoyView.setTitleColor(.white, for: .normal)
+        JuicoyView.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         JuicoyView.addTarget(self, action: #selector(JJuicoyUMPEditontroller), for: .touchUpInside)
         return JuicoyView
     }()
@@ -106,7 +107,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     
     private let JuicoyStylePersonaName: UILabel = {
         let JuicoyLabel = UILabel()
-        JuicoyLabel.text = "Cameron Curtis"
+        
         JuicoyLabel.textColor = .white
         JuicoyLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         return JuicoyLabel
@@ -289,7 +290,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
             
             JuicoyStylePersonaName.topAnchor.constraint(equalTo: JuicoyIconicAvatarFrame.bottomAnchor, constant: 12),
             JuicoyStylePersonaName.leadingAnchor.constraint(equalTo: JuicoyFabricContentStack.leadingAnchor, constant: 20),
-
+            JuicoyStylePersonaName.widthAnchor.constraint(lessThanOrEqualToConstant: 180),
             JuicoyEliteVipTag.centerYAnchor.constraint(equalTo: JuicoyStylePersonaName.centerYAnchor),
             JuicoyEliteVipTag.leadingAnchor.constraint(equalTo: JuicoyStylePersonaName.trailingAnchor, constant: 8),
 

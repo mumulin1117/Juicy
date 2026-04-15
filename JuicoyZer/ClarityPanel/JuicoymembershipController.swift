@@ -77,6 +77,8 @@ class JuicoymembershipController: JuicoySeconedViewController {
         let JuicoyLab = UILabel()
         JuicoyLab.text = JuicoyDataFactory.currentUserModel?.JuicoyHandle
         JuicoyLab.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        JuicoyLab.numberOfLines = 1
+        JuicoyLab.lineBreakMode = .byTruncatingTail
         JuicoyLab.translatesAutoresizingMaskIntoConstraints = false
         return JuicoyLab
     }()
@@ -211,7 +213,7 @@ class JuicoymembershipController: JuicoySeconedViewController {
             
             JuicoySoulHandle.topAnchor.constraint(equalTo: JuicoySoulAvatar.topAnchor, constant: 2),
             JuicoySoulHandle.leadingAnchor.constraint(equalTo: JuicoySoulAvatar.trailingAnchor, constant: 12),
-            
+            JuicoySoulHandle.widthAnchor.constraint(lessThanOrEqualToConstant: 150),
             JuicoyEmpireVipBadge.centerYAnchor.constraint(equalTo: JuicoySoulHandle.centerYAnchor),
             JuicoyEmpireVipBadge.leadingAnchor.constraint(equalTo: JuicoySoulHandle.trailingAnchor, constant: 8),
             

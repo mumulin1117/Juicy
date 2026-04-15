@@ -17,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let JUICOY_ScreenFrame = UIScreen.main.bounds
         let JUICOY_PrimaryWindow = UIWindow(frame: JUICOY_ScreenFrame)
         self.window = JUICOY_PrimaryWindow
-        
+        if #available(iOS 13.0, *) {
+            window?.overrideUserInterfaceStyle = .light
+            
+        }
         var JUICOY_BootStrapPulse = 0
         JUICOY_BootStrapPulse += 1
         

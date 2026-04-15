@@ -81,6 +81,7 @@ class JuicoyThirdFluxController: JuicoySeconedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Sparkle Depot"
+        NotificationCenter.default.addObserver(self, selector: #selector(JuicoyDismissPurchaseLoading), name: JuicoyPayTool.JuicoyDidQueuePaymentNotification, object: nil)
         
         if  let emailID =  UserDefaults.standard.object(forKey: "JUICOYloginEmsilID") as? String, let diomendCount = UserDefaults.standard.object(forKey: emailID) as? String  {
            
@@ -91,6 +92,10 @@ class JuicoyThirdFluxController: JuicoySeconedViewController {
         
         
         JUICOYaddLoadingViewONSurface()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     private func JuicoyConstructEmpire() {
@@ -186,6 +191,10 @@ class JuicoyThirdFluxController: JuicoySeconedViewController {
                 }
             }
         }
+    
+    @objc private func JuicoyDismissPurchaseLoading() {
+        JUICOYDismissLoad()
+    }
 
         private func JUICOY_SynchronizeArtistryBalance(with JUICOY_Addendum: Int) {
             let JUICOY_AccountKey = "JUICOYloginEmsilID"
@@ -245,5 +254,4 @@ extension JuicoyThirdFluxController: UICollectionViewDelegate, UICollectionViewD
         return CGSize(width: JuicoyWidth, height: 130)
     }
 }
-
 

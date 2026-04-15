@@ -330,6 +330,10 @@ class JuicoyProfileArchitectController: JuicoySeconedYEUIController {
         JuicoyDataFactory.JuicoyuserBackground = uBagImags
       
         JuicoyDataFactory.currentUserModel = currentUser
+        
+        if let JuicoyEmail = UserDefaults.standard.string(forKey: "JUICOYloginEmsilID") {
+            JuicoyAccountManager.JuicoyUpdateProfile(email: JuicoyEmail, name: newName, avatarImage: JuicoyAvatarHalo.image)
+        }
      
         JUICOYbeginLoad()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {

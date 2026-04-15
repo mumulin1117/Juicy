@@ -183,69 +183,87 @@ class JUICYLegalAgreementViewController: UIViewController {
     private func JUICYFetchEULAText() -> String {
         return """
 End User License Agreement (EULA)
-Effective Date: January 01, 2026
+Effective Date: April 14, 2026
 
 Contact: juicy@gmail.com
 
-Welcome to Juicy, the active video community for pole dance artistry and movement. This EULA is a legal agreement between you and Juicy. By accessing our "open studio" environment, you agree to the following standards of conduct designed to keep our creative space safe and inspiring.
+This EULA is a legal agreement between you and Juicy regarding your use of the app and related services. By downloading, accessing, or using Juicy, you agree to the terms below.
 
-User Conduct & Movement Restrictions: Juicy is a space for artistry, drills, and technical progression. While we celebrate the human form in motion, we maintain a zero-tolerance policy for the following:
+Scope of License: Juicy grants you a limited, non-exclusive, non-transferable, revocable license to use the app for your personal, non-commercial use on devices you own or control, subject to this EULA and applicable App Store rules.
 
-Harm to Minors: Any content involving the exploitation or harm of children is strictly prohibited and will be reported to authorities.
+Account Access: To use core features of the service, you must create an account and complete basic profile information. Anonymous access is not supported. You are responsible for the accuracy of the information you provide.
 
-Explicit Material: While pole dance is expressive, Juicy is not a platform for pornography. Content must remain focused on the "artistry behind every spin and hold." Openly pornographic or sexually explicit content is forbidden.
+Social Features: Juicy is a social video community where users may share short videos, interact with content, and communicate with other users. Private messaging and private video features are limited to users who mutually follow each other.
 
-Safety & Harassment: Bullying, stalking, or harassment during 1v1 video calls or in comment sections is prohibited. You may not use movement as a vehicle for violence or hate speech.
+Acceptable Use: You may not use Juicy to upload, publish, transmit, or promote content that is unlawful, exploitative, infringing, harassing, hateful, deceptive, invasive of privacy, or otherwise harmful to other users or third parties.
 
-Misinformation: Posting false or harmful information regarding current events that disrupts the community harmony is prohibited.
+User Content: You are responsible for the content you create, upload, or share through Juicy. You represent that you have the rights necessary to submit that content and that it complies with applicable law, platform rules, and the rights of others.
 
-Termination of Access: Juicy reserves the right, at its sole discretion, to terminate your account and license to use the app immediately if:
+AI Features: Juicy may provide AI-powered suggestions, discovery assistance, or chat features. AI outputs are generated automatically, may be inaccurate or incomplete, and are provided for general informational or entertainment purposes only.
 
-You violate any of the conduct restrictions listed above.
+Platform Integrity: You may not reverse engineer, interfere with, disrupt, scrape, automate unauthorized access to, or misuse the app, its services, recommendation systems, or safety controls.
 
-Our AI moderation or community flagging systems identify recurring patterns of "toxic" behavior.
+Account Security: You are responsible for maintaining the confidentiality of your account credentials and for activity that occurs under your account.
 
-You attempt to reverse-engineer the "AI Dancer" suggestions or scrap video content for unauthorized use. Upon termination, your "creative routines" and "training progress" data will be deleted, and you will be banned from future access. Movement is a language of respect; those who speak otherwise will be removed from the studio.
+Enforcement and Termination: Juicy may investigate violations of this EULA and may suspend, restrict, or terminate access to the service if you violate this EULA, misuse the platform, or create risk for users, partners, or the service.
+
+Updates and Availability: Juicy may update, modify, suspend, or discontinue features at any time. Some features may vary by device, region, or service status.
+
+Disclaimer: Juicy is provided on an "as is" and "as available" basis to the extent permitted by applicable law.
+
+Limitation of Liability: To the extent permitted by law, Juicy will not be liable for indirect, incidental, special, consequential, exemplary, or punitive damages arising from your use of the app.
 """
     }
     
     private func JUICYFetchPrivacyText() -> String {
         return """
 Privacy Policy
-Effective Date: January 01, 2026
+Effective Date: April 14, 2026
 
-1. Data Collection: To facilitate the "alive and expressive" nature of Juicy, we collect:
+1. Information You Provide: We may collect information you provide directly when you register or use the app, including your email address, display name, profile photo, account credentials, support requests, reports, and other profile details you choose to submit. Because anonymous login is not supported, basic account profile information is required to use core services.
 
-Video Content: Clips you upload to your training highlights.
+2. Content and Social Activity: We may collect content and activity you create in the app, such as videos, captions, comments, likes, follows, profile edits, reports, and other interactions necessary to operate the feed and community features.
 
-Real-time Interaction Data: Metadata from 1v1 video calls (we do not record the audio/video of private calls unless reported for a safety violation).
+3. Communications and Interaction Data: If you use private messaging, video, or other communication features, we may process the information required to provide those features, including relationship status between accounts, message delivery data, connection data, session metadata, and safety-related records. Private messaging and private video features are limited to mutual followers.
 
-AI Training Data: Your interactions with the AI Dancer to improve drill suggestions.
+4. Device and Usage Data: We may collect technical information such as device type, operating system, app version, identifiers, language, time zone, log data, crash data, and other diagnostics needed to operate, secure, and improve the service.
 
-2. How We Use Your Data: Your data is used to populate your feed with "new people" appearing naturally through shared content. We use your activity patterns to ensure that your "style ideas" remain relevant to your skill level and interests.
+5. AI Feature Data: If you use AI-powered suggestions or chat features, we may process the prompts, interactions, and related context needed to provide, maintain, and improve those features, subject to applicable law and our internal data handling practices.
 
-3. Third-Party Sharing: We do not sell your personal routines or contact information to advertisers. Data may be shared with service providers who assist in video hosting or AI processing, ensuring the "open studio" stays functional 24/7.
+6. How We Use Information: We use information to create and manage accounts, provide the feed and discovery experience, enable mutual-follower messaging and video features, provide AI-powered features, maintain safety, investigate abuse, respond to support requests, and improve reliability and performance.
 
-4. Your Rights: You have the right to delete your account at any time. Doing so will remove your profile from the community feed and disconnect your message history. For data portability requests regarding your "practice highlights," contact juicy@gmail.com.
+7. Sharing: We do not sell personal information. We may share information with service providers that support hosting, storage, analytics, security, moderation, customer support, and related operations. We may also disclose information when required by law, to protect rights and safety, or in connection with a merger, acquisition, financing, or asset transfer.
 
-5. Security: We implement industry-standard encryption for all 1v1 video calls to protect your "closer look" conversations from unauthorized interception.
+8. Retention and Deletion: We retain information for as long as reasonably necessary to provide the service, comply with legal obligations, resolve disputes, enforce our agreements, and maintain safety records. You may request account deletion by contacting the support email above, subject to legal and operational retention requirements.
+
+9. Your Choices and Rights: You may review or update certain profile information in the app. Depending on your location, you may also have rights to access, correct, delete, or export certain personal information.
+
+10. Security: We use reasonable administrative, technical, and organizational measures designed to protect personal information. No method of storage or transmission is completely secure.
 """
     }
     
     private func JUICYFetchTermsText() -> String {
         return """
 Terms of Service (ToS)
-Effective Date: January 01, 2026
+Effective Date: April 14, 2026
 
-1. Service Description: Juicy provides a real-time video community where users can share clips, engage in 1v1 video calls, and interact with an AI Dancer. By using the "quick switch" to open video calls, you acknowledge that you are interacting with real people in real-time.
+1. Service Description: Juicy is a social video and communication platform where users can create profiles, share short-form video content, discover creators, exchange feedback, and access app features made available from time to time.
 
-2. Content Ownership & License: You retain ownership of the videos you record. However, by posting highlights or routines, you grant Juicy a worldwide, royalty-free license to host, store, and display your movement clips to other users within the feed to "spark inspiration." This allows the community to see the "artistry behind every spin."
+2. Registration and Accounts: To access core features, you must register an account and complete basic profile information. You may not impersonate another person, provide misleading account information, or share your credentials with others.
 
-3. AI Interactions: The "AI Dancer" provides drill suggestions and style ideas based on community trends. These are for informational purposes only. You are responsible for your own physical safety while performing any drills or holds suggested. Always ensure your equipment is secure before attempting a new spin.
+3. Mutual Follower Controls: Private messaging and private video features are only available between users who mutually follow each other. You may not attempt to bypass platform restrictions, contact controls, blocking tools, or other safety limitations.
 
-4. User Accountability: You are responsible for maintaining the confidentiality of your login credentials. Any activity originating from your account—whether in the feed or during a 1v1 call—is your legal responsibility.
+4. User Content: You retain ownership of the content you submit, but you grant Juicy a limited, worldwide, non-exclusive, royalty-free license to host, store, reproduce, display, distribute, and otherwise process that content as necessary to operate, improve, and provide the service.
 
-5. Dispute Resolution: Any disputes arising from the use of Juicy will be governed by the laws of the jurisdiction in which the company is registered, focusing first on mediation to resolve creative or community-based conflicts.
+5. Community Standards: You agree not to use the service to post unlawful, infringing, deceptive, abusive, exploitative, privacy-invasive, or otherwise harmful content, and not to harass, threaten, impersonate, or endanger other users.
+
+6. AI Features: Juicy may offer AI-powered suggestions, discovery assistance, and chat features. AI-generated output may be imperfect and should not be treated as professional, legal, medical, or safety advice.
+
+7. Moderation and Enforcement: We may review reports, investigate suspected misuse, remove content, restrict features, or suspend or terminate accounts that violate these Terms, applicable law, or platform safety rules.
+
+8. Changes and Availability: We may update the service or these Terms from time to time. We may add, remove, suspend, or change features without liability where permitted by law.
+
+9. Governing Law: Any disputes arising out of or relating to the service will be governed by the laws applicable in the jurisdiction where the service operator is established, unless otherwise required by applicable law.
 """
         
     }

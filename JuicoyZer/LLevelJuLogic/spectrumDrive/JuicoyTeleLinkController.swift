@@ -107,7 +107,7 @@ class JuicoyTeleLinkController: UIViewController {
             
             JuicoyPeerIdentity.bottomAnchor.constraint(equalTo: JuicoyStatusSignal.topAnchor, constant: -10),
             JuicoyPeerIdentity.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
+            JuicoyPeerIdentity.widthAnchor.constraint(lessThanOrEqualToConstant: 150),
             JuicoyTerminateTrigger.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             JuicoyTerminateTrigger.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60),
             JuicoyTerminateTrigger.widthAnchor.constraint(equalToConstant: 80),
