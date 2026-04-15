@@ -121,7 +121,7 @@ class JuicoyEchoThreadCell: UITableViewCell {
             NSLayoutConstraint.activate(JuicoyFollowConstraints)
             JuicoyPulseBubble.backgroundColor = UIColor(red: 168/255, green: 70/255, blue: 255/255, alpha: 1.0)
             JuicoyContentEcho.textColor = .white
-            JuicoyAvatarOrb.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyDynamicLog")
+            JuicoyAvatarOrb.image = UIImage(named: "juicoyDynamicLog" )
         }
     }
 }

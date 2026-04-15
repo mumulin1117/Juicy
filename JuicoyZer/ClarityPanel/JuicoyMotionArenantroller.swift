@@ -87,7 +87,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyImg.contentMode = .scaleAspectFill
         JuicoyImg.layer.cornerRadius = 45
         JuicoyImg.layer.masksToBounds = true
-        JuicoyImg.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoybackimag")
+        JuicoyImg.image = UIImage(named: "juicoyDynamicLog") //JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoybackimag")
         return JuicoyImg
     }()
 
@@ -376,7 +376,6 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         }
 //        JuicoyStageCoverImage.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: useiINfo.JuicoyAvatarKey)
         
-        JuicoyIconicAvatarFrame.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: useiINfo.JuicoyAvatarKey)
         JuicoyStylePersonaName.text = useiINfo.JuicoyHandle
         
         
@@ -396,7 +395,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
             JuicoyIconicAvatarFrame.image = JuicoyDataFactory.Juicoyuserphtho!
            
         }else{
-            JuicoyIconicAvatarFrame.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:useiINfo.JuicoyAvatarKey)
+            JuicoyIconicAvatarFrame.image =  UIImage(named: "juicoyDynamicLog") //JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier:useiINfo.JuicoyAvatarKey)
         }
         
     }

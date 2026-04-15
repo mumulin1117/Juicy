@@ -119,7 +119,7 @@ class JuicoyProfileArchitectController: JuicoySeconedYEUIController {
                 JuicoyAvatarHalo.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: currentUser.JuicoyAvatarKey)
                 return
             }
-            JuicoyAvatarHalo.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyDynamicLog")
+            JuicoyAvatarHalo.image = UIImage(named: "juicoyDynamicLog" )
         }
     }
     private func JuicoyInitializeStage() {
