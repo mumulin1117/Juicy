@@ -20,7 +20,7 @@ class JuicoyAboutController: JuicoySeconedYEUIController {
 
         private let JuicoyAppTitleNexus: UILabel = {
             let JuicoyLab = UILabel()
-            JuicoyLab.text = "Juicy"
+            JuicoyLab.text = "Nadin"
             JuicoyLab.textColor = .black
             JuicoyLab.font = UIFont.systemFont(ofSize: 24, weight: .bold)
             JuicoyLab.translatesAutoresizingMaskIntoConstraints = false

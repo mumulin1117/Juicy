@@ -95,14 +95,13 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        // 只有在第一次确定了尺寸且模型不为空时才配置
         if !isJuicoyInitialLayoutDone && JuicoyCardContainerView.bounds.width > 0 && !cardsModels.isEmpty {
             JuicoyConfigureCards()
             isJuicoyInitialLayoutDone = true
         }
     }
     func JUICOYconstrainet() {
-        // 适配比例因子（沿用上一条建议的比例适配，确保视觉统一）
+      
         let ratio = UIScreen.main.bounds.width / 375.0
         func f(_ v: CGFloat) -> CGFloat { return v * ratio }
 
@@ -116,13 +115,12 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
             JUICYAddSpinButton.heightAnchor.constraint(equalToConstant: f(35)),
             JUICYAddSpinButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -f(19)),
             JUICYAddSpinButton.centerYAnchor.constraint(equalTo: JUICYMotionStageContainer.centerYAnchor),
-            // ScrollView 占据全屏
+            
             JuicoyMainScrollView.topAnchor.constraint(equalTo: JUICYAddSpinButton.bottomAnchor,constant: 5),
             JuicoyMainScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             JuicoyMainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             JuicoyMainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            // ContentView 约束（决定滚动范围的关键）
             JuicoyScrollContentView.topAnchor.constraint(equalTo: JuicoyMainScrollView.topAnchor),
             JuicoyScrollContentView.leadingAnchor.constraint(equalTo: JuicoyMainScrollView.leadingAnchor),
             JuicoyScrollContentView.trailingAnchor.constraint(equalTo: JuicoyMainScrollView.trailingAnchor),
@@ -161,7 +159,7 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
         ])
     }
     private lazy var  JUICYMotionStageContainer: UIImageView = {
-        let JUICOY = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "JuicyTitle"))
+        let JUICOY = UIImageView.init(image:UIImage(named: "JuicyTitle") )
         JUICOY.translatesAutoresizingMaskIntoConstraints = false
         return JUICOY
     }()

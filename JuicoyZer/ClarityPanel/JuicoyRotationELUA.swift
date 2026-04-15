@@ -185,33 +185,33 @@ class JUICYLegalAgreementViewController: UIViewController {
 End User License Agreement (EULA)
 Effective Date: April 14, 2026
 
-Contact: juicy@gmail.com
+Contact: Nadin@gmail.com
 
-This EULA is a legal agreement between you and Juicy regarding your use of the app and related services. By downloading, accessing, or using Juicy, you agree to the terms below.
+This EULA is a legal agreement between you and Nadin regarding your use of the app and related services. By downloading, accessing, or using Nadin, you agree to the terms below.
 
-Scope of License: Juicy grants you a limited, non-exclusive, non-transferable, revocable license to use the app for your personal, non-commercial use on devices you own or control, subject to this EULA and applicable App Store rules.
+Scope of License: Nadin grants you a limited, non-exclusive, non-transferable, revocable license to use the app for your personal, non-commercial use on devices you own or control, subject to this EULA and applicable App Store rules.
 
 Account Access: To use core features of the service, you must create an account and complete basic profile information. Anonymous access is not supported. You are responsible for the accuracy of the information you provide.
 
-Social Features: Juicy is a social video community where users may share short videos, interact with content, and communicate with other users. Private messaging and private video features are limited to users who mutually follow each other.
+Social Features: Nadin is a social video community where users may share short videos, interact with content, and communicate with other users. Private messaging and private video features are limited to users who mutually follow each other.
 
-Acceptable Use: You may not use Juicy to upload, publish, transmit, or promote content that is unlawful, exploitative, infringing, harassing, hateful, deceptive, invasive of privacy, or otherwise harmful to other users or third parties.
+Acceptable Use: You may not use Nadin to upload, publish, transmit, or promote content that is unlawful, exploitative, infringing, harassing, hateful, deceptive, invasive of privacy, or otherwise harmful to other users or third parties.
 
-User Content: You are responsible for the content you create, upload, or share through Juicy. You represent that you have the rights necessary to submit that content and that it complies with applicable law, platform rules, and the rights of others.
+User Content: You are responsible for the content you create, upload, or share through Nadin. You represent that you have the rights necessary to submit that content and that it complies with applicable law, platform rules, and the rights of others.
 
-AI Features: Juicy may provide AI-powered suggestions, discovery assistance, or chat features. AI outputs are generated automatically, may be inaccurate or incomplete, and are provided for general informational or entertainment purposes only.
+AI Features: Nadin may provide AI-powered suggestions, discovery assistance, or chat features. AI outputs are generated automatically, may be inaccurate or incomplete, and are provided for general informational or entertainment purposes only.
 
 Platform Integrity: You may not reverse engineer, interfere with, disrupt, scrape, automate unauthorized access to, or misuse the app, its services, recommendation systems, or safety controls.
 
 Account Security: You are responsible for maintaining the confidentiality of your account credentials and for activity that occurs under your account.
 
-Enforcement and Termination: Juicy may investigate violations of this EULA and may suspend, restrict, or terminate access to the service if you violate this EULA, misuse the platform, or create risk for users, partners, or the service.
+Enforcement and Termination: Nadin may investigate violations of this EULA and may suspend, restrict, or terminate access to the service if you violate this EULA, misuse the platform, or create risk for users, partners, or the service.
 
-Updates and Availability: Juicy may update, modify, suspend, or discontinue features at any time. Some features may vary by device, region, or service status.
+Updates and Availability: Nadin may update, modify, suspend, or discontinue features at any time. Some features may vary by device, region, or service status.
 
-Disclaimer: Juicy is provided on an "as is" and "as available" basis to the extent permitted by applicable law.
+Disclaimer: Nadin is provided on an "as is" and "as available" basis to the extent permitted by applicable law.
 
-Limitation of Liability: To the extent permitted by law, Juicy will not be liable for indirect, incidental, special, consequential, exemplary, or punitive damages arising from your use of the app.
+Limitation of Liability: To the extent permitted by law, Nadin will not be liable for indirect, incidental, special, consequential, exemplary, or punitive damages arising from your use of the app.
 """
     }
     
@@ -247,17 +247,17 @@ Effective Date: April 14, 2026
 Terms of Service (ToS)
 Effective Date: April 14, 2026
 
-1. Service Description: Juicy is a social video and communication platform where users can create profiles, share short-form video content, discover creators, exchange feedback, and access app features made available from time to time.
+1. Service Description: Nadin is a social video and communication platform where users can create profiles, share short-form video content, discover creators, exchange feedback, and access app features made available from time to time.
 
 2. Registration and Accounts: To access core features, you must register an account and complete basic profile information. You may not impersonate another person, provide misleading account information, or share your credentials with others.
 
 3. Mutual Follower Controls: Private messaging and private video features are only available between users who mutually follow each other. You may not attempt to bypass platform restrictions, contact controls, blocking tools, or other safety limitations.
 
-4. User Content: You retain ownership of the content you submit, but you grant Juicy a limited, worldwide, non-exclusive, royalty-free license to host, store, reproduce, display, distribute, and otherwise process that content as necessary to operate, improve, and provide the service.
+4. User Content: You retain ownership of the content you submit, but you grant Nadin a limited, worldwide, non-exclusive, royalty-free license to host, store, reproduce, display, distribute, and otherwise process that content as necessary to operate, improve, and provide the service.
 
 5. Community Standards: You agree not to use the service to post unlawful, infringing, deceptive, abusive, exploitative, privacy-invasive, or otherwise harmful content, and not to harass, threaten, impersonate, or endanger other users.
 
-6. AI Features: Juicy may offer AI-powered suggestions, discovery assistance, and chat features. AI-generated output may be imperfect and should not be treated as professional, legal, medical, or safety advice.
+6. AI Features: Nadin may offer AI-powered suggestions, discovery assistance, and chat features. AI-generated output may be imperfect and should not be treated as professional, legal, medical, or safety advice.
 
 7. Moderation and Enforcement: We may review reports, investigate suspected misuse, remove content, restrict features, or suspend or terminate accounts that violate these Terms, applicable law, or platform safety rules.
 

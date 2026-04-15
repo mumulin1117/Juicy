@@ -154,7 +154,7 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
     
     
     private let JUICYMotionStageContainer: UIImageView = {
-        let JUICOY = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyBodyLinearity"))
+        let JUICOY = UIImageView.init(image: UIImage(named: "juicoyBodyLinearity"))
         JUICOY.contentMode = .scaleAspectFill
         JUICOY.translatesAutoresizingMaskIntoConstraints = false
         return JUICOY
@@ -183,7 +183,7 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
     
     
     private let JUICYMainHeadingLabel:  UIImageView = {
-        let JUICOYview = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyMomentumShift"))
+        let JUICOYview = UIImageView.init(image: UIImage(named: "juicoyMomentumShift"))
         JUICOYview.contentMode = .scaleAspectFill
         JUICOYview.translatesAutoresizingMaskIntoConstraints = false
         return JUICOYview
@@ -320,7 +320,7 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
     }()
     
     private lazy var JUICYLegalLinkRow: UIStackView = {
-        let JUICYStack = UIStackView(arrangedSubviews: [JUICYtermButton, JUICYpriButton])
+        let JUICYStack = UIStackView(arrangedSubviews: [JUICYpriButton])
         JUICYStack.axis = .horizontal
         JUICYStack.alignment = .fill
         JUICYStack.distribution = .fillEqually
@@ -369,6 +369,8 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
         JUICYContentContainer.addSubview(JUICYCreateActionRow)
         JUICYContentContainer.addSubview(JUICYcircleSpinButton)
         JUICYContentContainer.addSubview(JUICYagreenbyTitle)
+        JUICYContentContainer.addSubview(JUICYtermButton)
+        
         JUICYContentContainer.addSubview(JUICYLegalLinkRow)
       
         
@@ -427,20 +429,24 @@ class JUICOYMotionClarity: UIViewController, ASAuthorizationControllerPresentati
             JUICYAppleSpinButton.heightAnchor.constraint(equalToConstant: 55),
             
             JUICYcircleSpinButton.leadingAnchor.constraint(equalTo: JUICYContinueSpinButton.leadingAnchor, constant: 5),
-            JUICYcircleSpinButton.topAnchor.constraint(equalTo: JUICYCreateActionRow.bottomAnchor, constant: 20),
+            JUICYcircleSpinButton.topAnchor.constraint(equalTo: JUICYCreateActionRow.bottomAnchor, constant: 40),
             JUICYcircleSpinButton.widthAnchor.constraint(equalToConstant: 25),
             JUICYcircleSpinButton.heightAnchor.constraint(equalToConstant: 25),
             
             JUICYagreenbyTitle.leadingAnchor.constraint(equalTo: self.JUICYcircleSpinButton.trailingAnchor, constant: 8),
-            JUICYagreenbyTitle.trailingAnchor.constraint(equalTo: JUICYContinueSpinButton.trailingAnchor),
+//            JUICYagreenbyTitle.trailingAnchor.constraint(equalTo: JUICYContinueSpinButton.trailingAnchor),
             JUICYagreenbyTitle.centerYAnchor.constraint(equalTo: JUICYcircleSpinButton.centerYAnchor),
           
+            JUICYtermButton.centerYAnchor.constraint(equalTo: JUICYagreenbyTitle.centerYAnchor),
+            JUICYtermButton.widthAnchor.constraint(equalToConstant: 100),
+            JUICYtermButton.heightAnchor.constraint(equalToConstant: 20),
+            JUICYtermButton.leadingAnchor.constraint(equalTo: JUICYagreenbyTitle.trailingAnchor),
             JUICYLegalLinkRow.leadingAnchor.constraint(equalTo: JUICYContinueSpinButton.leadingAnchor),
             JUICYLegalLinkRow.trailingAnchor.constraint(equalTo: JUICYContinueSpinButton.trailingAnchor),
             JUICYLegalLinkRow.topAnchor.constraint(equalTo: JUICYagreenbyTitle.bottomAnchor, constant: 2),
             JUICYLegalLinkRow.bottomAnchor.constraint(equalTo: JUICYContentContainer.bottomAnchor, constant: -28),
             
-            JUICYtermButton.heightAnchor.constraint(equalToConstant: 20),
+//            JUICYtermButton.heightAnchor.constraint(equalToConstant: 20),
             JUICYpriButton.heightAnchor.constraint(equalToConstant: 20)
             
         ])
@@ -614,7 +620,7 @@ final class JUICOYRegisterPulseController: UIViewController, UIImagePickerContro
     var JUICYPrefilledEmail: String?
     
     private let JUICYBackdropView: UIImageView = {
-        let JUICYView = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyBodyLinearity"))
+        let JUICYView = UIImageView.init(image: UIImage(named: "juicoyBodyLinearity"))
         JUICYView.translatesAutoresizingMaskIntoConstraints = false
         JUICYView.contentMode = .scaleAspectFill
         JUICYView.clipsToBounds = true
@@ -662,7 +668,7 @@ final class JUICOYRegisterPulseController: UIViewController, UIImagePickerContro
 //    }()
     
     private let JUICYLogoView: UIImageView = {
-        let JUICYView = UIImageView(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyMomentumShift"))
+        let JUICYView = UIImageView.init(image: UIImage(named: "juicoyMomentumShift"))
         JUICYView.translatesAutoresizingMaskIntoConstraints = false
         JUICYView.contentMode = .scaleAspectFit
         return JUICYView
