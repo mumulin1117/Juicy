@@ -6,5 +6,6 @@ target 'JuicoyZer' do
   use_frameworks!
 
   # Pods for JuicoyZer
-
+  pod 'Adjust'
+  pod 'FBSDKCoreKit'
 end

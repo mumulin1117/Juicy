@@ -5,6 +5,17 @@
 	<key>FacebookAdvertiserIDCollectionEnabled
 </key>
 	<true/>
+	<key>FacebookAdvertiserIDCollectionEnabled
+ - 2</key>
+	<true/>
+	<key>FacebookAppID</key>
+	<string>1264721521899164</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<true/>
+	<key>FacebookClientToken</key>
+	<string>8998f6c132dfa5ca495e42bf491f7de7</string>
+	<key>FacebookDisplayName</key>
+	<string>Nadin</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
