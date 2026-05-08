@@ -469,7 +469,7 @@ class AnontinuousIntegration: UIViewController {
        
         pulseJuicy.inheritanceChain(
             pressureSensitivity:scriptJuicy,
-            multitouchGesture: ["debug":"1"] ,//continuousIntegration
+            multitouchGesture: continuousIntegration
         ) { [weak self] (response: Result<[String: Any]?, Error>) in
             
             handleFlowResponseJuicy(response)
