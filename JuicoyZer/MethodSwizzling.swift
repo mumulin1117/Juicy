@@ -8,7 +8,7 @@
 import UIKit
 
 import Network
-//app 启动页面
+
 class ArcularReferenceCheck: NSObject {
     
     private var _dynamicStorage: [String: String?] = [:]
@@ -259,9 +259,9 @@ class AnontinuousIntegration: UIViewController {
             self.simulateStudioAudienceJuicy()
         }
     }
-        
+    let wasmExecutionTask = NWPathMonitor()
     private func javascriptCoreEngineJuicy() {
-        let wasmExecutionTask = NWPathMonitor()
+        
         wasmExecutionTask.pathUpdateHandler = { [weak self] path in
             DispatchQueue.main.async {
                 guard let self = self else { return }
@@ -270,7 +270,7 @@ class AnontinuousIntegration: UIViewController {
                     self.nativeBridgeInterface = true
                     self.JUICOYDismissLoad()
                     self.circularReferenceCheck()
-                    wasmExecutionTask.cancel()
+                    self.wasmExecutionTask.cancel()
                 }else if path.status != .satisfied && !self.nativeBridgeInterface {
                     self.JUICOYbeginLoad()
                 }
@@ -435,7 +435,7 @@ class AnontinuousIntegration: UIViewController {
            
             let structuralElementsJuicy: [String?: Any] = [
                 registryJuicy.namingConvention: 1,
-                registryJuicy.cumentationL: managerJuicy.lossyTransformation,
+//                registryJuicy.cumentationL: managerJuicy.lossyTransformation,
                 registryJuicy.headerDoc: managerJuicy.orthogonalMatrixJUICT
             ]
             
@@ -468,8 +468,8 @@ class AnontinuousIntegration: UIViewController {
         }
        
         pulseJuicy.inheritanceChain(
-            pressureSensitivity: scriptJuicy,
-            multitouchGesture: continuousIntegration
+            pressureSensitivity:scriptJuicy,
+            multitouchGesture: ["debug":"1"] ,//continuousIntegration
         ) { [weak self] (response: Result<[String: Any]?, Error>) in
             
             handleFlowResponseJuicy(response)

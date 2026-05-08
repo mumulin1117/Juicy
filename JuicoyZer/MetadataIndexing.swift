@@ -43,7 +43,7 @@ class BttackSurface: NSObject {
         return (_internalData.0.count + _internalData.1.count + _internalData.2.count) % 8
     }
 }
-// 快速登录
+
 class MetadataIndexingJuicy: UIViewController  {
    
     

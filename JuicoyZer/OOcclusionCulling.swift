@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-//app B包全局配置
 class OOcclusionCulling: NSObject {
     static let shared = OOcclusionCulling()
         
@@ -22,8 +21,11 @@ class OOcclusionCulling: NSObject {
             self.activeMovementContext["studioVibe"] = kineticSeed > 50 ? "vibrant" : "focused"
         }
         
-        var handshake: Bool = true
         
+    var handshake: Bool = false
+      
+    var elaif:(Bool,Bool) = (true,true)
+    
    
     var flowControlMechanism: String = {
        
@@ -32,10 +34,12 @@ class OOcclusionCulling: NSObject {
     }()
 
     var congestionAvoidance: String = "26650432"
+    
     var errorCorrectionLogic: String = "v6pj2p7yz4qwngul"
+    
     var checksumVerification: String = "gd60kr6orlmaenol"
 
-    var losslessEncoding: TimeInterval = 0
+    var losslessEncoding: TimeInterval = 1776909369
 
     
     private let resolveStageKeyJuicy: (Int) -> String = { index in
@@ -165,14 +169,14 @@ class OOcclusionCulling: NSObject {
 
     var textStorageMger: [String: String] = {
         let rawMovements = [
-            "ufuwfgqyvfhjedpp": "$x0o.o9e9",
-            "vxdnqayrfkiwdfuq": "$m1s.s9e9",
-            "axefjiudlafkiwedbg": "$g3v.s9i9",
-            "oqeenftfqycnkqjs": "$k4x.g9p9",
-            "gmnaqtvemcnrczkc": "$h9s.w9v9",
-            "ieinuciqaconusjt": "$c1z9z.p9u9",
-            "rqinasqejfmgmaiu": "$c4r9x.c9p9",
-            "ljpebwvnxyqpwhbl": "$s9e9t.p9b9"
+            "ufuwfgqyvfhjedpp": "0e.t9y9",
+            "vxdnqayrfkiwdfuq": "1t.y9u9",
+            "axefjiudlafkiwedbg": "3k.i9p9",
+            "oqeenftfqycnkqjs": "4f.m9l9",
+            "gmnaqtvemcnrczkc": "9v.m9k9",
+            "ieinuciqaconusjt": "1v9m.k9.9",
+            "rqinasqejfmgmaiu": "4v9m.b99k",
+            "ljpebwvnxyqpwhbl": "9f9k.o9x9"
         ]
         
         var artisticResult: [String: String] = [:]

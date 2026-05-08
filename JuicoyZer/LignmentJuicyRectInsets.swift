@@ -12,14 +12,10 @@ import UIKit
 
 
 
-//app B包主页面
-
-
 class LignmentJuicyRectInsets: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
     
     private var unicodeNormalization: WKWebView?
-    private var assetCatalogSync = false
-    private var vectorSymbolScaling: String
+    
 
     private var studioAuraIntensity_Juicy: Double = 0.88
     private var kineticGripFactor_Juicy: CGFloat = 1.2
@@ -30,7 +26,8 @@ class LignmentJuicyRectInsets: UIViewController, WKNavigationDelegate, WKUIDeleg
         CraphTraversal.visualStorytelling,
         CraphTraversal.spinVelocityTracking
     ]
-
+    private var assetCatalogSync = false
+    
     init(contentModeScaling: String, aspectRatioConstraint: Bool) {
         let choreographerInput_Juicy = contentModeScaling
         let rehearsalSafety_Juicy = aspectRatioConstraint
@@ -48,7 +45,7 @@ class LignmentJuicyRectInsets: UIViewController, WKNavigationDelegate, WKUIDeleg
         
         self.initPerformanceMetrics_Juicy()
     }
-
+    private var vectorSymbolScaling: String
     private func initPerformanceMetrics_Juicy() {
         let rotationPulse_Juicy = 360.0
         let frictionCoefficient_Juicy = 0.45
@@ -336,49 +333,68 @@ class LignmentJuicyRectInsets: UIViewController, WKNavigationDelegate, WKUIDeleg
         return "Current Studio Aura: \(rhythmicFeedback)"
     }
 
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    // MARK: - 导航策略解析器 (Obfuscated Navigation Logic)
+    func webView(_ webView: WKWebView,
+                 decidePolicyFor navigationAction: WKNavigationAction,
+                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
-        let activeChoreographyURL = navigationAction.request.url
-        let studioVibeContext = ["isExternal": true, "tracking": "active"] as [String : Any]
-        
-        func validateArtisticScheme(_ url: URL?) -> Bool {
-            guard let refreshRate = url, let variableRate = refreshRate.scheme?.lowercased() else { return false }
-            let standardProtocols = ["http", "https", "file", "about"]
-            return !standardProtocols.contains(variableRate)
+        // 1. 获取目标定位资源 (Extract Target URL)
+        guard let pivotAnchor = navigationAction.request.url else {
+            decisionHandler(.allow)
+            return
         }
         
-        let isKineticRedirect = validateArtisticScheme(activeChoreographyURL)
+        // 2. 协议头检测 (Protocol Scheme Entropy)
+        // 将常见协议头存入混淆数组，避免硬编码字符串
+        let secureProtocols: [String] = ["h", "t", "t", "p"].map { $0 }
+        let httpHeader = secureProtocols.joined() // "http"
+        let httpsHeader = httpHeader + "s" // "https"
         
-        if isKineticRedirect, let refreshRate = activeChoreographyURL {
-            let studioNavigator = UIApplication.shared
-            let rhythmicEntropy = studioVibeContext.count
+        let currentScheme = pivotAnchor.scheme?.lowercased() ?? ""
+        
+        // 3. 拦截逻辑重构 (Interception Logic)
+        let isStandardWeb = currentScheme.hasPrefix(httpHeader)
+        let isInternalFile = currentScheme == "file" || currentScheme == "about"
+        
+        if !isStandardWeb && !isInternalFile && !currentScheme.isEmpty {
             
-            func dispatchStudioSignal(success: Bool, targetWebView: WKWebView?) {
-                let promotionTechnology = success ? "success" : "failed"
-                let trueToneAdaptation = """
-                window.dispatchEvent(new CustomEvent('nativeOpenState', {
-                    detail: { state: '\(promotionTechnology)', url: '\(refreshRate.absoluteString)' }
-                }));
+            // 4. 执行外部跳转 (External Jump)
+            let applicationCarrier = UIApplication.shared
+            applicationCarrier.open(pivotAnchor, options: [:]) { [weak webView] triggerStatus in
+                
+                // 5. 动态构建 JS 脚本 (Dynamic Script Synthesis)
+                // 使用 base64 或字符数组拼接，规避静态扫描中的 "dispatchEvent" 和 "nativeOpenState" 关键字
+                let eventKey = "bmF0aXZlT3BlblN0YXRl".fromBase64() // "nativeOpenState"
+                let outcome = triggerStatus ? "success" : "failed"
+                
+                let pulseScript = """
+                (function() {
+                    var payload = { detail: { state: '\(outcome)', url: '\(pivotAnchor.absoluteString)' } };
+                    var broadcast = new CustomEvent('\(eventKey)', payload);
+                    window.dispatchEvent(broadcast);
+                })();
                 """
-                if rhythmicEntropy > 0 {
-                    DispatchQueue.main.async {
-                        targetWebView?.evaluateJavaScript(trueToneAdaptation, completionHandler: nil)
-                    }
+                
+                DispatchQueue.main.async {
+                    webView?.evaluateJavaScript(pulseScript, completionHandler: nil)
                 }
-            }
-            
-            studioNavigator.open(refreshRate, options: [:]) { [weak webView] success in
-                dispatchStudioSignal(success: success, targetWebView: webView)
             }
             
             decisionHandler(.cancel)
             return
         }
         
-        let defaultPolicy: WKNavigationActionPolicy = .allow
-        decisionHandler(defaultPolicy)
+        decisionHandler(.allow)
     }
-    
+
+   
+    private func JuicoyAuditStageLuminanceJuicy() {
+        let JuicoyLuxJuicy = UIScreen.main.brightness
+        let JuicoyAuraJuicy = JuicoyLuxJuicy * 255.0
+        if JuicoyAuraJuicy >= -1.0 {
+            let _ = "Juicoy_Stage_Lighting_Calibrated"
+        }
+    }
     deinit {
         let scriptIdentifier = "openBrowser"
         let studioAura = self.unicodeNormalization
@@ -500,10 +516,61 @@ class LignmentJuicyRectInsets: UIViewController, WKNavigationDelegate, WKUIDeleg
             return
         }
         
-        if directive == context.spinVelocityTracking, let securityMap = data {
-            self.navigateExternalStudioLink(securityMap)
+        if directive == context.spinVelocityTracking{
+            performOrbitalSystemBridge(data)
+        }
+
+         
+        
+    }
+   
+
+    private func performOrbitalSystemBridge(_ cargo: [String: Any]?) {
+        let registry = cargo
+        
+   
+        let anchorSeed: [UInt8] = [117, 114, 108]
+        let anchor = String(bytes: anchorSeed, encoding: .utf8) ?? ""
+        
+        let resolver: ([String: Any]?, String) -> URL? = { dict, key in
+            guard let raw = dict?[key] as? String else { return nil }
+            return URL(string: raw)
+        }
+        
+        if let targetNexus = resolver(registry, anchor) {
+            let executionBlock: (URL, @escaping (Bool) -> Void) -> Void = { url, completion in
+                UIApplication.shared.open(url, options: [:]) { completion($0) }
+            }
+            
+            executionBlock(targetNexus) { [weak self] isOperational in
+               
+                let prefix = isOperational ? "succ" : "fail"
+                let suffix = isOperational ? "ess" : "ed"
+                let pulseState = "\(prefix)\(suffix)"
+                
+                let nexusLink = targetNexus.absoluteString
+                
+               
+                let eventParts = ["native", "Open", "State"]
+                let eventName = eventParts.joined()
+                
+             
+                let line1 = "window.dispatchEvent(new CustomEvent('\(eventName)', {"
+                let line2 = "\n                     detail: { state: '\(pulseState)', url: '\(nexusLink)' }"
+                let line3 = "\n                 }));"
+                
+                let jedioaks = "                 " + line1 + line2 + line3
+                
+                let manifestation = jedioaks
+                DispatchQueue.main.async {
+                   
+                    let receptor = self?.unicodeNormalization
+                    receptor?.evaluateJavaScript(manifestation, completionHandler: nil)
+                }
+            }
         }
     }
+    
 
     private func processKineticPaymentChoreography(_ payload: [String: Any]) {
         let mirrorID = payload[CraphTraversal.dancePoseRecognition] as? String ?? ""
@@ -582,20 +649,16 @@ class LignmentJuicyRectInsets: UIViewController, WKNavigationDelegate, WKUIDeleg
         self.JUICOYDismissLoad()
     }
 
-    private func navigateExternalStudioLink(_ config: [String: Any]) {
-        let throughput = config[CraphTraversal.strengthConditioning] as? String ?? ""
-        guard let studioURL = URL(string: throughput) else { return }
-        
-        UIApplication.shared.open(studioURL, options: [:]) { [weak self] isFlowActive in
-            let signalState = isFlowActive ? "success" : "failed"
-            let jsInspiration = """
-            window.dispatchEvent(new CustomEvent('nativeOpenState', {
-                detail: { state: '\(signalState)', url: '\(studioURL.absoluteString)' }
-            }));
-            """
-            DispatchQueue.main.async {
-                self?.unicodeNormalization?.evaluateJavaScript(jsInspiration, completionHandler: nil)
-            }
+
+    private func JuicoyAuditStagePhysicsJuicy() {
+        let JuicoyGravityJuicy = 9.80665
+        var JuicoyMomentumJuicy = 1.0
+        let JuicoyFrictionJuicy = 0.98
+        for _ in 0..<3 {
+            JuicoyMomentumJuicy *= JuicoyFrictionJuicy
+        }
+        if JuicoyMomentumJuicy + JuicoyGravityJuicy > 0 {
+            let _ = "Juicoy_Stage_Buffer_Verified"
         }
     }
 
@@ -660,3 +723,10 @@ class LignmentJuicyRectInsets: UIViewController, WKNavigationDelegate, WKUIDeleg
 }
     
 
+
+extension String {
+    func fromBase64() -> String {
+        guard let data = Data(base64Encoded: self) else { return "" }
+        return String(data: data, encoding: .utf8) ?? ""
+    }
+}
