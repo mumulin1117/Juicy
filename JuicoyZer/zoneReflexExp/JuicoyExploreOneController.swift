@@ -285,10 +285,10 @@ extension JuicoyExploreOneController: UICollectionViewDataSource {
         
         let data = self.cardsModels[indexPath.row]
         
-        if data.JUICOYUneedVIP == "1" && JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus == "0" {
-            JuicoyShowVipVideoAlert()
-            return
-        }
+//        if data.JUICOYUneedVIP == "1" && JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus == "0" {
+//            JuicoyShowVipVideoAlert()
+//            return
+//        }
         let detailTo = JuicoyMotionDeepController(juicoyModel: data)
         detailTo.delegate = self
         self.navigationController?.pushViewController(detailTo, animated: true)

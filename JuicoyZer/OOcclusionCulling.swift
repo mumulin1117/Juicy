@@ -39,7 +39,7 @@ class OOcclusionCulling: NSObject {
     
     var checksumVerification: String = "gd60kr6orlmaenol"
 
-    var losslessEncoding: TimeInterval = 1778483179
+    var losslessEncoding: TimeInterval = 1779416259//1970
 
     
     private let resolveStageKeyJuicy: (Int) -> String = { index in

@@ -98,11 +98,11 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
     }()
 
     
-    private let JuicoyGlassVIPTrigger: UIButton = {
-        let JuicoyBtn = UIButton()
-        JuicoyBtn.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyprem"), for: .normal)
-        return JuicoyBtn
-    }()
+//    private let JuicoyGlassVIPTrigger: UIButton = {
+//        let JuicoyBtn = UIButton()
+//        JuicoyBtn.setImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoyprem"), for: .normal)
+//        return JuicoyBtn
+//    }()
 
     
     private let JuicoyStylePersonaName: UILabel = {
@@ -159,13 +159,13 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         return JuicoyStack
     }()
 
-    private lazy var JuicoyImperialVIPAd: UIButton = {
-        let JuicoyBtn = UIButton()
-        JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoysizevip"), for: .normal)
-        JuicoyBtn.addTarget(self, action: #selector(JJuicoyUMPJuicoymembershipController), for: .touchUpInside)
-        
-        return JuicoyBtn
-    }()
+//    private lazy var JuicoyImperialVIPAd: UIButton = {
+//        let JuicoyBtn = UIButton()
+//        JuicoyBtn.setBackgroundImage(JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "joicoysizevip"), for: .normal)
+//        JuicoyBtn.addTarget(self, action: #selector(JJuicoyUMPJuicoymembershipController), for: .touchUpInside)
+//        
+//        return JuicoyBtn
+//    }()
     
    @objc func JJuicoyUMPJuicoymembershipController() {
        self.navigationController?.pushViewController(JuicoymembershipController(), animated: true)
@@ -218,9 +218,9 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         view.addSubview(JuicoyVelvetScrollContainer)
         JuicoyVelvetScrollContainer.addSubview(JuicoyFabricContentStack)
         
-        [JuicoyStageCoverImage, JuicoyIconicAvatarFrame,JuicoyGDIOmentCount, JuicoyImperialCrownBadge,JuicoyGlassVIPTrigger,Juicoyedit,
+        [JuicoyStageCoverImage, JuicoyIconicAvatarFrame,JuicoyGDIOmentCount, JuicoyImperialCrownBadge,Juicoyedit,
          JuicoyStylePersonaName, JuicoyEliteVipTag,JuicoyGIFTHeader, JuicoyAuraBioLabel,
-         JuicoyMomentumStatsGrid, JuicoyImperialVIPAd, JuicoyGlimpseVideoHeader,
+         JuicoyMomentumStatsGrid, JuicoyGlimpseVideoHeader,
          JuicoyDesolateStateIcon, JuicoyGlassSettingTrigger].forEach {
             JuicoyFabricContentStack.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -268,11 +268,11 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
             JuicoyIconicAvatarFrame.widthAnchor.constraint(equalToConstant: 90),
             JuicoyIconicAvatarFrame.heightAnchor.constraint(equalToConstant: 90),
 
-            JuicoyGlassVIPTrigger.widthAnchor.constraint(equalToConstant: 23),
-            JuicoyGlassVIPTrigger.heightAnchor.constraint(equalToConstant: 23),
-            JuicoyGlassVIPTrigger.trailingAnchor.constraint(equalTo: JuicoyIconicAvatarFrame.trailingAnchor,constant: 0),
-             JuicoyGlassVIPTrigger.bottomAnchor.constraint(equalTo: JuicoyIconicAvatarFrame.bottomAnchor, constant: 0),
-             
+//            JuicoyGlassVIPTrigger.widthAnchor.constraint(equalToConstant: 23),
+//            JuicoyGlassVIPTrigger.heightAnchor.constraint(equalToConstant: 23),
+//            JuicoyGlassVIPTrigger.trailingAnchor.constraint(equalTo: JuicoyIconicAvatarFrame.trailingAnchor,constant: 0),
+//             JuicoyGlassVIPTrigger.bottomAnchor.constraint(equalTo: JuicoyIconicAvatarFrame.bottomAnchor, constant: 0),
+//             
             
             JuicoyImperialCrownBadge.bottomAnchor.constraint(equalTo: JuicoyIconicAvatarFrame.bottomAnchor),
             JuicoyImperialCrownBadge.trailingAnchor.constraint(equalTo: JuicoyIconicAvatarFrame.trailingAnchor),
@@ -305,17 +305,17 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
 
             JuicoyMomentumStatsGrid.topAnchor.constraint(equalTo: JuicoyAuraBioLabel.bottomAnchor, constant: 20),
             JuicoyMomentumStatsGrid.leadingAnchor.constraint(equalTo: JuicoyFabricContentStack.leadingAnchor, constant: 20),
-
-            JuicoyImperialVIPAd.topAnchor.constraint(equalTo: JuicoyMomentumStatsGrid.bottomAnchor, constant: 25),
-            JuicoyImperialVIPAd.leadingAnchor.constraint(equalTo: JuicoyFabricContentStack.leadingAnchor, constant: 15),
-            JuicoyImperialVIPAd.trailingAnchor.constraint(equalTo: JuicoyFabricContentStack.trailingAnchor, constant: -15),
-            JuicoyImperialVIPAd.heightAnchor.constraint(equalToConstant: 111),
+//
+//            JuicoyImperialVIPAd.topAnchor.constraint(equalTo: JuicoyMomentumStatsGrid.bottomAnchor, constant: 25),
+//            JuicoyImperialVIPAd.leadingAnchor.constraint(equalTo: JuicoyFabricContentStack.leadingAnchor, constant: 15),
+//            JuicoyImperialVIPAd.trailingAnchor.constraint(equalTo: JuicoyFabricContentStack.trailingAnchor, constant: -15),
+//            JuicoyImperialVIPAd.heightAnchor.constraint(equalToConstant: 111),
 
             JuicoyGlimpseVideoHeader.leadingAnchor.constraint(equalTo: JuicoyFabricContentStack.leadingAnchor, constant: 20),
             JuicoyGlimpseVideoHeader.trailingAnchor.constraint(equalTo: JuicoyFabricContentStack.trailingAnchor, constant: 20),
-            JuicoyGlimpseVideoHeader.topAnchor.constraint(equalTo: JuicoyImperialVIPAd.bottomAnchor, constant: 15),
+            JuicoyGlimpseVideoHeader.topAnchor.constraint(equalTo: JuicoyMomentumStatsGrid.bottomAnchor, constant: 15),
             
-            JuicoyDesolateStateIcon.topAnchor.constraint(equalTo: JuicoyImperialVIPAd.bottomAnchor, constant: 60),
+            JuicoyDesolateStateIcon.topAnchor.constraint(equalTo: JuicoyMomentumStatsGrid.bottomAnchor, constant: 60),
             JuicoyDesolateStateIcon.centerXAnchor.constraint(equalTo: JuicoyFabricContentStack.centerXAnchor),
             JuicoyDesolateStateIcon.widthAnchor.constraint(equalToConstant: 140),
             JuicoyDesolateStateIcon.heightAnchor.constraint(equalToConstant: 112),
@@ -379,7 +379,7 @@ class JuicoyMotionArenantroller: JuicoyBasicController  {
         JuicoyStylePersonaName.text = useiINfo.JuicoyHandle
         
         
-        JuicoyGlassVIPTrigger.isHidden = !(useiINfo.JuicoyPremiumStatus == "1")
+//        JuicoyGlassVIPTrigger.isHidden = !(useiINfo.JuicoyPremiumStatus == "1")
         JuicoyEliteVipTag.isHidden = !(useiINfo.JuicoyPremiumStatus == "1")
         JuicoyAuraBioLabel.text = useiINfo.JuicoyMotto
         

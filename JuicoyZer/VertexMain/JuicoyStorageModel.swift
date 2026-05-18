@@ -105,7 +105,7 @@ struct JuicoyStorageModel: Codable {
     var JuicoyFollowStatus: String
     var JuicoyFaverateStatus: String
     var JuicoydiomonedCount: String
-    var JUICOYUneedVIP:String
+//    var JUICOYUneedVIP:String
 //    var JUICOYUVIPExpireTime:Date?
     enum CodingKeys: String, CodingKey {
         case JuicoyIdentifier = "JUICOYUID"
@@ -129,7 +129,7 @@ struct JuicoyStorageModel: Codable {
         case JuicoyFollowStatus = "JuicoyFollowStatus"
         case JuicoyFaverateStatus = "JuicoyFaverateStatus"
         case JuicoydiomonedCount = "JuicoydiomonedCount"
-        case JUICOYUneedVIP = "JUICOYUneedVIP"
+//        case JUICOYUneedVIP = "JUICOYUneedVIP"
        
     }
 }
@@ -174,8 +174,8 @@ class JuicoyDataFactory {
             JUICOYUViadioTime: "",
             JuicoyFollowStatus: "",
             JuicoyFaverateStatus: "",
-            JuicoydiomonedCount: diomendCount,
-            JUICOYUneedVIP: needsVIP
+            JuicoydiomonedCount: diomendCount
+//            JUICOYUneedVIP: needsVIP
         )
     }
     
@@ -214,8 +214,8 @@ class JuicoyDataFactory {
                 JUICOYUViadioTime:JuicoyDict["JUICOYUViadioTime"] ?? "00:00",
                 JuicoyFollowStatus:JuicoyDict["JuicoyFollowStatus"] ?? "0",
                 JuicoyFaverateStatus: JuicoyDict["JuicoyFaverateStatus"] ?? "0",
-                JuicoydiomonedCount: JuicoyDict["JuicoydiomonedCount"] ?? "0",
-                JUICOYUneedVIP: JuicoyDict["JUICOYUneedVIP"] ?? "0"
+                JuicoydiomonedCount: JuicoyDict["JuicoydiomonedCount"] ?? "0"//,
+//                JUICOYUneedVIP: JuicoyDict["JUICOYUneedVIP"] ?? "0"
 //                ,
 //                JUICOYUVIPExpireTime:JuicoyDict["JUICOYUVIPExpireTime"] //?? "VIP not yet activated"
             )
@@ -370,7 +370,7 @@ extension JuicoyDataFactory {
             
             if emailID == "juicy456@gmail.com" {
                 JuicoyDataFactory.Juicoyuserphtho = nil
-                JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "Jusper", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: isVip ? "1" : "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "1")
+                JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "Jusper", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: isVip ? "1" : "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount)//, JUICOYUneedVIP: "1"
               
                 JuicoySetupTestAccountData()
             }else{
@@ -450,7 +450,7 @@ extension JuicoyDataFactory {
         }
         if isTest {
             JuicoyDataFactory.Juicoyuserphtho = nil
-            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount, JUICOYUneedVIP: "1")
+            JuicoyDataFactory.currentUserModel = JuicoyStorageModel.init(JuicoyIdentifier: "89890880", JuicoyHandle: "", JuicoyAvatarKey: "juicoyDynamicLog", JuicoyMotto: "Expressing emotions through the pole.", JuicoyMediaCover: "", JuicoyMediaUrl: "", JuicoyMediaNarration: "", JuicoyPublicFeedback: [""], JuicoyPeerAvatars: ["89890843AUA","89890848AUA"], JuicoyPassionTags: ["Skills","HardWork","Flexibility"], JuicoyBirthEpoch: "2001-11-20", JuicoyBodyMass: "50kg", JuicoyVerticalStature: "172cm", JuicoyConnectionInCount: "3", JuicoyConnectionOutCount: "0", JuicoyPremiumStatus: "0", JUICOYUViadioTime: "", JuicoyFollowStatus: "", JuicoyFaverateStatus: "", JuicoydiomonedCount: diomendCount)
         } else {
             JuicoyDataFactory.currentUserModel = JuicoyAssembleLocalUser(email: email, diomendCount: diomendCount, premiumStatus: "", needsVIP: "0")
         }

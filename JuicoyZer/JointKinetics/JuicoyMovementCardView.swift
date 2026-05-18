@@ -58,13 +58,13 @@ final class JuicoyMovementCardView: UIButton {
         return JUICYlabel
     }()
     
-    lazy var JuicoyVIPView: UIImageView = {
-        let Juicoyimg = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyVIP"))
-      
-        Juicoyimg.translatesAutoresizingMaskIntoConstraints = false
-       
-        return Juicoyimg
-    }()
+//    lazy var JuicoyVIPView: UIImageView = {
+//        let Juicoyimg = UIImageView.init(image: JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: "juicoyVIP"))
+//      
+//        Juicoyimg.translatesAutoresizingMaskIntoConstraints = false
+//       
+//        return Juicoyimg
+//    }()
     
     
     private let JUICYsigniitle: UILabel = {
@@ -115,7 +115,7 @@ final class JuicoyMovementCardView: UIButton {
         Juicoyview.addSubview(JuiaddButton)
         Juicoyview.addSubview(JUICYnameTitle)
         Juicoyview.addSubview(JUICYsigniitle)
-        Juicoyview.addSubview(JuicoyVIPView)
+//        Juicoyview.addSubview(JuicoyVIPView)
         Juicoyview.addSubview(JuicoyWatchButton)
         
         NSLayoutConstraint.activate([
@@ -168,11 +168,11 @@ final class JuicoyMovementCardView: UIButton {
             JUICYsigniitle.trailingAnchor.constraint(equalTo: self.JuicoyWatchButton.leadingAnchor,constant: -8),
             JUICYsigniitle.topAnchor.constraint(equalTo: self.JUICYnameTitle.bottomAnchor,constant: 6),
            
-            JuicoyVIPView.widthAnchor.constraint(equalToConstant: 27),
-            JuicoyVIPView.heightAnchor.constraint(equalToConstant: 14),
-            JuicoyVIPView.leadingAnchor.constraint(equalTo: self.JUICYnameTitle.trailingAnchor,constant: 9),
-            JuicoyVIPView.centerYAnchor.constraint(equalTo: self.JUICYnameTitle.centerYAnchor),
-           
+//            JuicoyVIPView.widthAnchor.constraint(equalToConstant: 27),
+//            JuicoyVIPView.heightAnchor.constraint(equalToConstant: 14),
+//            JuicoyVIPView.leadingAnchor.constraint(equalTo: self.JUICYnameTitle.trailingAnchor,constant: 9),
+//            JuicoyVIPView.centerYAnchor.constraint(equalTo: self.JUICYnameTitle.centerYAnchor),
+//           
             
             ])
     }
@@ -182,7 +182,7 @@ final class JuicoyMovementCardView: UIButton {
         JuicoyImgView.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: loie.JuicoyAvatarKey)
         JUICYnameTitle.text = loie.JuicoyHandle
         JuicoyBackImageView.image = JuicoyResPulseArchitect.JuicoyExtractVisualPulse(fullIdentifier: loie.JuicoyMediaCover)
-        JuicoyVIPView.isHidden = !(loie.JuicoyPremiumStatus == "1")
+//        JuicoyVIPView.isHidden = !(loie.JuicoyPremiumStatus == "1")
         JUICYsigniitle.text = loie.JuicoyMotto
     }
 }

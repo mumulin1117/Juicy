@@ -377,10 +377,10 @@ class JuicoyOneneController: JuicoyBasicController, UICollectionViewDelegate , J
     
     @objc private func JuicoyOpenDetail(juiocyTa:UIButton) {
         let data = self.cardsModels[juiocyTa.tag]
-        if data.JUICOYUneedVIP == "1" && JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus == "0" {
-            JuicoyShowVipVideoAlert()
-            return
-        }
+//        if data.JUICOYUneedVIP == "1" && JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus == "0" {
+//            JuicoyShowVipVideoAlert()
+//            return
+//        }
         let detailTo = JuicoyMotionDeepController(juicoyModel: data)
        
         

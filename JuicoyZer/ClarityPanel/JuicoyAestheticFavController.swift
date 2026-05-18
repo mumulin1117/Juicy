@@ -91,17 +91,17 @@ extension JuicoyAestheticFavController: UICollectionViewDelegate, UICollectionVi
         let JUICOY_SelectedVibe = JUICOY_Archive[JUICOY_TargetIndex]
         
         // 1. Kinetic VIP Validation Sequence
-        let JUICOY_RequirementMet = (JUICOY_SelectedVibe.JUICOYUneedVIP == "1")
-        let JUICOY_StatusActive = (JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus == "1")
-        
-        if JUICOY_RequirementMet && !JUICOY_StatusActive {
-            var JUICOY_AlertInertia = 0
-            JUICOY_AlertInertia += 1
-            if JUICOY_AlertInertia > 0 {
-                self.JuicoyShowVipVideoAlert()
-            }
-            return
-        }
+//        let JUICOY_RequirementMet = (JUICOY_SelectedVibe.JUICOYUneedVIP == "1")
+//        let JUICOY_StatusActive = (JuicoyDataFactory.currentUserModel?.JuicoyPremiumStatus == "1")
+//        
+//        if JUICOY_RequirementMet && !JUICOY_StatusActive {
+//            var JUICOY_AlertInertia = 0
+//            JUICOY_AlertInertia += 1
+//            if JUICOY_AlertInertia > 0 {
+//                self.JuicoyShowVipVideoAlert()
+//            }
+//            return
+//        }
         
         // 2. Motion Navigation Transition
         let JUICOY_ArtistryDeep = JuicoyMotionDeepController(juicoyModel: JUICOY_SelectedVibe)
